@@ -10,7 +10,8 @@
 - Configuration guards reject SQLite URLs, pooled migration endpoints, mismatched database/schema/role, missing Neon TLS and insecure Vercel cookies. Initial production seeding requires configured admin credentials and does not print the password. Credentials and database URLs are excluded from Git.
 - After the batching change, all **101 Vitest tests in 11 files passed** against the disposable SQLite database. TypeScript and ESLint passed during the PostgreSQL production build. Restored the default SQLite client and restarted the local server at `localhost:3000`.
 - Vercel dry-run detected Next.js and 174 upload files; no `.env` files, private `data/` artifacts or SQLite database files were included.
-- Vercel CLI authenticated successfully after the connector lacked team access. Verified the existing `dla-s-projects/kenny-math` project and configured separate production/preview database Secrets, admin credentials and the Next.js build settings. Live deployment verification is recorded after release.
+- Vercel CLI authenticated successfully after the connector lacked team access. Verified the existing `dla-s-projects/kenny-math` project and configured separate production/preview database Secrets, admin credentials and the Next.js build settings.
+- Production staging deployment `dpl_5C79HV8Ryfof28vjiD3QSqeHQ7vT` (`f54ce40`) reached READY on Vercel: PostgreSQL migration and seed succeeded remotely. Authenticated checks with `vercel curl` returned HTTP 200 for the admin login form, login API, banks API and CSV export. The session cookie was Secure and HttpOnly; the sole active published bank contained 900 questions, and the downloaded CSV parsed as 900 rows. The private production credential file and HTTP cookies were not uploaded or committed.
 
 ## Database-free Vercel demo — 2026-10-16
 
