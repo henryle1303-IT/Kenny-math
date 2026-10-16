@@ -99,7 +99,7 @@ None. Every question was confirmed by the independent expression evaluator.
 
 ## Unresolved issues and limitations (honest list)
 
-1. **Repetition of patterns.** 900 questions come from 108 templates. Numbers, names and, for several templates, contexts vary, and no two questions are identical (885 distinct texts; 900 distinct text+answer pairs), but some structures recur up to ~8 times across the 30 tests (see the list above). More templates and context variants would reduce this further.
+1. **Repetition of patterns.** 900 questions come from 108 templates. Numbers, names and, for several templates, contexts vary, and no two questions are identical (885 distinct texts; 900 distinct text+answer pairs), but some structures recur up to about 9 times across the 30 tests (see the list above). More templates and context variants would reduce this further.
 2. **Pedagogical review pending.** Difficulty ratings come from the position/test formula and template tiers, not from classroom data. The first questions of each band can feel easier or harder than their rating suggests.
 3. **Skill evidence is thin at first.** There are 62 skills; a skill needs 3 attempts before a status other than “Not Enough Data” is shown and “Mastered” needs 5 attempts in 2 sessions. After the first test most skills have 0–2 data points, so Smart Review initially reacts to single mistakes.
 4. **Timer expiry is tested at service level** (persisted expiry, auto-finalisation on next access, late-answer rejection) and the countdown/refresh behaviour is covered end to end, but there is no e2e test that waits the full 30 minutes or fast-forwards the browser clock.
@@ -108,4 +108,3 @@ None. Every question was confirmed by the independent expression evaluator.
 7. **Rate limiting is in memory** (per server process) and resets on restart; fine for one instance.
 8. **Vietnamese** covers navigation and key student labels, not question content or the admin area (admin is English by specification).
 9. **SQLite** is single-writer; suitable for one student plus one admin. See README for the PostgreSQL migration steps (not exercised in this build).
-10. **Mixed units in a few distractor sets** are intentional (e.g. powers-of-ten mistakes) and are accepted by the validator because each option still carries the same unit.
