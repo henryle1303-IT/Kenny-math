@@ -90,7 +90,7 @@ export function evaluateArithmeticQuestion(questionText: string): Frac | null {
   const segs = [...questionText.matchAll(/\\\((.+?)\\\)/g)];
   if (segs.length !== 1) return null;
   if (!/^(calculate|evaluate|work out|compute|find the value of|what is|simplify)\b/i.test(questionText.trim())) return null;
-  const outside = questionText.replace(/\\\(.+?\\\)/g, '').toLowerCase();
+  const outside = questionText.replace(/\\\(.+?\\\)/g, '').toLowerCase().replace(/^\s*(calculate|evaluate|work out|compute|find the value of|what is|simplify)\b/, '');
   if (/\b(of|percent|%|remainder|round|nearest|digit)\b/.test(outside)) return null;
   const expr = texToExpr(segs[0][1].replace(/=\s*\??\s*$/, ''));
   if (!expr || !/[+\-*/^]/.test(expr.replace(/^-/, ''))) return null;

@@ -143,7 +143,7 @@ const calendar = T('lr.calendar', 'lr.calendar', 'Days of the week and cycles', 
   return {
     text: `Today is ${DAYS[start]}. What day of the week will it be ${n} days from today?`,
     correct: DAYS[end],
-    wrong: pickWrong,
+    wrong: [...pickWrong, ...DAYS.filter((d) => d !== DAYS[end])],
     verify: `mod(${start}+${n},7)`,
     asks: 'Use the 7-day cycle to find the day.',
     concept: 'The days repeat every 7 days, so only the remainder when dividing by 7 matters.',
