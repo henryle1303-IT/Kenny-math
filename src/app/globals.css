@@ -13,5 +13,5 @@ body { @apply bg-gradient-to-b from-brand-50 to-white text-slate-800 antialiased
 .btn-ghost { @apply btn text-slate-600 hover:bg-slate-100; }
 .input { @apply min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100; }
 .label { @apply mb-1 block text-sm font-semibold text-slate-700; }
-.badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+.badge { @apply inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-semibold; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }

@@ -38,7 +38,7 @@ export default async function TestsPage() {
                     {done ? <span className="badge bg-emerald-100 text-emerald-700"><CheckCircle2 size={14} className="mr-1" />{tr(lang, 'Completed')}</span> : <span className="badge bg-slate-100 text-slate-500">{tr(lang, 'Not started')}</span>}
                   </div>
                   {done ? (
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-sm">
                       <span>{tr(lang, 'Latest score')}: <b>{t.latestScore}/30</b></span>
                       <span>{tr(lang, 'Best score')}: <b>{t.bestScore}/30</b></span>
                       <Stars count={starsFor(((t.bestScore ?? 0) / 30) * 100)} />
