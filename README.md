@@ -9,6 +9,19 @@ An interactive Grade 5 maths platform:
 
 Stack: Next.js 15 (App Router) · TypeScript · Tailwind · Prisma + SQLite · KaTeX · Recharts · PapaParse · Zod · Vitest · Playwright.
 
+## Vercel demo (no database)
+
+The checked-in `vercel.json` deploys a static browser demo. No `DATABASE_URL`, admin password, Prisma migration or database service is needed. It includes the 900-question bank, timed tests, grading/explanations, practice, browser progress, CSV import/export, draft activation and clear progress. The **Admin demo** is open without sign-in and only changes data in the current browser. Practice selects questions from the local bank; it does not run the full server-side adaptive engine. Clearing browser storage resets this demo.
+
+```bash
+npm ci --ignore-scripts
+npm run build:demo
+npm run preview:demo         # http://127.0.0.1:3211
+npm run test:demo            # install Playwright Chromium or set PW_CHROMIUM first
+```
+
+Vercel settings: repository root directory, production branch `main`, build command `npm run build:demo`, output directory `demo-dist`, install command `npm ci --ignore-scripts`. `vercel.json` sets these commands and routes deep links to the static app. Push the actual application code to `main`; the original `main` branch contained only README and could not serve the app. The full database-backed application remains available locally through the commands below.
+
 ## Quick start (local)
 
 Requirements: Node.js 20+ (tested on 22) and npm.
@@ -87,7 +100,7 @@ docker run -d --name kenny-math -p 3000:3000 \
 
 Put it behind HTTPS (Caddy, nginx, Cloudflare Tunnel, or your platform's TLS). The container applies migrations and seeds on first start; later starts only run pending migrations. Back up the volume (`/data/kenny.db`).
 
-**Render / Fly.io / Railway / a VPS:** use the Dockerfile or run `npm ci && npm run build && npm run db:setup && npm run start` with a persistent disk mounted where `DATABASE_URL` points. Serverless platforms with ephemeral file systems (Vercel, Netlify) are **not** suitable for SQLite – switch to PostgreSQL first (below).
+**Render / Fly.io / Railway / a VPS:** use the Dockerfile or run `npm ci && npm run build && npm run db:setup && npm run start` with a persistent disk mounted where `DATABASE_URL` points. The full server application needs persistent database storage; for that version on serverless platforms use PostgreSQL (below). Vercel currently deploys the database-free browser demo described above.
 
 **Moving to PostgreSQL later:** in `prisma/schema.prisma` change `provider` to `postgresql`, set `DATABASE_URL` to your Postgres URL, delete `prisma/migrations`, run `npx prisma migrate dev --name init` once against an empty database, then `npm run db:seed`. The schema uses no SQLite-only features.
 
