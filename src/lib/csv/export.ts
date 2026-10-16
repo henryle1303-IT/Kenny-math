@@ -104,3 +104,18 @@ export function buildTemplateCsv(): string {
 }
 
 export { CORE_COLUMNS };
+
+/** `tests` accepts ranges and lists, e.g. 1-5,9,12 . Omit for the whole bank. */
+export function parseTests(s: string | null): number[] | undefined {
+  if (!s) return undefined;
+  const out = new Set<number>();
+  for (const part of s.split(',')) {
+    const m = /^\s*(\d+)\s*(?:-\s*(\d+))?\s*$/.exec(part);
+    if (!m) continue;
+    const a = Number(m[1]);
+    const b = m[2] ? Number(m[2]) : a;
+    for (let i = Math.min(a, b); i <= Math.max(a, b) && i <= 30; i++) if (i >= 1) out.add(i);
+  }
+  return [...out];
+}
+

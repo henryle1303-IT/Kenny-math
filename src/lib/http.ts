@@ -24,3 +24,17 @@ export async function readJson<T = Record<string, unknown>>(req: Request): Promi
     throw new AppError('The request was not valid.');
   }
 }
+
+import { requireAdmin, audit } from './services/admin-auth';
+
+/** Admin API wrapper: authenticates (server-side), runs the handler, logs the operation. */
+export async function adminHandle<T>(req: Request, operation: string, fn: (admin: { id: string; email: string }) => Promise<T>, details?: () => unknown): Promise<NextResponse> {
+  try {
+    const admin = await requireAdmin(req);
+    const data = await fn(admin);
+    if (!operation.startsWith('read.')) await audit(admin.id, operation, details ? details() : {});
+    return NextResponse.json(data);
+  } catch (e) {
+    return errorResponse(e);
+  }
+}

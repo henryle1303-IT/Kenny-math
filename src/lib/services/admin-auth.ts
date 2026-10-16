@@ -110,3 +110,10 @@ export function safeEqual(a: string, b: string) {
   const y = Buffer.from(b);
   return x.length === y.length && timingSafeEqual(x, y);
 }
+
+/** For server components: the signed-in admin, or null. */
+export async function currentAdmin() {
+  const { cookies } = await import('next/headers');
+  const jar = await cookies();
+  return adminFromToken(jar.get(ADMIN_COOKIE)?.value);
+}
