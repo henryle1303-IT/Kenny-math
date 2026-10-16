@@ -11,6 +11,7 @@ test('static demo saves answers, grades, practises, imports/exports and clears p
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Kenny Math Challenge', exact: true })).toBeVisible();
+  await page.screenshot({ path: info.outputPath('demo-home.png'), fullPage: true });
   await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'Math Tests', exact: true }).click();
   await expect(page.getByTestId('test-card-30')).toBeVisible();
   await page.getByTestId('test-card-1').getByRole('button', { name: 'Start', exact: true }).click();

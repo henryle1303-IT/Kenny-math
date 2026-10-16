@@ -7,6 +7,7 @@
 - `npm run test:demo`: 2 Chrome tests passed, covering all 30 test cards, saved answers/expiry after reload, grading and explanations, ten-question practice, UTF-8 CSV export (900 rows), CSV validation/import, draft activation, preserved banks after clearing progress, direct route refresh, 375px layouts and automatic submission on expiry. The browser made zero `/api/` requests and had zero uncaught page errors.
 - Demo state is stored under the separate `kenny-math-demo-v1` browser-storage key. Admin demo needs no sign-in and changes only that browser's sample data. The database-backed local application is unchanged.
 - Deployment diagnostics: GitHub showed production deploying the original `main` commit containing only README, while the implementation was on `claude/kenny-math-challenge`. The Vercel connection returned HTTP 403 for team `dla-s-projects`, so dashboard changes/build-log access were not available through that connection.
+- Released the tested static demo by fast-forwarding `main` to `a07de37`. GitHub reported successful production deployments for both `kenny-math` and `math`. `https://kenny-math.vercel.app` returned HTTP 200 and the demo UI; both browser tests also passed against that public domain with `DEMO_BASE_URL=https://kenny-math.vercel.app` (zero API requests and zero uncaught page errors).
 
 ## Import/export verification — 2026-10-16
 

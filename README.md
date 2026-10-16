@@ -20,6 +20,8 @@ npm run preview:demo         # http://127.0.0.1:3211
 npm run test:demo            # install Playwright Chromium or set PW_CHROMIUM first
 ```
 
+Set `DEMO_BASE_URL` to the public demo URL to run the same browser tests against a deployment instead of starting a local server.
+
 Vercel settings: repository root directory, production branch `main`, build command `npm run build:demo`, output directory `demo-dist`, install command `npm ci --ignore-scripts`. `vercel.json` sets these commands and routes deep links to the static app. Push the actual application code to `main`; the original `main` branch contained only README and could not serve the app. The full database-backed application remains available locally through the commands below.
 
 ## Quick start (local)
