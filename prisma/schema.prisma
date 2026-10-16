@@ -31,6 +31,7 @@ model QuestionBank {
   isActive      Boolean   @default(false)
   parentBankId  String?
   notes         String    @default("")
+  seed          String    @default("")
   validationJson String?  // last validation summary (JSON)
   validatedAt   DateTime?
   createdAt     DateTime  @default(now())
@@ -76,7 +77,7 @@ model Question {
   explanation      String
   commonMistake    String
   learningTip      String
-  validationStatus String       @default("PENDING") // PENDING | VERIFIED | NEEDS_REVIEW | INVALID
+  validationStatus String       @default("PENDING") // PENDING | VERIFIED | NEEDS_REVIEW | INVALID | MANUAL_OK
   validationNotes  String       @default("")
   verifyExpr       String? // optional machine-checkable expression for the correct answer
   templateId       String?

@@ -16,6 +16,7 @@ CREATE TABLE "QuestionBank" (
     "isActive" BOOLEAN NOT NULL DEFAULT false,
     "parentBankId" TEXT,
     "notes" TEXT NOT NULL DEFAULT '',
+    "seed" TEXT NOT NULL DEFAULT '',
     "validationJson" TEXT,
     "validatedAt" DATETIME,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
