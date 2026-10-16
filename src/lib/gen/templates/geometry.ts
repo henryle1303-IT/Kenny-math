@@ -79,7 +79,7 @@ const perimeter = T('ge.perimeter', 'ge.perimeter', 'Perimeter', 'Geometry', [1,
   };
 });
 
-const areaRect = T('ge.area', 'ge.area', 'Area of rectangles and squares', 'Geometry', [1, 5], (r, tier) => {
+const areaRect = T('ge.area', 'ge.area', 'Area of rectangles, triangles and parallelograms', 'Geometry', [1, 5], (r, tier) => {
   const unit = r.pick(['cm', 'm']);
   const decimal = tier >= 4;
   const l = decimal ? F(r.int(25, 95), 10) : F(r.int(4 + tier * 2, 12 + tier * 5));
@@ -102,7 +102,10 @@ const areaRect = T('ge.area', 'ge.area', 'Area of rectangles and squares', 'Geom
     };
   }
   return {
-    text: tier >= 3 ? `A rectangular playground is ${ds(l)} ${unit} long and ${ds(w)} ${unit} wide. What is its area?` : `A rectangle is ${ds(l)} ${unit} long and ${ds(w)} ${unit} wide. What is its area?`,
+    text:
+      tier >= 3
+        ? `A rectangular ${unit === 'm' ? r.pick(['playground', 'classroom floor', 'vegetable patch', 'car park']) : r.pick(['postcard', 'poster', 'photo frame', 'tile'])} is ${ds(l)} ${unit} long and ${ds(w)} ${unit} wide. What is its area?`
+        : `A rectangle is ${ds(l)} ${unit} long and ${ds(w)} ${unit} wide. What is its area?`,
     correct: u(a, `${unit}²`),
     wrong: [u(l.add(w).mul(F(2)), `${unit}²`), u(l.add(w), `${unit}²`), u(a.mul(F(10)), `${unit}²`), u(a.div(F(10)).add(F(0)), `${unit}²`)],
     verify: `${ds(l)}*${ds(w)}`,
@@ -115,7 +118,7 @@ const areaRect = T('ge.area', 'ge.area', 'Area of rectangles and squares', 'Geom
   };
 });
 
-const triangle = T('ge.triangle', 'ge.triangle', 'Area of triangles', 'Geometry', [2, 5], (r, tier) => {
+const triangle = T('ge.triangle', 'ge.area', 'Area of rectangles, triangles and parallelograms', 'Geometry', [2, 5], (r, tier) => {
   const unit = r.pick(['cm', 'm']);
   const b = r.int(4, 6 + tier * 4);
   const h = intWhere(r, 3, 6 + tier * 3, (x) => (b * x) % 2 === 0);
@@ -134,13 +137,17 @@ const triangle = T('ge.triangle', 'ge.triangle', 'Area of triangles', 'Geometry'
   };
 });
 
-const parallelogram = T('ge.parallelogram', 'ge.parallelogram', 'Area of parallelograms', 'Geometry', [3, 5], (r, tier) => {
+const parallelogram = T('ge.parallelogram', 'ge.area', 'Area of rectangles, triangles and parallelograms', 'Geometry', [3, 5], (r, tier) => {
   const b = r.int(6, 10 + tier * 3);
   const h = r.int(4, 6 + tier * 2);
   const slant = h + r.int(2, 5);
   const a = b * h;
   return {
-    text: `A parallelogram has a base of ${b} cm, a slanted side of ${slant} cm and a perpendicular height of ${h} cm. What is its area?`,
+    text: r.pick([
+      `A parallelogram has a base of ${b} cm, a slanted side of ${slant} cm and a perpendicular height of ${h} cm. What is its area?`,
+      `A paper parallelogram is ${b} cm along its bottom edge. Its sloping side is ${slant} cm and the straight-up height between the long sides is ${h} cm. Find its area.`,
+      `A flower bed is shaped like a parallelogram. The base is ${b} cm, the slanted side is ${slant} cm and the perpendicular height is ${h} cm. What is the area of the flower bed?`,
+    ]),
     correct: u(a, 'cm²'),
     wrong: [u(b * slant, 'cm²'), u((b * h) / 2 === Math.floor((b * h) / 2) ? (b * h) / 2 : a + 1, 'cm²'), u(2 * (b + slant), 'cm²'), u(a + b, 'cm²')],
     verify: `${b}*${h}`,
@@ -178,7 +185,12 @@ const composite = T('ge.composite', 'ge.composite', 'Area of composite shapes', 
   }
   const v = a1 * b1 + a2 * b2;
   return {
-    text: `An L-shaped room is made by joining a ${a1} m by ${b1} m rectangle to a ${a2} m by ${b2} m rectangle. The two rectangles do not overlap. What is the total floor area?`,
+    text: r.pick([
+      `An L-shaped room is made by joining a ${a1} m by ${b1} m rectangle to a ${a2} m by ${b2} m rectangle. The two rectangles do not overlap. What is the total floor area?`,
+      `A school playground is L-shaped. It is made of a ${a1} m by ${b1} m rectangle and a ${a2} m by ${b2} m rectangle that do not overlap. What is the area of the whole playground?`,
+      `${name}’s garden is made of two rectangular lawns: one ${a1} m by ${b1} m and one ${a2} m by ${b2} m. What is the total area of grass?`,
+      `A swimming-pool deck is made of a ${a1} m by ${b1} m part and a ${a2} m by ${b2} m part joined together. What is the total area of the deck?`,
+    ]),
     correct: u(v, 'm²'),
     wrong: [u(a1 * b1, 'm²'), u(2 * (a1 + b1 + a2 + b2), 'm²'), u(v + a2, 'm²'), u((a1 + a2) * (b1 + b2), 'm²') === u(v, 'm²') ? u(v + 5, 'm²') : u((a1 + a2) * (b1 + b2), 'm²')],
     verify: `${a1}*${b1}+${a2}*${b2}`,
@@ -191,7 +203,7 @@ const composite = T('ge.composite', 'ge.composite', 'Area of composite shapes', 
   };
 });
 
-const volume = T('ge.volume', 'ge.volume', 'Volume of cuboids', 'Geometry', [1, 5], (r, tier) => {
+const volume = T('ge.volume', 'ge.volume', 'Volume and capacity', 'Geometry', [1, 5], (r, tier) => {
   const unit = 'cm';
   const cube = tier <= 2 && r.chance(0.35);
   if (cube) {
@@ -228,13 +240,18 @@ const volume = T('ge.volume', 'ge.volume', 'Volume of cuboids', 'Geometry', [1, 
   };
 });
 
-const volumeMissing = T('ge.volumemissing', 'ge.volumemissing', 'Missing dimension from volume', 'Geometry', [3, 5], (r, tier) => {
+const volumeMissing = T('ge.volumemissing', 'ge.volume', 'Volume and capacity', 'Geometry', [3, 5], (r, tier) => {
   const l = r.int(3, 12);
   const w = r.int(2, 9);
   const h = r.int(2, 12);
   const v = l * w * h;
   return {
-    text: `A cuboid has a volume of ${commas(v)} cm³. It is ${l} cm long and ${w} cm wide. How high is it?`,
+    text: r.pick([
+      `A cuboid has a volume of ${commas(v)} cm³. It is ${l} cm long and ${w} cm wide. How high is it?`,
+      `A storage box holds ${commas(v)} cm³. Its base is ${l} cm by ${w} cm. How tall is the box?`,
+      `An aquarium has a volume of ${commas(v)} cm³ and a rectangular base ${l} cm long and ${w} cm wide. What is its height?`,
+      `A block of clay is ${l} cm long and ${w} cm wide. Its volume is ${commas(v)} cm³. How thick is the block?`,
+    ]),
     correct: u(h, 'cm'),
     wrong: [u(v / l, 'cm'), u(l * w, 'cm'), u(h + l, 'cm'), u(Math.max(1, v / (l + w)) % 1 === 0 ? v / (l + w) : h + 2, 'cm')],
     verify: `${v}/(${l}*${w})`,
@@ -247,13 +264,18 @@ const volumeMissing = T('ge.volumemissing', 'ge.volumemissing', 'Missing dimensi
   };
 });
 
-const capacity = T('ge.capacity', 'ge.capacity', 'Volume and capacity', 'Geometry', [4, 5], (r, tier) => {
+const capacity = T('ge.capacity', 'ge.volume', 'Volume and capacity', 'Geometry', [4, 5], (r, tier) => {
   const [l, w, h] = [r.pick([20, 25, 40, 50]), r.pick([20, 25, 40, 50, 30]), r.pick([10, 20, 30, 40])];
   const v = l * w * h;
   if (v % 1000 !== 0) return capacity.build(r, tier);
   const litres = v / 1000;
   return {
-    text: `A fish tank is ${l} cm long, ${w} cm wide and ${h} cm high. How many litres of water does it hold when it is completely full? (1 litre = 1,000 cm³)`,
+    text: r.pick([
+      `A fish tank is ${l} cm long, ${w} cm wide and ${h} cm high. How many litres of water does it hold when it is completely full? (1 litre = 1,000 cm³)`,
+      `A water trough for animals measures ${l} cm by ${w} cm by ${h} cm inside. How many litres can it hold when full? (1 litre = 1,000 cm³)`,
+      `A paddling pool is ${l} cm long, ${w} cm wide and ${h} cm deep. How many litres of water fill it to the top? (1 litre = 1,000 cm³)`,
+      `A rectangular planter has inside measurements ${l} cm × ${w} cm × ${h} cm. How many litres of soil fit in it? (1 litre = 1,000 cm³)`,
+    ]),
     correct: u(litres, 'litres'),
     wrong: [u(v, 'litres'), u(litres * 10, 'litres'), u(litres / 10 === Math.floor(litres / 10) ? litres / 10 : litres + 2, 'litres'), u(litres + 5, 'litres')],
     verify: `${l}*${w}*${h}/1000`,
@@ -266,7 +288,7 @@ const capacity = T('ge.capacity', 'ge.capacity', 'Volume and capacity', 'Geometr
   };
 });
 
-const squarePA = T('ge.squarepa', 'ge.squarepa', 'Perimeter and area connections', 'Geometry', [3, 5], (r, tier) => {
+const squarePA = T('ge.squarepa', 'ge.perimeter', 'Perimeter', 'Geometry', [3, 5], (r, tier) => {
   const s = r.int(4, 14);
   const toArea = r.chance(0.5);
   if (toArea) {
@@ -367,12 +389,17 @@ const angles = T('ge.angles', 'ge.angles', 'Angles', 'Geometry', [1, 4], (r, tie
   };
 });
 
-const cubesFit = T('ge.cubesfit', 'ge.cubesfit', 'Packing with unit cubes', 'Geometry', [3, 5], (r, tier) => {
+const cubesFit = T('ge.cubesfit', 'ge.volume', 'Volume and capacity', 'Geometry', [3, 5], (r, tier) => {
   const s = r.pick([2, 3, 4, 5]);
   const [a, b, c] = [s * r.int(2, 5), s * r.int(2, 4), s * r.int(1, 4)];
   const n = (a / s) * (b / s) * (c / s);
   return {
-    text: `A box is ${a} cm long, ${b} cm wide and ${c} cm high. How many cubes with edges of ${s} cm can be packed into the box with no gaps?`,
+    text: r.pick([
+      `A box is ${a} cm long, ${b} cm wide and ${c} cm high. How many cubes with edges of ${s} cm can be packed into the box with no gaps?`,
+      `A toy crate measures ${a} cm by ${b} cm by ${c} cm. It is filled with building blocks that are ${s} cm cubes. How many blocks fit exactly?`,
+      `A rectangular tray of ice is ${a} cm long, ${b} cm wide and ${c} cm deep. How many ${s} cm ice cubes can be cut from it?`,
+      `A packing carton is ${a} cm × ${b} cm × ${c} cm. How many ${s} cm cube-shaped parcels fill it completely?`,
+    ]),
     correct: String(n),
     wrong: [String(Math.round((a * b * c) / s)), String(a * b * c), String(n + (a / s)), String(Math.max(1, n - (b / s)))],
     verify: `(${a}/${s})*(${b}/${s})*(${c}/${s})`,

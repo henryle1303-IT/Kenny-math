@@ -5,7 +5,7 @@ import type { Template } from '../types';
 
 const F = (n: number, d = 1) => new Frac(n, d);
 
-const simplify = T('ra.simplify', 'ra.simplify', 'Simplifying ratios', 'Ratios', [1, 4], (r, tier) => {
+const simplify = T('ra.simplify', 'ra.equiv', 'Equivalent and simplified ratios', 'Ratios', [1, 4], (r, tier) => {
   const g = [r.int(2, 4), r.int(3, 6), r.int(4, 9), r.int(6, 12)][tier - 1];
   const sa = intWhere(r, 1, 9, () => true);
   const sb = intWhere(r, 2, 11, (x) => x !== sa && gcd(sa, x) === 1);
@@ -34,7 +34,7 @@ const simplify = T('ra.simplify', 'ra.simplify', 'Simplifying ratios', 'Ratios',
   };
 });
 
-const share = T('ra.share', 'ra.share', 'Sharing in a ratio', 'Ratios', [2, 5], (r, tier) => {
+const share = T('ra.share', 'ra.share', 'Sharing and ratio problems', 'Ratios', [2, 5], (r, tier) => {
   const a = r.int(1, tier <= 3 ? 4 : 6);
   const b = r.int(a + 1, a + (tier <= 3 ? 4 : 6));
   const parts = a + b;
@@ -59,7 +59,7 @@ const share = T('ra.share', 'ra.share', 'Sharing in a ratio', 'Ratios', [2, 5], 
   };
 });
 
-const unitRate = T('ra.unitrate', 'ra.unitrate', 'Unit rates', 'Ratios', [1, 5], (r, tier) => {
+const unitRate = T('ra.unitrate', 'ra.rates', 'Unit rates and scale', 'Ratios', [1, 5], (r, tier) => {
   const n = r.int(3, tier <= 2 ? 6 : 9);
   const cents = r.int(tier <= 2 ? 20 : 15, 95);
   const unitPrice = F(cents, 100);
@@ -81,7 +81,7 @@ const unitRate = T('ra.unitrate', 'ra.unitrate', 'Unit rates', 'Ratios', [1, 5],
   };
 });
 
-const scale = T('ra.scale', 'ra.scale', 'Scale and proportion', 'Ratios', [2, 5], (r, tier) => {
+const scale = T('ra.scale', 'ra.rates', 'Unit rates and scale', 'Ratios', [2, 5], (r, tier) => {
   const ctx = r.int(0, 1);
   if (ctx === 0) {
     const k = r.pick([2, 5, 10, 20, 25]);
@@ -118,7 +118,7 @@ const scale = T('ra.scale', 'ra.scale', 'Scale and proportion', 'Ratios', [2, 5]
   };
 });
 
-const equiv: Template = T('ra.equiv', 'ra.equiv', 'Equivalent ratios and proportions', 'Ratios', [1, 4], (r, tier) => {
+const equiv: Template = T('ra.equiv', 'ra.equiv', 'Equivalent and simplified ratios', 'Ratios', [1, 4], (r, tier) => {
   const a = r.int(2, 9);
   const b = intWhere(r, 2, 11, (x) => x !== a);
   const k = [r.int(2, 4), r.int(3, 6), r.int(4, 9), r.int(6, 12)][tier - 1];
@@ -137,7 +137,7 @@ const equiv: Template = T('ra.equiv', 'ra.equiv', 'Equivalent ratios and proport
   };
 });
 
-const part = T('ra.part', 'ra.part', 'Ratio problems with a known part', 'Ratios', [3, 5], (r, tier) => {
+const part = T('ra.part', 'ra.share', 'Sharing and ratio problems', 'Ratios', [3, 5], (r, tier) => {
   const a = r.int(2, 5);
   const b = r.int(a + 1, 8);
   const unit = r.int(2, tier === 3 ? 6 : 12);
@@ -163,7 +163,7 @@ const part = T('ra.part', 'ra.part', 'Ratio problems with a known part', 'Ratios
   };
 });
 
-const better = T('ra.better', 'ra.better', 'Best buy and comparing rates', 'Ratios', [3, 5], (r, tier) => {
+const better = T('ra.better', 'ra.rates', 'Unit rates and scale', 'Ratios', [3, 5], (r, tier) => {
   const n1 = r.pick([4, 5, 6, 8]);
   const n2 = n1 * r.int(2, 3);
   const up1 = F(r.int(20, 45), 100);

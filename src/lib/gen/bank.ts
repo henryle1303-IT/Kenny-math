@@ -136,3 +136,15 @@ export function generateForSlot(seed: string, slot: Slot, taken: Set<string>, va
 export function seedFor(bankSeed: string, extra: string): string {
   return `${bankSeed}~${hashString(extra)}`;
 }
+
+/** Generate the complete 900-question bank in memory (no database). Used by scripts and tests. */
+export function generateFullBank(seed: string = DEFAULT_BANK_SEED): GeneratedSlotQuestion[] {
+  const taken = new Set<string>();
+  const out: GeneratedSlotQuestion[] = [];
+  for (const slot of planBank(seed)) {
+    const q = generateForSlot(seed, slot, taken);
+    taken.add(q.fingerprint);
+    out.push(q);
+  }
+  return out;
+}

@@ -1,6 +1,6 @@
 import { T } from '../define';
 import { Frac, gcd } from '../../math/fraction';
-import { NAMES, decStr, m, money, moneyAuto, tfrac } from '../h';
+import { NAMES, commas, decStr, m, money, moneyAuto, tfrac } from '../h';
 
 const F = (n: number, d = 1) => new Frac(n, d);
 const pct = (n: number | Frac) => `${typeof n === 'number' ? n : decStr(n)}%`;
@@ -32,7 +32,7 @@ const of = T('pc.of', 'pc.of', 'Percent of an amount', 'Percentages', [1, 5], (r
   };
 });
 
-const discount = T('pc.discount', 'pc.discount', 'Discounts and sale prices', 'Percentages', [2, 5], (r, tier) => {
+const discount = T('pc.discount', 'pc.change', 'Discounts and percent change', 'Percentages', [2, 5], (r, tier) => {
   const p = r.pick(tier === 2 ? [10, 20, 50, 25] : tier === 3 ? [15, 30, 40, 25, 20] : [12, 35, 15, 45, 60, 75]);
   const unit = p % 25 === 0 ? 4 : 20;
   const price = unit * r.int(5, tier <= 3 ? 20 : 40);
@@ -126,7 +126,7 @@ const find = T('pc.find', 'pc.find', 'Finding what percent', 'Percentages', [1, 
   };
 });
 
-const increase = T('pc.increase', 'pc.increase', 'Percent increase', 'Percentages', [3, 5], (r, tier) => {
+const increase = T('pc.increase', 'pc.change', 'Discounts and percent change', 'Percentages', [3, 5], (r, tier) => {
   const p = r.pick(tier === 3 ? [10, 20, 50, 25] : tier === 4 ? [15, 30, 40, 5, 12] : [35, 45, 8, 60, 120]);
   const base = r.pick([200, 400, 500, 800, 250, 600, 1000, 1200, 150]);
   const inc = F(base * p, 100);
@@ -134,7 +134,7 @@ const increase = T('pc.increase', 'pc.increase', 'Percent increase', 'Percentage
   const ctx = r.int(0, 2);
   const text =
     ctx === 0
-      ? `A school has ${base} students. The number of students goes up by ${p}% next year. How many students will there be?`
+      ? `A school has ${commas(base)} students. The number of students goes up by ${p}% next year. How many students will there be?`
       : ctx === 1
         ? `A plant is ${base} mm tall. It grows ${p}% taller in a month. How tall is it now, in millimetres?`
         : `A video game costs ${moneyAuto(base / 10)}. The price increases by ${p}%. What is the new price?`;
@@ -156,7 +156,7 @@ const increase = T('pc.increase', 'pc.increase', 'Percent increase', 'Percentage
   };
 });
 
-const whole = T('pc.whole', 'pc.whole', 'Finding the whole from a percent', 'Percentages', [3, 5], (r, tier) => {
+const whole = T('pc.whole', 'pc.find', 'Finding what percent', 'Percentages', [3, 5], (r, tier) => {
   const p = r.pick(tier === 3 ? [50, 25, 10, 20] : tier === 4 ? [30, 40, 75, 60] : [15, 35, 45, 12, 85]);
   const k = 100 / gcd(p, 100);
   const total = k * r.int(2, Math.max(2, Math.floor(60 / k)));

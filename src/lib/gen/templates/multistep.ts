@@ -6,7 +6,7 @@ import type { Template } from '../types';
 const F = (n: number, d = 1) => new Frac(n, d);
 const ds = (f: Frac) => decStr(f);
 
-const shop = T('ms.shop', 'ms.shop', 'Shopping with discounts', 'Multi-step Problems', [2, 5], (r, tier) => {
+const shop = T('ms.shop', 'ms.money', 'Multi-step money problems', 'Multi-step Problems', [2, 5], (r, tier) => {
   const name = r.pick(NAMES);
   const p = r.pick([10, 20, 25, 50]);
   const n = r.int(2, 5);
@@ -32,7 +32,7 @@ const shop = T('ms.shop', 'ms.shop', 'Shopping with discounts', 'Multi-step Prob
   };
 });
 
-const garden = T('ms.fence', 'ms.fence', 'Perimeter and cost', 'Multi-step Problems', [3, 5], (r, tier) => {
+const garden = T('ms.fence', 'ms.measure', 'Multi-step measurement problems', 'Multi-step Problems', [3, 5], (r, tier) => {
   const l = r.int(8, 25);
   const w = r.int(5, l - 1);
   const rate = r.pick([3, 4, 5, 6, 8]);
@@ -54,7 +54,7 @@ const garden = T('ms.fence', 'ms.fence', 'Perimeter and cost', 'Multi-step Probl
   };
 });
 
-const trip = T('ms.trip', 'ms.trip', 'Journey problems', 'Multi-step Problems', [3, 5], (r, tier) => {
+const trip = T('ms.trip', 'ms.rates', 'Multi-step rate problems', 'Multi-step Problems', [3, 5], (r, tier) => {
   const speed = r.pick([40, 50, 60, 80, 75]);
   const hours = r.pick([2, 3, 4, 2.5, 3.5]);
   const dist = F(Math.round(speed * hours * 10), 10);
@@ -78,7 +78,7 @@ const trip = T('ms.trip', 'ms.trip', 'Journey problems', 'Multi-step Problems', 
   };
 });
 
-const recipe = T('ms.recipe', 'ms.recipe', 'Scaling with conversions', 'Multi-step Problems', [3, 5], (r, tier) => {
+const recipe = T('ms.recipe', 'ms.planning', 'Planning and scaling problems', 'Multi-step Problems', [3, 5], (r, tier) => {
   const people = r.pick([4, 6, 8]);
   const mult = r.pick([2, 3, 5]);
   const flourG = r.pick([250, 300, 400, 150]);
@@ -100,7 +100,7 @@ const recipe = T('ms.recipe', 'ms.recipe', 'Scaling with conversions', 'Multi-st
   };
 });
 
-const percentChain = T('ms.percentchain', 'ms.percentchain', 'Successive percent changes', 'Multi-step Problems', [4, 5], (r, tier) => {
+const percentChain = T('ms.percentchain', 'ms.money', 'Multi-step money problems', 'Multi-step Problems', [4, 5], (r, tier) => {
   const base = r.pick([100, 200, 400, 500, 800]);
   const up = r.pick([10, 20, 50, 25]);
   const down = r.pick([10, 20, 25, 50]);
@@ -121,7 +121,7 @@ const percentChain = T('ms.percentchain', 'ms.percentchain', 'Successive percent
   };
 });
 
-const tank = T('ms.tank', 'ms.tank', 'Filling and emptying', 'Multi-step Problems', [4, 5], (r, tier) => {
+const tank = T('ms.tank', 'ms.rates', 'Multi-step rate problems', 'Multi-step Problems', [4, 5], (r, tier) => {
   const cap = r.pick([600, 800, 1000, 1200, 1500]);
   const startPc = r.pick([20, 25, 40, 50]);
   const fillRate = r.pick([20, 25, 30, 40, 50]);
@@ -145,27 +145,33 @@ const tank = T('ms.tank', 'ms.tank', 'Filling and emptying', 'Multi-step Problem
   };
 });
 
-const party = T('ms.party', 'ms.party', 'Planning and sharing', 'Multi-step Problems', [2, 5], (r, tier) => {
+const party = T('ms.party', 'ms.planning', 'Planning and scaling problems', 'Multi-step Problems', [2, 5], (r, tier) => {
   const kids = r.int(10, 30);
   const adults = r.int(3, 8);
   const slicePer = r.pick([2, 3]);
   const sliceAdult = 2;
   const pizza = r.pick([8, 6]);
   const slices = kids * slicePer + adults * sliceAdult;
+  const ctx = r.pick([
+    { event: 'a birthday party', food: 'pizza', piece: 'slices of pizza', pack: 'pizza', packs: 'pizzas', people: ['children', 'adults'] },
+    { event: 'a school picnic', food: 'cake', piece: 'pieces of cake', pack: 'cake', packs: 'cakes', people: ['pupils', 'teachers'] },
+    { event: 'a sports day', food: 'watermelon', piece: 'wedges of watermelon', pack: 'watermelon', packs: 'watermelons', people: ['players', 'coaches'] },
+    { event: 'a class celebration', food: 'tray of brownies', piece: 'brownies', pack: 'tray', packs: 'trays', people: ['students', 'parents'] },
+  ]);
   const pizzas = Math.ceil(slices / pizza);
   const price = r.pick([9, 10, 12, 14]);
   const cost = pizzas * price;
   return {
-    text: `At a party there are ${kids} children and ${adults} adults. Each child eats ${slicePer} slices of pizza and each adult eats ${sliceAdult} slices. Each pizza has ${pizza} slices and costs $${price}. What is the least amount of money needed to buy enough pizza?`,
+    text: `At ${ctx.event} there are ${kids} ${ctx.people[0]} and ${adults} ${ctx.people[1]}. Each of the ${ctx.people[0]} eats ${slicePer} ${ctx.piece} and each of the ${ctx.people[1]} eats ${sliceAdult}. Each ${ctx.pack} has ${pizza} ${ctx.piece.split(' ')[0] === 'slices' || ctx.piece.split(' ')[0] === 'pieces' || ctx.piece.split(' ')[0] === 'wedges' ? ctx.piece.split(' ')[0] : ctx.piece} and costs $${price}. What is the least amount of money needed to buy enough ${ctx.food === 'tray of brownies' ? 'brownies' : ctx.food}?`,
     correct: `$${cost}`,
     wrong: [`$${(pizzas - 1) * price}`, `$${(pizzas + 1) * price}`, `$${Math.round(slices / pizza) * price === cost ? cost + price * 2 : Math.round(slices / pizza) * price}`, `$${slices * price}`],
     verify: `ceil((${kids}*${slicePer}+${adults}*${sliceAdult})/${pizza})*${price}`,
     pad: (d) => `$${cost + d * price}`,
-    asks: 'Count the slices, then the pizzas (whole ones), then the cost.',
+    asks: 'Count the portions, then the whole items needed, then the cost.',
     concept: 'Find the total needed, divide by the pack size, round up, then multiply by the price.',
-    steps: [`Slices: ${kids} × ${slicePer} + ${adults} × ${sliceAdult} = ${slices}.`, `Pizzas: ${slices} ÷ ${pizza} = ${(slices / pizza).toFixed(2)}, so round up to ${pizzas}.`, `Cost: ${pizzas} × $${price} = $${cost}.`],
-    mistake: 'Rounding down the number of pizzas, so some people go hungry.',
-    tip: 'You cannot buy part of a pizza – round up.',
+    steps: [`Portions: ${kids} × ${slicePer} + ${adults} × ${sliceAdult} = ${slices}.`, `Whole ${ctx.packs}: ${slices} ÷ ${pizza} = ${(slices / pizza).toFixed(2)}, so round up to ${pizzas}.`, `Cost: ${pizzas} × $${price} = $${cost}.`],
+    mistake: 'Rounding down the number of whole items, so some people go without.',
+    tip: 'You cannot buy part of an item – round up.',
   };
 });
 

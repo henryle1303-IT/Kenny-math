@@ -33,7 +33,7 @@ const addsub = T('dec.addsub', 'dec.addsub', 'Adding and subtracting decimals', 
   };
 });
 
-const mul = T('dec.mul', 'dec.mul', 'Multiplying decimals', 'Decimals', [1, 5], (r, tier) => {
+const mul = T('dec.mul', 'dec.muldiv', 'Multiplying and dividing decimals', 'Decimals', [1, 5], (r, tier) => {
   let a: Frac, b: Frac;
   if (tier === 1) [a, b] = [D(r.int(11, 99), 1), F(r.int(2, 9))];
   else if (tier === 2) [a, b] = [D(r.int(101, 999), 2), F(r.int(3, 9))];
@@ -63,7 +63,7 @@ function decPlaces(f: Frac): number {
   return p;
 }
 
-const div = T('dec.div', 'dec.div', 'Dividing decimals', 'Decimals', [2, 5], (r, tier) => {
+const div = T('dec.div', 'dec.muldiv', 'Multiplying and dividing decimals', 'Decimals', [2, 5], (r, tier) => {
   const k = tier === 2 ? r.int(2, 9) : tier === 3 ? r.int(3, 12) : r.int(4, 15);
   const q = tier <= 3 ? D(r.int(12, 99), 1) : D(r.int(112, 499), 2);
   const dividend = q.mul(F(k));
@@ -103,7 +103,7 @@ const div = T('dec.div', 'dec.div', 'Dividing decimals', 'Decimals', [2, 5], (r,
   };
 });
 
-const round = T('dec.round', 'dec.round', 'Rounding decimals', 'Decimals', [1, 5], (r, tier) => {
+const round = T('dec.round', 'dec.place', 'Decimal place value and rounding', 'Decimals', [1, 5], (r, tier) => {
   const pl = tier <= 2 ? 1 : 2;
   const raw = r.int(2, 9) * 1000 + r.int(100, 999);
   const val = D(raw, 3 + (tier >= 4 ? 1 : 0) - (tier === 1 ? 1 : 0));
@@ -159,7 +159,7 @@ const compare = T('dec.compare', 'dec.compare', 'Comparing decimals', 'Decimals'
   };
 });
 
-const placeDec = T('dec.place', 'dec.place', 'Decimal place value', 'Decimals', [1, 4], (r, tier) => {
+const placeDec = T('dec.place', 'dec.place', 'Decimal place value and rounding', 'Decimals', [1, 4], (r, tier) => {
   const len = tier === 1 ? 2 : tier === 2 ? 3 : 4;
   const digits = r.shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, len + 1);
   const whole = digits[0];
@@ -183,7 +183,7 @@ const placeDec = T('dec.place', 'dec.place', 'Decimal place value', 'Decimals', 
   };
 });
 
-const pow10 = T('dec.pow10', 'dec.pow10', 'Multiplying and dividing by 10, 100, 1000', 'Decimals', [1, 3], (r, tier) => {
+const pow10 = T('dec.pow10', 'dec.place', 'Decimal place value and rounding', 'Decimals', [1, 3], (r, tier) => {
   const k = r.pick([10, 100, 1000]);
   const base = tier === 1 ? D(r.int(11, 99), 1) : tier === 2 ? D(r.int(101, 999), 2) : D(r.int(1001, 9999), 3);
   const mulIt = r.chance(0.5);

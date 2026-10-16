@@ -51,7 +51,7 @@ const convert = T('me.convert', 'me.convert', 'Converting metric units', 'Measur
   };
 });
 
-const mixedAdd = T('me.mixedunits', 'me.mixedunits', 'Calculating with mixed units', 'Measurement', [2, 5], (r, tier) => {
+const mixedAdd = T('me.mixedunits', 'me.problems', 'Measurement problems', 'Measurement', [2, 5], (r, tier) => {
   const kind = r.pick(['length', 'mass', 'capacity'] as const);
   const [big, small, f] = kind === 'length' ? ['m', 'cm', 100] : kind === 'mass' ? ['kg', 'g', 1000] : ['L', 'mL', 1000];
   const [b1, s1] = [r.int(1, 6), r.int(1, f === 100 ? 99 : 9) * (f === 100 ? 1 : 100) + (tier >= 4 ? 50 : 0)];
@@ -79,7 +79,7 @@ const mixedAdd = T('me.mixedunits', 'me.mixedunits', 'Calculating with mixed uni
   };
 });
 
-const pieces = T('me.pieces', 'me.pieces', 'Cutting and filling with measures', 'Measurement', [3, 5], (r, tier) => {
+const pieces = T('me.pieces', 'me.problems', 'Measurement problems', 'Measurement', [3, 5], (r, tier) => {
   const kind = r.pick(['rope', 'water', 'flour'] as const);
   if (kind === 'rope') {
     const piece = r.pick([20, 25, 40, 50, 15]);
@@ -117,7 +117,7 @@ const pieces = T('me.pieces', 'me.pieces', 'Cutting and filling with measures', 
   };
 });
 
-const compareUnits = T('me.compare', 'me.compare', 'Comparing measurements', 'Measurement', [2, 4], (r, tier) => {
+const compareUnits = T('me.compare', 'me.problems', 'Measurement problems', 'Measurement', [2, 4], (r, tier) => {
   const name = r.pick(NAMES);
   const a = r.int(11, 49) * 10; // cm
   const bM = F(r.int(11, 49), 10); // m

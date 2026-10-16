@@ -6,7 +6,7 @@ import type { Template } from '../types';
 const F = (n: number, d = 1) => new Frac(n, d);
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-const handshake = T('lr.handshake', 'lr.handshake', 'Counting pairs and handshakes', 'Logical Reasoning', [3, 5], (r, tier) => {
+const handshake = T('lr.handshake', 'lr.counting', 'Counting pairs and combinations', 'Logical Reasoning', [3, 5], (r, tier) => {
   const n = r.int(4, tier === 3 ? 8 : tier === 4 ? 12 : 20);
   const v = (n * (n - 1)) / 2;
   const ctx = r.int(0, 1);
@@ -27,7 +27,7 @@ const handshake = T('lr.handshake', 'lr.handshake', 'Counting pairs and handshak
   };
 });
 
-const combos = T('lr.combos', 'lr.combos', 'Counting combinations', 'Logical Reasoning', [2, 5], (r, tier) => {
+const combos = T('lr.combos', 'lr.counting', 'Counting pairs and combinations', 'Logical Reasoning', [2, 5], (r, tier) => {
   const a = r.int(2, 5);
   const b = r.int(2, 6);
   const c = tier >= 4 ? r.int(2, 4) : 1;
@@ -73,7 +73,7 @@ const venn = T('lr.venn', 'lr.venn', 'Overlapping groups', 'Logical Reasoning', 
   };
 });
 
-const queue = T('lr.queue', 'lr.queue', 'Positions and counting', 'Logical Reasoning', [2, 5], (r, tier) => {
+const queue = T('lr.queue', 'lr.positions', 'Positions and counting', 'Logical Reasoning', [2, 5], (r, tier) => {
   const n = r.int(12, 30);
   const front = r.int(3, n - 3);
   const back = n - front + 1;
@@ -111,7 +111,7 @@ const queue = T('lr.queue', 'lr.queue', 'Positions and counting', 'Logical Reaso
   };
 });
 
-const balance = T('lr.balance', 'lr.balance', 'Balance and equal-value puzzles', 'Logical Reasoning', [2, 5], (r, tier) => {
+const balance = T('lr.balance', 'lr.clues', 'Reasoning from clues', 'Logical Reasoning', [2, 5], (r, tier) => {
   const p = r.int(2, 5);
   const q = r.int(2, 7);
   if (p === q) return balance.build(r, tier);
@@ -154,7 +154,7 @@ const calendar = T('lr.calendar', 'lr.calendar', 'Days of the week and cycles', 
   void others;
 });
 
-const ordering = T('lr.ordering', 'lr.ordering', 'Reasoning from clues', 'Logical Reasoning', [2, 5], (r, tier) => {
+const ordering = T('lr.ordering', 'lr.clues', 'Reasoning from clues', 'Logical Reasoning', [2, 5], (r, tier) => {
   const [a, b, c] = r.sample(NAMES, 3);
   const base = r.int(120, 150);
   const d1 = r.int(3, 12);

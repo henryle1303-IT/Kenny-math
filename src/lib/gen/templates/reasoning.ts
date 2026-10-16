@@ -57,7 +57,7 @@ const missing = T('rc.missing', 'rc.missing', 'Finding the unknown number', 'Rea
   };
 });
 
-const sumDiff = T('rc.sumdiff', 'rc.sumdiff', 'Sum and difference problems', 'Reasoning Challenges', [2, 5], (r, tier) => {
+const sumDiff = T('rc.sumdiff', 'rc.algebra', 'Sum, difference and age puzzles', 'Reasoning Challenges', [2, 5], (r, tier) => {
   const small = r.int(8, tier <= 3 ? 40 : 120);
   const d = r.int(2, tier <= 3 ? 20 : 50);
   const large = small + d;
@@ -77,7 +77,7 @@ const sumDiff = T('rc.sumdiff', 'rc.sumdiff', 'Sum and difference problems', 'Re
   };
 });
 
-const heads = T('rc.heads', 'rc.heads', 'Heads and legs puzzles', 'Reasoning Challenges', [3, 5], (r, tier) => {
+const heads = T('rc.heads', 'rc.logic', 'Heads-and-legs and consecutive numbers', 'Reasoning Challenges', [3, 5], (r, tier) => {
   const hens = r.int(3, 15);
   const goats = r.int(3, 12);
   const heads = hens + goats;
@@ -100,7 +100,7 @@ const heads = T('rc.heads', 'rc.heads', 'Heads and legs puzzles', 'Reasoning Cha
   };
 });
 
-const consecutive = T('rc.consecutive', 'rc.consecutive', 'Consecutive numbers', 'Reasoning Challenges', [3, 5], (r, tier) => {
+const consecutive = T('rc.consecutive', 'rc.logic', 'Heads-and-legs and consecutive numbers', 'Reasoning Challenges', [3, 5], (r, tier) => {
   const n = tier === 3 ? 3 : tier === 4 ? 5 : r.pick([5, 7]);
   const mid = r.int(8, 60);
   const sum = mid * n;
@@ -138,7 +138,7 @@ const squaresGrid = T('rc.squares', 'rc.squares', 'Counting shapes in grids', 'R
   };
 });
 
-const giving = T('rc.sharing', 'rc.sharing', 'Equalising problems', 'Reasoning Challenges', [3, 5], (r, tier) => {
+const giving = T('rc.sharing', 'rc.algebra', 'Sum, difference and age puzzles', 'Reasoning Challenges', [3, 5], (r, tier) => {
   const k = r.int(2, 15);
   const [a, b] = r.sample(NAMES, 2);
   const item = r.pick(['marbles', 'stickers', 'stamps']);
@@ -188,7 +188,7 @@ function g(a: number, b: number): number {
   return b === 0 ? a : g(b, a % b);
 }
 
-const ages = T('rc.ages', 'rc.ages', 'Age problems', 'Reasoning Challenges', [3, 5], (r, tier) => {
+const ages = T('rc.ages', 'rc.algebra', 'Sum, difference and age puzzles', 'Reasoning Challenges', [3, 5], (r, tier) => {
   const kid = r.int(6, 12);
   const times = r.int(2, 4);
   const years = r.int(3, 10);

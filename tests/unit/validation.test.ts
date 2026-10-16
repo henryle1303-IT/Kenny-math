@@ -53,7 +53,7 @@ describe('validateQuestion', () => {
 });
 
 describe('validateBank', () => {
-  const mk = (t: number, p: number, d = 1): QuestionData => ({ ...base, questionId: `T${t}-Q${p}`, testNumber: t, position: p, level: t <= 10 ? 'Beginner' : t <= 20 ? 'Intermediate' : 'Advanced', difficulty: d, questionText: `Calculate \\(${t * 100 + p} + 1\\).`, options: [String(t * 100 + p), String(t * 100 + p + 1), String(t * 100 + p + 2), String(t * 100 + p + 3)].map((x, i) => (i === 1 ? String(t * 100 + p + 1) : x)), correctAnswer: 'B', explanation: `Answer: ${t * 100 + p + 1}`, verifyExpr: `${t * 100 + p}+1` });
+  const mk = (t: number, p: number, d = 1): QuestionData => ({ ...base, questionId: `T${t}-Q${p}`, testNumber: t, position: p, level: t <= 10 ? 'Beginner' : t <= 20 ? 'Intermediate' : 'Advanced', difficulty: d, questionText: `Calculate \\(${t * 100 + p} + 1\\).`, options: [String(t * 100 + p), String(t * 100 + p + 1), String(t * 100 + p + 2), String(t * 100 + p + 3)], correctAnswer: 'B', explanation: `Answer: ${t * 100 + p + 1}`, verifyExpr: `${t * 100 + p}+1` });
   it('rejects an incomplete bank but accepts a partial one when allowed', () => {
     const rows = [mk(1, 1), mk(1, 2)];
     expect(validateBank(rows).ok).toBe(false);

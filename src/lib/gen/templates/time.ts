@@ -15,7 +15,7 @@ const clock = (mins: number): string => {
 };
 const hm = (mins: number): string => `${Math.floor(mins / 60)} h ${mins % 60} min`;
 
-const elapsed = T('ts.elapsed', 'ts.elapsed', 'Elapsed time', 'Time & Speed', [1, 4], (r, tier) => {
+const elapsed = T('ts.elapsed', 'ts.clock', 'Clock time and elapsed time', 'Time & Speed', [1, 4], (r, tier) => {
   const start = r.int(7 * 60, 15 * 60) + 5 * r.int(0, 11);
   const dur = tier === 1 ? 5 * r.int(6, 17) : tier === 2 ? r.int(41, 150) : r.int(70, 330);
   const d = dur % 60 === 0 ? dur + 5 : dur;
@@ -36,7 +36,7 @@ const elapsed = T('ts.elapsed', 'ts.elapsed', 'Elapsed time', 'Time & Speed', [1
   };
 });
 
-const arrival = T('ts.arrival', 'ts.arrival', 'Finding the end time', 'Time & Speed', [2, 5], (r, tier) => {
+const arrival = T('ts.arrival', 'ts.clock', 'Clock time and elapsed time', 'Time & Speed', [2, 5], (r, tier) => {
   const start = r.int(6 * 60, 14 * 60) + 5 * r.int(0, 11);
   const dur = tier === 2 ? r.int(35, 95) : tier === 3 ? r.int(80, 190) : r.int(150, 400);
   const d = dur % 5 === 0 ? dur : dur + (5 - (dur % 5));
@@ -71,7 +71,7 @@ const arrival = T('ts.arrival', 'ts.arrival', 'Finding the end time', 'Time & Sp
   };
 });
 
-const distance = T('ts.distance', 'ts.distance', 'Distance, speed and time', 'Time & Speed', [1, 5], (r, tier) => {
+const distance = T('ts.distance', 'ts.speed', 'Distance, speed and time', 'Time & Speed', [1, 5], (r, tier) => {
   const vehicle = r.pick(['A car', 'A bus', 'A cyclist', 'A train', 'A runner']);
   const speed = tier === 1 ? r.int(4, 12) * 5 : tier <= 3 ? r.int(8, 18) * 5 : r.int(12, 30) * 5;
   const hours = tier === 1 ? r.int(2, 4) : tier <= 3 ? r.pick([2.5, 3.5, 1.5, 4.5]) : r.pick([2.25, 1.75, 3.75, 2.5, 4.25]);
@@ -90,7 +90,7 @@ const distance = T('ts.distance', 'ts.distance', 'Distance, speed and time', 'Ti
   };
 });
 
-const speedFind = T('ts.speed', 'ts.speed', 'Finding speed', 'Time & Speed', [2, 5], (r, tier) => {
+const speedFind = T('ts.speed', 'ts.speed', 'Distance, speed and time', 'Time & Speed', [2, 5], (r, tier) => {
   const speed = r.int(5, 24) * (tier <= 3 ? 5 : 4);
   const hours = tier <= 3 ? r.int(2, 6) : r.pick([2.5, 3.5, 1.5, 4.5, 2.25]);
   const d = F(Math.round(speed * hours * 100), 100);
@@ -109,14 +109,19 @@ const speedFind = T('ts.speed', 'ts.speed', 'Finding speed', 'Time & Speed', [2,
   };
 });
 
-const timeFind = T('ts.timefind', 'ts.timefind', 'Finding travel time', 'Time & Speed', [2, 5], (r, tier) => {
+const timeFind = T('ts.timefind', 'ts.speed', 'Distance, speed and time', 'Time & Speed', [2, 5], (r, tier) => {
   const speed = r.pick(tier <= 3 ? [40, 50, 60, 80, 30, 45] : [48, 36, 72, 54, 84, 66]);
   const mins = tier <= 3 ? speed * 0 + r.pick([1, 2, 3, 4]) * 60 + r.pick([15, 30, 45]) * (speed % 20 === 0 ? 1 : 0) : r.pick([75, 105, 135, 165, 195, 150, 90]);
   const total = tier <= 3 ? (mins % 60 === 0 ? mins + 30 : mins) : mins;
   const d = F(speed * total, 60);
   if (!d.isInt && !d.terminating) return timeFind.build(r, tier);
   return {
-    text: `A train travels at ${speed} km/h. How long does it take to travel ${ds(d)} km?`,
+    text: r.pick([
+      `A train travels at ${speed} km/h. How long does it take to travel ${ds(d)} km?`,
+      `A coach drives at a steady ${speed} km/h. How long will it take to cover ${ds(d)} km?`,
+      `A ferry sails at ${speed} km/h. How much time does it need to cross ${ds(d)} km of sea?`,
+      `${r.pick(NAMES)}’s family drives at ${speed} km/h on a motorway. How long does a ${ds(d)} km trip take?`,
+    ]),
     correct: hm(total),
     wrong: [hm(total + 30), hm(Math.max(15, total - 30)), hm(total + 60), hm(total + 15)],
     verify: `${ds(d)}/${speed}*60`,
@@ -194,7 +199,7 @@ const unitsConvert = T('ts.convert', 'ts.convert', 'Converting units of time', '
   };
 });
 
-const avgSpeed = T('ts.avgspeed', 'ts.avgspeed', 'Average speed over a journey', 'Time & Speed', [4, 5], (r, tier) => {
+const avgSpeed = T('ts.avgspeed', 'ts.advanced', 'Average speed and meeting problems', 'Time & Speed', [4, 5], (r, tier) => {
   const s1 = r.pick([40, 60, 80, 50, 30]);
   const t1 = r.int(1, 3);
   const s2 = r.pick([30, 50, 60, 90, 70].filter((x) => x !== s1));
@@ -218,7 +223,7 @@ const avgSpeed = T('ts.avgspeed', 'ts.avgspeed', 'Average speed over a journey',
   };
 });
 
-const meet = T('ts.meet', 'ts.meet', 'Two travellers moving towards each other', 'Time & Speed', [5, 5], (r, tier) => {
+const meet = T('ts.meet', 'ts.advanced', 'Average speed and meeting problems', 'Time & Speed', [5, 5], (r, tier) => {
   const s1 = r.pick([40, 50, 60, 45]);
   const s2 = r.pick([30, 40, 55, 60].filter((x) => x !== s1));
   const t = r.int(2, 5);

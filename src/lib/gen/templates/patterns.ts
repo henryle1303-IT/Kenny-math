@@ -10,10 +10,10 @@ const arith = T('pa.arith', 'pa.arith', 'Arithmetic sequences', 'Patterns', [1, 
   const useDec = tier >= 4 && r.chance(0.5);
   const first = useDec ? F(r.int(5, 40), 10) : F(r.int(1, tier * 12));
   const step = useDec ? F(r.pick([3, 5, 7, 9, 12, 15]), 10) : F(r.int(2, 4 + tier * 3));
-  const desc = tier >= 3 && r.chance(0.4);
+  const mode = tier <= 2 ? 0 : r.int(0, 2);
+  const desc = tier >= 3 && mode !== 1 && r.chance(0.4);
   const st = desc ? step.neg() : step;
   const start = desc ? first.add(step.mul(F(7))) : first;
-  const mode = tier <= 2 ? 0 : r.int(0, 2);
   const term = (k: number) => start.add(st.mul(F(k - 1)));
   const shown = [1, 2, 3, 4].map((k) => ds(term(k)));
   if (mode === 0) {
@@ -102,7 +102,7 @@ const geo = T('pa.geometric', 'pa.geometric', 'Growing and shrinking patterns', 
   };
 });
 
-const diffs = T('pa.growing', 'pa.growing', 'Patterns with growing steps', 'Patterns', [3, 5], (r, tier) => {
+const diffs = T('pa.growing', 'pa.rules', 'Pattern rules', 'Patterns', [3, 5], (r, tier) => {
   const start = r.int(1, 6);
   const inc0 = r.int(1, 4);
   const inc1 = r.int(1, 3);
@@ -127,7 +127,7 @@ const diffs = T('pa.growing', 'pa.growing', 'Patterns with growing steps', 'Patt
   };
 });
 
-const rule = T('pa.rule', 'pa.rule', 'Number rules and function machines', 'Patterns', [2, 5], (r, tier) => {
+const rule = T('pa.rule', 'pa.functions', 'Number rules and shape patterns', 'Patterns', [2, 5], (r, tier) => {
   const a = r.int(2, tier <= 3 ? 6 : 9);
   const b = r.int(1, tier <= 3 ? 9 : 15);
   const sub = tier >= 4 && r.chance(0.5);
@@ -164,7 +164,7 @@ const rule = T('pa.rule', 'pa.rule', 'Number rules and function machines', 'Patt
   };
 });
 
-const matchsticks = T('pa.shapes', 'pa.shapes', 'Shape patterns', 'Patterns', [3, 5], (r, tier) => {
+const matchsticks = T('pa.shapes', 'pa.functions', 'Number rules and shape patterns', 'Patterns', [3, 5], (r, tier) => {
   const k = r.pick([3, 4, 5, 6]);
   const c = 1;
   const n = r.int(10, 12 + tier * 4);
@@ -184,7 +184,7 @@ const matchsticks = T('pa.shapes', 'pa.shapes', 'Shape patterns', 'Patterns', [3
   };
 });
 
-const fib = T('pa.fibonacci', 'pa.fibonacci', 'Patterns using earlier terms', 'Patterns', [3, 5], (r, tier) => {
+const fib = T('pa.fibonacci', 'pa.rules', 'Pattern rules', 'Patterns', [3, 5], (r, tier) => {
   const a = r.int(1, 5);
   const b = r.int(2, 7);
   const s = [a, b];
@@ -204,7 +204,7 @@ const fib = T('pa.fibonacci', 'pa.fibonacci', 'Patterns using earlier terms', 'P
   };
 });
 
-const alternating = T('pa.alternating', 'pa.alternating', 'Alternating patterns', 'Patterns', [3, 5], (r, tier) => {
+const alternating = T('pa.alternating', 'pa.rules', 'Pattern rules', 'Patterns', [3, 5], (r, tier) => {
   const up = r.int(3, 9);
   const down = r.int(1, up - 1);
   const start = r.int(2, 20);
@@ -212,7 +212,11 @@ const alternating = T('pa.alternating', 'pa.alternating', 'Alternating patterns'
   for (let i = 1; i < 9; i++) s.push(s[i - 1] + (i % 2 === 1 ? up : -down));
   const idx = tier === 3 ? 6 : tier === 4 ? 7 : 8;
   return {
-    text: `A pattern goes ${s.slice(0, 5).join(', ')}, … The rule alternates between two steps. What is term number ${idx + 1}?`,
+    text: r.pick([
+      `A pattern goes ${s.slice(0, 5).join(', ')}, … The rule alternates between two steps. What is term number ${idx + 1}?`,
+      `${r.pick(NAMES)} writes the numbers ${s.slice(0, 5).join(', ')}, … by repeating two different steps in turn. What is the ${idx + 1}th number?`,
+      `The numbers ${s.slice(0, 5).join(', ')}, … follow a rule that goes up, then down, then up again. Find term number ${idx + 1}.`,
+    ]),
     correct: String(s[idx]),
     wrong: [String(s[idx - 1]), String(s[idx] + up - down), String(s[idx] + down), String(s[idx] - 1)],
     verify: `${start}+${Math.ceil(idx / 2)}*${up}-${Math.floor(idx / 2)}*${down}`,

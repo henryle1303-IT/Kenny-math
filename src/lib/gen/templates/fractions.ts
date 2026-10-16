@@ -23,7 +23,7 @@ function properFrac(r: Rng, den: number): Frac {
 type Raw = [number, number];
 const rf = (x: Raw) => F(x[0], x[1]);
 
-const add: Template = T('fr.add', 'fr.add', 'Adding fractions', 'Fractions', [1, 5], (r, tier) => {
+const add: Template = T('fr.add', 'fr.addsub', 'Adding and subtracting fractions', 'Fractions', [1, 5], (r, tier) => {
   let a: Raw, b: Raw;
   if (tier === 1) {
     const d = r.pick([5, 6, 7, 8, 9, 10, 12]);
@@ -76,7 +76,7 @@ const add: Template = T('fr.add', 'fr.add', 'Adding fractions', 'Fractions', [1,
   };
 });
 
-const sub: Template = T('fr.sub', 'fr.sub', 'Subtracting fractions', 'Fractions', [1, 5], (r, tier) => {
+const sub: Template = T('fr.sub', 'fr.addsub', 'Adding and subtracting fractions', 'Fractions', [1, 5], (r, tier) => {
   let a: Raw, b: Raw;
   const order = (x: Raw, y: Raw): [Raw, Raw] => (rf(x).cmp(rf(y)) >= 0 ? [x, y] : [y, x]);
   if (tier === 1) {
@@ -125,7 +125,7 @@ const sub: Template = T('fr.sub', 'fr.sub', 'Subtracting fractions', 'Fractions'
   };
 });
 
-const mult = T('fr.mult', 'fr.mult', 'Multiplying fractions', 'Fractions', [1, 5], (r, tier) => {
+const mult = T('fr.mult', 'fr.muldiv', 'Multiplying and dividing fractions', 'Fractions', [1, 5], (r, tier) => {
   let a: Frac, b: Frac;
   if (tier === 1) {
     const d = r.pick([3, 4, 5, 6, 8]);
@@ -171,7 +171,7 @@ const mult = T('fr.mult', 'fr.mult', 'Multiplying fractions', 'Fractions', [1, 5
   };
 });
 
-const div = T('fr.div', 'fr.div', 'Dividing with fractions', 'Fractions', [1, 5], (r, tier) => {
+const div = T('fr.div', 'fr.muldiv', 'Multiplying and dividing fractions', 'Fractions', [1, 5], (r, tier) => {
   if (tier === 1) {
     const d = r.pick([2, 3, 4, 5, 6]);
     const w = r.int(2, 8);
@@ -263,7 +263,7 @@ const div = T('fr.div', 'fr.div', 'Dividing with fractions', 'Fractions', [1, 5]
   };
 });
 
-const mixedConv = T('fr.mixed', 'fr.mixed', 'Mixed numbers and improper fractions', 'Fractions', [1, 4], (r, tier) => {
+const mixedConv = T('fr.mixed', 'fr.forms', 'Equivalent fractions and mixed numbers', 'Fractions', [1, 4], (r, tier) => {
   const d = tier === 1 ? r.pick([3, 4, 5]) : tier === 2 ? r.pick([4, 5, 6, 8]) : r.pick([7, 8, 9, 10, 12]);
   const w = tier === 1 ? r.int(1, 3) : r.int(2, tier === 4 ? 12 : 8);
   const n = r.int(1, d - 1);
@@ -350,7 +350,7 @@ function buildCompare(r: Rng, items: { f: Frac; n: number; d: number }[], isMax:
   };
 }
 
-const simplify = T('fr.simplify', 'fr.simplify', 'Simplifying fractions', 'Fractions', [1, 4], (r, tier) => {
+const simplify = T('fr.simplify', 'fr.forms', 'Equivalent fractions and mixed numbers', 'Fractions', [1, 4], (r, tier) => {
   const g = [r.int(2, 4), r.int(3, 6), r.int(4, 9), r.int(6, 12)][tier - 1];
   const sd = intWhere(r, 3, tier <= 2 ? 9 : 13, (x) => x > 2);
   const sn = intWhere(r, 1, sd - 1, (x) => coprime(x, sd));
@@ -370,7 +370,7 @@ const simplify = T('fr.simplify', 'fr.simplify', 'Simplifying fractions', 'Fract
   };
 });
 
-const equiv = T('fr.equiv', 'fr.equiv', 'Equivalent fractions', 'Fractions', [1, 4], (r, tier) => {
+const equiv = T('fr.equiv', 'fr.forms', 'Equivalent fractions and mixed numbers', 'Fractions', [1, 4], (r, tier) => {
   const d = r.pick([3, 4, 5, 6, 7]);
   const n = intWhere(r, 1, d - 1, (x) => true);
   const k = [r.int(2, 4), r.int(3, 6), r.int(4, 9), r.int(6, 12)][tier - 1];
@@ -420,7 +420,10 @@ const of = T('fr.of', 'fr.of', 'Fraction of an amount', 'Fractions', [1, 5], (r,
   }
   // find the whole from a part
   return {
-    text: `${name} says that ${m(tfrac(n, d))} of the ${item} in a box is ${part}. How many ${item} are in the box altogether?`,
+    text: r.pick([
+      `${name} counts ${part} ${item}, which is ${m(tfrac(n, d))} of all the ${item} in a box. How many ${item} are in the box altogether?`,
+      `${part} ${item} make up ${m(tfrac(n, d))} of ${name}’s collection. How many ${item} does ${name} have in total?`,
+    ]),
     correct: String(total),
     wrong: [String(part * n), String(part + d), String(Math.round(part / n) * (d + 1)), String(part * d)],
     verify: `${part}/(${n}/${d})`,
@@ -433,7 +436,7 @@ const of = T('fr.of', 'fr.of', 'Fraction of an amount', 'Fractions', [1, 5], (r,
   };
 });
 
-const mixedOps = T('fr.mixedops', 'fr.mixedops', 'Adding and subtracting mixed numbers', 'Fractions', [3, 5], (r, tier) => {
+const mixedOps = T('fr.mixedops', 'fr.addsub', 'Adding and subtracting fractions', 'Fractions', [3, 5], (r, tier) => {
   const [d1, d2] = tier === 3 ? ([r.pick([4, 5, 6, 8]), 0] as [number, number]) : r.pick([[3, 4], [4, 6], [5, 10], [3, 6], [6, 8], [2, 5]] as [number, number][]);
   const dd2 = d2 || d1;
   const a = F(r.int(2, 6) * d1 + r.int(1, d1 - 1), d1);

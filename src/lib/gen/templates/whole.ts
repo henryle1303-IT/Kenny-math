@@ -70,7 +70,7 @@ const addsub = T('wn.addsub', 'wn.addsub', 'Adding and subtracting whole numbers
   };
 });
 
-const mul = T('wn.mul', 'wn.mul', 'Multiplying whole numbers', 'Whole Numbers', [1, 5], (r, tier) => {
+const mul = T('wn.mul', 'wn.muldiv', 'Multiplying and dividing whole numbers', 'Whole Numbers', [1, 5], (r, tier) => {
   let a: number, b: number;
   if (tier === 1) [a, b] = [r.int(12, 49), r.int(3, 9)];
   else if (tier === 2) [a, b] = [r.int(101, 399), r.int(3, 9)];
@@ -101,7 +101,7 @@ const mul = T('wn.mul', 'wn.mul', 'Multiplying whole numbers', 'Whole Numbers', 
   };
 });
 
-const div = T('wn.div', 'wn.div', 'Dividing whole numbers', 'Whole Numbers', [1, 5], (r, tier) => {
+const div = T('wn.div', 'wn.muldiv', 'Multiplying and dividing whole numbers', 'Whole Numbers', [1, 5], (r, tier) => {
   let b: number, q: number;
   if (tier === 1) [b, q] = [r.int(3, 9), r.int(11, 29)];
   else if (tier === 2) [b, q] = [r.int(4, 9), r.int(41, 149)];
@@ -131,7 +131,7 @@ const div = T('wn.div', 'wn.div', 'Dividing whole numbers', 'Whole Numbers', [1,
   };
 });
 
-const remainder = T('wn.remainder', 'wn.remainder', 'Division with remainders', 'Whole Numbers', [2, 5], (r, tier) => {
+const remainder = T('wn.remainder', 'wn.muldiv', 'Multiplying and dividing whole numbers', 'Whole Numbers', [2, 5], (r, tier) => {
   const b = tier <= 2 ? r.int(4, 9) : tier <= 4 ? r.int(11, 19) : r.int(21, 39);
   const q = tier <= 2 ? r.int(8, 30) : tier <= 4 ? r.int(15, 60) : r.int(30, 90);
   const rem = r.int(1, b - 1);
@@ -240,7 +240,7 @@ const round = T('wn.round', 'wn.round', 'Rounding whole numbers', 'Whole Numbers
   };
 });
 
-const factors = T('wn.factors', 'wn.factors', 'Factors and multiples', 'Whole Numbers', [2, 5], (r, tier) => {
+const factors = T('wn.factors', 'wn.factors', 'Factors, multiples and primes', 'Whole Numbers', [2, 5], (r, tier) => {
   const pool = [
     [12, 16, 18, 20, 28],
     [24, 30, 36, 40, 42, 45],
@@ -266,7 +266,7 @@ const factors = T('wn.factors', 'wn.factors', 'Factors and multiples', 'Whole Nu
   };
 });
 
-const gcfT = T('wn.gcf', 'wn.gcf', 'Greatest common factor', 'Whole Numbers', [2, 5], (r, tier) => {
+const gcfT = T('wn.gcf', 'wn.factors', 'Factors, multiples and primes', 'Whole Numbers', [2, 5], (r, tier) => {
   const g = [r.int(2, 6), r.int(3, 8), r.int(4, 9), r.int(6, 12), r.int(7, 15)][tier - 1];
   const x = intWhere(r, 2, tier <= 2 ? 6 : 9, (v) => v > 1);
   const y = intWhere(r, 2, tier <= 2 ? 7 : 11, (v) => v !== x && Math.abs(x - v) > 0 && gcd2(x, v) === 1);
@@ -286,7 +286,7 @@ const gcfT = T('wn.gcf', 'wn.gcf', 'Greatest common factor', 'Whole Numbers', [2
   };
 });
 
-const lcmT = T('wn.lcm', 'wn.lcm', 'Least common multiple', 'Whole Numbers', [2, 5], (r, tier) => {
+const lcmT = T('wn.lcm', 'wn.factors', 'Factors, multiples and primes', 'Whole Numbers', [2, 5], (r, tier) => {
   const pairs: [number, number][] = [
     [[3, 4], [4, 6], [6, 8], [5, 6], [2, 5]],
     [[6, 9], [8, 12], [10, 15], [4, 10], [6, 10]],
@@ -318,7 +318,7 @@ const lcmT = T('wn.lcm', 'wn.lcm', 'Least common multiple', 'Whole Numbers', [2,
   };
 });
 
-const primes = T('wn.primes', 'wn.primes', 'Prime numbers', 'Whole Numbers', [3, 5], (r, tier) => {
+const primes = T('wn.primes', 'wn.factors', 'Factors, multiples and primes', 'Whole Numbers', [3, 5], (r, tier) => {
   const lo = [10, 20, 30, 40, 50][tier - 3] ?? 20;
   const hi = lo + [20, 30, 40][tier - 3];
   let c = 0;

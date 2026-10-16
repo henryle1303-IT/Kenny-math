@@ -110,7 +110,7 @@ const average = T('wp.average', 'wp.average', 'Mean (average)', 'Word Problems',
   };
 });
 
-const groups = T('wp.groups', 'wp.groups', 'Division with remainders in context', 'Word Problems', [2, 5], (r, tier) => {
+const groups = T('wp.groups', 'wp.rounding', 'Word problems with remainders and saving', 'Word Problems', [2, 5], (r, tier) => {
   const cap = tier <= 2 ? r.int(4, 9) : r.int(12, 45);
   const n = cap * r.int(3, tier <= 2 ? 8 : 14) + r.int(1, cap - 1);
   const k = Math.ceil(n / cap);
@@ -135,7 +135,7 @@ const groups = T('wp.groups', 'wp.groups', 'Division with remainders in context'
   };
 });
 
-const times = T('wp.times', 'wp.times', 'Multiplicative comparison', 'Word Problems', [2, 5], (r, tier) => {
+const times = T('wp.times', 'wp.multiplicative', 'Comparison and fraction word problems', 'Word Problems', [2, 5], (r, tier) => {
   const [a, b] = r.sample(NAMES, 2);
   const k = r.int(2, tier <= 3 ? 5 : 9);
   const base = r.int(6, tier <= 3 ? 20 : 45);
@@ -186,7 +186,7 @@ const times = T('wp.times', 'wp.times', 'Multiplicative comparison', 'Word Probl
   };
 });
 
-const leftover = T('wp.fractionchain', 'wp.fractionchain', 'Fractions of what is left', 'Word Problems', [3, 5], (r, tier) => {
+const leftover = T('wp.fractionchain', 'wp.multiplicative', 'Comparison and fraction word problems', 'Word Problems', [3, 5], (r, tier) => {
   const name = r.pick(NAMES);
   const [d1, n1] = r.pick([[3, 1], [4, 1], [5, 2], [4, 3], [6, 1], [5, 1]]);
   const [d2, n2] = r.pick([[2, 1], [3, 1], [4, 1], [3, 2]]);
@@ -213,7 +213,7 @@ const leftover = T('wp.fractionchain', 'wp.fractionchain', 'Fractions of what is
   };
 });
 
-const savings = T('wp.savings', 'wp.savings', 'Saving up', 'Word Problems', [2, 5], (r, tier) => {
+const savings = T('wp.savings', 'wp.rounding', 'Word problems with remainders and saving', 'Word Problems', [2, 5], (r, tier) => {
   const name = r.pick(NAMES);
   const price = r.int(4, tier <= 3 ? 12 : 30) * 10 + r.pick([0, 5]);
   const have = r.int(1, Math.floor(price / 20)) * 5;
@@ -275,7 +275,7 @@ const tableTotals = T('wp.table', 'wp.table', 'Reading data in problems', 'Word 
   };
 });
 
-const money_ = T('wp.moneyunit', 'wp.moneyunit', 'Money problems', 'Word Problems', [1, 5], (r, tier) => {
+const money_ = T('wp.moneyunit', 'wp.money', 'Money problems', 'Word Problems', [1, 5], (r, tier) => {
   const name = r.pick(NAMES);
   const p1 = F(r.int(120, 650), 100);
   const n1 = r.int(2, 4);
