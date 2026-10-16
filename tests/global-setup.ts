@@ -5,5 +5,7 @@ import path from 'node:path';
 export default function setup() {
   const db = path.resolve(import.meta.dirname, '../prisma/test.db');
   for (const f of [db, `${db}-journal`]) if (fs.existsSync(f)) fs.rmSync(f);
+  // SQLite accepts an empty file; pre-create it for Prisma on Windows.
+  fs.closeSync(fs.openSync(db, 'wx'));
   execSync('npx prisma migrate deploy', { env: { ...process.env, DATABASE_URL: `file:${db}` }, stdio: 'pipe' });
 }

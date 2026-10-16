@@ -2,6 +2,19 @@ import { prisma } from '../db';
 import { skillLabel } from '../gen/registry';
 import { MASTERY_LABELS, type Mastery } from '../learning/mastery';
 import { STUDENT_ID } from './core';
+import { AppError } from './attempts';
+
+/** Reset learning history while keeping the student and question banks. */
+export async function clearStudentProgress(confirmation: unknown, studentId = STUDENT_ID) {
+  if (confirmation !== 'CLEAR') throw new AppError('Type CLEAR to confirm clearing student progress.');
+  return prisma.$transaction(async (tx) => {
+    const attempts = await tx.testAttempt.deleteMany({ where: { studentId } });
+    const reviews = await tx.reviewSession.deleteMany({ where: { studentId } });
+    const events = await tx.skillEvent.deleteMany({ where: { studentId } });
+    const skills = await tx.skillProgress.deleteMany({ where: { studentId } });
+    return { attempts: attempts.count, reviewSessions: reviews.count, skillEvents: events.count, skills: skills.count };
+  }, { timeout: 30000, maxWait: 10000 });
+}
 
 export interface SkillRow {
   skillId: string;

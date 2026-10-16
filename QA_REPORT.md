@@ -1,5 +1,26 @@
 # QA report
 
+## Import/export verification — 2026-10-16
+
+- Targeted Vitest run: 23 tests passed (`admin-banks.test.ts` and `csv.test.ts`), covering CSV round trips, partial exports, selected updates, replacement confirmation, validation errors, invalid file types and upload limits.
+- Targeted Chrome run: 3 tests passed (`admin.spec.ts` and `import-export.spec.ts`). A new CSV was generated from seed `qa-external-import-2026-10-16`, with new `NEW-` question IDs and Vietnamese learning tips, without bank IDs or version columns.
+- Imported all 900 questions as a separate draft while preserving the active bank. Exported all 900 questions, test 7 (30 questions), and tests 1–3 plus 9 (120 questions); all content fields matched the input after parsing, with UTF-8 BOM intact.
+- The new file had 899 automatically verified questions and 1 flagged for review. Publishing was blocked until the review acknowledgement was checked. After activation, a new test used the imported questions and a correct answer scored 1/30. Restoring the original bank preserved its exported content.
+- Reproduced and fixed stale validation in the import form: changing the CSV, mode, base bank or example-row option now clears the previous report and confirmation. Import inputs are disabled during validation/commit. A truncated 30-question file cannot be saved as a new full bank.
+- Production build, TypeScript and lint passed. Tests used separate databases; the local user's banks and learning history were not changed.
+
+## Local Windows verification — 2026-10-16
+
+- TypeScript and ESLint: passed. Production build: passed on Node.js 24.
+- Vitest: all 92 tests in 10 files passed against a separate SQLite test database.
+- Chrome / Playwright: all 5 end-to-end tests passed, including answer persistence after reload, submission, Smart Review, admin bank management, progress clearing, and mobile layouts.
+- Added Admin → Student Progress → Clear progress. The protected endpoint requires typing `CLEAR`, deletes completed/unfinished attempts, answers, practice sessions and mastery data in one transaction, and records an audit entry. Integration tests cover authentication, cross-site rejection, missing/invalid confirmation, student scoping, preservation of banks/settings/accounts, and fresh attempts after clearing. Browser tests cover cancel, confirmation, mobile layout, refreshed progress and the activity log. The local user's progress was not cleared during verification.
+- Fixed a reproduced answer-loss bug: navigating quickly and reloading could cancel pending answer requests. The test runner now waits for saves before navigation/submission, serializes answer changes, shows saving status, and uses keepalive for answer requests.
+- Windows setup: pre-create empty SQLite test files before migrations; use Playwright's standard browser discovery with an optional `PW_CHROMIUM` override. `NEXT_DIST_DIR=.next-e2e` isolates browser-test builds from the running development server.
+- The existing local database has 30 tests / 900 questions. Browser and integration tests use separate databases.
+
+The original baseline report follows.
+
 Results below come from commands actually run on 2026-10-16 in this repository (Node 22, Chromium via Playwright). Nothing here is aspirational; the last section lists what is **not** covered or not resolved.
 
 ## Automated checks

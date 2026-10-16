@@ -22,12 +22,19 @@ export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: Bank
   const [ack, setAck] = useState(false);
   const [done, setDone] = useState<string>('');
 
+  function invalidateImport() {
+    setJob(null);
+    setDone('');
+    setErr('');
+    setConfirmText('');
+    setActivate(false);
+    setAck(false);
+  }
+
   async function upload() {
     if (!file) return;
     setBusy(true);
-    setErr('');
-    setJob(null);
-    setDone('');
+    invalidateImport();
     try {
       const fd = new FormData();
       fd.set('file', file);
@@ -87,27 +94,27 @@ export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: Bank
 
       <section className="card space-y-3 p-5">
         <h2 className="text-lg font-bold">Import Question Bank from CSV</h2>
-        <fieldset className="space-y-2">
+        <fieldset className="space-y-2" disabled={busy}>
           <legend className="label">Import mode</legend>
           {[
             ['NEW_BANK', 'A – Create a new draft bank (900 questions)'],
             ['REPLACE_ACTIVE', 'B – Replace the active bank (validated copy, activated after confirmation)'],
             ['UPDATE_SELECTED', 'C – Update selected questions (matched by question_id, saved as a new draft)'],
           ].map(([v, l]) => (
-            <label key={v} className="flex items-start gap-2"><input type="radio" name="mode" value={v} checked={mode === v} onChange={() => setMode(v)} className="mt-1.5" /> <span>{l}</span></label>
+            <label key={v} className="flex items-start gap-2"><input type="radio" name="mode" value={v} checked={mode === v} onChange={() => { setMode(v); invalidateImport(); }} className="mt-1.5" /> <span>{l}</span></label>
           ))}
         </fieldset>
         {mode === 'UPDATE_SELECTED' && (
           <div>
             <label className="label" htmlFor="base">Bank to update</label>
-            <select id="base" className="input" value={base} onChange={(e) => setBase(e.target.value)}>{banks.map((b) => <option key={b.id} value={b.id}>{b.label}</option>)}</select>
+            <select id="base" className="input" value={base} disabled={busy} onChange={(e) => { setBase(e.target.value); invalidateImport(); }}>{banks.map((b) => <option key={b.id} value={b.id}>{b.label}</option>)}</select>
           </div>
         )}
         <div>
           <label className="label" htmlFor="file">CSV file (max 5 MB)</label>
-          <input id="file" data-testid="import-file" type="file" accept=".csv,text/csv" className="input" onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
+          <input id="file" data-testid="import-file" type="file" accept=".csv,text/csv" className="input" disabled={busy} onChange={(e) => { setFile(e.target.files?.[0] ?? null); invalidateImport(); }} />
         </div>
-        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={includeExamples} onChange={(e) => setIncludeExamples(e.target.checked)} /> include example rows (question_id starting with EXAMPLE-)</label>
+        <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={includeExamples} disabled={busy} onChange={(e) => { setIncludeExamples(e.target.checked); invalidateImport(); }} /> include example rows (question_id starting with EXAMPLE-)</label>
         <button className="btn-primary" disabled={!file || busy} onClick={upload} data-testid="import-validate">{busy ? 'Checking…' : 'Upload and validate'}</button>
         {err && <p role="alert" className="rounded-lg bg-rose-50 p-2 text-sm text-rose-700" data-testid="import-error">{err}</p>}
         {done && <p role="status" className="rounded-lg bg-emerald-50 p-2 text-sm text-emerald-700" data-testid="import-done">{done}</p>}

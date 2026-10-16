@@ -3,16 +3,19 @@ import { getProgress } from '@/lib/services/progress';
 import { formatDuration } from '@/lib/grading';
 import { pct, MasteryBadge } from '@/components/ui';
 import { ScoreLine } from '@/components/charts';
+import { ClearProgress } from '@/components/admin/ClearProgress';
+import { getStudent } from '@/lib/services/core';
 
 export default async function StudentsPage() {
+  const student = await getStudent();
   const [p, attempts, sessions] = await Promise.all([
-    getProgress(),
-    prisma.testAttempt.findMany({ where: { status: { not: 'IN_PROGRESS' } }, orderBy: { startedAt: 'desc' }, take: 25, include: { bank: { select: { version: true } } } }),
-    prisma.reviewSession.findMany({ orderBy: { startedAt: 'desc' }, take: 10 }),
+    getProgress(student.id),
+    prisma.testAttempt.findMany({ where: { studentId: student.id, status: { not: 'IN_PROGRESS' } }, orderBy: { startedAt: 'desc' }, take: 25, include: { bank: { select: { version: true } } } }),
+    prisma.reviewSession.findMany({ where: { studentId: student.id }, orderBy: { startedAt: 'desc' }, take: 10 }),
   ]);
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-extrabold">Student progress – Kenny</h1>
+      <h1 className="text-2xl font-extrabold">Student progress – {student.name}</h1>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {([['Tests completed', `${p.testsCompleted}/30`], ['Attempts', p.attemptsCount], ['Average', p.averageScore ?? '–'], ['Smart Review sessions', p.smartSessions]] as [string, string | number][]).map(([k, v]) => (
           <div key={k} className="card p-4"><div className="text-2xl font-bold">{v}</div><div className="text-sm text-slate-500">{k}</div></div>
@@ -32,6 +35,7 @@ export default async function StudentsPage() {
       <section className="card p-4"><h2 className="mb-2 font-bold">Recent Smart Review sessions</h2>
         <ul className="text-sm">{sessions.map((s) => <li key={s.id} className="flex justify-between border-b py-1"><span>{s.startedAt.toLocaleString()} ({s.kind.toLowerCase()})</span><span>{s.completedAt ? `${s.score}/${s.total}` : 'unfinished'}</span></li>)}</ul>
       </section>
+      <ClearProgress studentName={student.name} />
     </div>
   );
 }

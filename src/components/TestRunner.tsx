@@ -22,6 +22,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
   const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
   const [confirm, setConfirm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   // The countdown follows the expiry time stored on the server, corrected for clock differences,
   // so refreshing or navigating away can never reset it.
@@ -29,6 +30,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
   const expiry = useMemo(() => new Date(expiresAt).getTime(), [expiresAt]);
   const [left, setLeft] = useState(() => Math.max(0, expiry - (Date.now() + offset)));
   const submittedRef = useRef(false);
+  const pendingSaveRef = useRef<Promise<void> | null>(null);
 
   const submit = useCallback(async () => {
     if (submittedRef.current) return;
@@ -36,6 +38,8 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
     setSubmitting(true);
     setError('');
     try {
+      // The timer may expire while the last answer is still being saved.
+      await pendingSaveRef.current;
       const res = await fetch(`/api/attempts/${attemptId}/submit`, { method: 'POST' });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Could not submit.');
@@ -56,29 +60,37 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
     return () => clearInterval(t);
   }, [expiry, offset, submit]);
 
-  async function choose(qid: string, letter: string) {
-    if (submitting) return;
+  function choose(qid: string, letter: string) {
+    if (submittedRef.current || pendingSaveRef.current) return;
     const prev = answers[qid];
+    setSaving(true);
     setAnswers((a) => ({ ...a, [qid]: letter }));
-    try {
-      const res = await fetch(`/api/attempts/${attemptId}/answer`, { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ questionId: qid, selected: letter }) });
-      if (!res.ok) {
-        const d = await res.json();
-        if (d.code === 'EXPIRED' || d.code === 'SUBMITTED') {
-          router.replace(`/results/${attemptId}`);
-          return;
+    pendingSaveRef.current = save().finally(() => {
+      pendingSaveRef.current = null;
+      setSaving(false);
+    });
+
+    async function save() {
+      try {
+        const res = await fetch(`/api/attempts/${attemptId}/answer`, { method: 'PUT', keepalive: true, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ questionId: qid, selected: letter }) });
+        if (!res.ok) {
+          const d = await res.json();
+          if (d.code === 'EXPIRED' || d.code === 'SUBMITTED') {
+            router.replace(`/results/${attemptId}`);
+            return;
+          }
+          throw new Error(d.error);
         }
-        throw new Error(d.error);
+        setError('');
+      } catch (e) {
+        setAnswers((a) => {
+          const n = { ...a };
+          if (prev) n[qid] = prev;
+          else delete n[qid];
+          return n;
+        });
+        setError(`Your answer could not be saved (${(e as Error).message}). Please try again.`);
       }
-      setError('');
-    } catch (e) {
-      setAnswers((a) => {
-        const n = { ...a };
-        if (prev) n[qid] = prev;
-        else delete n[qid];
-        return n;
-      });
-      setError(`Your answer could not be saved (${(e as Error).message}). Please try again.`);
     }
   }
 
@@ -120,6 +132,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
                 aria-checked={selected}
                 data-testid={`option-${letter}`}
                 onClick={() => choose(q.id, letter)}
+                disabled={saving || submitting}
                 className={`flex min-h-14 items-center gap-3 rounded-xl border-2 px-4 py-3 text-left text-lg transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300 ${selected ? 'border-brand-600 bg-brand-50 font-semibold' : 'border-slate-200 bg-white hover:border-brand-300'}`}
               >
                 <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-base font-bold ${selected ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-600'}`}>{letter}</span>
@@ -128,21 +141,22 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
             );
           })}
         </div>
+        {saving && <p role="status" className="mt-3 text-sm text-slate-600">Saving answer…</p>}
         {error && (
           <p role="alert" className="mt-3 rounded-lg bg-rose-50 p-2 text-sm text-rose-700">
             {error}
           </p>
         )}
         <div className="mt-5 flex items-center justify-between gap-2">
-          <button className="btn-secondary" onClick={() => setIdx((i) => Math.max(0, i - 1))} disabled={idx === 0} data-testid="prev">
+          <button className="btn-secondary" onClick={() => setIdx((i) => Math.max(0, i - 1))} disabled={idx === 0 || saving || submitting} data-testid="prev">
             <ChevronLeft size={18} /> Previous
           </button>
           {idx < questions.length - 1 ? (
-            <button className="btn-primary" onClick={() => setIdx((i) => i + 1)} data-testid="next">
+            <button className="btn-primary" onClick={() => setIdx((i) => i + 1)} disabled={saving || submitting} data-testid="next">
               Next <ChevronRight size={18} />
             </button>
           ) : (
-            <button className="btn-primary" onClick={() => setConfirm(true)}>
+            <button className="btn-primary" onClick={() => setConfirm(true)} disabled={saving || submitting}>
               <Send size={18} /> Submit
             </button>
           )}
@@ -161,6 +175,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
             <button
               key={x.id}
               onClick={() => setIdx(i)}
+              disabled={saving || submitting}
               aria-label={`Question ${x.number}${answers[x.id] ? ', answered' : ', not answered'}`}
               aria-current={i === idx}
               className={`h-10 rounded-lg text-sm font-bold ring-1 ${i === idx ? 'ring-2 ring-brand-600' : 'ring-slate-200'} ${answers[x.id] ? 'bg-brand-600 text-white' : 'bg-white text-slate-600'}`}
@@ -169,7 +184,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
             </button>
           ))}
         </div>
-        <button className="btn-primary mt-4 w-full" onClick={() => setConfirm(true)} data-testid="submit-open">
+        <button className="btn-primary mt-4 w-full" onClick={() => setConfirm(true)} disabled={saving || submitting} data-testid="submit-open">
           <Send size={18} /> Submit test
         </button>
       </nav>

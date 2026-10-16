@@ -25,6 +25,10 @@ npm run dev                 # http://localhost:3000
 
 Production build: `npm run build && npm run start`.
 
+For browser tests, run `npx playwright install chromium` once, then `npm run build` and `npm run test:e2e`. Set `PW_CHROMIUM` to an existing Chrome/Chromium executable to use that browser instead. Stop the development server before building on Windows so Prisma's native library is not locked.
+
+To test while the development server is running, set `NEXT_DIST_DIR=.next-e2e`, run `npx next build` (the Prisma client must already be generated), then `npm run test:e2e` in the same shell. This keeps the test build separate from the development files. Clear `NEXT_DIST_DIR` afterwards to return to the default build directory.
+
 ### Environment variables
 
 | Variable | Purpose |
@@ -58,7 +62,10 @@ The ready-made 900-question file is in [`exports/kenny-math-bank-v1.csv`](export
 2. **Question Manager** → search/filter, preview, edit, duplicate, regenerate, delete (drafts only), *Mark reviewed* for flagged questions.
 3. **Bank Versions** → *Validate*, *Publish / Activate* (explicit confirmation; flagged questions must be acknowledged). Published banks are read-only – use *Create draft copy* to change them. *Restore / Activate* rolls back to an older published bank. Tests Kenny already started keep their original questions.
 4. **Import / Export** → export a whole bank, one test or a range; import a CSV as a new draft bank (A), replace the active bank after typing `REPLACE` (B), or update selected questions by `question_id` (C). The validation report can be downloaded as an error CSV. *Download CSV Template* gives headers, field descriptions and three example rows (ignored unless “include example rows” is ticked).
+
+   New-bank imports (A/B) require 900 questions arranged as 30 tests × 30 questions. For a smaller CSV, use update-selected mode (C) with IDs from an existing bank. Changing the file, import mode, base bank or example-row option requires uploading and validating again before saving.
 5. **Settings** → spaced-review intervals, student name, admin password, activity log.
+6. **Student Progress → Clear progress** → type `CLEAR` to delete test attempts (including unfinished ones), saved answers, practice sessions, skill mastery and review schedules. Question banks, student settings and admin accounts are kept. The action is recorded in the activity log.
 
 ### CSV format
 

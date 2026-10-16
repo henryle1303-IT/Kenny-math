@@ -13,7 +13,7 @@ export default defineConfig({
   reporter: [['list']],
   use: { baseURL: `http://localhost:${PORT}`, trace: 'retain-on-failure' },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], launchOptions: { executablePath: process.env.PW_CHROMIUM || '/opt/pw-browsers/chromium' } } },
+    { name: 'desktop', use: { ...devices['Desktop Chrome'], ...(process.env.PW_CHROMIUM ? { launchOptions: { executablePath: process.env.PW_CHROMIUM } } : {}) } },
   ],
   webServer: {
     command: `npx tsx scripts/e2e-prepare.ts && npx next start -p ${PORT}`,
