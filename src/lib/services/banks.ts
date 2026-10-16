@@ -30,10 +30,6 @@ export function toQuestionData(q: Question): QuestionData {
   };
 }
 
-function correctText(q: QuestionData): string {
-  return q.options['ABCD'.indexOf(q.correctAnswer)] ?? '';
-}
-
 export async function nextVersion(): Promise<number> {
   const max = await prisma.questionBank.aggregate({ _max: { version: true } });
   return (max._max.version ?? 0) + 1;

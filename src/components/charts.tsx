@@ -20,7 +20,7 @@ export function ScoreLine({ data, max = 30 }: { data: { label: string; score: nu
   );
 }
 
-export function PercentBars({ data, color = BRAND }: { data: { name: string; value: number }[]; color?: string }) {
+export function PercentBars({ data }: { data: { name: string; value: number }[] }) {
   if (!data.length) return <Empty text="Nothing to show yet." />;
   return (
     <div style={{ height: Math.max(160, data.length * 34) }} className="w-full" role="img" aria-label="Accuracy chart">

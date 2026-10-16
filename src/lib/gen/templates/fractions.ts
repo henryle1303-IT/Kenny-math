@@ -127,7 +127,6 @@ const sub: Template = T('fr.sub', 'fr.sub', 'Subtracting fractions', 'Fractions'
 
 const mult = T('fr.mult', 'fr.mult', 'Multiplying fractions', 'Fractions', [1, 5], (r, tier) => {
   let a: Frac, b: Frac;
-  let aTex: string, bTex: string, aExpr: string, bExpr: string;
   if (tier === 1) {
     const d = r.pick([3, 4, 5, 6, 8]);
     const w = d * r.int(2, 6);
@@ -147,10 +146,10 @@ const mult = T('fr.mult', 'fr.mult', 'Multiplying fractions', 'Fractions', [1, 5
     b = F(r.int(1, 3) * 4 + r.int(1, 3), 4);
   }
   const mixedFmt = (f: Frac) => (f.isInt ? String(f.n) : f.n > f.d ? mixedTex(f) : ft(f.n, f.d));
-  aTex = mixedFmt(a);
-  bTex = mixedFmt(b);
-  aExpr = `${a.n}/${a.d}`;
-  bExpr = `${b.n}/${b.d}`;
+  const aTex = mixedFmt(a);
+  const bTex = mixedFmt(b);
+  const aExpr = `${a.n}/${a.d}`;
+  const bExpr = `${b.n}/${b.d}`;
   const p = a.mul(b);
   if (a.n === b.n && a.d === b.d) return mult.build(r, tier);
   const imps = tier >= 4;
