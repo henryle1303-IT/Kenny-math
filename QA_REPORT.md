@@ -1,5 +1,17 @@
 # QA report
 
+## Neon PostgreSQL / full Vercel application — 2026-10-16
+
+- Added a separate PostgreSQL Prisma schema and committed baseline migration under `prisma/postgres/`; all models match the preserved SQLite schema. The Vercel build generates the PostgreSQL client, deploys migrations, seeds empty databases and builds the full Next.js app. Static demo commands remain optional.
+- Provisioned Neon PostgreSQL 17 in Singapore, with separate production and preview branches. Applied the migration and seeded preview successfully: 30 tests, 900 questions, one active bank. The local SQLite database was preserved.
+- Full PostgreSQL production build passed. All **7 Chrome E2E tests passed against real Neon**, covering bad/good admin login, bank generation, import/export, publishing/activation/rollback, a completely new 900-question CSV, stale import validation, answer persistence, grading, Smart Review, progress clearing, admin protection and 375px layouts.
+- The first PostgreSQL browser run caught slow import commits: validation updated up to 900 rows individually across the network. Identical status/notes are now grouped and written in batches of 200. On the repeated run, the complete new-bank import/export/publish/grade test passed in 19.3 seconds (previously 1.1 minutes). No assertion timeouts were increased.
+- The successful rerun used a fresh `e2e_20261016_01` schema on the preview branch, without resetting an existing database. PostgreSQL E2E requires an explicit `POSTGRES_TEST_DATABASE_URL`; the normal SQLite test preparation is not used for Neon.
+- Configuration guards reject SQLite URLs, pooled migration endpoints, mismatched database/schema/role, missing Neon TLS and insecure Vercel cookies. Initial production seeding requires configured admin credentials and does not print the password. Credentials and database URLs are excluded from Git.
+- After the batching change, all **101 Vitest tests in 11 files passed** against the disposable SQLite database. TypeScript and ESLint passed during the PostgreSQL production build. Restored the default SQLite client and restarted the local server at `localhost:3000`.
+- Vercel dry-run detected Next.js and 174 upload files; no `.env` files, private `data/` artifacts or SQLite database files were included.
+- Vercel CLI authenticated successfully after the connector lacked team access. Verified the existing `dla-s-projects/kenny-math` project and configured separate production/preview database Secrets, admin credentials and the Next.js build settings. Live deployment verification is recorded after release.
+
 ## Database-free Vercel demo — 2026-10-16
 
 - Added a separate static React entry point in `demo/`, built to `demo-dist` by esbuild and Tailwind. The build rejects any bundled Prisma or database module. The Vercel install command skips lifecycle scripts and its build command runs only the static demo build.
@@ -137,4 +149,4 @@ None. Every question was confirmed by the independent expression evaluator.
 6. **Admin UI coverage:** the question edit modal, duplicate/regenerate buttons, import modes B/C and settings forms are covered by service/API-level tests, not by browser tests.
 7. **Rate limiting is in memory** (per server process) and resets on restart; fine for one instance.
 8. **Vietnamese** covers navigation and key student labels, not question content or the admin area (admin is English by specification).
-9. **SQLite** is single-writer; suitable for one student plus one admin. See README for the PostgreSQL migration steps (not exercised in this build).
+9. **SQLite local mode** is single-writer; suitable for one student plus one admin. The current Vercel configuration uses PostgreSQL; see the Neon verification above.

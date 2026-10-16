@@ -5,10 +5,15 @@ import { createBank, generateTests, publishBank, validateBankById } from '../src
 import { DEFAULT_BANK_SEED } from '../src/lib/gen/bank';
 
 async function main() {
+  const email = (process.env.ADMIN_EMAIL || 'admin@example.com').trim().toLowerCase();
+  const needsAdmin = (await prisma.adminUser.count()) === 0;
+  if (needsAdmin && (process.env.VERCEL || process.env.NODE_ENV === 'production') &&
+      (!process.env.ADMIN_EMAIL?.trim() || !process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD.length < 12)) {
+    throw new Error('For the first production seed, set ADMIN_EMAIL and ADMIN_PASSWORD (at least 12 characters).');
+  }
   await prisma.student.upsert({ where: { id: 'kenny' }, update: {}, create: { id: 'kenny', name: 'Kenny' } });
 
-  const email = (process.env.ADMIN_EMAIL || 'admin@example.com').trim().toLowerCase();
-  if ((await prisma.adminUser.count()) === 0) {
+  if (needsAdmin) {
     const pw = process.env.ADMIN_PASSWORD || randomBytes(9).toString('base64url');
     await prisma.adminUser.create({ data: { email, passwordHash: await hashPassword(pw) } });
     console.log(`Admin account created: ${email}`);

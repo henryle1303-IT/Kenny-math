@@ -1,0 +1,257 @@
+// PostgreSQL deployment schema. Keep models identical to ../schema.prisma.
+// Written to stay portable to PostgreSQL: JSON is stored as String, no SQLite-only features.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model Student {
+  id          String   @id @default(cuid())
+  name        String
+  preferences String   @default("{}") // JSON: { lang: "en" | "vi" }
+  createdAt   DateTime @default(now())
+
+  attempts       TestAttempt[]
+  reviewSessions ReviewSession[]
+  skillProgress  SkillProgress[]
+  skillEvents    SkillEvent[]
+}
+
+model QuestionBank {
+  id            String    @id @default(cuid())
+  name          String
+  version       Int       @unique
+  status        String    @default("DRAFT") // DRAFT | VALIDATING | READY_FOR_REVIEW | PUBLISHED | ARCHIVED
+  source        String    @default("GENERATED") // GENERATED | IMPORTED | CLONED | MANUAL
+  isActive      Boolean   @default(false)
+  parentBankId  String?
+  notes         String    @default("")
+  seed          String    @default("")
+  validationJson String?  // last validation summary (JSON)
+  validatedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  publishedAt   DateTime?
+  activatedAt   DateTime?
+
+  tests     Test[]
+  questions Question[]
+  attempts  TestAttempt[]
+
+  @@index([status])
+  @@index([isActive])
+}
+
+model Test {
+  id           String       @id @default(cuid())
+  bankId       String
+  testNumber   Int
+  level        String // Beginner | Intermediate | Advanced
+  title        String
+  timeLimitSec Int          @default(1800)
+  bank         QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+
+  @@unique([bankId, testNumber])
+}
+
+model Question {
+  id               String       @id @default(cuid())
+  questionId       String // stable, human readable id (e.g. T01-Q01), unique inside a bank
+  bankId           String
+  testNumber       Int
+  position         Int
+  level            String
+  difficulty       Int
+  topic            String
+  skill            String
+  questionText     String
+  optionA          String
+  optionB          String
+  optionC          String
+  optionD          String
+  correctAnswer    String // A | B | C | D
+  explanation      String
+  commonMistake    String
+  learningTip      String
+  validationStatus String       @default("PENDING") // PENDING | VERIFIED | NEEDS_REVIEW | INVALID | MANUAL_OK
+  validationNotes  String       @default("")
+  verifyExpr       String? // optional machine-checkable expression for the correct answer
+  templateId       String?
+  bank             QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+  answers          StudentAnswer[]
+
+  @@unique([bankId, questionId])
+  @@unique([bankId, testNumber, position])
+  @@index([bankId, topic])
+  @@index([bankId, skill])
+}
+
+model TestAttempt {
+  id             String    @id @default(cuid())
+  studentId      String
+  bankId         String
+  testNumber     Int
+  questionOrder  String // JSON array of Question.id in presented order
+  startedAt      DateTime
+  expiresAt      DateTime
+  submittedAt    DateTime?
+  status         String    @default("IN_PROGRESS") // IN_PROGRESS | SUBMITTED | TIMED_OUT
+  inProgressKey  String?   @unique // "<studentId>:<testNumber>" while in progress => at most one open attempt per test
+  score          Int?
+  correctCount   Int?
+  incorrectCount Int?
+  unansweredCount Int?
+  timeUsedSec    Int?
+
+  student Student        @relation(fields: [studentId], references: [id])
+  bank    QuestionBank   @relation(fields: [bankId], references: [id])
+  answers StudentAnswer[]
+
+  @@index([studentId, testNumber])
+  @@index([studentId, status])
+}
+
+model StudentAnswer {
+  id             String   @id @default(cuid())
+  attemptId      String
+  questionId     String
+  selectedAnswer String? // A-D or null (unanswered)
+  isCorrect      Boolean?
+  answeredAt     DateTime @default(now())
+
+  attempt  TestAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id])
+
+  @@unique([attemptId, questionId])
+}
+
+model ReviewSession {
+  id          String    @id @default(cuid())
+  studentId   String
+  kind        String    @default("SMART") // SMART | SIMILAR
+  startedAt   DateTime  @default(now())
+  completedAt DateTime?
+  score       Int?
+  total       Int       @default(0)
+  sourceQuestionId String? // for SIMILAR sessions: Question.id the practice was based on
+
+  student   Student          @relation(fields: [studentId], references: [id])
+  questions ReviewQuestion[]
+
+  @@index([studentId, startedAt])
+}
+
+model ReviewQuestion {
+  id                  String    @id @default(cuid())
+  sessionId           String
+  position            Int
+  skillId             String
+  tier                Int
+  generatedQuestionData String // JSON (text, options, correct, explanation, ...)
+  fingerprint         String
+  selectedAnswer      String?
+  correctAnswer       String
+  isCorrect           Boolean?
+  answeredAt          DateTime?
+  explanation         String
+
+  session ReviewSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, position])
+  @@index([skillId])
+  @@index([fingerprint])
+}
+
+model SkillEvent {
+  id         String   @id @default(cuid())
+  studentId  String
+  skillId    String
+  topic      String
+  isCorrect  Boolean
+  source     String // TEST | REVIEW
+  sessionKey String // attempt id or review session id (a "session" for spaced review)
+  tier       Int      @default(1)
+  createdAt  DateTime @default(now())
+
+  student Student @relation(fields: [studentId], references: [id])
+
+  @@index([studentId, skillId, createdAt])
+  @@index([sessionKey])
+}
+
+model SkillProgress {
+  id             String    @id @default(cuid())
+  studentId      String
+  skillId        String
+  topic          String
+  totalAttempts  Int       @default(0)
+  totalCorrect   Int       @default(0)
+  recentAccuracy Float?
+  recentCount    Int       @default(0)
+  sessionCount   Int       @default(0)
+  masteryStatus  String    @default("NOT_ENOUGH_DATA")
+  previousAccuracy Float?
+  streakSessions Int       @default(0)
+  lastTier       Int?
+  lastEventAt    DateTime?
+  nextReviewDate DateTime?
+
+  student Student @relation(fields: [studentId], references: [id])
+
+  @@unique([studentId, skillId])
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+
+  sessions AdminSession[]
+  logs     AdminAuditLog[]
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  adminId   String
+  tokenHash String   @unique
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  admin AdminUser @relation(fields: [adminId], references: [id], onDelete: Cascade)
+}
+
+model AdminAuditLog {
+  id        String   @id @default(cuid())
+  adminId   String?
+  operation String
+  details   String   @default("{}")
+  timestamp DateTime @default(now())
+
+  admin AdminUser? @relation(fields: [adminId], references: [id])
+
+  @@index([timestamp])
+}
+
+model ImportJob {
+  id        String   @id @default(cuid())
+  filename  String
+  mode      String // NEW_BANK | REPLACE_ACTIVE | UPDATE_SELECTED
+  baseBankId String?
+  status    String   @default("VALIDATED") // VALIDATED | COMMITTED | REJECTED
+  reportJson String // validation report
+  rowsJson  String // parsed rows
+  resultBankId String?
+  createdAt DateTime @default(now())
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+

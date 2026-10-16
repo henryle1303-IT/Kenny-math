@@ -7,11 +7,43 @@ An interactive Grade 5 maths platform:
 * **My Progress** – scores, topic accuracy, mastery, retake history.
 * **Admin panel** (`/admin`) – generate, edit, validate, import/export (CSV), version, publish and roll back question banks.
 
-Stack: Next.js 15 (App Router) · TypeScript · Tailwind · Prisma + SQLite · KaTeX · Recharts · PapaParse · Zod · Vitest · Playwright.
+Stack: Next.js 15 (App Router) · TypeScript · Tailwind · Prisma + Neon PostgreSQL (Vercel) / SQLite (local) · KaTeX · Recharts · PapaParse · Zod · Vitest · Playwright.
 
-## Vercel demo (no database)
+## Deploy to Vercel with Neon PostgreSQL
 
-The checked-in `vercel.json` deploys a static browser demo. No `DATABASE_URL`, admin password, Prisma migration or database service is needed. It includes the 900-question bank, timed tests, grading/explanations, practice, browser progress, CSV import/export, draft activation and clear progress. The **Admin demo** is open without sign-in and only changes data in the current browser. Practice selects questions from the local bank; it does not run the full server-side adaptive engine. Clearing browser storage resets this demo.
+`vercel.json` deploys the full Next.js application, including authenticated admin, shared question banks, server-side grading and persistent progress.
+
+1. In the Vercel project **kenny-math**, connect Neon from **Storage / Marketplace**. Choose a nearby region and the free plan if suitable for this demo. Use a separate Neon branch for preview deployments; do not point preview and production at the same writable database.
+2. Add the variables below to the intended Vercel environment. The Neon integration can populate the database URLs automatically. Keep real passwords and URLs out of Git and chat.
+3. Verify repository root directory, production branch `main`, framework **Next.js**, install command `npm ci --ignore-scripts`, build command `npm run build:vercel`, output directory `.next`. Remove any dashboard overrides left over from the static demo (`demo-dist` / `build:demo`).
+4. Deploy. The build validates configuration, generates the PostgreSQL Prisma client, applies committed migrations, seeds an empty database, then builds Next.js. Seeding creates Kenny, the initial admin and a published bank of 900 questions. It preserves existing accounts, passwords, banks and progress on later builds.
+5. Check `/`, `/tests`, `/admin/login`, admin sign-in, saving an answer after refresh, grading, and CSV export/import on the deployed URL. A successful local SQLite test alone does not verify the Neon deployment.
+
+| Vercel variable | Value |
+|---|---|
+| `DATABASE_URL` | Neon pooled PostgreSQL URL (`-pooler` hostname), with `sslmode=require`; recommended query parameters: `connect_timeout=15&connection_limit=3&pool_timeout=15` |
+| `DATABASE_URL_UNPOOLED` | Direct URL for the **same database and role**, without `-pooler`, with `sslmode=require`; `DIRECT_URL` is accepted as an alias by the setup script |
+| `ADMIN_EMAIL` | Initial admin email |
+| `ADMIN_PASSWORD` | Initial password, at least 12 characters; required for the first production seed |
+| `INSECURE_COOKIES` | `false` (or omit) |
+
+PostgreSQL has its own schema and migration history under `prisma/postgres/`. The original SQLite schema, migrations and local `prisma/dev.db` are preserved. Deploying starts with a fresh Neon database; it does **not** copy local attempts or custom banks. Export custom banks as CSV and import them through Admin if needed. Existing admin passwords are changed in Admin Settings, not by changing seed variables.
+
+For an explicit local PostgreSQL session, copy `.env.postgres.example` to ignored `.env.local`, fill the URLs and admin credentials, then run:
+
+```bash
+npm run db:setup:postgres     # explicit remote migration + initial seed
+npm run dev:postgres         # generates PostgreSQL client and starts Next.js; no migrations
+npm run build:vercel         # migration + seed + production build
+```
+
+Stop any running local server before switching Prisma providers on Windows. To return to SQLite, remove `.env.local`, run `npx prisma generate`, then `npm run dev`. The default `npm test` suite uses a disposable SQLite database and needs the SQLite client. `npm run test:deploy` also checks the deployment configuration and schema parity; it does not contact Neon.
+
+To run the full browser suite against Neon, use a disposable **preview branch**. Set `DATABASE_URL` and `DATABASE_URL_UNPOOLED` to that branch, seed with `ADMIN_EMAIL=e2e-admin@example.com` / `ADMIN_PASSWORD=e2e-password-123`, and run `npm run build:vercel`. Then set `POSTGRES_TEST_DATABASE_URL` to that preview pooled URL and run `npm run test:e2e:postgres`. This suite edits banks and clears student progress in the supplied test database; it does not create or reset a database automatically. It starts the production server on port 3210. Use the same `NEXT_DIST_DIR` for build and test if overriding the build directory.
+
+## Optional browser demo (no database)
+
+The optional static browser demo requires no `DATABASE_URL`, admin password, Prisma migration or database service. It includes the 900-question bank, timed tests, grading/explanations, practice, browser progress, CSV import/export, draft activation and clear progress. The **Admin demo** is open without sign-in and only changes data in the current browser. Practice selects questions from the local bank; it does not run the full server-side adaptive engine. Clearing browser storage resets this demo.
 
 ```bash
 npm ci --ignore-scripts
@@ -22,7 +54,7 @@ npm run test:demo            # install Playwright Chromium or set PW_CHROMIUM fi
 
 Set `DEMO_BASE_URL` to the public demo URL to run the same browser tests against a deployment instead of starting a local server.
 
-Vercel settings: repository root directory, production branch `main`, build command `npm run build:demo`, output directory `demo-dist`, install command `npm ci --ignore-scripts`. `vercel.json` sets these commands and routes deep links to the static app. Push the actual application code to `main`; the original `main` branch contained only README and could not serve the app. The full database-backed application remains available locally through the commands below.
+`npm run preview:demo` serves local deep links. The checked-in Vercel configuration now targets the full PostgreSQL application described above.
 
 ## Quick start (local)
 
@@ -88,7 +120,7 @@ Required columns (in this order when exporting): `question_id, test_id, question
 
 ## Deployment
 
-The app needs a Node.js server and a writable disk for the SQLite file.
+Use Neon PostgreSQL for Vercel as described above. The following alternatives use SQLite and need a writable persistent disk.
 
 **Docker (recommended)**
 
@@ -102,9 +134,7 @@ docker run -d --name kenny-math -p 3000:3000 \
 
 Put it behind HTTPS (Caddy, nginx, Cloudflare Tunnel, or your platform's TLS). The container applies migrations and seeds on first start; later starts only run pending migrations. Back up the volume (`/data/kenny.db`).
 
-**Render / Fly.io / Railway / a VPS:** use the Dockerfile or run `npm ci && npm run build && npm run db:setup && npm run start` with a persistent disk mounted where `DATABASE_URL` points. The full server application needs persistent database storage; for that version on serverless platforms use PostgreSQL (below). Vercel currently deploys the database-free browser demo described above.
-
-**Moving to PostgreSQL later:** in `prisma/schema.prisma` change `provider` to `postgresql`, set `DATABASE_URL` to your Postgres URL, delete `prisma/migrations`, run `npx prisma migrate dev --name init` once against an empty database, then `npm run db:seed`. The schema uses no SQLite-only features.
+**Render / Fly.io / Railway / a VPS:** use the Dockerfile or run `npm ci && npm run build && npm run db:setup && npm run start` with a persistent disk mounted where `DATABASE_URL` points. Do not delete the SQLite migrations when deploying PostgreSQL; use `npm run build:vercel` with the separate PostgreSQL history instead.
 
 ## Security notes
 

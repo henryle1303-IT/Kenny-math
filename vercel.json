@@ -1,13 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "framework": null,
+  "framework": "nextjs",
+  "regions": ["sin1"],
   "installCommand": "npm ci --ignore-scripts",
-  "buildCommand": "npm run build:demo",
-  "outputDirectory": "demo-dist",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/api/.*", "status": 404 },
-    { "src": "/.*", "dest": "/index.html" }
-  ]
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": ".next"
 }

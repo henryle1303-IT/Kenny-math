@@ -1,0 +1,11 @@
+.git
+node_modules
+.next*
+demo-dist
+data
+.env*
+*.db
+*.db-journal
+test-results
+playwright-report
+tsconfig.tsbuildinfo

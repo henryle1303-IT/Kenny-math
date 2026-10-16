@@ -6,7 +6,7 @@ const testDb = path.resolve(import.meta.dirname, 'prisma/test.db');
 export default defineConfig({
   resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
   test: {
-    include: ['tests/unit/**/*.test.ts', 'tests/integration/**/*.test.ts'],
+    include: ['tests/unit/**/*.test.ts', 'tests/integration/**/*.test.ts', 'tests/deployment/**/*.test.ts'],
     env: { DATABASE_URL: `file:${testDb}` },
     globalSetup: ['tests/global-setup.ts'],
     fileParallelism: false,

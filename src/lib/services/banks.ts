@@ -141,11 +141,24 @@ export async function validateBankById(bankId: string): Promise<BankValidationRe
   const editable = EDITABLE.includes(bank.status);
   await prisma.$transaction(async (tx) => {
     if (editable) {
+      const updates = new Map<string, { ids: string[]; status: string; notes: string }>();
       for (const [idx, q] of questions.entries()) {
         const pq = report.perQuestion[idx];
         const status = manual.has(q.questionId) && pq.status !== 'INVALID' ? 'MANUAL_OK' : pq.status;
         const notes = (byRow.get(idx + 1) ?? []).join(' | ');
-        if (q.validationStatus !== status || q.validationNotes !== notes) await tx.question.update({ where: { id: q.id }, data: { validationStatus: status, validationNotes: notes } });
+        if (q.validationStatus !== status || q.validationNotes !== notes) {
+          const key = JSON.stringify([status, notes]);
+          const group = updates.get(key) ?? { ids: [], status, notes };
+          group.ids.push(q.id);
+          updates.set(key, group);
+        }
+      }
+      // A newly imported bank normally shares one result across 900 questions.
+      // Batch identical results to avoid 900 database round trips on Neon.
+      for (const { ids, status, notes } of updates.values()) {
+        for (let i = 0; i < ids.length; i += 200) {
+          await tx.question.updateMany({ where: { bankId, id: { in: ids.slice(i, i + 200) } }, data: { validationStatus: status, validationNotes: notes } });
+        }
       }
     }
     await tx.questionBank.update({
