@@ -1,5 +1,15 @@
 # QA report
 
+## Australian Year 5 bank (kenny-math-v2.csv) — 2026-10-19
+
+`npm run bank:au` builds 900 questions; `validateBank` (complete 30 x 30) reports 900 verified, 0 invalid, 0 flagged. `npm test` passes (20 files, 202 tests) including `tests/unit/au-bank.test.ts` (mix per test, no duplicates, every stored answer graded right and the opposite wrong, committed CSV equals generator output) and `tests/integration/au-bank-import.test.ts` (upload through the importer as a private bank, publish without review, perfect scores on tests 1, 8, 15, 22 and 30). A real-browser smoke run imported the file through the admin API on a fresh SQLite database, published it, and opened test 15 as a student to see all input kinds. Not verified: Neon/PostgreSQL; the section list against each Australian Curriculum content descriptor; the content by a teacher.
+
+## Question types (planv4) — 2026-10-19
+
+Run in this environment (Linux, SQLite): `npm run typecheck`, `npm run lint`, `npm test` (unit, integration, deployment: all pass, 186 tests), `npm run build`, `npx playwright test` (27 pass, including `zzz-question-types.spec.ts` which signs in as the demo user and answers all seven question types, reloads, submits and reviews), `npm run build:demo` and `npm run test:demo` (2 pass).
+
+Not verified: the new PostgreSQL migration was not run on a real PostgreSQL/Neon database (`prisma validate` of the PostgreSQL schema passes; the SQL is two `ADD COLUMN` statements). The generator, Smart Review and the static browser demo remain multiple choice only. Two older tests changed expectations (CSV header gained two columns; the template has 9 example rows instead of 3).
+
 ## Neon PostgreSQL / full Vercel application — 2026-10-16
 
 - Added a separate PostgreSQL Prisma schema and committed baseline migration under `prisma/postgres/`; all models match the preserved SQLite schema. The Vercel build generates the PostgreSQL client, deploys migrations, seeds empty databases and builds the full Next.js app. Static demo commands remain optional.

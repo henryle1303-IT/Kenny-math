@@ -1,0 +1,163 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T02-Q01,2,1,Beginner,1,Angles,ge.angles,Put these angles in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Right angle = 90°, straight angle = 180°, three-quarter turn = 270°, full turn = 360°.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 20°, 55°, a right angle, a straight angle.
+Answer: 20°, 55°, a right angle, a straight angle",Forgetting the size of a straight angle or a full turn.,Change every angle to degrees first.,,,,VERIFIED,ORDERING,"{""items"":[""20°"",""55°"",""a right angle"",""a straight angle""]}"
+T02-Q02,2,2,Beginner,1,Money,wp.money,Zoe buys 3 notebooks at $3.91 each and a calculator at $6.89 and pays with $20.00. How much change should Zoe get?,$1.38,$8.27,$2.38,$18.62,A,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 3 × $3.91 = $11.73.
+Step 2: Calculator: 1 × $6.89 = $6.89.
+Step 3: Total: $18.62. Change: $20.00 − $18.62 = $1.38.
+Answer: $1.38",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,20-(3.91*3+6.89*1),VERIFIED,MCQ,
+T02-Q03,2,3,Beginner,1,Shapes & Objects,au.shapes,How many faces does a triangular prism have?,9,5,4,6,B,"What it asks: Count the faces of a 3D object.
+Concept: A triangular prism has 2 triangular ends and 3 rectangular sides. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 5, edges: 9, vertices: 6.
+Step 2: The question asks for the faces: 5.
+Answer: 5","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,5,VERIFIED,MCQ,
+T02-Q04,2,4,Beginner,1,Units of Measurement,me.problems,Khoa has a bag of flour of 2 kg 300 g and another one of 2 kg 400 g. What is the total in g?,100 g,"5,700 g","4,710 g","4,700 g",D,"What it asks: Change both amounts to g and add.
+Concept: Convert everything to the same unit first. 1 kg = 1,000 g.
+Step 1: 2 kg 300 g = 2,300 g.
+Step 2: 2 kg 400 g = 2,400 g.
+Step 3: 2,300 + 2,400 = 4,700 g.
+Answer: 4,700 g",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,2300+2400,VERIFIED,MCQ,
+T02-Q05,2,5,Beginner,1,Location & Maps,au.maps,On a town map the museum is at E2 and the oval is at I2. How many squares east of the museum is the oval? (Letters run west to east.),4 squares,3 squares,5 squares,6 squares,A,"What it asks: Use a grid reference to count squares between two places.
+Concept: A grid reference gives the column letter, then the row number. Count the squares between the references.
+Step 1: The letters go from E to I: 4 squares.
+Answer: 4 squares",Counting the square you start on as well.,Subtract the two column positions (or row numbers); do not count the start square.,,,4,VERIFIED,MCQ,
+T02-Q06,2,6,Beginner,1,Operations & Problem Solving,wp.rounding,A school trip has 22 students. Each minibus holds 7 students. How many minibuses are needed so that every student has a seat?,4,15,3,5,A,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 22 ÷ 7 = 3 remainder 1.
+Step 2: The 1 left over still need space, so add one more.
+Step 3: 3 + 1 = 4.
+Answer: 4",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(22/7),VERIFIED,MCQ,
+T02-Q07,2,7,Beginner,1,"Perimeter, Area & Volume",ge.volume,A block of clay is 11 cm long and 3 cm wide. Its volume is 264 cm³. How thick is the block?,19 cm,33 cm,24 cm,8 cm,D,"What it asks: Work backwards from the volume to find the missing height.
+Concept: Volume = base area × height, so height = volume ÷ base area.
+Step 1: Base area: 11 × 3 = 33 cm².
+Step 2: Height = 264 ÷ 33 = 8 cm.
+Answer: 8 cm",Dividing the volume by only one dimension.,Check: base area × height should give back the volume.,,,264/(11*3),VERIFIED,MCQ,
+T02-Q08,2,8,Beginner,1,Chance,au.chance,A spinner with 5 equal sections is spun and a coin is tossed. How many different outcomes are possible?,12,8,5,10,D,"What it asks: Count all the possible outcomes of a chance experiment.
+Concept: Multiply the number of outcomes of each part of the experiment.
+Step 1: 5 spinner results × 2 coin results = 10.
+Answer: 10",Adding the outcomes of each part instead of multiplying.,List the outcomes in an organised table or tree if you are unsure.,,,10,VERIFIED,MCQ,
+T02-Q09,2,9,Beginner,1,Operations & Problem Solving,wp.rounding,Vy wants to buy a football that costs $70. Vy already has $15 and saves $10 each week. What is the smallest number of weeks Vy needs to save to afford it?,7,5,6,8,C,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $70 − $15 = $55.
+Step 2: 55 ÷ 10 = 5.50, so after 5 weeks it is not enough.
+Step 3: Vy needs 6 weeks.
+Answer: 6","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((70-15)/10),VERIFIED,MCQ,
+T02-Q10,2,10,Beginner,1,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 30 that can be divided exactly by both 4 and 10?,20,60,40,32,C,"What it asks: Find a multiple of both 4 and 10 that is just above 30.
+Concept: Numbers divisible by both 4 and 10 are multiples of their LCM, which is 20.
+Step 1: LCM of 4 and 10 is 20.
+Step 2: Multiples of 20: …, 20, 40, …
+Step 3: The first one greater than 30 is 40.
+Answer: 40",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(30/lcm(4,10))+1)*lcm(4,10)",VERIFIED,MCQ,
+T02-Q11,2,11,Beginner,2,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{2}{3}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{10}{15}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 5.
+Step 2: \(\frac{11}{15}\): no, the top should be 10 to stay equal.
+Step 3: \(\frac{4}{7}\): no, the bottom should be 6 to stay equal.
+Step 4: \(\frac{4}{6}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 2.
+Step 5: \(\frac{6}{10}\): no, the bottom should be 9 to stay equal.
+Answer: \(\frac{10}{15}\), \(\frac{4}{6}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{10}{15}\\)"",""\\(\\frac{11}{15}\\)"",""\\(\\frac{4}{7}\\)"",""\\(\\frac{4}{6}\\)"",""\\(\\frac{6}{10}\\)""],""correct"":[0,3]}"
+T02-Q12,2,12,Beginner,2,Place Value & Rounding,wn.place,"In the number 85,260, what is the value of the digit 6?",,,,,,"What it asks: Find what the digit 6 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 85,260, the digit 6 is in the tens place.
+Step 2: 6 × 10 = 60.
+Answer: 60",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,6*10^1,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""60""]}"
+T02-Q13,2,13,Beginner,2,Patterns & Algebra,pa.special,"The first four square numbers are 1, 4, 9 and 16. What is the 14th square number?",28,225,169,196,D,"What it asks: Use the rule for square numbers.
+Concept: The nth square number is n × n.
+Step 1: 1 = 1×1, 4 = 2×2, 9 = 3×3, so the nth square number is n × n.
+Step 2: 14 × 14 = 196.
+Answer: 196",Doubling the number instead of multiplying it by itself.,Square numbers make square arrays of dots.,,,14^2,VERIFIED,MCQ,
+T02-Q14,2,14,Beginner,2,Data,au.data,"In a picture graph, each ★ stands for 10 students who walk to school. Class 5D has 7 ★ and Class 5A has 4 ★. How many students walk to school altogether?",280,110,120,11,B,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 10, so multiply the number of stars by 10.
+Step 1: Class 5D: 7 × 10 = 70. Class 5A: 4 × 10 = 40.
+Step 2: 70 + 40 = 110.
+Answer: 110",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,(7+4)*10,VERIFIED,MCQ,
+T02-Q15,2,15,Beginner,2,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is true: 21:51 is 9:51 PM.
+Step 2: Statement 2 is false: 15:43 is 3:43 PM.
+Answer: True, False",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""21:51 is the same time as 9:51 PM"",""truth"":true},{""text"":""15:43 is the same time as 4:43 PM"",""truth"":false}]}"
+T02-Q16,2,16,Beginner,2,Data,au.data,A column graph shows the number of books read each week. Each gridline is 2 books. The bar for Week 1 reaches the 2nd gridline and the bar for Week 2 reaches the 6th gridline. How many more books were read in Week 2 than in Week 1?,10,12,8,4,C,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 2. Find each bar's value, then subtract.
+Step 1: Week 1: 2 × 2 = 4. Week 2: 6 × 2 = 12.
+Step 2: 12 − 4 = 8.
+Answer: 8",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,6*2-2*2,VERIFIED,MCQ,
+T02-Q17,2,17,Beginner,2,Decimals,dec.addsub,Find the value of \(33.43 + 2.91\).,36.24,36.44,36.34,36.35,C,"What it asks: Add the two decimal numbers.
+Concept: Line up the decimal points so tenths are under tenths and hundredths under hundredths, then calculate as with whole numbers.
+Step 1: Line up the decimal points: 33.43 and 2.91.
+Step 2: Add column by column from the right, carrying when needed.
+Step 3: 33.43 + 2.91 = 36.34.
+Answer: 36.34",Lining up the digits on the right instead of lining up the decimal points.,Write extra zeros so both numbers have the same number of decimal places (hundredths or thousandths).,,,33.43+2.91,VERIFIED,MCQ,
+T02-Q18,2,18,Beginner,2,Shapes & Objects,au.shapes,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Know the properties of 2D shapes and 3D objects: sides, parallel lines, right angles, faces, edges and vertices.
+Step 1: Statement 1 is false: it has 7 faces.
+Step 2: Statement 2 is true: that describes a square.
+Answer: False, True","Mixing up the properties of a square, rectangle and rhombus.",Sketch the shape and count carefully.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A pentagonal prism has 6 faces"",""truth"":false},{""text"":""A square has 4 equal sides and 4 right angles"",""truth"":true}]}"
+T02-Q19,2,19,Beginner,2,Transformations & Symmetry,au.transform,"A dot is 4 squares from a mirror line. Its reflection is on the other side of the line, the same distance away. How many squares apart are the dot and its reflection?",,,,,,"What it asks: Find the distance between a shape and its reflection.
+Concept: A reflection is as far behind the mirror line as the original is in front of it.
+Step 1: Each is 4 squares from the line.
+Step 2: 4 + 4 = 8.
+Answer: 8 squares",Giving the distance to the mirror line only.,"Distance to the line, doubled.",,,8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""],""unit"":""squares""}"
+T02-Q20,2,20,Beginner,2,Operations & Problem Solving,wn.muldiv,Calculate \(361 \times 9\).,"3,610","3,259","2,888","3,249",D,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 361 × 9 = 3,249.
+Answer: 3,249","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,361*9,VERIFIED,MCQ,
+T02-Q21,2,21,Beginner,2,Money,au.money,A drink bottle costs $40.00. It is on sale for 25% off. What is the sale price?,$15.00,$30.00,$50.00,$10.00,B,"What it asks: Find the price after a 25% discount.
+Concept: 25% is a quarter: halve and halve again.
+Step 1: 25% of $40.00 = $10.00.
+Step 2: $40.00 − $10.00 = $30.00.
+Answer: $30.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,40-40*25/100,VERIFIED,MCQ,
+T02-Q22,2,22,Beginner,2,Decimals,dec.place,"In the decimal 3.47, what is the name of the place where the digit 4 sits?",,,,,,"What it asks: Answer with the correct word.
+Concept: The 4 in 3.47 is in the tenths place.
+Step 1: The 4 in 3.47 is in the tenths place.
+Answer: tenths",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""tenths"",""tenth""]}"
+T02-Q23,2,23,Beginner,2,Fractions,fr.addsub,Calculate \(\frac{2}{3}\) − \(\frac{2}{9}\). Give your answer in simplest form (use a mixed number if needed).,,,,,,"What it asks: Subtract fractions whose denominators are related.
+Concept: 9 is a multiple of 3, so rewrite the first fraction with denominator 9 before subtracting.
+Step 1: \(\frac{2}{3}\) = \(\frac{2}{3}\) (denominator 9).
+Step 2: Subtract the numerators: 6 − 2 = 4.
+Step 3: Simplify: \(\frac{4}{9}\).
+Answer: \(\frac{4}{9}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,2/3-2/9,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""4/9""],""format"":""fraction"",""requireSimplified"":true}"
+T02-Q24,2,24,Beginner,2,Time,ts.clock,Vy starts homework at 10:14 AM and it takes 0 h 55 min. What time does Vy finish?,12:09 PM,11:09 AM,10:59 AM,11:19 AM,B,"What it asks: Add the time taken to the start time.
+Concept: End time = start time + duration. Remember 60 minutes make 1 hour.
+Step 1: Add the hours: 10:14 AM + 0 h = 10:14 AM.
+Step 2: Add the minutes: + 55 min = 11:09 AM.
+Answer: 11:09 AM",Carrying over 100 minutes instead of 60.,"Add the hours first, then the minutes.",,,614+55,VERIFIED,MCQ,
+T02-Q25,2,25,Beginner,2,"Perimeter, Area & Volume",ge.perimeter,The perimeter of a square is 32 cm. What is the area of the square?,32 cm²,64 cm²,16 cm²,"1,024 cm²",B,"What it asks: Use the perimeter to find the side, then the area.
+Concept: A square has 4 equal sides: side = perimeter ÷ 4. Area = side × side.
+Step 1: Side: 32 ÷ 4 = 8 cm.
+Step 2: Area: 8 × 8 = 64 cm².
+Answer: 64 cm²",Squaring the perimeter instead of the side.,Always find the side length first.,,,(32/4)^2,VERIFIED,MCQ,
+T02-Q26,2,26,Beginner,2,Place Value & Rounding,wn.round,"Round 8,962 to the nearest hundred.",,,,,,"What it asks: Find the hundred that 8,962 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 8,962 is between 8,900 and 9,000.
+Step 2: It is 62 above 8,900 and 38 below 9,000.
+Step 3: It is closer to 9,000.
+Answer: 9,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(8962/100)*100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9000""]}"
+T02-Q27,2,27,Beginner,2,Factors & Multiples,wn.factors,Choose ALL the multiples of 3.,,,,,,"What it asks: Choose every correct answer.
+Concept: A multiple of a number is in its times table.
+Step 1: 23: no, 23 ÷ 3 has a remainder of 2.
+Step 2: 28: no, 28 ÷ 3 has a remainder of 1.
+Step 3: 42: yes, 3 × 14 = 42.
+Step 4: 8: no, 8 ÷ 3 has a remainder of 2.
+Step 5: 6: yes, 3 × 2 = 6.
+Answer: 42, 6",Choosing numbers that are only close to a multiple.,Skip count by the number and check each option.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""23"",""28"",""42"",""8"",""6""],""correct"":[2,4]}"
+T02-Q28,2,28,Beginner,2,Fractions,fr.addsub,Calculate \(\frac{2}{4}\) + \(\frac{1}{12}\). Give your answer in simplest form (use a mixed number if needed).,,,,,,"What it asks: Add two fractions whose denominators are related.
+Concept: 12 is a multiple of 4, so change \(\frac{2}{4}\) to an equivalent fraction with denominator 12.
+Step 1: \(\frac{2}{4}\) = \(\frac{6}{12}\) (multiply top and bottom by 3).
+Step 2: \(\frac{6}{12}\) + \(\frac{1}{12}\) = \(\frac{7}{12}\).
+Step 3: Simplify (and write as a mixed number if the top is bigger than the bottom) to get \(\frac{7}{12}\).
+Answer: \(\frac{7}{12}\)","Adding the numerators and the denominators, for example 1/2 + 1/4 = 2/6.",Make the denominators the same first. Only the numerators are added.,,,2/4+1/12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""7/12""],""format"":""fraction"",""requireSimplified"":true}"
+T02-Q29,2,29,Beginner,2,Units of Measurement,me.problems,Isla’s ribbon is 310 cm long. Zoe’s ribbon is 2 m long. How many centimetres longer is Isla’s ribbon?,510 cm,"1,100 cm",110 cm,120 cm,C,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 2 m = 200 cm.
+Step 2: Difference: 310 − 200 = 110 cm.
+Step 3: Isla’s ribbon is longer than Zoe’s by 110 cm.
+Answer: 110 cm",Subtracting 2 from 310 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(310-2*100),VERIFIED,MCQ,
+T02-Q30,2,30,Beginner,2,Patterns & Algebra,pa.arith,"Complete the number pattern: 3, 8, 13, {1}, 23, 28, {2}.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 5 each time.
+Step 1: The difference between neighbouring numbers is 5.
+Step 2: Blank 1: 18. Blank 2: 33.
+Answer: 1) 18, 2) 33",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""18""]},{""accepted"":[""33""]}]}"

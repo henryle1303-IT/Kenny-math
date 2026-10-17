@@ -1,0 +1,164 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T07-Q01,7,1,Beginner,2,Money,au.money,A cricket bat costs $18.00. It is on sale for 50% off. What is the sale price?,$27.00,$13.50,$10.00,$9.00,D,"What it asks: Find the price after a 50% discount.
+Concept: 50% is a half, so halve the price.
+Step 1: 50% of $18.00 = $9.00.
+Step 2: $18.00 − $9.00 = $9.00.
+Answer: $9.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,18-18*50/100,VERIFIED,MCQ,
+T07-Q02,7,2,Beginner,2,Operations & Problem Solving,wn.muldiv,Calculate \(728 \div 7\).,,,,,,"What it asks: Share the number equally and find the size of each share.
+Concept: Division is the opposite of multiplication. Break the number into friendly chunks.
+Step 1: Think: how many groups of 7 fit into 728?
+Step 2: 7 × 100 = 700, so take it away: 728 − 700 = 28.
+Step 3: 7 × 4 = 28, so take it away: 28 − 28 = 0.
+Step 4: The parts add up: 100 + 4 = 104.
+Answer: 104",Losing a zero or skipping a place in the answer.,Check your answer: 104 × 7 should give back 728.,,,728/7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""104""]}"
+T07-Q03,7,3,Beginner,2,Decimals,dec.compare,Choose ALL the numbers that are greater than 1.5.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 1.4: no, 1.4 is less than 1.5.
+Step 2: 3.3: yes, 3.3 is more than 1.5.
+Step 3: 0.4: no, 0.4 is less than 1.5.
+Step 4: 2.2: yes, 2.2 is more than 1.5.
+Step 5: 3.1: yes, 3.1 is more than 1.5.
+Answer: 3.3, 2.2, 3.1",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""1.4"",""3.3"",""0.4"",""2.2"",""3.1""],""correct"":[1,3,4]}"
+T07-Q04,7,4,Beginner,2,Money,wp.money,Kira buys 3 notebooks at $2.25 each and a calculator at $3.99 and pays with $20.00. How much change should Kira get?,$10.26,$9.26,$10.74,$13.25,B,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 3 × $2.25 = $6.75.
+Step 2: Calculator: 1 × $3.99 = $3.99.
+Step 3: Total: $10.74. Change: $20.00 − $10.74 = $9.26.
+Answer: $9.26",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,20-(2.25*3+3.99*1),VERIFIED,MCQ,
+T07-Q05,7,5,Beginner,2,Transformations & Symmetry,au.transform,Ben turns a shape clockwise through 2 quarter turns. How many degrees does the shape turn altogether?,,,,,,"What it asks: Turn quarter turns into degrees.
+Concept: One quarter turn is 90°. A half turn is 180° and a full turn is 360°.
+Step 1: 2 × 90° = 180°.
+Answer: 180°",Using 45° or 180° for a quarter turn.,"Quarter turn 90°, half turn 180°, three-quarter turn 270°, full turn 360°.",,,180,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""180""],""unit"":""°""}"
+T07-Q06,7,6,Beginner,2,Fractions,fr.forms,Write \(5\frac{1}{4}\) as an improper fraction.,\(\frac{21}{9}\),\(\frac{9}{4}\),\(\frac{6}{4}\),\(\frac{21}{4}\),D,"What it asks: Turn the mixed number into one fraction.
+Concept: Each whole is made of d parts. Multiply the whole number by the denominator and add the numerator.
+Step 1: 5 wholes = 5 × 4 = 20 parts of size 1/4.
+Step 2: Add the 1 extra parts: 20 + 1 = 21.
+Step 3: The improper fraction is 21/4.
+Answer: \(\frac{21}{4}\)",Adding the whole number to the numerator (w + n) instead of multiplying w by the denominator first.,"Multiply the whole number by the denominator, then add the numerator.",,,(5*4+1)/4,VERIFIED,MCQ,
+T07-Q07,7,7,Beginner,2,Operations & Problem Solving,wp.multiplicative,Tom has 50 stamps. This is 5 times as many as Minh has. Minh then gives 9 of them to Tom. How many stamps does Tom have now?,50,41,19,59,D,"What it asks: Use the first fact to find the amounts and then apply the gift.
+Concept: Read each sentence in order and keep track of every change.
+Step 1: Tom starts with 50.
+Step 2: Minh gives 9 to Tom: 50 + 9 = 59.
+Answer: 59",Subtracting when the amount is being given to the person asked about.,Is the person gaining or losing? That tells you add or subtract.,,,10*5+9,VERIFIED,MCQ,
+T07-Q08,7,8,Beginner,2,Time,ts.clock,Khoa's tram leaves Southbank at 11:29 AM and arrives at 12:04 PM. How many minutes does the trip take?,35 minutes,25 minutes,45 minutes,75 minutes,A,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 11:29 AM to 12:04 PM.
+Step 2: 35 minutes pass.
+Answer: 35 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,35,VERIFIED,MCQ,
+T07-Q09,7,9,Beginner,2,Factors & Multiples,wn.factors,"What do we call a number that has exactly two factors, 1 and itself?",,,,,,"What it asks: Answer with the correct word.
+Concept: A number with exactly two factors is prime.
+Step 1: A number with exactly two factors is prime.
+Answer: prime",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""prime"",""prime number""]}"
+T07-Q10,7,10,Beginner,2,Units of Measurement,me.problems,A jug holds 1.125 L of water. How many glasses of 125 mL can be filled completely from the jug?,19,90,8,9,D,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 1.125 L = 1,125 mL.
+Step 2: 1,125 ÷ 125 = 9.
+Answer: 9",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,1.125*1000/125,VERIFIED,MCQ,
+T07-Q11,7,11,Beginner,2,Data,au.data,"A class survey recorded these votes: Bus 14, Train 7, Bike 9, Walk 10. How many students voted altogether?",30,21,50,40,D,"What it asks: Add all the values in a table.
+Concept: Add every category to find the total.
+Step 1: 14 + 7 + 9 + 10 = 40.
+Answer: 40",Leaving out one of the categories.,Tick off each category as you add it.,,,14+7+9+10,VERIFIED,MCQ,
+T07-Q12,7,12,Beginner,2,Angles,ge.angles,"On a straight line, 118° + {1}° = 180°. Around a point, 127° + 152° + {2}° = 360°.",,,,,,"What it asks: Find missing angles on a straight line and around a point.
+Concept: Angles on a straight line add to 180°. Angles around a point add to 360°.
+Step 1: 180 − 118 = 62.
+Step 2: 360 − 127 − 152 = 81.
+Answer: 1) 62, 2) 81",Using 180° for angles around a point.,"Straight line 180°, full turn 360°.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""62""]},{""accepted"":[""81""]}]}"
+T07-Q13,7,13,Beginner,2,Fractions,fr.compare,Put these fractions in order from largest to smallest.,,,,,,"What it asks: Put the items in order, largest to smallest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{3}{4}\), \(\frac{1}{2}\), \(\frac{1}{4}\).
+Answer: \(\frac{3}{4}\), \(\frac{1}{2}\), \(\frac{1}{4}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{3}{4}\\)"",""\\(\\frac{1}{2}\\)"",""\\(\\frac{1}{4}\\)""]}"
+T07-Q14,7,14,Beginner,2,Time,ts.clock,A train timetable shows a departure at 13:00. What time is that in 12-hour time?,1:00 AM,1:00 PM,12:00 PM,2:00 PM,B,"What it asks: Change a 24-hour time to 12-hour time with AM or PM.
+Concept: 24-hour times from 13:00 onwards are PM: subtract 12 hours. 00:xx is 12:xx AM and 12:xx is 12:xx PM.
+Step 1: 13 − 12 = 1.
+Step 2: So 13:00 is 1:00 PM.
+Answer: 1:00 PM","Writing AM instead of PM, or forgetting to subtract 12 hours.","After noon, subtract 12 from the hour and write PM.",,,780,VERIFIED,MCQ,
+T07-Q15,7,15,Beginner,2,Decimals,dec.fraction,Write \(\frac{3}{10}\) as a decimal.,3.10,0.3,3,0.03,B,"What it asks: Change the fraction into a decimal number.
+Concept: A fraction is a division: numerator ÷ denominator. Or make the denominator 10, 100 or 1000.
+Step 1: 3/10 means 3 ÷ 10.
+Step 2: 3 ÷ 10 = 0.3.
+Answer: 0.3",Writing the numerator and denominator on either side of a decimal point (e.g. 3/4 = 3.4).,"Remember: 1/2 = 0.5, 1/4 = 0.25, 1/5 = 0.2, 1/8 = 0.125.",,,3/10,VERIFIED,MCQ,
+T07-Q16,7,16,Beginner,2,Data,au.data,A column graph shows the number of books read each week. Each gridline is 5 books. The bar for Week 1 reaches the 5th gridline and the bar for Week 2 reaches the 8th gridline. How many more books were read in Week 2 than in Week 1?,3,20,40,15,D,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 5. Find each bar's value, then subtract.
+Step 1: Week 1: 5 × 5 = 25. Week 2: 8 × 5 = 40.
+Step 2: 40 − 25 = 15.
+Answer: 15",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,8*5-5*5,VERIFIED,MCQ,
+T07-Q17,7,17,Beginner,2,Patterns & Algebra,pa.functions,"Matchsticks are used to build a row of joined pentagons. Shape 1 uses 6 matchsticks, Shape 2 uses 11, and Shape 3 uses 16. How many matchsticks are needed for Shape 20?",100,120,101,106,C,"What it asks: Find the rule for the nth shape.
+Concept: Each new shape adds 5 matchsticks, and there is 1 extra stick at the start: nth shape = 5 × n + 1.
+Step 1: The number of sticks goes up by 5 each time.
+Step 2: Rule: 5 × n + 1.
+Step 3: For Shape 20: 5 × 20 + 1 = 101.
+Answer: 101",Multiplying the first shape’s number of sticks by 20.,Test the rule on the shapes you know before using it on a big one.,,,5*20+1,VERIFIED,MCQ,
+T07-Q18,7,18,Beginner,2,Shapes & Objects,au.shapes,How many vertices does a cube have?,6,9,12,8,D,"What it asks: Count the vertices of a 3D object.
+Concept: A cube has 6 square faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 6, edges: 12, vertices: 8.
+Step 2: The question asks for the vertices: 8.
+Answer: 8","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,8,VERIFIED,MCQ,
+T07-Q19,7,19,Beginner,2,Fractions,fr.addsub,Calculate \(\frac{1}{2}\) + \(\frac{5}{6}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{6}{6}\),\(\frac{6}{2}\),\(\frac{6}{8}\),\(1\frac{1}{3}\),D,"What it asks: Add two fractions whose denominators are related.
+Concept: 6 is a multiple of 2, so change \(\frac{1}{2}\) to an equivalent fraction with denominator 6.
+Step 1: \(\frac{1}{2}\) = \(\frac{3}{6}\) (multiply top and bottom by 3).
+Step 2: \(\frac{3}{6}\) + \(\frac{5}{6}\) = \(\frac{8}{6}\).
+Step 3: Simplify (and write as a mixed number if the top is bigger than the bottom) to get \(1\frac{1}{3}\).
+Answer: \(1\frac{1}{3}\)","Adding the numerators and the denominators, for example 1/2 + 1/4 = 2/6.",Make the denominators the same first. Only the numerators are added.,,,1/2+5/6,VERIFIED,MCQ,
+T07-Q20,7,20,Beginner,2,Patterns & Algebra,pa.arith,"What is the next number in this pattern? 20, 29, 38, 47, …",,,,,,"What it asks: Find the rule, then continue the pattern.
+Concept: In an arithmetic sequence the same amount is added (or subtracted) each time.
+Step 1: Differences: 29 − 20 = 9, and the next ones are the same.
+Step 2: Next term: 47 + 9 = 56.
+Answer: 56",Spotting a pattern in only the first two numbers without checking the others.,Check that the rule works for every pair of neighbouring numbers.,,,20+(9)*4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""56""]}"
+T07-Q21,7,21,Beginner,2,Units of Measurement,me.convert,How many metres are there in 2000 centimetres?,2 m,20 m,21 m,200 m,B,"What it asks: Change centimetres into metres.
+Concept: 1 m = 100 cm. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 m = 100 cm.
+Step 2: 2000 ÷ 100 = 20.
+Answer: 20 m","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,2000/100,VERIFIED,MCQ,
+T07-Q22,7,22,Beginner,2,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is false: area is length × width = 8, not 4 + 2.
+Step 2: Statement 2 is true: 4 × 4 = 16.
+Answer: False, True",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A rectangle 4 m long and 2 m wide has an area of 6 m²"",""truth"":false},{""text"":""A square with sides of 4 cm has a perimeter of 16 cm"",""truth"":true}]}"
+T07-Q23,7,23,Beginner,2,Shapes & Objects,au.shapes,How many sides does a pentagon have?,6,4,7,5,D,"What it asks: Know the number of sides of a polygon.
+Concept: The name pentagon tells you the number of sides: 5.
+Step 1: A pentagon has 5 sides.
+Answer: 5",Mixing up hexagon (6) and octagon (8).,"Penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10.",,,5,VERIFIED,MCQ,
+T07-Q24,7,24,Beginner,2,Place Value & Rounding,wn.round,"Round 3,011 to the nearest hundred.","3,100","3,010","3,000","4,000",C,"What it asks: Find the hundred that 3,011 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 3,011 is between 3,000 and 3,100.
+Step 2: It is 11 above 3,000 and 89 below 3,100.
+Step 3: It is closer to 3,000.
+Answer: 3,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(3011/100)*100,VERIFIED,MCQ,
+T07-Q25,7,25,Beginner,2,Operations & Problem Solving,wn.addsub,"Calculate \(7{,}527 + 1{,}362\).","8,889","7,889","8,879","8,989",A,"What it asks: Find the total of the two numbers.
+Concept: Addition: add the numbers one place value at a time.
+Step 1: Start with 7,527.
+Step 2: Add 1,000: 7,527 + 1,000 = 8,527.
+Step 3: Add 300: 8,527 + 300 = 8,827.
+Step 4: Add 60: 8,827 + 60 = 8,887.
+Step 5: Add 2: 8,887 + 2 = 8,889.
+Answer: 8,889",Forgetting to carry (regroup) when a column adds to 10 or more.,"Add the biggest parts first, then the smaller parts. Check by estimating: round both numbers and add.",,,7527+1362,VERIFIED,MCQ,
+T07-Q26,7,26,Beginner,3,Place Value & Rounding,wn.round,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: To round, look at the digit to the right of the place you are rounding to: 5 or more rounds up.
+Step 1: Statement 1 is false: look at the digit to the right of the hundreds place; 459,640 is closest to 459,600.
+Step 2: Statement 2 is true: 6 × 1,000 = 6,000.
+Step 3: Statement 3 is false: look at the digit to the right of the hundreds place; 180,834 is closest to 180,800.
+Answer: False, True, False",Rounding down when the next digit is 5 or more.,"Underline the rounding place, then check the next digit.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""459,640 rounded to the nearest hundred is 459,700"",""truth"":false},{""text"":""In 6,095, the digit 6 is in the thousands place"",""truth"":true},{""text"":""180,834 rounded to the nearest hundred is 180,700"",""truth"":false}]}"
+T07-Q27,7,27,Beginner,3,Factors & Multiples,wn.primes,Choose ALL the prime numbers.,,,,,,"What it asks: Choose every correct answer.
+Concept: A prime number has exactly two factors: 1 and itself.
+Step 1: 3: yes, 3 has only the factors 1 and 3.
+Step 2: 37: yes, 37 has only the factors 1 and 37.
+Step 3: 2: yes, 2 has only the factors 1 and 2.
+Step 4: 40: no, 40 = 2 × 20.
+Step 5: 34: no, 34 = 2 × 17.
+Answer: 3, 37, 2",Thinking an odd number must be prime (for example 9 or 15).,"Test 2, 3, 5 and 7 first.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""3"",""37"",""2"",""40"",""34""],""correct"":[0,1,2]}"
+T07-Q28,7,28,Beginner,3,"Perimeter, Area & Volume",ge.volume,"A box is 4 cm long, 5 cm wide and 4 cm high. What is its volume?",112 cm³,80 cm³,13 cm³,24 cm³,B,"What it asks: Find how much space is inside the box.
+Concept: Volume of a cuboid = length × width × height.
+Step 1: Base layer: 4 × 5 = 20 cubes.
+Step 2: 4 layers: 20 × 4 = 80 cm³.
+Answer: 80 cm³","Adding the dimensions, or finding the surface area.","Find one layer first, then multiply by the number of layers.",,,4*5*4,VERIFIED,MCQ,
+T07-Q29,7,29,Beginner,3,Chance,au.chance,"A bag has 1 red, 9 purple, 7 blue marbles. One marble is taken out without looking. What is the chance of taking a red marble? Give a fraction in simplest form.",,,,,,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 1 + 9 + 7 = 17.
+Step 2: red marbles: 1.
+Step 3: Chance = \(\frac{1}{17}\).
+Answer: \(\frac{1}{17}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,1/17,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1/17""],""format"":""fraction"",""requireSimplified"":true}"
+T07-Q30,7,30,Beginner,3,Location & Maps,au.maps,"On a map, 1 cm stands for 50 km. Two towns are 7 cm apart on the map. What is the real distance between the towns?",,,,,,"What it asks: Use a map scale to find a real distance.
+Concept: Multiply the map distance by the number of kilometres that 1 cm stands for.
+Step 1: 7 × 50 = 350.
+Answer: 350 km",Adding the scale instead of multiplying.,"Each centimetre is the same real distance, so multiply.",,,7*50,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""350""],""unit"":""km""}"

@@ -1,0 +1,164 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T30-Q01,30,1,Advanced,4,Data,wp.table,"A class survey recorded these numbers. Apples: 66, Bananas: 15, Cherries: 88, Grapes: 54. How many votes were there altogether?",223,88,233,135,A,"What it asks: Add all the votes.
+Concept: “Altogether” means add every group.
+Step 1: 66 + 15 + 88 + 54 = 223.
+Answer: 223",Leaving one of the groups out.,Tick each number as you add it.,,,66+15+88+54,VERIFIED,MCQ,
+T30-Q02,30,2,Advanced,4,Operations & Problem Solving,wp.rounding,Bao wants to buy a science kit that costs $230. Bao already has $50 and saves $7 each week. What is the smallest number of weeks Bao needs to save to afford it?,26,27,33,25,A,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $230 − $50 = $180.
+Step 2: 180 ÷ 7 = 25.71, so after 25 weeks it is not enough.
+Step 3: Bao needs 26 weeks.
+Answer: 26","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((230-50)/7),VERIFIED,MCQ,
+T30-Q03,30,3,Advanced,4,Shapes & Objects,au.shapes,A design uses 5 triangles and 5 heptagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 5 × 3 = 15.
+Step 2: 5 × 7 = 35.
+Step 3: 15 + 35 = 50.
+Answer: 50",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,5*3+5*7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""50""]}"
+T30-Q04,30,4,Advanced,4,Place Value & Rounding,wn.round,"Choose ALL the numbers that round to 16,000 when rounded to the nearest thousand.",,,,,,"What it asks: Choose every correct answer.
+Concept: A number rounds to a target if it is within half a unit of it.
+Step 1: 15,443: no, 15,443 rounds to 15,000.
+Step 2: 16,843: no, 16,843 rounds to 17,000.
+Step 3: 15,418: no, 15,418 rounds to 15,000.
+Step 4: 16,308: yes, 16,308 is closest to 16,000.
+Step 5: 16,394: yes, 16,394 is closest to 16,000.
+Answer: 16,308, 16,394",Always rounding up.,"Numbers from 15,500 up to 16,499 round to 16,000.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""15,443"",""16,843"",""15,418"",""16,308"",""16,394""],""correct"":[3,4]}"
+T30-Q05,30,5,Advanced,4,Transformations & Symmetry,au.transform,"A dot is 6 squares from a mirror line. Its reflection is on the other side of the line, the same distance away. How many squares apart are the dot and its reflection?",,,,,,"What it asks: Find the distance between a shape and its reflection.
+Concept: A reflection is as far behind the mirror line as the original is in front of it.
+Step 1: Each is 6 squares from the line.
+Step 2: 6 + 6 = 12.
+Answer: 12 squares",Giving the distance to the mirror line only.,"Distance to the line, doubled.",,,12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""],""unit"":""squares""}"
+T30-Q06,30,6,Advanced,4,Decimals,dec.addsub,Complete: 0.9 + {1} = 1 and 7.24 ÷ 10 = {2}.,,,,,,"What it asks: Use decimals to make 1 and to multiply or divide by 10.
+Concept: Multiplying by 10 moves the digits one place left; dividing by 10 moves them one place right.
+Step 1: 1 − 0.9 = 0.1.
+Answer: 1) 0.1, 2) 0.724",Moving the decimal point the wrong way.,"Check: the answer to × 10 is bigger, to ÷ 10 is smaller.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.1""]},{""accepted"":[""0.724""]}]}"
+T30-Q07,30,7,Advanced,4,Fractions,fr.forms,Find the missing number: \(\frac{24}{60} = \frac{2}{\square}\),5,60,17,2,A,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 24 ÷ 12 = 2, so the numerator was divided by 12.
+Step 2: Do the same to the denominator: 60 ÷ 12 = 5.
+Answer: 5",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,5,VERIFIED,MCQ,
+T30-Q08,30,8,Advanced,4,Units of Measurement,me.convert,Convert: 3.5 cm = {1} mm and 6 m = {2} cm.,,,,,,"What it asks: Change between metric units.
+Concept: To change to a smaller unit, multiply by 10, 100 or 1000.
+Step 1: 1 cm = 10 mm, so 3.5 × 10 = 35.
+Step 2: 1 m = 100 cm, so 6 × 100 = 600.
+Answer: 1) 35, 2) 600",Dividing instead of multiplying.,Larger unit to smaller unit: multiply.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""35""]},{""accepted"":[""600""]}]}"
+T30-Q09,30,9,Advanced,4,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{1}{6}\), \(\frac{1}{3}\), \(\frac{4}{6}\), \(\frac{7}{6}\).
+Answer: \(\frac{1}{6}\), \(\frac{1}{3}\), \(\frac{4}{6}\), \(\frac{7}{6}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{1}{6}\\)"",""\\(\\frac{1}{3}\\)"",""\\(\\frac{4}{6}\\)"",""\\(\\frac{7}{6}\\)""]}"
+T30-Q10,30,10,Advanced,4,Operations & Problem Solving,wp.multiplicative,Tom and Minh have 152 marbles altogether. Tom has 7 times as many marbles as Minh. How many marbles does Minh have?,,,,,,"What it asks: Split the total into 8 equal parts.
+Concept: If one amount is 7 times the other, the total is 7 + 1 = 8 equal parts.
+Step 1: Minh has 1 part and Tom has 7 parts: 8 parts in total.
+Step 2: 1 part = 152 ÷ 8 = 19.
+Answer: 19",Dividing by 7 instead of 8.,Draw a bar model: one short bar and k bars of the same length.,,,152/(7+1),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""19""]}"
+T30-Q11,30,11,Advanced,4,Location & Maps,au.maps,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compass points are 45° apart. A map scale tells how far 1 cm stands for.
+Step 1: Statement 1 is false: the opposite of South is North.
+Step 2: Statement 2 is false: that is the anticlockwise direction.
+Step 3: Statement 3 is true: 6 × 10 = 60.
+Answer: False, False, True",Turning anticlockwise when the question says clockwise.,Clockwise goes N → E → S → W.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""South is opposite South-East"",""truth"":false},{""text"":""Turning clockwise through 90° from South, you face East"",""truth"":false},{""text"":""With a scale of 1 cm to 10 km, 6 cm on the map is 60 km"",""truth"":true}]}"
+T30-Q12,30,12,Advanced,4,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 100 that can be divided exactly by both 10 and 15?,,,,,,"What it asks: Find a multiple of both 10 and 15 that is just above 100.
+Concept: Numbers divisible by both 10 and 15 are multiples of their LCM, which is 30.
+Step 1: LCM of 10 and 15 is 30.
+Step 2: Multiples of 30: …, 90, 120, …
+Step 3: The first one greater than 100 is 120.
+Answer: 120",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(100/lcm(10,15))+1)*lcm(10,15)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""120""]}"
+T30-Q13,30,13,Advanced,4,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is true: 13 is bigger than 8, so there is more than one whole.
+Step 2: Statement 2 is false: 7 is less than 8, so it is less than one whole.
+Step 3: Statement 3 is false: \(\frac{9}{12}\) is not made by multiplying both numbers by the same amount.
+Answer: True, False, False",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{13}{8}\\) is greater than 1 whole"",""truth"":true},{""text"":""\\(\\frac{7}{8}\\) is greater than 1 whole"",""truth"":false},{""text"":""\\(\\frac{2}{3}\\) = \\(\\frac{9}{12}\\)"",""truth"":false}]}"
+T30-Q14,30,14,Advanced,4,Money,dec.money,"At the toy shop, Omar buys 6 pencils at $1.81 each and a ruler for $4.34. Omar pays with $25.00. How much change does Omar get?",,,,,,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the pencils: 6 × $1.81 = $10.86.
+Step 2: Add a ruler: $10.86 + $4.34 = $15.20.
+Step 3: Change: $25.00 − $15.20 = $9.80.
+Answer: $9.80",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,25-(1.81*6+4.34),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9.80""]}"
+T30-Q15,30,15,Advanced,4,Place Value & Rounding,wn.round,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: To round, look at the digit to the right of the place you are rounding to: 5 or more rounds up.
+Step 1: Statement 1 is false: it is in the thousands place.
+Step 2: Statement 2 is false: look at the digit to the right of the hundreds place; 182,548 is closest to 182,500.
+Step 3: Statement 3 is true: 5 × 1,000 = 5,000.
+Answer: False, False, True",Rounding down when the next digit is 5 or more.,"Underline the rounding place, then check the next digit.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""In 5,932, the digit 5 is in the hundreds place"",""truth"":false},{""text"":""182,548 rounded to the nearest hundred is 182,600"",""truth"":false},{""text"":""In 5,932, the digit 5 is in the thousands place"",""truth"":true}]}"
+T30-Q16,30,16,Advanced,4,Money,au.money,A cap costs $40.00. It is on sale for 10% off. What is the sale price?,,,,,,"What it asks: Find the price after a 10% discount.
+Concept: 10% is one tenth: divide by 10.
+Step 1: 10% of $40.00 = $4.00.
+Step 2: $40.00 − $4.00 = $36.00.
+Answer: $36.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,40-40*10/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""36.00""]}"
+T30-Q17,30,17,Advanced,4,Chance,au.chance,What word do we use for an event that has a 1 in 2 chance (two words)?,,,,,,"What it asks: Answer with the correct word.
+Concept: A 1 in 2 chance is an even chance.
+Step 1: A 1 in 2 chance is an even chance.
+Answer: even chance",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""even chance"",""equal chance""]}"
+T30-Q18,30,18,Advanced,4,"Perimeter, Area & Volume",ge.volume,"A fish tank is 20 cm long, 25 cm wide and 10 cm high. How many litres of water does it hold when it is completely full? (1 litre = 1,000 cm³)","5,000 litres",7 litres,5 litres,50 litres,C,"What it asks: Find the volume in cm³, then change it to litres.
+Concept: 1 litre = 1,000 cm³. Volume in cm³ ÷ 1,000 gives litres.
+Step 1: Volume: 20 × 25 × 10 = 5,000 cm³.
+Step 2: 5,000 ÷ 1,000 = 5 litres.
+Answer: 5 litres",Forgetting to convert from cm³ to litres.,A 10 cm × 10 cm × 10 cm cube holds exactly 1 litre.,,,20*25*10/1000,VERIFIED,MCQ,
+T30-Q19,30,19,Advanced,4,Units of Measurement,me.convert,How many millilitres are there in 7.54 litres?,"8,540 mL",754 mL,"7,540 mL","75,400 mL",C,"What it asks: Change litres into millilitres.
+Concept: 1 L = 1,000 mL. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 L = 1,000 mL.
+Step 2: 7.54 × 1,000 = 7540.
+Answer: 7,540 mL","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,7.54*1000,VERIFIED,MCQ,
+T30-Q20,30,20,Advanced,4,Time,ts.convert,How many seconds are there in 19 minutes?,"1,200 seconds",114 seconds,"1,140 seconds","1,900 seconds",C,"What it asks: Change minutes into seconds.
+Concept: 1 minute = 60 seconds.
+Step 1: 19 × 60 = 1,140 seconds.
+Answer: 1,140 seconds",Using 100 seconds in a minute.,Multiply by 60 when you go from minutes to seconds.,,,19*60,VERIFIED,MCQ,
+T30-Q21,30,21,Advanced,5,Patterns & Algebra,pa.arith,"Complete the number pattern: 14, 29, {1}, 59, 74, {2}, 104.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 15 each time.
+Step 1: The difference between neighbouring numbers is 15.
+Step 2: Blank 1: 44. Blank 2: 89.
+Answer: 1) 44, 2) 89",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""44""]},{""accepted"":[""89""]}]}"
+T30-Q22,30,22,Advanced,5,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 72 and 132?,792,12,24,72,B,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 72: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72.
+Step 2: Factors of 132: 1, 2, 3, 4, 6, 11, 12, 22, 33, 44, 66, 132.
+Step 3: The biggest number in both lists is 12.
+Answer: 12","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(72,132)",VERIFIED,MCQ,
+T30-Q23,30,23,Advanced,5,Patterns & Algebra,pa.arith,"A number pattern starts 5, 11, 17, … and keeps adding 6. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 29: yes, 5 + 4 × 6 = 29.
+Step 2: 65: yes, 5 + 10 × 6 = 65.
+Step 3: 47: yes, 5 + 7 × 6 = 47.
+Step 4: 61: no, 61 is not 5 plus a multiple of 6.
+Step 5: 48: no, 48 is not 5 plus a multiple of 6.
+Answer: 29, 65, 47",Choosing numbers that are near the pattern but not on it.,Check that (number − 5) divides by 6.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""29"",""65"",""47"",""61"",""48""],""correct"":[0,1,2]}"
+T30-Q24,30,24,Advanced,5,Data,au.data,A column graph shows the number of books read each week. Each gridline is 5 books. The bar for Week 1 reaches the 3rd gridline and the bar for Week 2 reaches the 8th gridline. How many more books were read in Week 2 than in Week 1?,25,40,30,5,A,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 5. Find each bar's value, then subtract.
+Step 1: Week 1: 3 × 5 = 15. Week 2: 8 × 5 = 40.
+Step 2: 40 − 15 = 25.
+Answer: 25",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,8*5-3*5,VERIFIED,MCQ,
+T30-Q25,30,25,Advanced,5,Time,ts.clock,Leo's tram leaves Fremantle at 2:26 PM and arrives at 3:51 PM. How many minutes does the trip take?,75 minutes,85 minutes,125 minutes,95 minutes,B,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 2:26 PM to 3:51 PM.
+Step 2: 85 minutes pass.
+Answer: 85 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,85,VERIFIED,MCQ,
+T30-Q26,30,26,Advanced,5,"Perimeter, Area & Volume",ge.volume,"A box is 25 cm long, 20 cm wide and 15 cm high. How many cubes with edges of 5 cm can be packed into the box with no gaps?",,,,,,"What it asks: Count how many small cubes fit along each edge, then multiply.
+Concept: Number of cubes = (length ÷ s) × (width ÷ s) × (height ÷ s).
+Step 1: Along the length: 25 ÷ 5 = 5. Along the width: 20 ÷ 5 = 4. Up the height: 15 ÷ 5 = 3.
+Step 2: 5 × 4 × 3 = 60.
+Answer: 60",Dividing the big volume by the small side length instead of the small volume.,"Or: box volume 7,500 ÷ cube volume 125 = 60.",,,(25/5)*(20/5)*(15/5),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""60""]}"
+T30-Q27,30,27,Advanced,5,Angles,ge.angles,"Angles around a point add up to 360°. Three angles are 67°, 83°, 58°. The angle that completes the turn is x. What is x?",28°,172°,152°,132°,C,"What it asks: Find a missing angle around a point.
+Concept: A full turn is 360°, so all the angles around one point add to 360°.
+Step 1: Add the known angles: 67 + 83 + 58 = 208.
+Step 2: 360 − 208 = 152.
+Answer: 152°",Subtracting from 180° instead of 360°.,Straight line = 180°. Full turn around a point = 360°.,,,360-67-83-58,VERIFIED,MCQ,
+T30-Q28,30,28,Advanced,5,Shapes & Objects,au.shapes,A design uses 2 hexagons and 4 quadrilaterals. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 2 × 6 = 12.
+Step 2: 4 × 4 = 16.
+Step 3: 12 + 16 = 28.
+Answer: 28",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,2*6+4*4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""28""]}"
+T30-Q29,30,29,Advanced,5,Decimals,dec.compare,Which of these decimals is the smallest?,7.219,7.994,7.122,7.799,C,"What it asks: Pick the decimal with the smallest value.
+Concept: Compare decimals place by place from the left: ones, then tenths, then hundredths, then thousandths.
+Step 1: Write them with the same number of decimal places: 7.219, 7.122, 7.994, 7.799.
+Step 2: Compare digit by digit from the left.
+Step 3: Smallest: 7.122.
+Answer: 7.122","Thinking a decimal with more digits is bigger (0.45 is NOT smaller than 0.4500, and 0.5 is bigger than 0.499).","Add zeros at the end so all decimals have the same length, then compare as whole numbers.",,,"min(7.219,7.122,7.994,7.799)",VERIFIED,MCQ,
+T30-Q30,30,30,Advanced,5,Operations & Problem Solving,wp.rounding,A school trip has 379 students. Each minibus holds 32 students. How many minibuses are needed so that every student has a seat?,11,13,14,12,D,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 379 ÷ 32 = 11 remainder 27.
+Step 2: The 27 left over still need space, so add one more.
+Step 3: 11 + 1 = 12.
+Answer: 12",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(379/32),VERIFIED,MCQ,

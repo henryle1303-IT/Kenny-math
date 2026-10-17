@@ -4,6 +4,7 @@ import { gradeAnswers, isExpired, timeUsedSeconds } from '../grading';
 import { recordSkillEvents } from './skills';
 import { STUDENT_ID } from './core';
 import { awardForTest } from './xp';
+import { isResponseCorrect, normalizeResponse, studentView, type StudentView } from '../question-types';
 
 export class AppError extends Error {
   constructor(message: string, public status = 400, public code = 'BAD_REQUEST') {
@@ -68,7 +69,7 @@ export async function getAttemptForTaking(attemptId: string, studentId = STUDENT
   if (attempt.status !== 'IN_PROGRESS') return { finished: true as const, attemptId };
   const order: string[] = JSON.parse(attempt.questionOrder);
   const [qs, answers, test] = await Promise.all([
-    prisma.question.findMany({ where: { id: { in: order } }, select: { id: true, position: true, questionText: true, optionA: true, optionB: true, optionC: true, optionD: true, topic: true } }),
+    prisma.question.findMany({ where: { id: { in: order } }, select: { id: true, position: true, questionText: true, optionA: true, optionB: true, optionC: true, optionD: true, topic: true, questionType: true, answerData: true, correctAnswer: true } }),
     prisma.studentAnswer.findMany({ where: { attemptId } }),
     prisma.test.findUnique({ where: { bankId_testNumber: { bankId: attempt.bankId, testNumber: attempt.testNumber } } }),
   ]);
@@ -84,7 +85,8 @@ export async function getAttemptForTaking(attemptId: string, studentId = STUDENT
     serverNow: new Date().toISOString(),
     questions: order.map((id, i) => {
       const q = byId.get(id)!;
-      return { id, number: i + 1, text: q.questionText, options: [q.optionA, q.optionB, q.optionC, q.optionD] };
+      const view = studentView(q, `${attemptId}:${id}`) ?? ({ type: 'MCQ', options: [q.optionA, q.optionB, q.optionC, q.optionD] } as StudentView);
+      return { id, number: i + 1, text: q.questionText, view };
     }),
     answers: Object.fromEntries(answers.filter((a) => a.selectedAnswer).map((a) => [a.questionId, a.selectedAnswer as string])),
   };
@@ -93,7 +95,6 @@ export async function getAttemptForTaking(attemptId: string, studentId = STUDENT
 const GRACE_MS = 3000;
 
 export async function saveAnswer(attemptId: string, questionId: string, selected: string | null, studentId = STUDENT_ID) {
-  if (selected !== null && !['A', 'B', 'C', 'D'].includes(selected)) throw new AppError('Please choose A, B, C or D.');
   const attempt = await prisma.testAttempt.findUnique({ where: { id: attemptId } });
   if (!attempt || attempt.studentId !== studentId) throw new AppError('Test not found.', 404, 'NOT_FOUND');
   if (attempt.status !== 'IN_PROGRESS') throw new AppError('This test has already been submitted.', 409, 'SUBMITTED');
@@ -103,6 +104,11 @@ export async function saveAnswer(attemptId: string, questionId: string, selected
   }
   const order: string[] = JSON.parse(attempt.questionOrder);
   if (!order.includes(questionId)) throw new AppError('That question is not part of this test.', 400, 'BAD_QUESTION');
+  const question = await prisma.question.findUnique({ where: { id: questionId }, select: { questionType: true, answerData: true, correctAnswer: true } });
+  if (!question) throw new AppError('That question is not part of this test.', 400, 'BAD_QUESTION');
+  const norm = normalizeResponse(question, selected);
+  if (!norm.ok) throw new AppError(norm.message);
+  selected = norm.value;
   // Re-check the status inside the write so a concurrent submit in another tab wins cleanly.
   await prisma.$transaction(async (tx) => {
     const fresh = await tx.testAttempt.findUnique({ where: { id: attemptId }, select: { status: true } });
@@ -146,7 +152,7 @@ async function gradeAttempt(attemptId: string, now: Date) {
     const result = gradeAnswers(
       order.map((id) => {
         const q = qById.get(id)!;
-        return { questionId: id, correctAnswer: q.correctAnswer, topic: q.topic, difficulty: q.difficulty, selected: aById.get(id) ?? null };
+        return { questionId: id, correctAnswer: q.correctAnswer, questionType: q.questionType, answerData: q.answerData, topic: q.topic, difficulty: q.difficulty, selected: aById.get(id) ?? null };
       }),
     );
     for (const pq of result.perQuestion) {
@@ -201,9 +207,9 @@ export async function getAttemptResult(attemptId: string, studentId = STUDENT_ID
   const items = order.map((id, i) => {
     const q = qById.get(id)!;
     const sel = aById.get(id) ?? null;
-    return { number: i + 1, q, selected: sel, status: sel === null ? ('unanswered' as const) : sel === q.correctAnswer ? ('correct' as const) : ('incorrect' as const) };
+    return { number: i + 1, q, selected: sel, status: sel === null ? ('unanswered' as const) : isResponseCorrect(q, sel) ? ('correct' as const) : ('incorrect' as const) };
   });
-  const grade = gradeAnswers(items.map((it) => ({ questionId: it.q.id, correctAnswer: it.q.correctAnswer, topic: it.q.topic, difficulty: it.q.difficulty, selected: it.selected })));
+  const grade = gradeAnswers(items.map((it) => ({ questionId: it.q.id, correctAnswer: it.q.correctAnswer, questionType: it.q.questionType, answerData: it.q.answerData, topic: it.q.topic, difficulty: it.q.difficulty, selected: it.selected })));
   const idx = previous.findIndex((p) => p.id === attemptId);
   const earlier = previous.slice(0, idx);
   const prev = idx > 0 ? previous[idx - 1] : null;

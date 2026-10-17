@@ -1,0 +1,164 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T08-Q01,8,1,Beginner,2,Fractions,fr.forms,Write \(8\frac{3}{8}\) as an improper fraction.,\(\frac{11}{8}\),\(\frac{32}{8}\),\(\frac{67}{8}\),\(\frac{67}{16}\),C,"What it asks: Turn the mixed number into one fraction.
+Concept: Each whole is made of d parts. Multiply the whole number by the denominator and add the numerator.
+Step 1: 8 wholes = 8 × 8 = 64 parts of size 1/8.
+Step 2: Add the 3 extra parts: 64 + 3 = 67.
+Step 3: The improper fraction is 67/8.
+Answer: \(\frac{67}{8}\)",Adding the whole number to the numerator (w + n) instead of multiplying w by the denominator first.,"Multiply the whole number by the denominator, then add the numerator.",,,(8*8+3)/8,VERIFIED,MCQ,
+T08-Q02,8,2,Beginner,2,Place Value & Rounding,wn.place,"In the number 31,960, what is the value of the digit 1?","1,000",100,"10,000",1,A,"What it asks: Find what the digit 1 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 31,960, the digit 1 is in the thousands place.
+Step 2: 1 × 1,000 = 1,000.
+Answer: 1,000",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,1*10^3,VERIFIED,MCQ,
+T08-Q03,8,3,Beginner,2,Operations & Problem Solving,wn.muldiv,What is \(154 \times 6\)?,,,,,,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 154 × 6 = 924.
+Answer: 924","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,154*6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""924""]}"
+T08-Q04,8,4,Beginner,2,Place Value & Rounding,wn.round,"Round 5,436 to the nearest hundred.","5,000","5,400","5,440","5,500",B,"What it asks: Find the hundred that 5,436 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 5,436 is between 5,400 and 5,500.
+Step 2: It is 36 above 5,400 and 64 below 5,500.
+Step 3: It is closer to 5,400.
+Answer: 5,400","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(5436/100)*100,VERIFIED,MCQ,
+T08-Q05,8,5,Beginner,2,Patterns & Algebra,pa.arith,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: In a number pattern, find the rule from the difference between terms.
+Step 1: Statement 1 is true: 12 + 9 × 6 = 66.
+Step 2: Statement 2 is false: 30 + 6 = 36.
+Answer: True, False",Using the term number instead of the number of steps.,The 10th term is 9 steps after the first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The 10th number in 12, 18, 24, 30, … is 66"",""truth"":true},{""text"":""The next number in 12, 18, 24, 30, … is 37"",""truth"":false}]}"
+T08-Q06,8,6,Beginner,2,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 32 and 40?,,,,,,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 32: 1, 2, 4, 8, 16, 32.
+Step 2: Factors of 40: 1, 2, 4, 5, 8, 10, 20, 40.
+Step 3: The biggest number in both lists is 8.
+Answer: 8","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(32,40)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""]}"
+T08-Q07,8,7,Beginner,2,Chance,au.chance,"A bag has 3 green, 1 red marbles. One marble is taken out without looking. What is the chance of taking a green marble? Give a fraction in simplest form.",\(\frac{1}{4}\),\(\frac{1}{2}\),\(\frac{3}{4}\),\(3\),C,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 3 + 1 = 4.
+Step 2: green marbles: 3.
+Step 3: Chance = \(\frac{3}{4}\).
+Answer: \(\frac{3}{4}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,3/4,VERIFIED,MCQ,
+T08-Q08,8,8,Beginner,2,Time,ts.convert,A camping trip lasts 4 days and 16 hours. How many hours is that altogether?,,,,,,"What it asks: Change the days into hours and add the extra hours.
+Concept: 1 day = 24 hours.
+Step 1: 4 × 24 = 96 hours.
+Step 2: 96 + 16 = 112 hours.
+Answer: 112 hours",Forgetting to add the extra hours.,"Do the big unit first, then add what is left.",,,4*24+16,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""112""],""unit"":""hours""}"
+T08-Q09,8,9,Beginner,2,Money,au.money,A pen costs $1.20 and it is paid for with $5.00. The change is $ {1}. A bill of $8.97 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 5.00 − 1.20 = 3.80.
+Step 2: 8.97 is closest to 8.95.
+Answer: 1) 3.80, 2) 8.95",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""3.80""]},{""accepted"":[""8.95""]}]}"
+T08-Q10,8,10,Beginner,2,Operations & Problem Solving,wp.twostep,5 children each collect 9 eggs. Then 3 more children join and each of them also collects 9 eggs. How many eggs are collected altogether?,27,45,48,72,D,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: First group: 5 × 9 = 45.
+Step 2: New children: 3 × 9 = 27.
+Step 3: Total: 45 + 27 = 72.
+Answer: 72","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,(5+3)*9,VERIFIED,MCQ,
+T08-Q11,8,11,Beginner,2,Shapes & Objects,au.shapes,Choose ALL the shapes that have at least one pair of parallel sides.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: regular pentagon: no, a regular pentagon has 0 pair(s) of parallel sides.
+Step 2: equilateral triangle: no, a equilateral triangle has 0 pair(s) of parallel sides.
+Step 3: right-angled triangle: no, a right-angled triangle has 0 pair(s) of parallel sides.
+Step 4: square: yes, a square has 2 pair(s) of parallel sides.
+Step 5: parallelogram: yes, a parallelogram has 2 pair(s) of parallel sides.
+Answer: square, parallelogram",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""regular pentagon"",""equilateral triangle"",""right-angled triangle"",""square"",""parallelogram""],""correct"":[3,4]}"
+T08-Q12,8,12,Beginner,2,Angles,ge.angles,Put these angles in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Right angle = 90°, straight angle = 180°, three-quarter turn = 270°, full turn = 360°.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 55°, 165°, 200°, a full turn.
+Answer: 55°, 165°, 200°, a full turn",Forgetting the size of a straight angle or a full turn.,Change every angle to degrees first.,,,,VERIFIED,ORDERING,"{""items"":[""55°"",""165°"",""200°"",""a full turn""]}"
+T08-Q13,8,13,Beginner,2,Patterns & Algebra,oo.basic,Work out \(9 \times 9 - 12 \div 4\).,69,78,68,88,B,"What it asks: Work out the value of the expression using the correct order of operations.
+Concept: Order of operations: Brackets, then powers, then × and ÷ (left to right), then + and − (left to right).
+Step 1: Do both ×, ÷ first: 9 × 9 = 81 and 12 ÷ 4 = 3.
+Step 2: Then subtract: 81 − 3 = 78.
+Answer: 78","Working strictly from left to right and ignoring that multiplication, division and brackets have priority.",Remember BODMAS/PEMDAS. Multiply and divide before subtracting.,,,9*9-12/4,VERIFIED,MCQ,
+T08-Q14,8,14,Beginner,2,Decimals,dec.place,"In the decimal 3.47, what is the name of the place where the digit 7 sits?",,,,,,"What it asks: Answer with the correct word.
+Concept: The 7 in 3.47 is in the hundredths place.
+Step 1: The 7 in 3.47 is in the hundredths place.
+Answer: hundredths",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""hundredths"",""hundredth""]}"
+T08-Q15,8,15,Beginner,2,Time,ts.clock,A football match starts at 10:23 AM and ends at 12:26 PM. How long does it last?,2 h 3 min,1 h 53 min,3 h 3 min,2 h 13 min,A,"What it asks: Find the time between the start and the end.
+Concept: Elapsed time = end time − start time. Count up to the next hour, then add the rest.
+Step 1: From 10:23 AM to the next hour is 37 min.
+Step 2: Then count on to 12:26 PM.
+Step 3: Total: 2 h 3 min.
+Answer: 2 h 3 min",Subtracting the minutes as if there were 100 minutes in an hour.,There are 60 minutes in an hour. Use a number line to hop from 10:23 AM to 12:26 PM.,,,746-623,VERIFIED,MCQ,
+T08-Q16,8,16,Beginner,2,Decimals,dec.place,Round 5.855 to the nearest tenth.,5.9,6.0,5.86,5.8,A,"What it asks: Find the tenth that 5.855 is nearest to.
+Concept: Look at the digit one place to the right of the rounding place: 5 or more rounds up, 4 or less stays.
+Step 1: 5.855 is between 5.8 and 5.9.
+Step 2: Look at the next digit to decide: it is closer to 5.9.
+Answer: 5.9","Rounding down every time, or changing the wrong place.",Keep the zero at the end if you round to a place (for example 3.50 to the nearest hundredth).,,,round(5.855*10)/10,VERIFIED,MCQ,
+T08-Q17,8,17,Beginner,2,Units of Measurement,me.problems,A jug holds 0.5 L of water. How many glasses of 125 mL can be filled completely from the jug?,40,4,14,3,B,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 0.5 L = 500 mL.
+Step 2: 500 ÷ 125 = 4.
+Answer: 4",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,0.5*1000/125,VERIFIED,MCQ,
+T08-Q18,8,18,Beginner,2,Operations & Problem Solving,wn.muldiv,Calculate \(170 \times 7\).,"1,190","1,360","1,200","1,020",A,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 170 × 7 = 1,190.
+Answer: 1,190","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,170*7,VERIFIED,MCQ,
+T08-Q19,8,19,Beginner,2,Factors & Multiples,wn.factors,Bus A leaves the station every 4 minutes and Bus B every 10 minutes. They leave together at 8:00. After how many minutes will they next leave together?,40,2,10,20,D,"What it asks: Find the first time both events happen together.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 4: 4, 8, 12, 16, 20, 24…
+Step 2: Multiples of 10: 10, 20, 30…
+Step 3: The first number in both lists is 20.
+Answer: 20","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(4,10)",VERIFIED,MCQ,
+T08-Q20,8,20,Beginner,2,"Perimeter, Area & Volume",ge.volume,"A paddling pool is 50 cm long, 25 cm wide and 40 cm deep. How many litres of water fill it to the top? (1 litre = 1,000 cm³)",500 litres,50 litres,"50,000 litres",5 litres,B,"What it asks: Find the volume in cm³, then change it to litres.
+Concept: 1 litre = 1,000 cm³. Volume in cm³ ÷ 1,000 gives litres.
+Step 1: Volume: 50 × 25 × 40 = 50,000 cm³.
+Step 2: 50,000 ÷ 1,000 = 50 litres.
+Answer: 50 litres",Forgetting to convert from cm³ to litres.,A 10 cm × 10 cm × 10 cm cube holds exactly 1 litre.,,,50*25*40/1000,VERIFIED,MCQ,
+T08-Q21,8,21,Beginner,3,Data,au.data,"In a picture graph, each ★ stands for 20 students who walk to school. Class 5B has 5 ★ and Class 5C has 7 ★. How many more students walk to school in Class 5C than in Class 5B?",240,60,40,2,C,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 20, so multiply the number of stars by 20.
+Step 1: Class 5B: 5 × 20 = 100. Class 5C: 7 × 20 = 140.
+Step 2: 140 − 100 = 40.
+Answer: 40",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,7*20-5*20,VERIFIED,MCQ,
+T08-Q22,8,22,Beginner,3,"Perimeter, Area & Volume",ge.area,A rectangular vegetable patch is 27 m long and 8 m wide. What is its area?,70 m²,"2,160 m²",216 m²,35 m²,C,"What it asks: Find how much flat space the rectangle covers.
+Concept: Area of a rectangle = length × width, measured in square units.
+Step 1: Area = length × width = 27 × 8.
+Step 2: 27 × 8 = 216 m².
+Answer: 216 m²",Finding the perimeter by adding instead of multiplying.,Think of the number of 1-unit squares that fit inside.,,,27*8,VERIFIED,MCQ,
+T08-Q23,8,23,Beginner,3,Shapes & Objects,au.shapes,How many edges does a octagonal prism have?,25,10,24,16,C,"What it asks: Count the edges of a 3D object.
+Concept: A octagonal prism has 2 octagonal ends and 8 rectangular sides. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 10, edges: 24, vertices: 16.
+Step 2: The question asks for the edges: 24.
+Answer: 24","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,24,VERIFIED,MCQ,
+T08-Q24,8,24,Beginner,3,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is false: use a common denominator: 10/60 and 42/60, so \(\frac{1}{6}\) is less.
+Step 2: Statement 2 is true: 5 is bigger than 3, so there is more than one whole.
+Step 3: Statement 3 is false: 2 is less than 3, so it is less than one whole.
+Answer: False, True, False",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{1}{6}\\) > \\(\\frac{7}{10}\\)"",""truth"":false},{""text"":""\\(\\frac{5}{3}\\) is greater than 1 whole"",""truth"":true},{""text"":""\\(\\frac{2}{3}\\) is greater than 1 whole"",""truth"":false}]}"
+T08-Q25,8,25,Beginner,3,Data,au.data,"A class survey recorded these votes: Bus 16, Train 18, Bike 7, Walk 23, Car 10. How many more students chose Walk than Bike?",18,14,30,16,D,"What it asks: Find the difference between the largest and smallest values.
+Concept: Subtract the smaller number from the larger.
+Step 1: Walk has 23; Bike has 7.
+Step 2: 23 − 7 = 16.
+Answer: 16",Adding the two categories instead of finding the difference.,"""How many more"" means subtract.",,,23-7,VERIFIED,MCQ,
+T08-Q26,8,26,Beginner,3,Units of Measurement,me.convert,How many centimetres are there in 4.7 metres?,,,,,,"What it asks: Change metres into centimetres.
+Concept: 1 m = 100 cm. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 m = 100 cm.
+Step 2: 4.7 × 100 = 470.
+Answer: 470 cm","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,4.7*100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""470""],""unit"":""cm""}"
+T08-Q27,8,27,Beginner,3,Location & Maps,au.maps,"On a town map the library is at A4 and the park is at J9. Walking along the grid lines (only east and north), how many squares must you cross to get from the library to the park?",14 squares,13 squares,15 squares,9 squares,A,"What it asks: Find the number of grid steps between two places.
+Concept: Add the steps east and the steps north.
+Step 1: East: A to J = 9.
+Step 2: North: 4 to 9 = 5.
+Step 3: 9 + 5 = 14.
+Answer: 14 squares",Taking only the larger of the two distances.,"Along grid lines, you add the two sides of the rectangle.",,,14,VERIFIED,MCQ,
+T08-Q28,8,28,Beginner,3,Transformations & Symmetry,au.transform,"A point at (2, 8) is moved 6 units to the right and 4 units up. What is the y-coordinate of the new point? (The first number is the x-coordinate, the second is the y-coordinate.)",,,,,,"What it asks: Translate a point on a grid.
+Concept: Moving right or left changes the x-coordinate. Moving up or down changes the y-coordinate.
+Step 1: New x: 2 + 6 = 8.
+Step 2: New y: 8 + 4 = 12.
+Step 3: The y-coordinate is 12.
+Answer: 12","Changing the wrong coordinate, or adding when the move is down.","x goes along the corridor (left/right), y goes up the stairs (up/down).",,,12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T08-Q29,8,29,Beginner,3,Money,au.money,"Tom's shopping bill is $129.44. Tom pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Tom pay?",$129.40,$129.44,$129.45,$129.50,C,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $129.44; look at the last digit of the cents, 4.
+Step 2: It is closer to $129.45 than to $129.40.
+Answer: $129.45","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,12945/100,VERIFIED,MCQ,
+T08-Q30,8,30,Beginner,3,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{3}{8}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{15}{41}\): no, the bottom should be 40 to stay equal.
+Step 2: \(\frac{6}{16}\): yes, multiply top and bottom of \(\frac{3}{8}\) by 2.
+Step 3: \(\frac{9}{24}\): yes, multiply top and bottom of \(\frac{3}{8}\) by 3.
+Step 4: \(\frac{9}{25}\): no, the bottom should be 24 to stay equal.
+Step 5: \(\frac{15}{40}\): yes, multiply top and bottom of \(\frac{3}{8}\) by 5.
+Answer: \(\frac{6}{16}\), \(\frac{9}{24}\), \(\frac{15}{40}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{15}{41}\\)"",""\\(\\frac{6}{16}\\)"",""\\(\\frac{9}{24}\\)"",""\\(\\frac{9}{25}\\)"",""\\(\\frac{15}{40}\\)""],""correct"":[1,2,4]}"

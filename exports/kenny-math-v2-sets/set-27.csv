@@ -1,0 +1,171 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T27-Q01,27,1,Advanced,3,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 35 and 25?,,,,,,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 35: 1, 5, 7, 35.
+Step 2: Factors of 25: 1, 5, 25.
+Step 3: The biggest number in both lists is 5.
+Answer: 5","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(35,25)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5""]}"
+T27-Q02,27,2,Advanced,3,Fractions,fr.addsub,Calculate \(\frac{2}{3}\) − \(\frac{5}{9}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{2}{9}\),\(\frac{1}{6}\),\(1\frac{2}{9}\),\(\frac{1}{9}\),D,"What it asks: Subtract fractions whose denominators are related.
+Concept: 9 is a multiple of 3, so rewrite the first fraction with denominator 9 before subtracting.
+Step 1: \(\frac{2}{3}\) = \(\frac{2}{3}\) (denominator 9).
+Step 2: Subtract the numerators: 6 − 5 = 1.
+Step 3: Simplify: \(\frac{1}{9}\).
+Answer: \(\frac{1}{9}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,2/3-5/9,VERIFIED,MCQ,
+T27-Q03,27,3,Advanced,3,Operations & Problem Solving,wp.multiplicative,Lan has 17 stickers. Leo has 4 times as many stickers as Lan. How many stickers do they have together?,102,21,85,68,C,"What it asks: Find both amounts and add them.
+Concept: “k times as many” means multiply by k.
+Step 1: Leo has 4 × 17 = 68.
+Step 2: Together: 17 + 68 = 85.
+Answer: 85",Stopping after finding only one person’s amount.,Re-read the question to see whether it asks for one amount or the total.,,,17+17*4,VERIFIED,MCQ,
+T27-Q04,27,4,Advanced,3,Angles,ge.angles,"Angles around a point add up to 360°. Three angles are 52°, 62°, 110°. The angle that completes the turn is x. What is x?",156°,44°,116°,136°,D,"What it asks: Find a missing angle around a point.
+Concept: A full turn is 360°, so all the angles around one point add to 360°.
+Step 1: Add the known angles: 52 + 62 + 110 = 224.
+Step 2: 360 − 224 = 136.
+Answer: 136°",Subtracting from 180° instead of 360°.,Straight line = 180°. Full turn around a point = 360°.,,,360-52-62-110,VERIFIED,MCQ,
+T27-Q05,27,5,Advanced,3,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is false: 1 hour is 60 minutes, so 3 hours 40 minutes is 220 minutes.
+Step 2: Statement 2 is true: 10:09 is 10:09 AM.
+Step 3: Statement 3 is true: 22:47 is 10:47 PM.
+Answer: False, True, True",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""3 hours 40 minutes is 340 minutes"",""truth"":false},{""text"":""10:09 is the same time as 10:09 AM"",""truth"":true},{""text"":""22:47 is the same time as 10:47 PM"",""truth"":true}]}"
+T27-Q06,27,6,Advanced,3,Transformations & Symmetry,au.transform,"A point at (1, 6) is moved 1 to the right and 3 up. Its new position is ({1}, {2}).",,,,,,"What it asks: Find the new coordinates after a translation.
+Concept: Right/left changes x. Up/down changes y.
+Step 1: x: 1 + 1 = 2.
+Step 2: y: 6 + 3 = 9.
+Answer: 1) 2, 2) 9",Changing x when the move is up or down.,"x first, then y: along the corridor, then up the stairs.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""2""]},{""accepted"":[""9""]}]}"
+T27-Q07,27,7,Advanced,3,Operations & Problem Solving,wn.muldiv,Kenny has 729 beads and puts them into bags of 19. How many beads are left over after filling as many bags as possible?,12,7,6,8,B,"What it asks: Find how many beads do not fit into a full bag.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 19 × 38 = 722, which is the biggest multiple of 19 that is not more than 729.
+Step 2: 729 − 722 = 7.
+Step 3: The remainder is 7, and it is smaller than 19, as a remainder must be.
+Answer: 7","Giving the quotient (38) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(729,19)",VERIFIED,MCQ,
+T27-Q08,27,8,Advanced,3,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is false: \(\frac{4}{6}\) is not made by multiplying both numbers by the same amount.
+Step 2: Statement 2 is true: multiplying top and bottom by 3 gives an equal fraction.
+Step 3: Statement 3 is true: use a common denominator: 4/10 and 5/10, so \(\frac{2}{5}\) is less.
+Answer: False, True, True",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{1}{2}\\) = \\(\\frac{4}{6}\\)"",""truth"":false},{""text"":""\\(\\frac{1}{4}\\) = \\(\\frac{3}{12}\\)"",""truth"":true},{""text"":""\\(\\frac{2}{5}\\) < \\(\\frac{1}{2}\\)"",""truth"":true}]}"
+T27-Q09,27,9,Advanced,3,Time,ts.clock,5 hours 40 minutes = {1} minutes. 6 PM is {2} o'clock in 24-hour time (type the hour number).,,,,,,"What it asks: Change between hours, minutes and 24-hour time.
+Concept: 1 hour = 60 minutes. After noon, add 12 to get 24-hour time.
+Step 1: 5 × 60 = 300, plus 40 = 340.
+Step 2: 6 + 12 = 18.
+Answer: 1) 340, 2) 18",Using 100 minutes in an hour.,"An hour is 60 minutes, not 100.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""340""]},{""accepted"":[""18""]}]}"
+T27-Q10,27,10,Advanced,3,Data,au.data,"A class survey recorded these votes: Bus 18, Train 4, Bike 21, Walk 7. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is false: Train has the fewest votes (4).
+Step 2: Statement 2 is true: Bike has the most votes (21).
+Step 3: Statement 3 is true: 18 + 4 + 21 + 7 = 50.
+Answer: False, True, True",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Train was the most popular choice"",""truth"":false},{""text"":""Bike was the most popular choice"",""truth"":true},{""text"":""The total number of votes was 50"",""truth"":true}]}"
+T27-Q11,27,11,Advanced,4,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 40 that can be divided exactly by both 4 and 6?,60,12,48,44,C,"What it asks: Find a multiple of both 4 and 6 that is just above 40.
+Concept: Numbers divisible by both 4 and 6 are multiples of their LCM, which is 12.
+Step 1: LCM of 4 and 6 is 12.
+Step 2: Multiples of 12: …, 36, 48, …
+Step 3: The first one greater than 40 is 48.
+Answer: 48",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(40/lcm(4,6))+1)*lcm(4,6)",VERIFIED,MCQ,
+T27-Q12,27,12,Advanced,4,Chance,au.chance,"A bag has 1 yellow, 9 purple, 9 blue marbles. One marble is taken out without looking. What is the chance of taking a yellow marble? Give a fraction in simplest form.",,,,,,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 1 + 9 + 9 = 19.
+Step 2: yellow marbles: 1.
+Step 3: Chance = \(\frac{1}{19}\).
+Answer: \(\frac{1}{19}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,1/19,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1/19""],""format"":""fraction"",""requireSimplified"":true}"
+T27-Q13,27,13,Advanced,4,Place Value & Rounding,wn.place,"Which number is the same as \(7 \times 100{,}000 + 5 \times 1{,}000 + 4 \times 10\)?","40,507",754,"705,040","715,040",C,"What it asks: Turn the expanded form into an ordinary number.
+Concept: Expanded form shows each digit multiplied by its place value.
+Step 1: Work out each part: 700,000, 5,000, 40.
+Step 2: Add them: 700,000 + 5,000 + 40 = 705,040.
+Step 3: Places with no part are zeros.
+Answer: 705,040",Leaving out the zero placeholders and writing a number that is too short.,Write a 0 in every place value that is missing from the expanded form.,,,700000+5000+40,VERIFIED,MCQ,
+T27-Q14,27,14,Advanced,4,Money,au.money,A cap costs $28.00. It is on sale for 75% off. What is the sale price?,$21.00,$49.00,$17.50,$7.00,D,"What it asks: Find the price after a 75% discount.
+Concept: 75% is three quarters; take off a quarter.
+Step 1: 75% of $28.00 = $21.00.
+Step 2: $28.00 − $21.00 = $7.00.
+Answer: $7.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,28-28*75/100,VERIFIED,MCQ,
+T27-Q15,27,15,Advanced,4,Place Value & Rounding,wn.place,"In the number 56,200, what is the name of the place where the digit 6 sits?",,,,,,"What it asks: Answer with the correct word.
+Concept: The 6 in 56,200 is in the thousands place.
+Step 1: The 6 in 56,200 is in the thousands place.
+Answer: thousands",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""thousands"",""thousand""]}"
+T27-Q16,27,16,Advanced,4,Location & Maps,au.maps,A map scale says 1 cm on the map is 10 km in real life. A real road is 100 km long. How long is the road on the map?,,,,,,"What it asks: Use a map scale to find the length on the map.
+Concept: Divide the real distance by the number of kilometres that 1 cm stands for.
+Step 1: 100 ÷ 10 = 10.
+Answer: 10 cm",Multiplying instead of dividing.,Map to real: multiply. Real to map: divide.,,,100/10,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""10""],""unit"":""cm""}"
+T27-Q17,27,17,Advanced,4,Patterns & Algebra,oo.basic,Calculate \(34 + 8 \times (5 - 2) \times 2\).,92,82,252,70,B,"What it asks: Work out the value of the expression using the correct order of operations.
+Concept: Order of operations: Brackets, then powers, then × and ÷ (left to right), then + and − (left to right).
+Step 1: Brackets: 5 − 2 = 3.
+Step 2: Multiply left to right: 8 × 3 = 24, then × 2 = 48.
+Step 3: Add: 34 + 48 = 82.
+Answer: 82","Working strictly from left to right and ignoring that multiplication, division and brackets have priority.","Remember BODMAS/PEMDAS. Brackets, then multiplication, then addition.",,,34+8*(5-2)*2,VERIFIED,MCQ,
+T27-Q18,27,18,Advanced,4,"Perimeter, Area & Volume",ms.measure,"A rectangular garden is 14 m long and 7 m wide. A fence goes all the way around it, except for a 1 m gap for the gate. The fence costs $8 per metre. What is the total cost of the fence?",,,,,,"What it asks: Find the length of fence needed and then its cost.
+Concept: Perimeter gives the distance around; multiply by the price per metre for the cost.
+Step 1: Perimeter: 2 × (14 + 7) = 42 m.
+Step 2: Fence needed (without the gate): 42 − 1 = 41 m.
+Step 3: Cost: 41 × $8 = $328.
+Answer: $328","Forgetting the gate gap, or using the area instead of the perimeter.",Ask yourself: do I need the distance around (perimeter) or the space inside (area)?,,,(2*(14+7)-1)*8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""328""]}"
+T27-Q19,27,19,Advanced,4,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{3}{12}\), \(\frac{1}{3}\), \(\frac{7}{6}\), \(\frac{8}{6}\).
+Answer: \(\frac{3}{12}\), \(\frac{1}{3}\), \(\frac{7}{6}\), \(\frac{8}{6}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{3}{12}\\)"",""\\(\\frac{1}{3}\\)"",""\\(\\frac{7}{6}\\)"",""\\(\\frac{8}{6}\\)""]}"
+T27-Q20,27,20,Advanced,4,Money,wp.money,Nina buys 4 notebooks at $4.00 each and 2 calculators at $2.97 each and pays with $40.00. How much change should Nina get?,$19.06,$21.94,$24.00,$18.06,D,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $4.00 = $16.00.
+Step 2: Calculators: 2 × $2.97 = $5.94.
+Step 3: Total: $21.94. Change: $40.00 − $21.94 = $18.06.
+Answer: $18.06",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,40-(4*4+2.97*2),VERIFIED,MCQ,
+T27-Q21,27,21,Advanced,4,Operations & Problem Solving,wp.rounding,Uma wants to buy a skateboard that costs $180. Uma already has $20 and saves $15 each week. What is the smallest number of weeks Uma needs to save to afford it?,,,,,,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $180 − $20 = $160.
+Step 2: 160 ÷ 15 = 10.67, so after 10 weeks it is not enough.
+Step 3: Uma needs 11 weeks.
+Answer: 11","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((180-20)/15),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""11""]}"
+T27-Q22,27,22,Advanced,4,Patterns & Algebra,pa.arith,"Complete the number pattern: 29, 40, {1}, 62, {2}, 84, 95.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 11 each time.
+Step 1: The difference between neighbouring numbers is 11.
+Step 2: Blank 1: 51. Blank 2: 73.
+Answer: 1) 51, 2) 73",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""51""]},{""accepted"":[""73""]}]}"
+T27-Q23,27,23,Advanced,4,Shapes & Objects,au.shapes,A design uses 2 heptagons and 2 triangles. How many sides are there altogether?,14,40,16,20,D,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 2 × 7 = 14.
+Step 2: 2 × 3 = 6.
+Step 3: 14 + 6 = 20.
+Answer: 20",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,2*7+2*3,VERIFIED,MCQ,
+T27-Q24,27,24,Advanced,4,Units of Measurement,me.convert,Choose ALL the measurements that are equal to 2.5 m.,,,,,,"What it asks: Choose every correct answer.
+Concept: Metric units change by factors of 10, 100 and 1000.
+Step 1: 0.25 km: no, that is not the same length as 2.5 m.
+Step 2: 0.003 km: yes, 2.5 m = 0.003 km.
+Step 3: 2,500 mm: yes, 2.5 m = 2,500 mm.
+Step 4: 0.025 km: no, that is not the same length as 2.5 m.
+Step 5: 250 cm: yes, 2.5 m = 250 cm.
+Answer: 0.003 km, 2,500 mm, 250 cm",Moving the decimal point the wrong number of places.,Convert every option to the same unit.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""0.25 km"",""0.003 km"",""2,500 mm"",""0.025 km"",""250 cm""],""correct"":[1,2,4]}"
+T27-Q25,27,25,Advanced,4,Decimals,dec.place,What is the value of the digit 7 in 9.8731?,,,,,,"What it asks: Find what the digit 7 is worth in the hundredths place.
+Concept: Each place to the right of the decimal point is ten times smaller than the one before.
+Step 1: In 9.8731, the digit 7 is in the hundredths place.
+Step 2: hundredths means 7 ÷ 100 = 0.07.
+Answer: 0.07",Mixing up tenths (0.1) with tens (10) or reading the wrong place.,Say the number aloud: 3.25 is “three and twenty-five hundredths”.,,,7/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""0.07""]}"
+T27-Q26,27,26,Advanced,5,Data,au.data,"A class survey recorded these votes: Bus 17, Train 14, Bike 20, Walk 10, Car 27. How many more students chose Car than Walk?",19,15,37,17,D,"What it asks: Find the difference between the largest and smallest values.
+Concept: Subtract the smaller number from the larger.
+Step 1: Car has 27; Walk has 10.
+Step 2: 27 − 10 = 17.
+Answer: 17",Adding the two categories instead of finding the difference.,"""How many more"" means subtract.",,,27-10,VERIFIED,MCQ,
+T27-Q27,27,27,Advanced,5,"Perimeter, Area & Volume",ge.composite,Lan paints a wall that is 11 m wide and 8 m high. A window of 3 m by 3 m is not painted. What area is painted?,,,,,,"What it asks: Find the area of the wall without the window.
+Concept: For a shape with a hole, find the area of the whole and subtract the area of the hole.
+Step 1: Wall: 11 × 8 = 88 m².
+Step 2: Window: 3 × 3 = 9 m².
+Step 3: Painted: 88 − 9 = 79 m².
+Answer: 79 m²",Adding the window area instead of subtracting it.,Hole in a shape? Whole minus hole.,,,11*8-3*3,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""79""],""unit"":""m²""}"
+T27-Q28,27,28,Advanced,5,Decimals,dec.fraction,Write \(\frac{27}{50}\) as a decimal.,0.054,27.50,0.54,5.4,C,"What it asks: Change the fraction into a decimal number.
+Concept: A fraction is a division: numerator ÷ denominator. Or make the denominator 10, 100 or 1000.
+Step 1: 27/50 means 27 ÷ 50.
+Step 2: 27 ÷ 50 = 0.54.
+Answer: 0.54",Writing the numerator and denominator on either side of a decimal point (e.g. 3/4 = 3.4).,"Remember: 1/2 = 0.5, 1/4 = 0.25, 1/5 = 0.2, 1/8 = 0.125.",,,27/50,VERIFIED,MCQ,
+T27-Q29,27,29,Advanced,5,Units of Measurement,me.problems,Chloe has a ribbon of 5 m 31 cm and another one of 3 m 71 cm. What is the total in cm?,,,,,,"What it asks: Change both amounts to cm and add.
+Concept: Convert everything to the same unit first. 1 m = 100 cm.
+Step 1: 5 m 31 cm = 531 cm.
+Step 2: 3 m 71 cm = 371 cm.
+Step 3: 531 + 371 = 902 cm.
+Answer: 902 cm",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,531+371,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""902""],""unit"":""cm""}"
+T27-Q30,27,30,Advanced,5,Shapes & Objects,au.shapes,Choose ALL the shapes that have all sides equal in length.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: rhombus: yes, all the sides of a rhombus are equal.
+Step 2: equilateral triangle: yes, all the sides of a equilateral triangle are equal.
+Step 3: regular pentagon: yes, all the sides of a regular pentagon are equal.
+Step 4: rectangle: no, not all the sides of a rectangle are equal.
+Step 5: parallelogram: no, not all the sides of a parallelogram are equal.
+Answer: rhombus, equilateral triangle, regular pentagon",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""rhombus"",""equilateral triangle"",""regular pentagon"",""rectangle"",""parallelogram""],""correct"":[0,1,2]}"

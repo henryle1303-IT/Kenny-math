@@ -1,0 +1,166 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T20-Q01,20,1,Intermediate,3,Data,wp.table,"A class survey recorded these numbers. Red: 21, Blue: 29, Green: 33, Yellow: 37. How many votes were there altogether?",,,,,,"What it asks: Add all the votes.
+Concept: “Altogether” means add every group.
+Step 1: 21 + 29 + 33 + 37 = 120.
+Answer: 120",Leaving one of the groups out.,Tick each number as you add it.,,,21+29+33+37,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""120""]}"
+T20-Q02,20,2,Intermediate,3,Units of Measurement,me.convert,Choose ALL the measurements that are equal to 12 kg.,,,,,,"What it asks: Choose every correct answer.
+Concept: Metric units change by factors of 10, 100 and 1000.
+Step 1: 0.12 t: no, that is not the same mass as 12 kg.
+Step 2: 12,000 g: yes, 12 kg = 12,000 g.
+Step 3: 0.012 t: yes, 12 kg = 0.012 tonnes.
+Step 4: 12,000,000 mg: yes, 12 kg = 12,000,000 mg.
+Step 5: 1,200 g: no, that is not the same mass as 12 kg.
+Answer: 12,000 g, 0.012 t, 12,000,000 mg",Moving the decimal point the wrong number of places.,Convert every option to the same unit.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""0.12 t"",""12,000 g"",""0.012 t"",""12,000,000 mg"",""1,200 g""],""correct"":[1,2,3]}"
+T20-Q03,20,3,Intermediate,3,"Perimeter, Area & Volume",ge.volume,"A box is 10 cm long, 4 cm wide and 8 cm high. How many cubes with edges of 2 cm can be packed into the box with no gaps?",40,45,160,320,A,"What it asks: Count how many small cubes fit along each edge, then multiply.
+Concept: Number of cubes = (length ÷ s) × (width ÷ s) × (height ÷ s).
+Step 1: Along the length: 10 ÷ 2 = 5. Along the width: 4 ÷ 2 = 2. Up the height: 8 ÷ 2 = 4.
+Step 2: 5 × 2 × 4 = 40.
+Answer: 40",Dividing the big volume by the small side length instead of the small volume.,Or: box volume 320 ÷ cube volume 8 = 40.,,,(10/2)*(4/2)*(8/2),VERIFIED,MCQ,
+T20-Q04,20,4,Intermediate,3,Time,ts.clock,Kenny starts homework at 10:39 AM and it takes 1 h 55 min. What time does Kenny finish?,12:34 PM,12:44 PM,12:24 PM,1:34 PM,A,"What it asks: Add the time taken to the start time.
+Concept: End time = start time + duration. Remember 60 minutes make 1 hour.
+Step 1: Add the hours: 10:39 AM + 1 h = 11:39 AM.
+Step 2: Add the minutes: + 55 min = 12:34 PM.
+Answer: 12:34 PM",Carrying over 100 minutes instead of 60.,"Add the hours first, then the minutes.",,,639+115,VERIFIED,MCQ,
+T20-Q05,20,5,Intermediate,3,Place Value & Rounding,wn.place,Put these numbers in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Compare the number of digits first, then the digits from the left.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 100,000, 277,251, 529,081, 713,726, 828,406.
+Answer: 100,000, 277,251, 529,081, 713,726, 828,406",Comparing only the last digits.,More digits means a bigger number; then compare place by place.,,,,VERIFIED,ORDERING,"{""items"":[""100,000"",""277,251"",""529,081"",""713,726"",""828,406""]}"
+T20-Q06,20,6,Intermediate,3,Patterns & Algebra,pa.arith,"Complete the number pattern: 1, 8, {1}, 22, 29, {2}, 43.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 7 each time.
+Step 1: The difference between neighbouring numbers is 7.
+Step 2: Blank 1: 15. Blank 2: 36.
+Answer: 1) 15, 2) 36",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""15""]},{""accepted"":[""36""]}]}"
+T20-Q07,20,7,Intermediate,3,Chance,au.chance,"Two standard six-sided dice are rolled, one red and one blue. How many different outcomes are possible?",,,,,,"What it asks: Count all the possible outcomes of a chance experiment.
+Concept: Multiply the number of outcomes of each part of the experiment.
+Step 1: 6 × 6 = 36.
+Answer: 36",Adding the outcomes of each part instead of multiplying.,List the outcomes in an organised table or tree if you are unsure.,,,36,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""36""]}"
+T20-Q08,20,8,Intermediate,3,Operations & Problem Solving,ms.planning,At a school picnic there are 28 pupils and 5 teachers. Each of the pupils eats 2 pieces of cake and each of the teachers eats 2. Each cake has 8 pieces and costs $14. What is the least amount of money needed to buy enough cake?,$112,$924,$140,$126,D,"What it asks: Count the portions, then the whole items needed, then the cost.
+Concept: Find the total needed, divide by the pack size, round up, then multiply by the price.
+Step 1: Portions: 28 × 2 + 5 × 2 = 66.
+Step 2: Whole cakes: 66 ÷ 8 = 8.25, so round up to 9.
+Step 3: Cost: 9 × $14 = $126.
+Answer: $126","Rounding down the number of whole items, so some people go without.",You cannot buy part of an item – round up.,,,ceil((28*2+5*2)/8)*14,VERIFIED,MCQ,
+T20-Q09,20,9,Intermediate,3,Factors & Multiples,wn.factors,How many different factors does 60 have?,,,,,,"What it asks: Count every whole number that divides 60 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 60, 2 × 30, 3 × 20, 4 × 15, 5 × 12, 6 × 10.
+Step 2: List all the factors: 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60.
+Step 3: There are 12 factors.
+Answer: 12","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(60),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T20-Q10,20,10,Intermediate,3,Shapes & Objects,au.shapes,How many faces does a rectangular prism have?,8,7,6,12,C,"What it asks: Count the faces of a 3D object.
+Concept: A rectangular prism has 6 rectangular faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 6, edges: 12, vertices: 8.
+Step 2: The question asks for the faces: 6.
+Answer: 6","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,6,VERIFIED,MCQ,
+T20-Q11,20,11,Intermediate,3,Fractions,fr.addsub,Calculate \(\frac{1}{6}\) + \(\frac{5}{24}\). Give your answer in simplest form (use a mixed number if needed).,,,,,,"What it asks: Add two fractions whose denominators are related.
+Concept: 24 is a multiple of 6, so change \(\frac{1}{6}\) to an equivalent fraction with denominator 24.
+Step 1: \(\frac{1}{6}\) = \(\frac{4}{24}\) (multiply top and bottom by 4).
+Step 2: \(\frac{4}{24}\) + \(\frac{5}{24}\) = \(\frac{9}{24}\).
+Step 3: Simplify (and write as a mixed number if the top is bigger than the bottom) to get \(\frac{3}{8}\).
+Answer: \(\frac{3}{8}\)","Adding the numerators and the denominators, for example 1/2 + 1/4 = 2/6.",Make the denominators the same first. Only the numerators are added.,,,1/6+5/24,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""3/8""],""format"":""fraction"",""requireSimplified"":true}"
+T20-Q12,20,12,Intermediate,3,Operations & Problem Solving,wn.addsub,"Find the value of \(3{,}266 + 4{,}460\).","7,726","6,726","7,826","7,716",A,"What it asks: Find the total of the two numbers.
+Concept: Addition: add the numbers one place value at a time.
+Step 1: Start with 3,266.
+Step 2: Add 4,000: 3,266 + 4,000 = 7,266.
+Step 3: Add 400: 7,266 + 400 = 7,666.
+Step 4: Add 60: 7,666 + 60 = 7,726.
+Answer: 7,726",Forgetting to carry (regroup) when a column adds to 10 or more.,"Add the biggest parts first, then the smaller parts. Check by estimating: round both numbers and add.",,,3266+4460,VERIFIED,MCQ,
+T20-Q13,20,13,Intermediate,3,Data,au.data,"A class survey recorded these votes: Bus 4, Train 18, Bike 21, Walk 12. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is false: Walk has 12 and Bike has 21.
+Step 2: Statement 2 is true: 4 + 18 + 21 + 12 = 55.
+Step 3: Statement 3 is true: Bike has 21 and Walk has 12.
+Answer: False, True, True",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Walk got more votes than Bike"",""truth"":false},{""text"":""The total number of votes was 55"",""truth"":true},{""text"":""Bike got more votes than Walk"",""truth"":true}]}"
+T20-Q14,20,14,Intermediate,3,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 50 that can be divided exactly by both 10 and 15?,90,180,60,30,C,"What it asks: Find a multiple of both 10 and 15 that is just above 50.
+Concept: Numbers divisible by both 10 and 15 are multiples of their LCM, which is 30.
+Step 1: LCM of 10 and 15 is 30.
+Step 2: Multiples of 30: …, 30, 60, …
+Step 3: The first one greater than 50 is 60.
+Answer: 60",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(50/lcm(10,15))+1)*lcm(10,15)",VERIFIED,MCQ,
+T20-Q15,20,15,Intermediate,3,Money,au.money,A cricket bat costs $40.00. It is on sale for 10% off. What is the sale price?,$30.00,$4.00,$44.00,$36.00,D,"What it asks: Find the price after a 10% discount.
+Concept: 10% is one tenth: divide by 10.
+Step 1: 10% of $40.00 = $4.00.
+Step 2: $40.00 − $4.00 = $36.00.
+Answer: $36.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,40-40*10/100,VERIFIED,MCQ,
+T20-Q16,20,16,Intermediate,3,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is true: 01:15 is 1:15 AM.
+Step 2: Statement 2 is false: 09:53 is 9:53 AM.
+Step 3: Statement 3 is false: 1 hour is 60 minutes, so 4 hours 45 minutes is 285 minutes.
+Answer: True, False, False",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""01:15 is the same time as 1:15 AM"",""truth"":true},{""text"":""09:53 is the same time as 9:53 PM"",""truth"":false},{""text"":""4 hours 45 minutes is 445 minutes"",""truth"":false}]}"
+T20-Q17,20,17,Intermediate,3,Decimals,dec.place,Round 7.898 to the nearest hundredth.,7.898,7.89,7.91,7.90,D,"What it asks: Find the hundredth that 7.898 is nearest to.
+Concept: Look at the digit one place to the right of the rounding place: 5 or more rounds up, 4 or less stays.
+Step 1: 7.898 is between 7.89 and 7.90.
+Step 2: Look at the next digit to decide: it is closer to 7.90.
+Answer: 7.90","Rounding down every time, or changing the wrong place.",Keep the zero at the end if you round to a place (for example 3.50 to the nearest hundredth).,,,round(7.898*100)/100,VERIFIED,MCQ,
+T20-Q18,20,18,Intermediate,3,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is true: use a common denominator: 30/48 and 40/48, so \(\frac{5}{8}\) is less.
+Step 2: Statement 2 is true: use a common denominator: 16/24 and 18/24, so \(\frac{2}{3}\) is less.
+Step 3: Statement 3 is false: use a common denominator: 5/10 and 4/10, so \(\frac{1}{2}\) is greater.
+Answer: True, True, False",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{5}{8}\\) < \\(\\frac{5}{6}\\)"",""truth"":true},{""text"":""\\(\\frac{2}{3}\\) < \\(\\frac{6}{8}\\)"",""truth"":true},{""text"":""\\(\\frac{1}{2}\\) < \\(\\frac{2}{5}\\)"",""truth"":false}]}"
+T20-Q19,20,19,Intermediate,3,Transformations & Symmetry,au.transform,"A point at (2, 5) is moved 6 units to the right and 2 units down. What is the x-coordinate of the new point? (The first number is the x-coordinate, the second is the y-coordinate.)",2,3,9,8,D,"What it asks: Translate a point on a grid.
+Concept: Moving right or left changes the x-coordinate. Moving up or down changes the y-coordinate.
+Step 1: New x: 2 + 6 = 8.
+Step 2: New y: 5 − 2 = 3.
+Step 3: The x-coordinate is 8.
+Answer: 8","Changing the wrong coordinate, or adding when the move is down.","x goes along the corridor (left/right), y goes up the stairs (up/down).",,,8,VERIFIED,MCQ,
+T20-Q20,20,20,Intermediate,3,Place Value & Rounding,wn.place,"Complete the place value: 3,317 = 3 thousands + {1} hundreds + 1 tens + {2} ones.",,,,,,"What it asks: Split a number into its place values.
+Concept: Each digit is worth its place: thousands, hundreds, tens or ones.
+Step 1: 3,317 has 3 thousands, 3 hundreds, 1 tens and 7 ones.
+Answer: 1) 3, 2) 7",Writing the digit in the wrong place.,Zero still holds a place.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""3""]},{""accepted"":[""7""]}]}"
+T20-Q21,20,21,Intermediate,4,Location & Maps,au.maps,Minh is facing South-East. Minh turns clockwise to face East. Through how many degrees does Minh turn?,45°,270°,315°,360°,C,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From South-East clockwise to East is 7 steps of 45°.
+Step 2: 7 × 45° = 315°.
+Answer: 315°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,315,VERIFIED,MCQ,
+T20-Q22,20,22,Intermediate,4,Money,au.money,"Hugo's shopping bill is $127.18. Hugo pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Hugo pay?",$127.18,$127.10,$127.20,$127.15,C,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $127.18; look at the last digit of the cents, 8.
+Step 2: It is closer to $127.20 than to $127.15.
+Answer: $127.20","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,12720/100,VERIFIED,MCQ,
+T20-Q23,20,23,Intermediate,4,Operations & Problem Solving,ms.planning,A recipe for 4 people uses 300 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 20 people?,1500,1,2,3,C,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 20 people is 5 times 4 people, so flour needed = 300 × 5 = 1,500 g.
+Step 2: 1,500 g = 1.5 kg.
+Step 3: Bags are whole, so round up: 2.
+Answer: 2","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(300*5/1000),VERIFIED,MCQ,
+T20-Q24,20,24,Intermediate,4,Fractions,fr.forms,Find the missing number: \(\frac{50}{70} = \frac{5}{\square}\),17,70,7,5,C,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 50 ÷ 10 = 5, so the numerator was divided by 10.
+Step 2: Do the same to the denominator: 70 ÷ 10 = 7.
+Answer: 7",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,7,VERIFIED,MCQ,
+T20-Q25,20,25,Intermediate,4,"Perimeter, Area & Volume",ge.volume,"A box is 10 cm long, 9 cm wide and 5 cm high. What is its volume?",370 cm³,450 cm³,24 cm³,95 cm³,B,"What it asks: Find how much space is inside the box.
+Concept: Volume of a cuboid = length × width × height.
+Step 1: Base layer: 10 × 9 = 90 cubes.
+Step 2: 5 layers: 90 × 5 = 450 cm³.
+Answer: 450 cm³","Adding the dimensions, or finding the surface area.","Find one layer first, then multiply by the number of layers.",,,10*9*5,VERIFIED,MCQ,
+T20-Q26,20,26,Intermediate,4,Shapes & Objects,au.shapes,Choose ALL the shapes that have all sides equal in length.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: regular pentagon: yes, all the sides of a regular pentagon are equal.
+Step 2: trapezium: no, not all the sides of a trapezium are equal.
+Step 3: rhombus: yes, all the sides of a rhombus are equal.
+Step 4: right-angled triangle: no, not all the sides of a right-angled triangle are equal.
+Step 5: parallelogram: no, not all the sides of a parallelogram are equal.
+Answer: regular pentagon, rhombus",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""regular pentagon"",""trapezium"",""rhombus"",""right-angled triangle"",""parallelogram""],""correct"":[0,2]}"
+T20-Q27,20,27,Intermediate,4,Patterns & Algebra,oo.basic,Work out \(45 + 7 \times (2 - 2) \times 2\).,45,35,55,46,A,"What it asks: Work out the value of the expression using the correct order of operations.
+Concept: Order of operations: Brackets, then powers, then × and ÷ (left to right), then + and − (left to right).
+Step 1: Brackets: 2 − 2 = 0.
+Step 2: Multiply left to right: 7 × 0 = 0, then × 2 = 0.
+Step 3: Add: 45 + 0 = 45.
+Answer: 45","Working strictly from left to right and ignoring that multiplication, division and brackets have priority.","Remember BODMAS/PEMDAS. Brackets, then multiplication, then addition.",,,45+7*(2-2)*2,VERIFIED,MCQ,
+T20-Q28,20,28,Intermediate,4,Decimals,dec.fraction,Write 0.65 as a fraction in simplest form.,,,,,,"What it asks: Change the decimal into a fraction and simplify.
+Concept: Read the decimal as tenths, hundredths or thousandths, then simplify.
+Step 1: 0.65 = 65/100.
+Step 2: Simplify by dividing by the greatest common factor: 13/20.
+Answer: \(\frac{13}{20}\)","Forgetting to simplify, or using the wrong denominator.","Count the decimal places to choose 10, 100 or 1000 as the denominator.",,,13/20,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""13/20""],""format"":""fraction"",""requireSimplified"":true}"
+T20-Q29,20,29,Intermediate,4,Angles,ge.angles,What do we call an angle that is smaller than 90°?,,,,,,"What it asks: Answer with the correct word.
+Concept: Angles smaller than 90° are acute.
+Step 1: Angles smaller than 90° are acute.
+Answer: acute",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""acute""]}"
+T20-Q30,20,30,Intermediate,4,Units of Measurement,me.problems,Finn’s ribbon is 280 cm long. Nina’s ribbon is 2.2 m long. How many centimetres longer is Finn’s ribbon?,,,,,,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 2.2 m = 220 cm.
+Step 2: Difference: 280 − 220 = 60 cm.
+Step 3: Finn’s ribbon is longer than Nina’s by 60 cm.
+Answer: 60 cm",Subtracting 2.2 from 280 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(280-2.2*100),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""60""],""unit"":""cm""}"

@@ -19,7 +19,7 @@ export const CORE_COLUMNS = [
 ] as const;
 
 /** Extra bank-level / verification columns used for reliable round trips. Optional on import. */
-export const EXTRA_COLUMNS = ['bank_id', 'bank_version', 'verify_expr', 'validation_status'] as const;
+export const EXTRA_COLUMNS = ['bank_id', 'bank_version', 'verify_expr', 'validation_status', 'question_type', 'answer_data'] as const;
 
 export const ALL_COLUMNS = [...CORE_COLUMNS, ...EXTRA_COLUMNS] as const;
 
@@ -44,6 +44,8 @@ export const COLUMN_DESCRIPTIONS: Record<(typeof ALL_COLUMNS)[number], string> =
   bank_version: '(optional) Version number of the bank the file was exported from',
   verify_expr: '(optional) Expression that evaluates to the correct answer, used for automatic checking, e.g. 3/4+1/8',
   validation_status: '(optional, informational) Status when exported. It is recalculated on import.',
+  question_type: '(optional) MCQ (default), NUMERIC_INPUT, TRUE_FALSE, MULTI_SELECT, FILL_BLANK, ORDERING or SHORT_TEXT. For types other than MCQ leave option_a-d and correct_answer empty and put the setup in answer_data.',
+  answer_data: '(optional) JSON setup for non-MCQ types, e.g. {"accepted":["3/4","0.75"]} for NUMERIC_INPUT, {"statements":[{"text":"...","truth":true}]} for TRUE_FALSE, {"options":["2","3","4"],"correct":[0,2]} for MULTI_SELECT, {"blanks":[{"accepted":["1/4"]}]} for FILL_BLANK (use {1}, {2} in question_text), {"items":["1/4","1/2","3/4"]} listed in the CORRECT order for ORDERING, {"accepted":["square"]} for SHORT_TEXT. Typed answers ignore capital letters and extra spaces.',
 };
 
 export type CsvColumn = (typeof ALL_COLUMNS)[number];

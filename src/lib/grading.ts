@@ -1,6 +1,10 @@
+import { isResponseCorrect } from './question-types';
+
 export interface GradeInput {
   questionId: string;
   correctAnswer: string;
+  questionType?: string;
+  answerData?: string | null;
   topic: string;
   difficulty: number;
   selected: string | null;
@@ -42,7 +46,7 @@ export function gradeAnswers(items: GradeInput[]): GradeResult {
   const perQuestion: GradeResult['perQuestion'] = [];
   for (const it of items) {
     const answered = it.selected !== null && it.selected !== '';
-    const ok = answered && it.selected === it.correctAnswer;
+    const ok = answered && isResponseCorrect({ questionType: it.questionType, answerData: it.answerData, correctAnswer: it.correctAnswer }, it.selected);
     if (!answered) unanswered++;
     else if (ok) correct++;
     else incorrect++;

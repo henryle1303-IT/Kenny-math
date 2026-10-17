@@ -1,0 +1,170 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T28-Q01,28,1,Advanced,3,Place Value & Rounding,wn.place,"In the number 925,461, what is the value of the digit 4?","4,000",4,40,400,D,"What it asks: Find what the digit 4 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 925,461, the digit 4 is in the hundreds place.
+Step 2: 4 × 100 = 400.
+Answer: 400",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,4*10^2,VERIFIED,MCQ,
+T28-Q02,28,2,Advanced,3,Units of Measurement,me.convert,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Metric units change by 10, 100 or 1000. To change to a smaller unit, multiply.
+Step 1: Statement 1 is true: 1 cm = 10 mm, so 2.5 × 10 = 25.
+Step 2: Statement 2 is false: 1 m = 100 cm, so 0.5 m = 50 cm.
+Step 3: Statement 3 is true: 1 m = 100 cm, so 0.5 × 100 = 50.
+Answer: True, False, True",Dividing instead of multiplying when changing to a smaller unit.,Bigger unit to smaller unit: multiply. Smaller to bigger: divide.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""2.5 cm = 25 mm"",""truth"":true},{""text"":""0.5 m = 500 cm"",""truth"":false},{""text"":""0.5 m = 50 cm"",""truth"":true}]}"
+T28-Q03,28,3,Advanced,3,Money,au.money,A pen costs $7.15 and it is paid for with $10.00. The change is $ {1}. A bill of $35.47 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 10.00 − 7.15 = 2.85.
+Step 2: 35.47 is closest to 35.45.
+Answer: 1) 2.85, 2) 35.45",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""2.85""]},{""accepted"":[""35.45""]}]}"
+T28-Q04,28,4,Advanced,3,Operations & Problem Solving,wn.muldiv,What is \(880 \div 16\)?,,,,,,"What it asks: Share the number equally and find the size of each share.
+Concept: Division is the opposite of multiplication. Break the number into friendly chunks.
+Step 1: Think: how many groups of 16 fit into 880?
+Step 2: 16 × 50 = 800, so take it away: 880 − 800 = 80.
+Step 3: 16 × 5 = 80, so take it away: 80 − 80 = 0.
+Step 4: The parts add up: 50 + 5 = 55.
+Answer: 55",Losing a zero or skipping a place in the answer.,Check your answer: 55 × 16 should give back 880.,,,880/16,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""55""]}"
+T28-Q05,28,5,Advanced,3,Shapes & Objects,au.shapes,Which 3D object has 6 square faces?,,,,,,"What it asks: Answer with the correct word.
+Concept: A cube has 6 identical square faces.
+Step 1: A cube has 6 identical square faces.
+Answer: cube",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""cube""]}"
+T28-Q06,28,6,Advanced,3,Location & Maps,au.maps,Sam is facing South. Sam turns clockwise to face North-West. Through how many degrees does Sam turn?,180°,225°,135°,90°,C,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From South clockwise to North-West is 3 steps of 45°.
+Step 2: 3 × 45° = 135°.
+Answer: 135°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,135,VERIFIED,MCQ,
+T28-Q07,28,7,Advanced,3,Factors & Multiples,wn.factors,Choose ALL the factors of 40.,,,,,,"What it asks: Choose every correct answer.
+Concept: A factor divides a number exactly with no remainder.
+Step 1: 14: no, 40 ÷ 14 leaves a remainder.
+Step 2: 2: yes, 40 ÷ 2 = 20.
+Step 3: 20: yes, 40 ÷ 20 = 2.
+Step 4: 22: no, 40 ÷ 22 leaves a remainder.
+Step 5: 10: yes, 40 ÷ 10 = 4.
+Answer: 2, 20, 10",Mixing up factors and multiples.,Factors come in pairs that multiply to the number.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""14"",""2"",""20"",""22"",""10""],""correct"":[1,2,4]}"
+T28-Q08,28,8,Advanced,3,Money,wp.money,Anna buys 2 notebooks at $1.51 each and 3 calculators at $6.95 each and pays with $30.00. How much change should Anna get?,,,,,,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 2 × $1.51 = $3.02.
+Step 2: Calculators: 3 × $6.95 = $20.85.
+Step 3: Total: $23.87. Change: $30.00 − $23.87 = $6.13.
+Answer: $6.13",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,30-(1.51*2+6.95*3),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""6.13""]}"
+T28-Q09,28,9,Advanced,3,Fractions,fr.of,Chloe has 48 pages. Chloe gives away \(\frac{2}{6}\) of them. How many pages does Chloe give away?,32,12,16,24,C,"What it asks: Find the fraction of the total.
+Concept: To find a fraction of an amount, divide by the denominator, then multiply by the numerator.
+Step 1: Divide 48 into 6 equal parts: 48 ÷ 6 = 8.
+Step 2: Take 2 parts: 2 × 8 = 16.
+Answer: 16",Multiplying the amount by the denominator instead of dividing.,"“2/6 of” means divide by 6, then multiply by 2.",,,48*2/6,VERIFIED,MCQ,
+T28-Q10,28,10,Advanced,3,Patterns & Algebra,pa.arith,"A number pattern starts 12, 20, 28, … and keeps adding 8. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 76: yes, 12 + 8 × 8 = 76.
+Step 2: 60: yes, 12 + 6 × 8 = 60.
+Step 3: 36: yes, 12 + 3 × 8 = 36.
+Step 4: 75: no, 75 is not 12 plus a multiple of 8.
+Step 5: 43: no, 43 is not 12 plus a multiple of 8.
+Answer: 76, 60, 36",Choosing numbers that are near the pattern but not on it.,Check that (number − 12) divides by 8.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""76"",""60"",""36"",""75"",""43""],""correct"":[0,1,2]}"
+T28-Q11,28,11,Advanced,4,Fractions,fr.forms,Write \(\frac{48}{108}\) in its simplest form.,\(\frac{4}{9}\),\(\frac{4}{108}\),\(\frac{48}{9}\),\(\frac{5}{9}\),A,"What it asks: Write the fraction using the smallest possible numerator and denominator.
+Concept: Divide the numerator and denominator by their greatest common factor.
+Step 1: The greatest common factor of 48 and 108 is 12.
+Step 2: 48 ÷ 12 = 4 and 108 ÷ 12 = 9.
+Step 3: The simplest form is 4/9.
+Answer: \(\frac{4}{9}\)","Dividing the top and bottom by different numbers, or stopping before the fraction is fully simplified.",Whatever you do to the top you must do to the bottom.,,,48/108,VERIFIED,MCQ,
+T28-Q12,28,12,Advanced,4,Time,ts.clock,4 hours 20 minutes = {1} minutes. 11 PM is {2} o'clock in 24-hour time (type the hour number).,,,,,,"What it asks: Change between hours, minutes and 24-hour time.
+Concept: 1 hour = 60 minutes. After noon, add 12 to get 24-hour time.
+Step 1: 4 × 60 = 240, plus 20 = 260.
+Step 2: 11 + 12 = 23.
+Answer: 1) 260, 2) 23",Using 100 minutes in an hour.,"An hour is 60 minutes, not 100.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""260""]},{""accepted"":[""23""]}]}"
+T28-Q13,28,13,Advanced,4,Operations & Problem Solving,wn.addsub,"Calculate \(45{,}032 - 10{,}121\).",,,,,,"What it asks: Find the difference between the two numbers.
+Concept: Subtraction: take away one place value at a time.
+Step 1: Start with 45,032.
+Step 2: Take away 10,000: 45,032 − 10,000 = 35,032.
+Step 3: Take away 100: 35,032 − 100 = 34,932.
+Step 4: Take away 20: 34,932 − 20 = 34,912.
+Step 5: Take away 1: 34,912 − 1 = 34,911.
+Answer: 34,911",Forgetting to regroup (borrow) and subtracting the smaller digit from the larger one.,Check subtraction with addition: the answer plus the smaller number should give the larger number.,,,45032-10121,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""34911""]}"
+T28-Q14,28,14,Advanced,4,Data,wp.table,"A class survey recorded these numbers. Red: 22, Blue: 37, Green: 66, Yellow: 36. How many votes were there altogether?",95,66,171,161,D,"What it asks: Add all the votes.
+Concept: “Altogether” means add every group.
+Step 1: 22 + 37 + 66 + 36 = 161.
+Answer: 161",Leaving one of the groups out.,Tick each number as you add it.,,,22+37+66+36,VERIFIED,MCQ,
+T28-Q15,28,15,Advanced,4,Operations & Problem Solving,wn.muldiv,Complete the number sentences: {1} × 16 = 96 and 85 ÷ {2} = 5.,,,,,,"What it asks: Use multiplication and division as opposite operations.
+Concept: Multiplication and division undo each other.
+Step 1: 96 ÷ 16 = 6.
+Step 2: 85 ÷ 5 = 17.
+Answer: 1) 6, 2) 17",Using the wrong operation to find the missing number.,"To find a missing factor, divide the product by the known factor.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""6""]},{""accepted"":[""17""]}]}"
+T28-Q16,28,16,Advanced,4,Decimals,dec.place,Round 0.3559 to the nearest hundredth.,0.35,0.356,0.36,0.37,C,"What it asks: Find the hundredth that 0.3559 is nearest to.
+Concept: Look at the digit one place to the right of the rounding place: 5 or more rounds up, 4 or less stays.
+Step 1: 0.3559 is between 0.35 and 0.36.
+Step 2: Look at the next digit to decide: it is closer to 0.36.
+Answer: 0.36","Rounding down every time, or changing the wrong place.",Keep the zero at the end if you round to a place (for example 3.50 to the nearest hundredth).,,,round(0.3559*100)/100,VERIFIED,MCQ,
+T28-Q17,28,17,Advanced,4,Shapes & Objects,au.shapes,A design uses 6 triangles and 2 octagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 6 × 3 = 18.
+Step 2: 2 × 8 = 16.
+Step 3: 18 + 16 = 34.
+Answer: 34",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,6*3+2*8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""34""]}"
+T28-Q18,28,18,Advanced,4,Patterns & Algebra,pa.special,"The first four square numbers are 1, 4, 9 and 16. What is the 22th square number?",44,441,529,484,D,"What it asks: Use the rule for square numbers.
+Concept: The nth square number is n × n.
+Step 1: 1 = 1×1, 4 = 2×2, 9 = 3×3, so the nth square number is n × n.
+Step 2: 22 × 22 = 484.
+Answer: 484",Doubling the number instead of multiplying it by itself.,Square numbers make square arrays of dots.,,,22^2,VERIFIED,MCQ,
+T28-Q19,28,19,Advanced,4,Transformations & Symmetry,au.transform,How many lines of symmetry does a regular pentagon have?,,,,,,"What it asks: Count the lines of symmetry of a shape.
+Concept: A line of symmetry is a fold line that makes the two halves match exactly.
+Step 1: A regular pentagon has 5 lines of symmetry.
+Answer: 5",Counting the diagonals of a rectangle or rhombus that are not lines of symmetry.,Imagine folding the shape: both halves must fit exactly on top of each other.,,,5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5""]}"
+T28-Q20,28,20,Advanced,4,Angles,ge.angles,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Acute < 90°, right angle = 90°, obtuse between 90° and 180°, straight = 180°, reflex between 180° and 360°.
+Step 1: Statement 1 is false: 90° is a right angle.
+Step 2: Statement 2 is false: a full turn is 360°, so angles around a point add up to 360°.
+Step 3: Statement 3 is true: 90° is a right angle.
+Answer: False, False, True",Calling a 90° angle acute or obtuse.,Compare with a square corner (90°) first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""An angle of 90° is reflex"",""truth"":false},{""text"":""Angles around a point add up to 180°"",""truth"":false},{""text"":""An angle of 90° is a right angle"",""truth"":true}]}"
+T28-Q21,28,21,Advanced,4,"Perimeter, Area & Volume",ge.perimeter,A rectangular garden has a perimeter of 80 cm. Its length is 26 cm. How wide is the garden?,28 cm,40 cm,54 cm,14 cm,D,"What it asks: Use the perimeter and the length to find the missing width.
+Concept: Half of the perimeter equals length + width.
+Step 1: Half the perimeter: 80 ÷ 2 = 40.
+Step 2: Width = 40 − 26 = 14 cm.
+Answer: 14 cm",Subtracting only one length from the perimeter without halving.,Length + width = half of the perimeter.,,,80/2-26,VERIFIED,MCQ,
+T28-Q22,28,22,Advanced,4,Chance,au.chance,"A bag has 3 yellow, 7 red, 5 green marbles. One marble is taken out without looking. What is the chance of taking a green marble? Give a fraction in simplest form.",,,,,,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 3 + 7 + 5 = 15.
+Step 2: green marbles: 5.
+Step 3: Chance = \(\frac{5}{15}\) = \(\frac{1}{3}\).
+Answer: \(\frac{1}{3}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,5/15,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1/3""],""format"":""fraction"",""requireSimplified"":true}"
+T28-Q23,28,23,Advanced,4,Units of Measurement,me.problems,Linh’s ribbon is 240 cm long. An’s ribbon is 3.1 m long. How many centimetres longer is An’s ribbon?,700 cm,80 cm,70 cm,550 cm,C,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 3.1 m = 310 cm.
+Step 2: Difference: 310 − 240 = 70 cm.
+Step 3: An’s ribbon is longer than Linh’s by 70 cm.
+Answer: 70 cm",Subtracting 3.1 from 240 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(240-3.1*100),VERIFIED,MCQ,
+T28-Q24,28,24,Advanced,4,Fractions,fr.addsub,Calculate \(3\frac{1}{6}\) − \(\frac{18}{24}\). Give your answer in simplest form (use a mixed number if needed).,,,,,,"What it asks: Subtract fractions whose denominators are related.
+Concept: 24 is a multiple of 6, so rewrite the first fraction with denominator 24 before subtracting.
+Step 1: \(3\frac{1}{6}\) = \(\frac{19}{6}\) (denominator 24).
+Step 2: Subtract the numerators: 76 − 18 = 58.
+Step 3: Simplify: \(2\frac{5}{12}\).
+Answer: \(2\frac{5}{12}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,19/6-18/24,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""2 5/12"",""29/12""],""format"":""mixed"",""requireSimplified"":true}"
+T28-Q25,28,25,Advanced,4,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is true: 01:10 is 1:10 AM.
+Step 2: Statement 2 is false: 1 hour is 60 minutes, so 3 hours 40 minutes is 220 minutes.
+Step 3: Statement 3 is true: 02:09 is 2:09 AM.
+Answer: True, False, True",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""01:10 is the same time as 1:10 AM"",""truth"":true},{""text"":""3 hours 40 minutes is 340 minutes"",""truth"":false},{""text"":""02:09 is the same time as 2:09 AM"",""truth"":true}]}"
+T28-Q26,28,26,Advanced,5,Place Value & Rounding,wn.round,"Round 217,835 to the nearest thousand.","217,000","218,000","220,000","217,800",B,"What it asks: Find the thousand that 217,835 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 217,835 is between 217,000 and 218,000.
+Step 2: It is 835 above 217,000 and 165 below 218,000.
+Step 3: It is closer to 218,000.
+Answer: 218,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(217835/1000)*1000,VERIFIED,MCQ,
+T28-Q27,28,27,Advanced,5,Data,wp.table,"A class survey recorded these numbers. Cats: 86, Dogs: 76, Fish: 43, Birds: 60. How many more votes did Cats get than Dogs?",,,,,,"What it asks: Compare the two numbers by subtracting.
+Concept: “How many more” is found by subtraction.
+Step 1: Cats = 86 and Dogs = 76.
+Step 2: 86 − 76 = 10.
+Answer: 10",Adding the two numbers.,“More than” and “fewer than” are comparison words that usually mean subtract.,,,86-76,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""10""]}"
+T28-Q28,28,28,Advanced,5,Factors & Multiples,wn.factors,"How many prime numbers are there from 30 to 70, including both 30 and 70 if they are prime?",10,9,21,8,B,"What it asks: Count the numbers in the range that have exactly two factors: 1 and themselves.
+Concept: A prime number has exactly two factors. Every even number except 2 is not prime.
+Step 1: Cross out all even numbers (except 2) and multiples of 3, 5 and 7.
+Step 2: The primes left are 31, 37, 41, 43, 47, 53, 59, 61, 67.
+Step 3: That is 9 prime numbers.
+Answer: 9","Counting odd numbers like 9, 15 or 21 as prime when they have other factors.","Test each odd number by trying 3, 5 and 7 as divisors.",,,"nprimes(30,70)",VERIFIED,MCQ,
+T28-Q29,28,29,Advanced,5,"Perimeter, Area & Volume",ge.volume,"A fish tank is 20 cm long, 50 cm wide and 30 cm high. How many litres of water does it hold when it is completely full? (1 litre = 1,000 cm³)",300 litres,"30,000 litres",3 litres,30 litres,D,"What it asks: Find the volume in cm³, then change it to litres.
+Concept: 1 litre = 1,000 cm³. Volume in cm³ ÷ 1,000 gives litres.
+Step 1: Volume: 20 × 50 × 30 = 30,000 cm³.
+Step 2: 30,000 ÷ 1,000 = 30 litres.
+Answer: 30 litres",Forgetting to convert from cm³ to litres.,A 10 cm × 10 cm × 10 cm cube holds exactly 1 litre.,,,20*50*30/1000,VERIFIED,MCQ,
+T28-Q30,28,30,Advanced,5,Decimals,dec.compare,Put these decimals in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Give each decimal the same number of places, then compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 0.919, 0.95, 42.009, 86.001, 97.004.
+Answer: 0.919, 0.95, 42.009, 86.001, 97.004",Thinking 0.45 is bigger than 0.5 because 45 is bigger than 5.,Write 0.5 as 0.50 to compare with 0.45.,,,,VERIFIED,ORDERING,"{""items"":[""0.919"",""0.95"",""42.009"",""86.001"",""97.004""]}"

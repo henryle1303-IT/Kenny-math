@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { ALL_COLUMNS, CORE_COLUMNS } from './columns';
 import { unsanitizeCell } from './export';
 import type { QuestionData } from '../validate/question';
+import { QUESTION_TYPES, isQuestionType } from '../question-types';
 
 export { MAX_UPLOAD_BYTES } from './limits';
 
@@ -75,11 +76,11 @@ export const rowSchema = z.object({
   topic: z.string().trim().min(1, 'topic is required').max(80),
   skill: z.string().trim().min(1, 'skill is required').max(80),
   question_text: z.string().trim().min(1, 'question_text is required').max(4000),
-  option_a: z.string().trim().min(1, 'option_a is required').max(500),
-  option_b: z.string().trim().min(1, 'option_b is required').max(500),
-  option_c: z.string().trim().min(1, 'option_c is required').max(500),
-  option_d: z.string().trim().min(1, 'option_d is required').max(500),
-  correct_answer: z.string().trim().toUpperCase().regex(/^[ABCD]$/, 'correct_answer must be A, B, C or D'),
+  option_a: z.string().trim().max(500).optional().default(''),
+  option_b: z.string().trim().max(500).optional().default(''),
+  option_c: z.string().trim().max(500).optional().default(''),
+  option_d: z.string().trim().max(500).optional().default(''),
+  correct_answer: z.string().trim().toUpperCase().optional().default(''),
   explanation: z.string().trim().min(1, 'explanation is required').max(8000),
   common_mistake: z.string().trim().min(1, 'common_mistake is required').max(1000),
   learning_tip: z.string().trim().min(1, 'learning_tip is required').max(1000),
@@ -87,6 +88,21 @@ export const rowSchema = z.object({
   bank_version: z.string().optional(),
   verify_expr: z.string().max(500).optional(),
   validation_status: z.string().optional(),
+  question_type: z.string().trim().toUpperCase().optional().default(''),
+  answer_data: z.string().max(4000).optional().default(''),
+}).superRefine((d, ctx) => {
+  const type = d.question_type || 'MCQ';
+  if (!isQuestionType(type)) {
+    ctx.addIssue({ code: 'custom', path: ['question_type'], message: `question_type must be one of ${QUESTION_TYPES.join(', ')}` });
+    return;
+  }
+  if (type === 'MCQ') {
+    for (const k of ['option_a', 'option_b', 'option_c', 'option_d'] as const) if (!d[k]) ctx.addIssue({ code: 'custom', path: [k], message: `${k} is required` });
+    if (!/^[ABCD]$/.test(d.correct_answer)) ctx.addIssue({ code: 'custom', path: ['correct_answer'], message: 'correct_answer must be A, B, C or D' });
+    if (d.answer_data) ctx.addIssue({ code: 'custom', path: ['answer_data'], message: 'answer_data must be empty for MCQ questions' });
+  } else if (!d.answer_data.trim()) {
+    ctx.addIssue({ code: 'custom', path: ['answer_data'], message: `answer_data is required for ${type} questions` });
+  }
 });
 
 export interface ParsedRow {
@@ -150,6 +166,8 @@ export function mapCsvRows(parsed: ParsedCsv, opts: { includeExamples?: boolean 
         commonMistake: d.common_mistake,
         learningTip: d.learning_tip,
         verifyExpr: d.verify_expr?.trim() ? d.verify_expr.trim() : null,
+        questionType: d.question_type || 'MCQ',
+        answerData: d.answer_data.trim() ? d.answer_data.trim() : null,
       },
     });
   });

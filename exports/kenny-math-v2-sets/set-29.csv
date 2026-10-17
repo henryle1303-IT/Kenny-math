@@ -1,0 +1,168 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T29-Q01,29,1,Advanced,4,Money,dec.money,"At the toy shop, Tom buys 4 erasers at $0.41 each and a sharpener for $2.14. Tom pays with $10.00. How much change does Tom get?",$6.22,$8.36,$3.78,$6.32,A,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the erasers: 4 × $0.41 = $1.64.
+Step 2: Add a sharpener: $1.64 + $2.14 = $3.78.
+Step 3: Change: $10.00 − $3.78 = $6.22.
+Answer: $6.22",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,10-(0.41*4+2.14),VERIFIED,MCQ,
+T29-Q02,29,2,Advanced,4,Decimals,dec.fraction,Write 0.36 as a fraction in simplest form.,\(\frac{9}{25}\),\(\frac{9}{26}\),\(\frac{25}{9}\),\(\frac{10}{25}\),A,"What it asks: Change the decimal into a fraction and simplify.
+Concept: Read the decimal as tenths, hundredths or thousandths, then simplify.
+Step 1: 0.36 = 36/100.
+Step 2: Simplify by dividing by the greatest common factor: 9/25.
+Answer: \(\frac{9}{25}\)","Forgetting to simplify, or using the wrong denominator.","Count the decimal places to choose 10, 100 or 1000 as the denominator.",,,9/25,VERIFIED,MCQ,
+T29-Q03,29,3,Advanced,4,Units of Measurement,me.problems,Ella’s ribbon is 440 cm long. Mai’s ribbon is 4.5 m long. How many centimetres longer is Mai’s ribbon?,,,,,,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 4.5 m = 450 cm.
+Step 2: Difference: 450 − 440 = 10 cm.
+Step 3: Mai’s ribbon is longer than Ella’s by 10 cm.
+Answer: 10 cm",Subtracting 4.5 from 440 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(440-4.5*100),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""10""],""unit"":""cm""}"
+T29-Q04,29,4,Advanced,4,"Perimeter, Area & Volume",ge.composite,Vy’s garden is made of two rectangular lawns: one 8 m by 8 m and one 4 m by 6 m. What is the total area of grass?,88 m²,92 m²,64 m²,52 m²,A,"What it asks: Split the shape into rectangles and add their areas.
+Concept: Composite shapes can be split into simple shapes; add the separate areas.
+Step 1: First rectangle: 8 × 8 = 64 m².
+Step 2: Second rectangle: 4 × 6 = 24 m².
+Step 3: Total: 64 + 24 = 88 m².
+Answer: 88 m²","Multiplying the overall length and width, which would include space that is not part of the room.",Draw a line to split the shape into rectangles you can measure.,,,8*8+4*6,VERIFIED,MCQ,
+T29-Q05,29,5,Advanced,4,Data,au.data,A column graph shows the number of books read each week. Each gridline is 20 books. The bar for Week 1 reaches the 4th gridline and the bar for Week 2 reaches the 9th gridline. How many more books were read in Week 2 than in Week 1?,,,,,,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 20. Find each bar's value, then subtract.
+Step 1: Week 1: 4 × 20 = 80. Week 2: 9 × 20 = 180.
+Step 2: 180 − 80 = 100.
+Answer: 100",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,9*20-4*20,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""100""]}"
+T29-Q06,29,6,Advanced,4,Chance,au.chance,What word do we use for an event that must happen?,,,,,,"What it asks: Answer with the correct word.
+Concept: An event that must happen is certain.
+Step 1: An event that must happen is certain.
+Answer: certain",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""certain""]}"
+T29-Q07,29,7,Advanced,4,Transformations & Symmetry,au.transform,"A point at (6, 5) is moved 6 units to the right and 5 units up. What is the x-coordinate of the new point? (The first number is the x-coordinate, the second is the y-coordinate.)",,,,,,"What it asks: Translate a point on a grid.
+Concept: Moving right or left changes the x-coordinate. Moving up or down changes the y-coordinate.
+Step 1: New x: 6 + 6 = 12.
+Step 2: New y: 5 + 5 = 10.
+Step 3: The x-coordinate is 12.
+Answer: 12","Changing the wrong coordinate, or adding when the move is down.","x goes along the corridor (left/right), y goes up the stairs (up/down).",,,12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T29-Q08,29,8,Advanced,4,Fractions,fr.forms,Complete these equivalent fractions: 3/4 = {1}/24 and 12/30 = 2/{2}.,,,,,,"What it asks: Find the missing numbers in equal fractions.
+Concept: Multiply or divide the top and the bottom by the same number.
+Step 1: 4 × 6 = 24, so 3 × 6 = 18.
+Step 2: 12 ÷ 6 = 2, so 30 ÷ 6 = 5.
+Answer: 1) 18, 2) 5",Changing only the top or only the bottom.,"Whatever you do to the top, do to the bottom.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""18""]},{""accepted"":[""5""]}]}"
+T29-Q09,29,9,Advanced,4,Shapes & Objects,au.shapes,A design uses 4 triangles and 2 heptagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 4 × 3 = 12.
+Step 2: 2 × 7 = 14.
+Step 3: 12 + 14 = 26.
+Answer: 26",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,4*3+2*7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""26""]}"
+T29-Q10,29,10,Advanced,4,Place Value & Rounding,wn.round,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: To round, look at the digit to the right of the place you are rounding to: 5 or more rounds up.
+Step 1: Statement 1 is false: it is in the thousands place.
+Step 2: Statement 2 is true: look at the digit to the right of the thousands place; 198,222 is closest to 198,000.
+Step 3: Statement 3 is true: look at the digit to the right of the thousands place; 322,144 is closest to 322,000.
+Answer: False, True, True",Rounding down when the next digit is 5 or more.,"Underline the rounding place, then check the next digit.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""In 6,068, the digit 6 is in the hundreds place"",""truth"":false},{""text"":""198,222 rounded to the nearest thousand is 198,000"",""truth"":true},{""text"":""322,144 rounded to the nearest thousand is 322,000"",""truth"":true}]}"
+T29-Q11,29,11,Advanced,4,Units of Measurement,me.convert,How many kilometres are there in 6400 metres?,64 km,7.4 km,6.4 km,0.64 km,C,"What it asks: Change metres into kilometres.
+Concept: 1 km = 1,000 m. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 km = 1,000 m.
+Step 2: 6400 ÷ 1,000 = 6.4.
+Answer: 6.4 km","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,6400/1000,VERIFIED,MCQ,
+T29-Q12,29,12,Advanced,4,Decimals,dec.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Line up the decimal places to compare decimals. Multiplying by 10 moves digits one place to the left.
+Step 1: Statement 1 is false: write both with the same number of decimal places: 1.300 and 0.290.
+Step 2: Statement 2 is true: write both with the same number of decimal places: 3.900 and 3.400.
+Step 3: Statement 3 is true: multiplying by 10 moves each digit one place left: 5.5 × 10 = 55.
+Answer: False, True, True",Believing a longer decimal is always a bigger number.,Give every decimal the same number of places before comparing.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""1.3 < 0.29"",""truth"":false},{""text"":""3.9 > 3.4"",""truth"":true},{""text"":""5.5 × 10 = 55"",""truth"":true}]}"
+T29-Q13,29,13,Advanced,4,Place Value & Rounding,wn.place,"Complete the place value: 19,273 = {1} thousands + 2 hundreds + {2} tens + 3 ones.",,,,,,"What it asks: Split a number into its place values.
+Concept: Each digit is worth its place: thousands, hundreds, tens or ones.
+Step 1: 19,273 has 19 thousands, 2 hundreds, 7 tens and 3 ones.
+Answer: 1) 19, 2) 7",Writing the digit in the wrong place.,Zero still holds a place.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""19""]},{""accepted"":[""7""]}]}"
+T29-Q14,29,14,Advanced,4,Fractions,fr.forms,Write \(12\frac{5}{7}\) as an improper fraction.,\(\frac{17}{7}\),\(\frac{89}{7}\),\(\frac{67}{7}\),\(\frac{89}{19}\),B,"What it asks: Turn the mixed number into one fraction.
+Concept: Each whole is made of d parts. Multiply the whole number by the denominator and add the numerator.
+Step 1: 12 wholes = 12 × 7 = 84 parts of size 1/7.
+Step 2: Add the 5 extra parts: 84 + 5 = 89.
+Step 3: The improper fraction is 89/7.
+Answer: \(\frac{89}{7}\)",Adding the whole number to the numerator (w + n) instead of multiplying w by the denominator first.,"Multiply the whole number by the denominator, then add the numerator.",,,(12*7+5)/7,VERIFIED,MCQ,
+T29-Q15,29,15,Advanced,4,Money,au.money,"Tom's shopping bill is $14.61. Tom pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Tom pay?",$14.70,$14.60,$14.61,$14.65,B,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $14.61; look at the last digit of the cents, 1.
+Step 2: It is closer to $14.60 than to $14.65.
+Answer: $14.60","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,1460/100,VERIFIED,MCQ,
+T29-Q16,29,16,Advanced,4,Fractions,fr.compare,Which of these fractions is the smallest?,\(\frac{8}{9}\),\(\frac{11}{12}\),\(\frac{2}{9}\),\(\frac{7}{8}\),C,"What it asks: Pick the fraction with the smallest value.
+Concept: To compare fractions, give them the same denominator (or the same numerator) so the pieces are comparable.
+Step 1: Change every fraction to a denominator of 72.
+Step 2: In order from smallest to largest: 2/9 < 7/8 < 8/9 < 11/12.
+Step 3: The smallest is 2/9.
+Answer: \(\frac{2}{9}\)",Thinking the fraction with the bigger denominator is bigger (1/8 is smaller than 1/4).,"A bigger denominator means the whole is cut into more, smaller pieces.",,,"min(8/9,7/8,2/9,11/12)",VERIFIED,MCQ,
+T29-Q17,29,17,Advanced,4,Time,ts.clock,Choose ALL the times that are the same as 1:10 PM.,,,,,,"What it asks: Choose every correct answer.
+Concept: 24-hour times from 13:00 are PM: subtract 12 for 12-hour time.
+Step 1: 1310 hours: yes, 1310 hours is another way to write 13:10.
+Step 2: 13:10: yes, 13:10 is 1:10 PM.
+Step 3: 01:10: no, that is 1:10 AM in the morning.
+Step 4: 1.10 pm: yes, 1.10 pm is the same as 1:10 PM.
+Step 5: 13:50: no, the minutes are 10, not 50.
+Answer: 1310 hours, 13:10, 1.10 pm",Forgetting whether it is AM or PM.,"After noon, add 12 to the hour for 24-hour time.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""1310 hours"",""13:10"",""01:10"",""1.10 pm"",""13:50""],""correct"":[0,1,3]}"
+T29-Q18,29,18,Advanced,4,Operations & Problem Solving,wp.twostep,A shopkeeper has 13 full boxes with 39 pencils in each. They sell 56 of the pencils. How many pencils are left?,,,,,,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: Total: 13 × 39 = 507.
+Step 2: After selling: 507 − 56 = 451.
+Answer: 451","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,39*13-56,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""451""]}"
+T29-Q19,29,19,Advanced,4,Patterns & Algebra,pa.functions,"A rule changes each input number to an output number. Input 2 gives 22, input 3 gives 30, and input 5 gives 46. What output does input 12 give?",96,110,102,18,C,"What it asks: Find the rule from the examples, then use it.
+Concept: Rules usually combine multiplying and adding: look at how the output changes when the input goes up by 1.
+Step 1: When the input goes up by 1, the output goes up by 8, so the rule includes × 8.
+Step 2: 2 × 8 = 16, and the output is 22, so we add 6.
+Step 3: For 12: 8 × 12 + 6 = 102.
+Answer: 102",Finding only the “+ b” part or only the “× a” part of the rule.,Test your rule on every example before using it.,,,8*12+6,VERIFIED,MCQ,
+T29-Q20,29,20,Advanced,4,Operations & Problem Solving,ms.planning,At a birthday party there are 12 children and 3 adults. Each of the children eats 2 slices of pizza and each of the adults eats 2. Each pizza has 6 slices and costs $14. What is the least amount of money needed to buy enough pizza?,,,,,,"What it asks: Count the portions, then the whole items needed, then the cost.
+Concept: Find the total needed, divide by the pack size, round up, then multiply by the price.
+Step 1: Portions: 12 × 2 + 3 × 2 = 30.
+Step 2: Whole pizzas: 30 ÷ 6 = 5.00, so round up to 5.
+Step 3: Cost: 5 × $14 = $70.
+Answer: $70","Rounding down the number of whole items, so some people go without.",You cannot buy part of an item – round up.,,,ceil((12*2+3*2)/6)*14,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""70""]}"
+T29-Q21,29,21,Advanced,4,Location & Maps,au.maps,A map scale says 1 cm on the map is 50 km in real life. A real road is 500 km long. How long is the road on the map?,11 cm,500 cm,60 cm,10 cm,D,"What it asks: Use a map scale to find the length on the map.
+Concept: Divide the real distance by the number of kilometres that 1 cm stands for.
+Step 1: 500 ÷ 50 = 10.
+Answer: 10 cm",Multiplying instead of dividing.,Map to real: multiply. Real to map: divide.,,,500/50,VERIFIED,MCQ,
+T29-Q22,29,22,Advanced,4,Operations & Problem Solving,wn.muldiv,Complete the number sentences: {1} × 21 = 168 and 76 ÷ {2} = 4.,,,,,,"What it asks: Use multiplication and division as opposite operations.
+Concept: Multiplication and division undo each other.
+Step 1: 168 ÷ 21 = 8.
+Step 2: 76 ÷ 4 = 19.
+Answer: 1) 8, 2) 19",Using the wrong operation to find the missing number.,"To find a missing factor, divide the product by the known factor.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""8""]},{""accepted"":[""19""]}]}"
+T29-Q23,29,23,Advanced,4,Patterns & Algebra,rc.missing,\(9 \times \square - 30 = 168\). What number goes in the box?,,,,,,"What it asks: Work backwards to find the missing number.
+Concept: Undo each operation with its opposite, in reverse order.
+Step 1: Undo “− 30”: 168 + 30 = 198.
+Step 2: Undo “× 9”: 198 ÷ 9 = 22.
+Answer: 22",Subtracting instead of adding when undoing a subtraction.,Subtraction is undone by addition.,,,(168+30)/9,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""22""]}"
+T29-Q24,29,24,Advanced,4,Angles,ge.angles,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Acute < 90°, right angle = 90°, obtuse between 90° and 180°, straight = 180°, reflex between 180° and 360°.
+Step 1: Statement 1 is true: 90° is a right angle.
+Step 2: Statement 2 is false: 200° is reflex.
+Step 3: Statement 3 is true: 180° is a straight angle.
+Answer: True, False, True",Calling a 90° angle acute or obtuse.,Compare with a square corner (90°) first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""An angle of 90° is a right angle"",""truth"":true},{""text"":""An angle of 200° is a right angle"",""truth"":false},{""text"":""An angle of 180° is a straight angle"",""truth"":true}]}"
+T29-Q25,29,25,Advanced,4,Data,au.data,"In a picture graph, each ★ stands for 4 students who walk to school. Class 5D has 5 ★ and Class 5A has 7 ★. How many students walk to school altogether?",,,,,,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 4, so multiply the number of stars by 4.
+Step 1: Class 5D: 5 × 4 = 20. Class 5A: 7 × 4 = 28.
+Step 2: 20 + 28 = 48.
+Answer: 48",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,(5+7)*4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""48""]}"
+T29-Q26,29,26,Advanced,5,"Perimeter, Area & Volume",ge.area,A rectangular playground is 7.3 m long and 3.4 m wide. What is its area?,10.7 m²,21.4 m²,24.82 m²,248.2 m²,C,"What it asks: Find how much flat space the rectangle covers.
+Concept: Area of a rectangle = length × width, measured in square units.
+Step 1: Area = length × width = 7.3 × 3.4.
+Step 2: 7.3 × 3.4 = 24.82 m².
+Answer: 24.82 m²",Finding the perimeter by adding instead of multiplying.,Think of the number of 1-unit squares that fit inside.,,,7.3*3.4,VERIFIED,MCQ,
+T29-Q27,29,27,Advanced,5,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 20 and 70?,10,20,11,140,A,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 20: 1, 2, 4, 5, 10, 20.
+Step 2: Factors of 70: 1, 2, 5, 7, 10, 14, 35, 70.
+Step 3: The biggest number in both lists is 10.
+Answer: 10","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(20,70)",VERIFIED,MCQ,
+T29-Q28,29,28,Advanced,5,Shapes & Objects,au.shapes,A design uses 5 triangles and 3 pentagons. How many sides are there altogether?,30,120,16,18,A,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 5 × 3 = 15.
+Step 2: 3 × 5 = 15.
+Step 3: 15 + 15 = 30.
+Answer: 30",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,5*3+3*5,VERIFIED,MCQ,
+T29-Q29,29,29,Advanced,5,Factors & Multiples,wn.factors,Choose ALL the multiples of 12.,,,,,,"What it asks: Choose every correct answer.
+Concept: A multiple of a number is in its times table.
+Step 1: 42: no, 42 ÷ 12 has a remainder of 6.
+Step 2: 48: yes, 12 × 4 = 48.
+Step 3: 20: no, 20 ÷ 12 has a remainder of 8.
+Step 4: 60: yes, 12 × 5 = 60.
+Step 5: 67: no, 67 ÷ 12 has a remainder of 7.
+Answer: 48, 60",Choosing numbers that are only close to a multiple.,Skip count by the number and check each option.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""42"",""48"",""20"",""60"",""67""],""correct"":[1,3]}"
+T29-Q30,29,30,Advanced,5,Time,ts.clock,Put these times in order from shortest to longest.,,,,,,"What it asks: Put the items in order, shortest to longest.
+Concept: Change every time to minutes before you compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 73 minutes, 90 minutes, 136 minutes, 144 minutes.
+Answer: 73 minutes, 90 minutes, 136 minutes, 144 minutes",Treating an hour as 100 minutes.,1 hour = 60 minutes.,,,,VERIFIED,ORDERING,"{""items"":[""73 minutes"",""90 minutes"",""136 minutes"",""144 minutes""]}"

@@ -105,6 +105,9 @@ To test while the development server is running, set `NEXT_DIST_DIR=.next-e2e`, 
 | `npm run test:e2e` | Playwright end-to-end tests (builds nothing – run `npm run build` first) |
 | `npm run db:migrate` / `db:seed` / `db:setup` | migrations / seed / both |
 | `npm run bank:export` | writes the reference bank to `exports/kenny-math-bank-v1.csv` |
+| `npm run bank:au` | rebuilds the Australian Year 5 mixed-type bank: `exports/kenny-math-v2.csv` (900 questions) and `exports/kenny-math-v2-sets/set-01.csv` ... `set-30.csv` (one file per test, for reading) |
+| `npm run demo:seed` | creates (or refreshes) the demo user `demo` / password `123` and the private bank "Demo - all question types" (see below) |
+| `npm run demo:seed:postgres` | same demo user and bank, written to the PostgreSQL/Neon database named by `DATABASE_URL` and `DATABASE_URL_UNPOOLED` (manual only; add `-- --reset-password` to restore `123`) |
 | `npm run qa:report` | validates the reference bank and writes `qa/content-report.md` |
 
 The ready-made 900-question file is in [`exports/kenny-math-bank-v1.csv`](exports/kenny-math-bank-v1.csv); it can be imported again through **Admin → Import / Export**.
@@ -142,7 +145,7 @@ For an existing installation, back up the database before applying migrations. B
 
 ### CSV format
 
-Required columns (in this order when exporting): `question_id, test_id, question_number, test_level, difficulty, topic, skill, question_text, option_a, option_b, option_c, option_d, correct_answer, explanation, common_mistake, learning_tip`. Optional: `bank_id, bank_version, verify_expr, validation_status`. Maths is written between `\(` and `\)` (KaTeX), e.g. `\(\frac{3}{4}\)`. Files are read as UTF-8 (with or without BOM), UTF-16, or Windows-1252; comma and semicolon delimiters are detected. `verify_expr` (e.g. `3/4+1/8`) lets the validator confirm the answer automatically; rows without it are checked structurally and flagged for manual review if the answer cannot be verified.
+Required columns (in this order when exporting): `question_id, test_id, question_number, test_level, difficulty, topic, skill, question_text, option_a, option_b, option_c, option_d, correct_answer, explanation, common_mistake, learning_tip`. Optional: `bank_id, bank_version, verify_expr, validation_status, question_type, answer_data`. Maths is written between `\(` and `\)` (KaTeX), e.g. `\(\frac{3}{4}\)`. Files are read as UTF-8 (with or without BOM), UTF-16, or Windows-1252; comma and semicolon delimiters are detected. `verify_expr` (e.g. `3/4+1/8`) lets the validator confirm the answer automatically; rows without it are checked structurally and flagged for manual review if the answer cannot be verified.
 
 ## Deployment
 
@@ -165,6 +168,36 @@ Put it behind HTTPS (Caddy, nginx, Cloudflare Tunnel, or your platform's TLS). T
 ## Security notes
 
 Password hashes (bcrypt), server-side sessions with hashed tokens, HttpOnly/SameSite cookies, server-side authorisation on every admin API route, origin check on writes, login rate limiting, 4 MB upload limit, CSV formula neutralisation on export, audit log. No stack traces are shown to students; API errors are friendly messages. Change the seeded admin password in *Settings* after first sign-in.
+
+### Question types
+
+Besides 4-option multiple choice (`MCQ`, the default), a question can be `NUMERIC_INPUT`, `TRUE_FALSE`, `MULTI_SELECT`, `FILL_BLANK`, `ORDERING` or `SHORT_TEXT`. Set `question_type`, leave `option_a`-`option_d` and `correct_answer` empty, and put the setup in `answer_data` (JSON). Old files without these two columns are read as multiple choice.
+
+| `question_type` | `answer_data` | Student sees | Right when |
+|---|---|---|---|
+| `NUMERIC_INPUT` | `{"accepted":["3/4","0.75"],"unit":"cm","tolerance":0,"requireSimplified":false}` | a text box | the number has the same value (3/4, 0.75, .75, 0,75 and 6/8 all match; `requireSimplified` rejects 6/8) |
+| `TRUE_FALSE` | `{"statements":[{"text":"...","truth":true}]}` | True/False per statement | every statement is right |
+| `MULTI_SELECT` | `{"options":["2","3","4"],"correct":[0,2]}` (0-based) | check boxes | exactly the right set is ticked |
+| `FILL_BLANK` | `{"blanks":[{"accepted":["1/4"]},{"accepted":["10"]}]}` and `{1}`, `{2}` in `question_text` | one box per blank | every blank is right (numbers by value, text ignoring capital letters) |
+| `ORDERING` | `{"items":["0.2","0.25","0.3"]}` listed in the **correct** order | items shown shuffled, moved with arrows | the order is exactly right |
+| `SHORT_TEXT` | `{"accepted":["square"],"caseSensitive":false,"ignoreDiacritics":false}` | a text box | the text matches an accepted answer |
+
+Typed text ignores capital letters and extra spaces, and Unicode forms of accents are normalised. Vietnamese accents must match unless the question sets `ignoreDiacritics` (or lists the unaccented spelling). Each question is still worth one point and is right or wrong as a whole, so XP, stars and skills work unchanged. The server never sends the accepted answers to the browser while a test is open. The logic for every type lives in `src/lib/question-types`.
+
+Limits of this first version: the generator still produces multiple choice only; Smart Review and "Try a Similar Question" stay multiple choice; the static browser demo is multiple choice only; typed questions are added by CSV import (or by editing the answer setup of an existing typed question in Admin > Questions).
+
+### Australian Year 5 bank (`exports/kenny-math-v2.csv`)
+
+A ready-to-upload bank of 900 questions (30 tests x 30), built by `npm run bank:au` from the code in `src/lib/gen/au`. Upload it in **Admin > Import / Export** (new bank), or on a user's profile to make it that user's private bank, then publish it. It validates with every question verified, so publishing needs no review confirmation.
+
+* **Sections (16):** Place Value & Rounding, Operations & Problem Solving, Factors & Multiples, Fractions, Decimals, Money, Patterns & Algebra, Units of Measurement, Perimeter/Area/Volume, Time, Angles, Shapes & Objects, Transformations & Symmetry, Location & Maps, Data, Chance. Every test has questions from nearly all of them. Australian dollars (cash rounded to 5c), 24-hour time, metric units and Australian spelling are used. Ratio, speed and percentage-chain questions are left out because they are above Year 5. The section list is from general knowledge of the Australian Curriculum, not checked against each content descriptor, so a teacher should review it.
+* **Question types per test:** Tests 1-10: 18 multiple choice, 5 type-the-number, 2 true/false, 2 choose-all, 1 fill-the-blanks, 1 ordering, 1 short text. Tests 11-20: 15/6/3/2/2/1/1. Tests 21-30: 12/8/3/2/3/1/1. In total 450 multiple choice and 450 of the other types. Difficulty rises inside each test and from test 1 to 30, like the original bank.
+* **Where the questions come from:** about 50 of the original generator's templates (the ones suited to Year 5) plus about 100 new templates and 44 fixed vocabulary questions. Every answer is computed or checked by code; each question has a worked explanation, a common mistake and a tip. Text only: there are no images.
+* **Limits:** the 30 `set-NN.csv` files are for reading and for fixing single tests later with "update selected questions" on an imported bank (a new bank needs all 900 rows). Questions from the new sections have their own skill names, so "Try a Similar Question" and Smart Review have no practice generator for them (they say so instead of failing). A teacher should still read through some tests before using them with students.
+
+### Demo user and demo bank
+
+`npm run demo:seed` creates the student **demo** (password **123**, Vietnamese by default) with a private published bank of 18 hand-written questions in tests 1, 11 and 21, covering all seven types. It can be run again at any time: it keeps a changed password unless you run `npm run demo:seed -- --reset-password` (use this if `demo` / `123` is rejected), and it does not touch other users or the shared bank. The password is deliberately weak, so the script is **not** run by `db:setup` or by the Vercel build. On Vercel/Neon the new question types do not appear by themselves: the generated bank is multiple choice only, so run `npm run demo:seed:postgres` once (with the Neon connection strings in the environment, for example after `vercel env pull .env.local`) and sign in as `demo`. Remove the demo user in Admin > User Profiles before real use. The bank is intentionally not a complete 30 x 30 bank, so running "Validate" on it in Admin reports the missing tests; it is already published and does not need that step.
 
 ## Project documents
 

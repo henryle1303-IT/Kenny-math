@@ -1,0 +1,166 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T09-Q01,9,1,Beginner,2,Angles,ge.angles,3 equal angles and one angle of 210° meet at a point. Angles around a point add up to 360°. What is the size of each of the 3 equal angles?,40°,60°,120°,50°,D,"What it asks: Share the remaining angle equally.
+Concept: Angles around a point add up to 360°.
+Step 1: The 3 equal angles share 360 − 210 = 150°.
+Step 2: Each is 150 ÷ 3 = 50°.
+Answer: 50°",Dividing 360° by the number of equal angles without removing the other angle.,"Subtract the known angles first, then share what is left.",,,(360-210)/3,VERIFIED,MCQ,
+T09-Q02,9,2,Beginner,2,Shapes & Objects,au.shapes,Choose ALL the shapes that have at least one pair of parallel sides.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: rhombus: yes, a rhombus has 2 pair(s) of parallel sides.
+Step 2: regular pentagon: no, a regular pentagon has 0 pair(s) of parallel sides.
+Step 3: equilateral triangle: no, a equilateral triangle has 0 pair(s) of parallel sides.
+Step 4: trapezium: yes, a trapezium has 1 pair(s) of parallel sides.
+Step 5: square: yes, a square has 2 pair(s) of parallel sides.
+Answer: rhombus, trapezium, square",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""rhombus"",""regular pentagon"",""equilateral triangle"",""trapezium"",""square""],""correct"":[0,3,4]}"
+T09-Q03,9,3,Beginner,2,"Perimeter, Area & Volume",ge.volume,An aquarium has a volume of 56 cm³ and a rectangular base 7 cm long and 2 cm wide. What is its height?,11 cm,4 cm,14 cm,8 cm,B,"What it asks: Work backwards from the volume to find the missing height.
+Concept: Volume = base area × height, so height = volume ÷ base area.
+Step 1: Base area: 7 × 2 = 14 cm².
+Step 2: Height = 56 ÷ 14 = 4 cm.
+Answer: 4 cm",Dividing the volume by only one dimension.,Check: base area × height should give back the volume.,,,56/(7*2),VERIFIED,MCQ,
+T09-Q04,9,4,Beginner,2,Patterns & Algebra,pa.arith,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: In a number pattern, find the rule from the difference between terms.
+Step 1: Statement 1 is false: 27 + 5 = 32.
+Step 2: Statement 2 is true: each term is 5 more than the one before.
+Answer: False, True",Using the term number instead of the number of steps.,The 10th term is 9 steps after the first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The next number in 12, 17, 22, 27, … is 33"",""truth"":false},{""text"":""The pattern 12, 17, 22, 27, … adds 5 each time"",""truth"":true}]}"
+T09-Q05,9,5,Beginner,2,Shapes & Objects,au.shapes,How many sides does a octagon have?,7,8,10,9,B,"What it asks: Know the number of sides of a polygon.
+Concept: The name octagon tells you the number of sides: 8.
+Step 1: A octagon has 8 sides.
+Answer: 8",Mixing up hexagon (6) and octagon (8).,"Penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10.",,,8,VERIFIED,MCQ,
+T09-Q06,9,6,Beginner,2,Chance,au.chance,"A bag has 5 red, 3 blue marbles. One marble is taken out without looking. What is the chance of taking a blue marble? Give a fraction in simplest form.",\(\frac{5}{8}\),\(\frac{3}{5}\),\(\frac{3}{8}\),\(\frac{1}{2}\),C,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 5 + 3 = 8.
+Step 2: blue marbles: 3.
+Step 3: Chance = \(\frac{3}{8}\).
+Answer: \(\frac{3}{8}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,3/8,VERIFIED,MCQ,
+T09-Q07,9,7,Beginner,2,Decimals,dec.addsub,Complete: 0.1 + {1} = 1 and 9.7 × 10 = {2}.,,,,,,"What it asks: Use decimals to make 1 and to multiply or divide by 10.
+Concept: Multiplying by 10 moves the digits one place left; dividing by 10 moves them one place right.
+Step 1: 1 − 0.1 = 0.9.
+Answer: 1) 0.9, 2) 97",Moving the decimal point the wrong way.,"Check: the answer to × 10 is bigger, to ÷ 10 is smaller.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.9""]},{""accepted"":[""97""]}]}"
+T09-Q08,9,8,Beginner,2,Transformations & Symmetry,au.transform,Linh turns a shape clockwise through 3 quarter turns. How many degrees does the shape turn altogether?,,,,,,"What it asks: Turn quarter turns into degrees.
+Concept: One quarter turn is 90°. A half turn is 180° and a full turn is 360°.
+Step 1: 3 × 90° = 270°.
+Answer: 270°",Using 45° or 180° for a quarter turn.,"Quarter turn 90°, half turn 180°, three-quarter turn 270°, full turn 360°.",,,270,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""270""],""unit"":""°""}"
+T09-Q09,9,9,Beginner,2,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{3}{8}\), \(\frac{1}{2}\), \(\frac{3}{4}\).
+Answer: \(\frac{3}{8}\), \(\frac{1}{2}\), \(\frac{3}{4}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{3}{8}\\)"",""\\(\\frac{1}{2}\\)"",""\\(\\frac{3}{4}\\)""]}"
+T09-Q10,9,10,Beginner,2,Operations & Problem Solving,wp.rounding,Jack wants to buy a science kit that costs $105. Jack already has $15 and saves $6 each week. What is the smallest number of weeks Jack needs to save to afford it?,18,16,14,15,D,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $105 − $15 = $90.
+Step 2: 90 ÷ 6 = 15.00, so after 14 weeks it is not enough.
+Step 3: Jack needs 15 weeks.
+Answer: 15","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((105-15)/6),VERIFIED,MCQ,
+T09-Q11,9,11,Beginner,2,Location & Maps,au.maps,Khoa is facing East. Khoa turns clockwise to face West. Through how many degrees does Khoa turn?,,,,,,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From East clockwise to West is 4 steps of 45°.
+Step 2: 4 × 45° = 180°.
+Answer: 180°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,180,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""180""],""unit"":""°""}"
+T09-Q12,9,12,Beginner,2,Patterns & Algebra,pa.arith,"A number pattern starts 12, 17, 22, … and keeps adding 5. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 67: yes, 12 + 11 × 5 = 67.
+Step 2: 57: yes, 12 + 9 × 5 = 57.
+Step 3: 44: no, 44 is not 12 plus a multiple of 5.
+Step 4: 59: no, 59 is not 12 plus a multiple of 5.
+Step 5: 65: no, 65 is not 12 plus a multiple of 5.
+Answer: 67, 57",Choosing numbers that are near the pattern but not on it.,Check that (number − 12) divides by 5.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""67"",""57"",""44"",""59"",""65""],""correct"":[0,1]}"
+T09-Q13,9,13,Beginner,2,Time,ts.convert,How many seconds are there in 13 minutes?,840 seconds,78 seconds,"1,300 seconds",780 seconds,D,"What it asks: Change minutes into seconds.
+Concept: 1 minute = 60 seconds.
+Step 1: 13 × 60 = 780 seconds.
+Answer: 780 seconds",Using 100 seconds in a minute.,Multiply by 60 when you go from minutes to seconds.,,,13*60,VERIFIED,MCQ,
+T09-Q14,9,14,Beginner,2,Data,au.data,A column graph shows the number of books read each week. Each gridline is 5 books. The bar for Week 1 reaches the 5th gridline and the bar for Week 2 reaches the 7th gridline. How many more books were read in Week 2 than in Week 1?,,,,,,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 5. Find each bar's value, then subtract.
+Step 1: Week 1: 5 × 5 = 25. Week 2: 7 × 5 = 35.
+Step 2: 35 − 25 = 10.
+Answer: 10",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,7*5-5*5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""10""]}"
+T09-Q15,9,15,Beginner,2,Place Value & Rounding,wn.place,"Which number is the same as \(2 \times 1{,}000 + 7 \times 100 + 3 \times 10\)?","2,730","2,830",273,372,A,"What it asks: Turn the expanded form into an ordinary number.
+Concept: Expanded form shows each digit multiplied by its place value.
+Step 1: Work out each part: 2,000, 700, 30.
+Step 2: Add them: 2,000 + 700 + 30 = 2,730.
+Step 3: Places with no part are zeros.
+Answer: 2,730",Leaving out the zero placeholders and writing a number that is too short.,Write a 0 in every place value that is missing from the expanded form.,,,2000+700+30,VERIFIED,MCQ,
+T09-Q16,9,16,Beginner,2,Units of Measurement,me.problems,Kira’s ribbon is 220 cm long. Minh’s ribbon is 4.7 m long. How many centimetres longer is Minh’s ribbon?,,,,,,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 4.7 m = 470 cm.
+Step 2: Difference: 470 − 220 = 250 cm.
+Step 3: Minh’s ribbon is longer than Kira’s by 250 cm.
+Answer: 250 cm",Subtracting 4.7 from 220 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(220-4.7*100),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""250""],""unit"":""cm""}"
+T09-Q17,9,17,Beginner,2,Time,ts.clock,Dan's tram leaves Southbank at 10:22 AM and arrives at 10:48 AM. How many minutes does the trip take?,26 minutes,66 minutes,16 minutes,36 minutes,A,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 10:22 AM to 10:48 AM.
+Step 2: 26 minutes pass.
+Answer: 26 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,26,VERIFIED,MCQ,
+T09-Q18,9,18,Beginner,2,"Perimeter, Area & Volume",ge.volume,What do we call the amount of space inside a 3D object?,,,,,,"What it asks: Answer with the correct word.
+Concept: The space inside a 3D object is its volume.
+Step 1: The space inside a 3D object is its volume.
+Answer: volume",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""volume""]}"
+T09-Q19,9,19,Beginner,2,Data,au.data,A column graph shows the number of books read each week. Each gridline is 5 books. The bar for Week 1 reaches the 2nd gridline and the bar for Week 2 reaches the 8th gridline. How many more books were read in Week 2 than in Week 1?,6,35,30,40,C,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 5. Find each bar's value, then subtract.
+Step 1: Week 1: 2 × 5 = 10. Week 2: 8 × 5 = 40.
+Step 2: 40 − 10 = 30.
+Answer: 30",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,8*5-2*5,VERIFIED,MCQ,
+T09-Q20,9,20,Beginner,2,Fractions,fr.addsub,Calculate \(5\frac{1}{6} + 1\frac{1}{2}\). Give your answer as a mixed number in simplest form.,\(6\frac{2}{3}\),\(6\frac{5}{6}\),\(6\frac{1}{2}\),\(6\frac{1}{4}\),A,"What it asks: Add the mixed numbers.
+Concept: Convert to improper fractions with a common denominator, calculate, then convert back to a mixed number.
+Step 1: Write as improper fractions over 6: 31/6 + 9/6.
+Step 2: Add numerators: 40/6.
+Step 3: Simplify and change to a mixed number: 20/3.
+Answer: \(6\frac{2}{3}\)",Adding the whole numbers and the fractions separately but forgetting to carry when the fractions make more than 1.,"When in doubt, change both mixed numbers to improper fractions first.",,,31/6+3/2,VERIFIED,MCQ,
+T09-Q21,9,21,Beginner,3,Factors & Multiples,wn.factors,How many different factors does 54 have?,7,8,6,9,B,"What it asks: Count every whole number that divides 54 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 54, 2 × 27, 3 × 18, 6 × 9.
+Step 2: List all the factors: 1, 2, 3, 6, 9, 18, 27, 54.
+Step 3: There are 8 factors.
+Answer: 8","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(54),VERIFIED,MCQ,
+T09-Q22,9,22,Beginner,3,Decimals,dec.place,What is \(9.386 \times 10\)?,938.6,93.86,0.9386,9.386,B,"What it asks: Shift the digits to the left by the right number of places.
+Concept: Multiplying by 10 moves every digit 1 place left (bigger).
+Step 1: 10 has 1 zero, so move the digits 1 place left.
+Step 2: 9.386 × 10 = 93.86.
+Answer: 93.86",Moving the decimal point the wrong way or by the wrong number of places.,Bigger number = point moves right. Smaller number = point moves left.,,,9.386*10,VERIFIED,MCQ,
+T09-Q23,9,23,Beginner,3,Operations & Problem Solving,wn.muldiv,Find the value of \(59 \times 33\).,"1,770",354,"1,947","1,888",C,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 59 × 30 = 1,770.
+Step 2: 59 × 3 = 177.
+Step 3: Add the parts: 1,770 + 177 = 1,947.
+Answer: 1,947","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,59*33,VERIFIED,MCQ,
+T09-Q24,9,24,Beginner,3,Factors & Multiples,wn.factors,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: A multiple is in the times table of the number. A factor divides exactly. A prime has exactly two factors.
+Step 1: Statement 1 is false: 28 can be divided by 2, so it has more than two factors.
+Step 2: Statement 2 is true: 5 × 5 = 25.
+Step 3: Statement 3 is false: 33 = 3 × 11, so it is composite.
+Answer: False, True, False","Thinking 1 is prime, or that every odd number is prime.","Test small primes 2, 3, 5 and 7 before you decide a number is prime.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""28 is a prime number"",""truth"":false},{""text"":""25 is a square number"",""truth"":true},{""text"":""33 is a prime number"",""truth"":false}]}"
+T09-Q25,9,25,Beginner,3,Units of Measurement,me.problems,Tom has a ribbon of 6 m 54 cm and another one of 3 m 48 cm. What is the total in cm?,"1,002 cm",306 cm,"1,012 cm","1,102 cm",A,"What it asks: Change both amounts to cm and add.
+Concept: Convert everything to the same unit first. 1 m = 100 cm.
+Step 1: 6 m 54 cm = 654 cm.
+Step 2: 3 m 48 cm = 348 cm.
+Step 3: 654 + 348 = 1,002 cm.
+Answer: 1,002 cm",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,654+348,VERIFIED,MCQ,
+T09-Q26,9,26,Beginner,3,Place Value & Rounding,wn.round,"Round 99,144 to the nearest thousand.","99,000","99,100","100,000","98,000",A,"What it asks: Find the thousand that 99,144 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 99,144 is between 99,000 and 100,000.
+Step 2: It is 144 above 99,000 and 856 below 100,000.
+Step 3: It is closer to 99,000.
+Answer: 99,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(99144/1000)*1000,VERIFIED,MCQ,
+T09-Q27,9,27,Beginner,3,Money,dec.money,"At the book fair, Kenny buys 4 notebooks at $2.20 each and a pen for $3.35. Kenny pays with $20.00. How much change does Kenny get?",$7.95,$11.20,$12.15,$7.85,D,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the notebooks: 4 × $2.20 = $8.80.
+Step 2: Add a pen: $8.80 + $3.35 = $12.15.
+Step 3: Change: $20.00 − $12.15 = $7.85.
+Answer: $7.85",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,20-(2.2*4+3.35),VERIFIED,MCQ,
+T09-Q28,9,28,Beginner,3,Operations & Problem Solving,ms.planning,At a sports day there are 16 players and 8 coaches. Each of the players eats 3 wedges of watermelon and each of the coaches eats 2. Each watermelon has 6 wedges and costs $9. What is the least amount of money needed to buy enough watermelon?,$99,$90,$117,$108,A,"What it asks: Count the portions, then the whole items needed, then the cost.
+Concept: Find the total needed, divide by the pack size, round up, then multiply by the price.
+Step 1: Portions: 16 × 3 + 8 × 2 = 64.
+Step 2: Whole watermelons: 64 ÷ 6 = 10.67, so round up to 11.
+Step 3: Cost: 11 × $9 = $99.
+Answer: $99","Rounding down the number of whole items, so some people go without.",You cannot buy part of an item – round up.,,,ceil((16*3+8*2)/6)*9,VERIFIED,MCQ,
+T09-Q29,9,29,Beginner,3,Money,dec.money,"At the corner shop, Sam buys 7 notebooks at $1.67 each and a pen for $3.61. Sam pays with $25.00. How much change does Sam get?",,,,,,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the notebooks: 7 × $1.67 = $11.69.
+Step 2: Add a pen: $11.69 + $3.61 = $15.30.
+Step 3: Change: $25.00 − $15.30 = $9.70.
+Answer: $9.70",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,25-(1.67*7+3.61),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9.70""]}"
+T09-Q30,9,30,Beginner,3,Fractions,fr.compare,Which of these fractions is the greatest?,\(\frac{3}{4}\),\(\frac{2}{3}\),\(\frac{1}{3}\),\(\frac{3}{8}\),A,"What it asks: Pick the fraction with the largest value.
+Concept: To compare fractions, give them the same denominator (or the same numerator) so the pieces are comparable.
+Step 1: Change every fraction to a denominator of 24.
+Step 2: In order from smallest to largest: 1/3 < 3/8 < 2/3 < 3/4.
+Step 3: The greatest is 3/4.
+Answer: \(\frac{3}{4}\)",Thinking the fraction with the bigger denominator is bigger (1/8 is smaller than 1/4).,"A bigger denominator means the whole is cut into more, smaller pieces.",,,"max(2/3,3/8,3/4,1/3)",VERIFIED,MCQ,
