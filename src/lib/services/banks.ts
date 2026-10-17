@@ -28,6 +28,8 @@ export function toQuestionData(q: Question): QuestionData {
     commonMistake: q.commonMistake,
     learningTip: q.learningTip,
     verifyExpr: q.verifyExpr,
+    questionType: q.questionType,
+    answerData: q.answerData,
   };
 }
 
@@ -248,6 +250,7 @@ export interface QuestionEdit {
   commonMistake?: string;
   learningTip?: string;
   verifyExpr?: string | null;
+  answerData?: string | null;
 }
 
 export async function updateQuestion(bankId: string, questionDbId: string, edit: QuestionEdit) {
@@ -268,6 +271,7 @@ export async function updateQuestion(bankId: string, questionDbId: string, edit:
     commonMistake: edit.commonMistake ?? q.commonMistake,
     learningTip: edit.learningTip ?? q.learningTip,
     verifyExpr: edit.verifyExpr === undefined ? q.verifyExpr : edit.verifyExpr || null,
+    answerData: edit.answerData === undefined ? q.answerData : edit.answerData || null,
   };
   const data = toQuestionData({ ...q, ...next });
   const v = validateQuestion(data);
@@ -298,6 +302,7 @@ export async function createQuestion(bankId: string, input: QuestionData) {
       questionId: input.questionId, bankId, testNumber: input.testNumber, position: input.position, level: levelOf(input.testNumber), difficulty: input.difficulty,
       topic: input.topic, skill: input.skill, questionText: input.questionText, optionA: input.options[0], optionB: input.options[1], optionC: input.options[2], optionD: input.options[3],
       correctAnswer: input.correctAnswer, explanation: input.explanation, commonMistake: input.commonMistake, learningTip: input.learningTip, verifyExpr: input.verifyExpr ?? null,
+      questionType: input.questionType ?? 'MCQ', answerData: input.answerData ?? null,
       validationStatus: v.status, validationNotes: v.issues.map((i) => i.message).join(' | '),
     },
   });
@@ -332,6 +337,7 @@ export async function regenerateQuestion(bankId: string, questionDbId: string) {
   const bank = await assertEditable(bankId);
   const q = await prisma.question.findFirst({ where: { id: questionDbId, bankId } });
   if (!q) throw new AppError('Question not found.', 404, 'NOT_FOUND');
+  if (q.questionType !== 'MCQ') throw new AppError('Only multiple-choice questions made by the generator can be regenerated. Edit this question instead.', 409, 'NOT_REGENERABLE');
   const variant = Math.floor(Math.random() * 1_000_000) + 1;
   await generateTests(bankId, { tests: [q.testNumber], onlyPositions: [q.position], variant });
   void bank;
@@ -381,6 +387,7 @@ export async function exportBankCsv(bankId: string, tests?: number[]) {
     questionId: q.questionId, testNumber: q.testNumber, position: q.position, level: q.level, difficulty: q.difficulty, topic: q.topic, skill: q.skill,
     questionText: q.questionText, optionA: q.optionA, optionB: q.optionB, optionC: q.optionC, optionD: q.optionD, correctAnswer: q.correctAnswer,
     explanation: q.explanation, commonMistake: q.commonMistake, learningTip: q.learningTip, verifyExpr: q.verifyExpr, validationStatus: q.validationStatus,
+    questionType: q.questionType, answerData: q.answerData,
   }));
   return { csv: questionsToCsv(rows, bank.id, bank.version), bank, count: rows.length };
 }
@@ -398,7 +405,7 @@ export async function insertQuestions(bankId: string, rows: { data: QuestionData
         data: rows.slice(i, i + 100).map(({ data: d, status, notes }) => ({
           questionId: d.questionId, bankId, testNumber: d.testNumber, position: d.position, level: levelOf(d.testNumber), difficulty: d.difficulty, topic: d.topic, skill: d.skill,
           questionText: d.questionText, optionA: d.options[0], optionB: d.options[1], optionC: d.options[2], optionD: d.options[3], correctAnswer: d.correctAnswer,
-          explanation: d.explanation, commonMistake: d.commonMistake, learningTip: d.learningTip, verifyExpr: d.verifyExpr ?? null, validationStatus: status, validationNotes: notes,
+          explanation: d.explanation, commonMistake: d.commonMistake, learningTip: d.learningTip, verifyExpr: d.verifyExpr ?? null, questionType: d.questionType ?? 'MCQ', answerData: d.answerData ?? null, validationStatus: status, validationNotes: notes,
         })),
       });
     }

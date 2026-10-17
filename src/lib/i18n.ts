@@ -40,6 +40,32 @@ export function tr(lang: Lang, key: string): string {
   return lang === 'vi' ? (vi[key] ?? key) : key;
 }
 
+// ---------- Question types: [English, Vietnamese] ----------
+const QT: Record<string, [string, string]> = {
+  numeric: ['Type your answer as a number. Fractions like 3/4 and decimals like 0.75 are fine.', 'Nhập đáp án là một số. Có thể viết phân số như 3/4 hoặc số thập phân như 0.75.'],
+  numericPlaceholder: ['Your answer', 'Đáp án của bạn'],
+  short: ['Type your answer. Capital letters do not matter.', 'Nhập đáp án. Không cần để ý chữ hoa hay chữ thường.'],
+  trueFalse: ['Choose True or False for each statement.', 'Chọn Đúng hoặc Sai cho từng mệnh đề.'],
+  true: ['True', 'Đúng'],
+  false: ['False', 'Sai'],
+  multi: ['Choose ALL the correct answers.', 'Chọn TẤT CẢ các đáp án đúng.'],
+  fill: ['Fill in every blank.', 'Điền vào tất cả các chỗ trống.'],
+  blank: ['Blank {n}', 'Chỗ trống {n}'],
+  ordering: ['Put the items in the right order. Use the arrows to move them.', 'Sắp xếp các mục đúng thứ tự. Dùng mũi tên để di chuyển.'],
+  moveUp: ['Move up', 'Lên'],
+  moveDown: ['Move down', 'Xuống'],
+  orderNotMoved: ['Move an item to save an order.', 'Hãy di chuyển một mục để lưu thứ tự.'],
+  yourAnswer: ['Your answer', 'Đáp án của bạn'],
+  correctAnswer: ['Correct answer', 'Đáp án đúng'],
+  unit: ['Unit: {u}', 'Đơn vị: {u}'],
+};
+
+export function qt(lang: Lang, key: string, params: Record<string, string | number> = {}): string {
+  const e = QT[key];
+  const text = e ? (lang === 'vi' ? e[1] : e[0]) : key;
+  return text.replace(/\{(\w+)\}/g, (_, k: string) => String(params[k] ?? ''));
+}
+
 // ---------- XP rewards: [English, Vietnamese]; {n}-style placeholders ----------
 const XT: Record<string, [string, string]> = {
   'xp': ['XP', 'XP'],

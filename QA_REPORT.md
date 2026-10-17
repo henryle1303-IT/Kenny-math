@@ -1,5 +1,11 @@
 # QA report
 
+## Question types (planv4) — 2026-10-19
+
+Run in this environment (Linux, SQLite): `npm run typecheck`, `npm run lint`, `npm test` (unit, integration, deployment: all pass, 186 tests), `npm run build`, `npx playwright test` (27 pass, including `zzz-question-types.spec.ts` which signs in as the demo user and answers all seven question types, reloads, submits and reviews), `npm run build:demo` and `npm run test:demo` (2 pass).
+
+Not verified: the new PostgreSQL migration was not run on a real PostgreSQL/Neon database (`prisma validate` of the PostgreSQL schema passes; the SQL is two `ADD COLUMN` statements). The generator, Smart Review and the static browser demo remain multiple choice only. Two older tests changed expectations (CSV header gained two columns; the template has 9 example rows instead of 3).
+
 ## Neon PostgreSQL / full Vercel application — 2026-10-16
 
 - Added a separate PostgreSQL Prisma schema and committed baseline migration under `prisma/postgres/`; all models match the preserved SQLite schema. The Vercel build generates the PostgreSQL client, deploys migrations, seeds empty databases and builds the full Next.js app. Static demo commands remain optional.

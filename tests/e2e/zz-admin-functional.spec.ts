@@ -52,8 +52,8 @@ test('export validates selections in place; bad files and template examples prod
   const template = await (await page.request.get('/api/admin/template')).body();
   for (const includeExamples of ['false', 'true']) {
     const result = await (await page.request.post('/api/admin/import', { multipart: { mode: 'NEW_BANK', includeExamples, file: { name: 'template.csv', mimeType: 'text/csv', buffer: template } } })).json();
-    expect(result.report.skippedExamples).toBe(includeExamples === 'false' ? 3 : 0);
-    expect(result.report.totalRows).toBe(includeExamples === 'false' ? 0 : 3);
+    expect(result.report.skippedExamples).toBe(includeExamples === 'false' ? 9 : 0);
+    expect(result.report.totalRows).toBe(includeExamples === 'false' ? 0 : 9);
     expect(result.report.invalidRows).toBe(0);
     expect(result.report.canCommit).toBe(false);
   }

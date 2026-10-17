@@ -1,4 +1,5 @@
 import { BAND_NAMES, QUESTIONS_PER_TEST, TEST_COUNT, TOTAL_QUESTIONS, bandOf, levelOf } from '../gen/curriculum';
+import { answerKeyText, typeOf } from '../question-types';
 import { norm, validateQuestion, type Issue, type QuestionData, type QuestionValidation } from './question';
 
 export interface RowIssue extends Issue {
@@ -84,7 +85,7 @@ export function validateBank(rows: QuestionData[], opts: BankValidationOptions =
     const pp = positions.get(posKey);
     if (pp) add('DUPLICATE_POSITION', `Test ${q.testNumber} question ${q.position} is already used in row ${pp}`);
     else positions.set(posKey, row);
-    const tk = norm(q.questionText) + '|' + norm(q.options[['A', 'B', 'C', 'D'].indexOf(q.correctAnswer)] ?? '');
+    const tk = norm(q.questionText) + '|' + norm(typeOf(q.questionType) === 'MCQ' ? (q.options[['A', 'B', 'C', 'D'].indexOf(q.correctAnswer)] ?? '') : answerKeyText({ questionType: q.questionType, answerData: q.answerData, correctAnswer: '' }));
     const tp = texts.get(tk);
     if (tp) add('DUPLICATE_QUESTION', `Same question and answer as row ${tp}`);
     else texts.set(tk, row);

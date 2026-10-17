@@ -99,6 +99,8 @@ model Question {
   validationStatus String       @default("PENDING") // PENDING | VERIFIED | NEEDS_REVIEW | INVALID | MANUAL_OK
   validationNotes  String       @default("")
   verifyExpr       String? // optional machine-checkable expression for the correct answer
+  questionType     String       @default("MCQ") // MCQ | NUMERIC_INPUT | TRUE_FALSE | MULTI_SELECT | FILL_BLANK | ORDERING | SHORT_TEXT
+  answerData       String? // JSON definition for non-MCQ types (null for MCQ)
   templateId       String?
   bank             QuestionBank @relation(fields: [bankId], references: [id], onDelete: Cascade)
   answers          StudentAnswer[]

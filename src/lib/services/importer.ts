@@ -6,6 +6,7 @@ import { MAX_UPLOAD_BYTES, mapCsvRows, parseCsvBytes } from '../csv/import';
 import { validateBank, type BankValidationReport, type RowIssue } from '../validate/bank';
 import type { QuestionData } from '../validate/question';
 import { rowsToCsv } from '../csv/export';
+import { answerKeyText, typeOf } from '../question-types';
 
 export type ImportMode = 'NEW_BANK' | 'REPLACE_ACTIVE' | 'UPDATE_SELECTED';
 
@@ -89,7 +90,7 @@ export async function analyzeImport(file: { name: string; bytes: Uint8Array }, m
     canCommit: false,
     previewRows: mapped.rows.slice(0, 40).map((r) => ({
       row: r.row, questionId: r.data.questionId, testNumber: r.data.testNumber, position: r.data.position, topic: r.data.topic, difficulty: r.data.difficulty,
-      text: r.data.questionText.slice(0, 160), correct: r.data.options['ABCD'.indexOf(r.data.correctAnswer)] ?? '', status: perQuestion.find((p) => p.row === r.row)?.status ?? '',
+      text: r.data.questionText.slice(0, 160), correct: (typeOf(r.data.questionType) === 'MCQ' ? r.data.options['ABCD'.indexOf(r.data.correctAnswer)] : answerKeyText({ questionType: r.data.questionType, answerData: r.data.answerData, correctAnswer: '' })) ?? '', status: perQuestion.find((p) => p.row === r.row)?.status ?? '',
     })),
   };
   report.canCommit = report.ok;

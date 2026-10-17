@@ -105,6 +105,7 @@ To test while the development server is running, set `NEXT_DIST_DIR=.next-e2e`, 
 | `npm run test:e2e` | Playwright end-to-end tests (builds nothing – run `npm run build` first) |
 | `npm run db:migrate` / `db:seed` / `db:setup` | migrations / seed / both |
 | `npm run bank:export` | writes the reference bank to `exports/kenny-math-bank-v1.csv` |
+| `npm run demo:seed` | creates (or refreshes) the demo user `demo` / password `123` and the private bank "Demo - all question types" (see below) |
 | `npm run qa:report` | validates the reference bank and writes `qa/content-report.md` |
 
 The ready-made 900-question file is in [`exports/kenny-math-bank-v1.csv`](exports/kenny-math-bank-v1.csv); it can be imported again through **Admin → Import / Export**.
@@ -142,7 +143,7 @@ For an existing installation, back up the database before applying migrations. B
 
 ### CSV format
 
-Required columns (in this order when exporting): `question_id, test_id, question_number, test_level, difficulty, topic, skill, question_text, option_a, option_b, option_c, option_d, correct_answer, explanation, common_mistake, learning_tip`. Optional: `bank_id, bank_version, verify_expr, validation_status`. Maths is written between `\(` and `\)` (KaTeX), e.g. `\(\frac{3}{4}\)`. Files are read as UTF-8 (with or without BOM), UTF-16, or Windows-1252; comma and semicolon delimiters are detected. `verify_expr` (e.g. `3/4+1/8`) lets the validator confirm the answer automatically; rows without it are checked structurally and flagged for manual review if the answer cannot be verified.
+Required columns (in this order when exporting): `question_id, test_id, question_number, test_level, difficulty, topic, skill, question_text, option_a, option_b, option_c, option_d, correct_answer, explanation, common_mistake, learning_tip`. Optional: `bank_id, bank_version, verify_expr, validation_status, question_type, answer_data`. Maths is written between `\(` and `\)` (KaTeX), e.g. `\(\frac{3}{4}\)`. Files are read as UTF-8 (with or without BOM), UTF-16, or Windows-1252; comma and semicolon delimiters are detected. `verify_expr` (e.g. `3/4+1/8`) lets the validator confirm the answer automatically; rows without it are checked structurally and flagged for manual review if the answer cannot be verified.
 
 ## Deployment
 
@@ -165,6 +166,27 @@ Put it behind HTTPS (Caddy, nginx, Cloudflare Tunnel, or your platform's TLS). T
 ## Security notes
 
 Password hashes (bcrypt), server-side sessions with hashed tokens, HttpOnly/SameSite cookies, server-side authorisation on every admin API route, origin check on writes, login rate limiting, 4 MB upload limit, CSV formula neutralisation on export, audit log. No stack traces are shown to students; API errors are friendly messages. Change the seeded admin password in *Settings* after first sign-in.
+
+### Question types
+
+Besides 4-option multiple choice (`MCQ`, the default), a question can be `NUMERIC_INPUT`, `TRUE_FALSE`, `MULTI_SELECT`, `FILL_BLANK`, `ORDERING` or `SHORT_TEXT`. Set `question_type`, leave `option_a`-`option_d` and `correct_answer` empty, and put the setup in `answer_data` (JSON). Old files without these two columns are read as multiple choice.
+
+| `question_type` | `answer_data` | Student sees | Right when |
+|---|---|---|---|
+| `NUMERIC_INPUT` | `{"accepted":["3/4","0.75"],"unit":"cm","tolerance":0,"requireSimplified":false}` | a text box | the number has the same value (3/4, 0.75, .75, 0,75 and 6/8 all match; `requireSimplified` rejects 6/8) |
+| `TRUE_FALSE` | `{"statements":[{"text":"...","truth":true}]}` | True/False per statement | every statement is right |
+| `MULTI_SELECT` | `{"options":["2","3","4"],"correct":[0,2]}` (0-based) | check boxes | exactly the right set is ticked |
+| `FILL_BLANK` | `{"blanks":[{"accepted":["1/4"]},{"accepted":["10"]}]}` and `{1}`, `{2}` in `question_text` | one box per blank | every blank is right (numbers by value, text ignoring capital letters) |
+| `ORDERING` | `{"items":["0.2","0.25","0.3"]}` listed in the **correct** order | items shown shuffled, moved with arrows | the order is exactly right |
+| `SHORT_TEXT` | `{"accepted":["square"],"caseSensitive":false,"ignoreDiacritics":false}` | a text box | the text matches an accepted answer |
+
+Typed text ignores capital letters and extra spaces, and Unicode forms of accents are normalised. Vietnamese accents must match unless the question sets `ignoreDiacritics` (or lists the unaccented spelling). Each question is still worth one point and is right or wrong as a whole, so XP, stars and skills work unchanged. The server never sends the accepted answers to the browser while a test is open. The logic for every type lives in `src/lib/question-types`.
+
+Limits of this first version: the generator still produces multiple choice only; Smart Review and "Try a Similar Question" stay multiple choice; the static browser demo is multiple choice only; typed questions are added by CSV import (or by editing the answer setup of an existing typed question in Admin > Questions).
+
+### Demo user and demo bank
+
+`npm run demo:seed` creates the student **demo** (password **123**, Vietnamese by default) with a private published bank of 18 hand-written questions in tests 1, 11 and 21, covering all seven types. It can be run again at any time: it never changes a password that was changed, and it does not touch other users or the shared bank. The password is deliberately weak, so the script is **not** run by `db:setup` or by the Vercel build. Remove the demo user in Admin > User Profiles before real use. The bank is intentionally not a complete 30 x 30 bank, so running "Validate" on it in Admin reports the missing tests; it is already published and does not need that step.
 
 ## Project documents
 

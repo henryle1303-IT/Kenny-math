@@ -1,6 +1,6 @@
 Kế hoạch v4: Thêm các dạng câu hỏi khác nhau (giai đoạn 1: văn bản thuần)
 
-Ngày lập: 17/10/2026. Trạng thái: ĐỀ XUẤT, chờ xác nhận trước khi làm.
+Ngày lập: 17/10/2026. Trạng thái: ĐÃ TRIỂN KHAI một phần (xem mục 11).
 
 1. Hiện trạng
 
@@ -65,7 +65,7 @@ Ví dụ answerData:
 - TRUE_FALSE: { statements: [{ text, truth: true }] }
 - MULTI_SELECT: { options: [..], correct: [1,3] }
 - FILL_BLANK: { blanks: [{ accepted: ["1/4"] }, ...] } với thẻ {1}, {2} trong đề
-- ORDERING: { items: [..], order: [2,0,1] } (hiển thị xáo trộn cố định theo seed của lượt làm)
+- ORDERING: { items: [..] } liệt kê theo đúng thứ tự đúng (hiển thị xáo trộn cố định theo seed của lượt làm, không bao giờ trùng thứ tự đúng)
 - SHORT_TEXT: { accepted: ["..", ".."], caseSensitive: false, ignoreDiacritics: false }
 
 5. Các bước triển khai
@@ -151,3 +151,26 @@ Câu hỏi có hình/sơ đồ (SVG sinh từ code cho hình học, đường th
 4) Có cần chấm điểm từng phần cho MULTI_SELECT/FILL_BLANK không (đề xuất không, giữ đúng/sai tuyệt đối)?
 5) Người dùng demo/mật khẩu 123 chỉ tạo khi gọi tay (không chạy khi deploy production): đồng ý không?
 6) Có cần migration SQLite không, hay chỉ PostgreSQL như v3 (test dùng prisma db push)?
+
+11. Kết quả triển khai và khác biệt so với kế hoạch
+
+Các câu hỏi mở ở mục 10 được làm theo mặc định đề xuất: chỉ chữ/số, dạng nhập số làm trước, bài hiện có giữ 100% trắc nghiệm, đúng/sai tuyệt đối (không chấm từng phần), người dùng demo chỉ tạo khi gọi tay, có cả migration SQLite và PostgreSQL, answer_data dùng JSON.
+
+Đã làm:
+- Schema và migration (SQLite và PostgreSQL, chỉ thêm cột có mặc định): Question.questionType, Question.answerData.
+- src/lib/question-types: 6 dạng mới (NUMERIC_INPUT, TRUE_FALSE, MULTI_SELECT, FILL_BLANK, ORDERING, SHORT_TEXT) cộng MCQ, gồm kiểm tra cấu hình, chuẩn hóa trả lời, chấm, hiển thị đáp án đúng, và chế độ xem cho học sinh không lộ đáp án. Mục 3A: không phân biệt hoa/thường, bỏ khoảng trắng thừa, chuẩn hóa Unicode, tùy chọn ignoreDiacritics và caseSensitive.
+- Chấm bài, lưu trả lời (saveAnswer kiểm tra theo dạng), trang xem lại kết quả, XP/kỹ năng không đổi.
+- Kiểm tra ngân hàng theo dạng; CSV nhập/xuất (cột question_type, answer_data), file mẫu có 6 ví dụ mới; admin sửa answer_data của câu đã có.
+- Giao diện học sinh: QuestionInput cho 7 dạng, lưu tự động (xếp hàng đợi), EN/VI.
+- Người dùng demo (demo / 123) và ngân hàng "Demo - all question types" (18 câu, đủ 7 dạng) qua npm run demo:seed; không chạy khi deploy.
+- Sao lưu tiến độ: nhận bài có ít hơn 30 câu và đáp án nhiều dạng; chữ ký ngân hàng giữ nguyên với câu trắc nghiệm nên sao lưu cũ vẫn khôi phục được.
+
+Khác biệt so với kế hoạch (chưa làm, cần ghi nhận):
+- Máy sinh đề chưa có template cho dạng mới và chưa có tỷ lệ dạng trong bài; ngân hàng sinh vẫn 100% trắc nghiệm. Câu dạng mới hiện thêm bằng CSV.
+- Smart Review và "Try a Similar Question" vẫn chỉ trắc nghiệm (câu hỏi ôn tập sinh từ template).
+- Demo tĩnh trên Vercel (demo/) vẫn chỉ trắc nghiệm; dạng mới xem được bằng người dùng demo trong ứng dụng đầy đủ.
+- Trình quản lý admin chưa có form tạo mới từng dạng, chỉ sửa answerData bằng JSON; chưa có xem trước tương tác như học sinh.
+- Ngân hàng demo không đủ 30 x 30 nên bước Validate trong admin báo thiếu bài; nó được publish trực tiếp bởi script.
+- Chưa kiểm thử trên PostgreSQL/Neon thật: schema PostgreSQL qua prisma validate đạt, SQL migration đọc lại bằng mắt.
+
+Kiểm thử đã chạy: typecheck, lint, vitest (unit và integration, có test mới cho từng dạng, CSV, demo, sao lưu, import/export), Playwright (27 test, gồm bài mới chạy đủ các dạng bằng người dùng demo, và 2 test demo tĩnh). Hai test cũ phải đổi số kỳ vọng vì tiêu đề CSV có thêm 2 cột và file mẫu có 9 ví dụ thay vì 3.

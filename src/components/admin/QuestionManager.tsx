@@ -2,12 +2,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { api } from './api';
 import { RichText } from '../RichText';
+import { displayCorrect, typeOf } from '@/lib/question-types';
 
 interface Bank { id: string; label: string; editable: boolean }
 interface Q {
   id: string; questionId: string; testNumber: number; position: number; topic: string; skill: string; difficulty: number;
   questionText: string; optionA: string; optionB: string; optionC: string; optionD: string; correctAnswer: string;
-  explanation: string; commonMistake: string; learningTip: string; validationStatus: string; validationNotes: string; verifyExpr: string | null;
+  explanation: string; commonMistake: string; learningTip: string; validationStatus: string; validationNotes: string; verifyExpr: string | null; questionType: string; answerData: string | null;
 }
 
 const STATUS_CLS: Record<string, string> = {
@@ -94,7 +95,7 @@ export function QuestionManager({ banks, topics, initialBank }: { banks: Bank[];
               <tr key={q.id} className="border-t align-top">
                 <td className="p-2 font-mono text-xs">{q.questionId}</td><td>{q.testNumber}</td><td>{q.position}</td><td>{q.topic}</td><td>{q.difficulty}</td>
                 <td className="max-w-xs"><div className="line-clamp-2"><RichText text={q.questionText} /></div></td>
-                <td>{q.correctAnswer}</td>
+                <td>{typeOf(q.questionType) === 'MCQ' ? q.correctAnswer : <span title={displayCorrect(q)} className="badge bg-indigo-100 text-indigo-700">{q.questionType.replace('_', ' ')}</span>}</td>
                 <td><span title={q.validationNotes} className={`badge ${STATUS_CLS[q.validationStatus] ?? ''}`}>{q.validationStatus.replace('_', ' ')}</span></td>
                 <td className="whitespace-nowrap p-2">
                   <button className="btn-ghost !min-h-8 !px-2 text-xs" onClick={() => setPreview(q)}>Preview</button>
@@ -132,7 +133,12 @@ function Preview({ q }: { q: Q }) {
   return (
     <div>
       <p className="text-lg"><RichText text={q.questionText} /></p>
-      <ul className="mt-3 grid gap-2">{opts.map((o, i) => <li key={i} className={`rounded-xl border-2 px-3 py-2 ${'ABCD'[i] === q.correctAnswer ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200'}`}><b>{'ABCD'[i]}</b> <RichText text={o} /></li>)}</ul>
+      {typeOf(q.questionType) !== 'MCQ' ? (
+        <div className="mt-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 px-3 py-2" data-testid="preview-typed">
+          <div className="text-xs font-bold uppercase text-emerald-700">{q.questionType} · correct answer</div>
+          <div className="text-lg"><RichText text={displayCorrect(q)} /></div>
+        </div>
+      ) : <ul className="mt-3 grid gap-2">{opts.map((o, i) => <li key={i} className={`rounded-xl border-2 px-3 py-2 ${'ABCD'[i] === q.correctAnswer ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200'}`}><b>{'ABCD'[i]}</b> <RichText text={o} /></li>)}</ul>}
       <pre className="mt-3 whitespace-pre-wrap rounded-lg bg-slate-50 p-3 text-sm"><RichText text={q.explanation} /></pre>
       <p className="mt-2 text-sm"><b>Common mistake:</b> {q.commonMistake}</p>
       <p className="text-sm"><b>Tip:</b> {q.learningTip}</p>
@@ -161,11 +167,14 @@ function EditModal({ q, onClose, onSave }: { q: Q; onClose: () => void; onSave: 
     <Modal title={`Edit ${q.questionId}`} onClose={onClose}>
       <div className="space-y-3">
         <div><label className="label" htmlFor="e-text">Question (maths in \( … \))</label><textarea id="e-text" className="input" rows={3} value={f.questionText} onChange={(e) => set('questionText', e.target.value)} /></div>
-        <div className="grid gap-2 sm:grid-cols-2">
+        {typeOf(q.questionType) !== 'MCQ' && (
+          <div><label className="label" htmlFor="e-ad">Answer setup ({q.questionType}) – JSON</label><textarea id="e-ad" className="input font-mono text-sm" rows={5} value={f.answerData ?? ''} onChange={(e) => set('answerData', e.target.value)} /></div>
+        )}
+        {typeOf(q.questionType) === 'MCQ' && <><div className="grid gap-2 sm:grid-cols-2">
           {(['optionA', 'optionB', 'optionC', 'optionD'] as const).map((k, i) => <div key={k}><label className="label" htmlFor={`e-${k}`}>Option {'ABCD'[i]}</label><input id={`e-${k}`} className="input" value={f[k]} onChange={(e) => set(k, e.target.value)} /></div>)}
-        </div>
+        </div></>}
         <div className="grid gap-2 sm:grid-cols-4">
-          <div><label className="label" htmlFor="e-c">Correct</label><select id="e-c" className="input" value={f.correctAnswer} onChange={(e) => set('correctAnswer', e.target.value)}>{'ABCD'.split('').map((l) => <option key={l}>{l}</option>)}</select></div>
+          {typeOf(q.questionType) === 'MCQ' && <div><label className="label" htmlFor="e-c">Correct</label><select id="e-c" className="input" value={f.correctAnswer} onChange={(e) => set('correctAnswer', e.target.value)}>{'ABCD'.split('').map((l) => <option key={l}>{l}</option>)}</select></div>}
           <div><label className="label" htmlFor="e-d">Difficulty</label><select id="e-d" className="input" value={f.difficulty} onChange={(e) => set('difficulty', Number(e.target.value))}>{[1, 2, 3, 4, 5].map((l) => <option key={l}>{l}</option>)}</select></div>
           <div><label className="label" htmlFor="e-t">Topic</label><input id="e-t" className="input" value={f.topic} onChange={(e) => set('topic', e.target.value)} /></div>
           <div><label className="label" htmlFor="e-s">Skill</label><input id="e-s" className="input" value={f.skill} onChange={(e) => set('skill', e.target.value)} /></div>
@@ -177,7 +186,7 @@ function EditModal({ q, onClose, onSave }: { q: Q; onClose: () => void; onSave: 
         {error && <p role="alert" className="text-rose-700">{error}</p>}
         <div className="flex justify-end gap-2">
           <button className="btn-secondary" onClick={onClose}>Cancel</button>
-          <button className="btn-primary" disabled={busy} onClick={async () => { setBusy(true); setError(''); try { await onSave({ questionText: f.questionText, options: [f.optionA, f.optionB, f.optionC, f.optionD], correctAnswer: f.correctAnswer, difficulty: f.difficulty, topic: f.topic, skill: f.skill, explanation: f.explanation, commonMistake: f.commonMistake, learningTip: f.learningTip, verifyExpr: f.verifyExpr ?? '' }); } catch (e) { setError((e as Error).message); } finally { setBusy(false); } }}>Save and re-check</button>
+          <button className="btn-primary" disabled={busy} onClick={async () => { setBusy(true); setError(''); try { await onSave({ questionText: f.questionText, ...(typeOf(q.questionType) === 'MCQ' ? { options: [f.optionA, f.optionB, f.optionC, f.optionD], correctAnswer: f.correctAnswer } : { answerData: f.answerData ?? '' }), difficulty: f.difficulty, topic: f.topic, skill: f.skill, explanation: f.explanation, commonMistake: f.commonMistake, learningTip: f.learningTip, verifyExpr: f.verifyExpr ?? '' }); } catch (e) { setError((e as Error).message); } finally { setBusy(false); } }}>Save and re-check</button>
         </div>
       </div>
     </Modal>

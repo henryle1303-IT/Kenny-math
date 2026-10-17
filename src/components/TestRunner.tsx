@@ -3,6 +3,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight, Clock, Send } from 'lucide-react';
 import { ProgressBar } from './ui';
+import { QuestionInput, type ClientView } from './QuestionInput';
+import type { Lang } from '@/lib/i18n';
 
 interface Props {
   attemptId: string;
@@ -10,13 +12,12 @@ interface Props {
   expiresAt: string;
   serverNow: string;
   /** Text and options are pre-rendered (KaTeX) on the server. */
-  questions: { id: string; number: number; textHtml: string; optionsHtml: string[] }[];
+  questions: { id: string; number: number; textHtml: string; view: ClientView }[];
   initialAnswers: Record<string, string>;
+  lang?: Lang;
 }
 
-const LETTERS = ['A', 'B', 'C', 'D'];
-
-export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, initialAnswers }: Props) {
+export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, initialAnswers, lang = 'en' }: Props) {
   const router = useRouter();
   const [idx, setIdx] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
@@ -60,19 +61,21 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
     return () => clearInterval(t);
   }, [expiry, offset, submit]);
 
-  function choose(qid: string, letter: string) {
-    if (submittedRef.current || pendingSaveRef.current) return;
-    const prev = answers[qid];
+  /** Save an answer. Saves are queued in order so quick typing or clicking never drops a value. */
+  function choose(qid: string, value: string | null) {
+    if (submittedRef.current) return;
     setSaving(true);
-    setAnswers((a) => ({ ...a, [qid]: letter }));
-    pendingSaveRef.current = save().finally(() => {
-      pendingSaveRef.current = null;
-      setSaving(false);
+    let prev: string | undefined;
+    setAnswers((a) => {
+      prev = a[qid];
+      const n = { ...a };
+      if (value === null || value === '') delete n[qid];
+      else n[qid] = value;
+      return n;
     });
-
-    async function save() {
+    const run = async () => {
       try {
-        const res = await fetch(`/api/attempts/${attemptId}/answer`, { method: 'PUT', keepalive: true, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ questionId: qid, selected: letter }) });
+        const res = await fetch(`/api/attempts/${attemptId}/answer`, { method: 'PUT', keepalive: true, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ questionId: qid, selected: value }) });
         if (!res.ok) {
           const d = await res.json();
           if (d.code === 'EXPIRED' || d.code === 'SUBMITTED') {
@@ -91,7 +94,14 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
         });
         setError(`Your answer could not be saved (${(e as Error).message}). Please try again.`);
       }
-    }
+    };
+    const chain: Promise<void> = (pendingSaveRef.current ?? Promise.resolve()).then(run).finally(() => {
+      if (pendingSaveRef.current === chain) {
+        pendingSaveRef.current = null;
+        setSaving(false);
+      }
+    });
+    pendingSaveRef.current = chain;
   }
 
   const q = questions[idx];
@@ -121,26 +131,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
       <div className="card p-5">
         <div className="mb-1 text-sm font-semibold text-brand-700">Question {q.number}</div>
         <div className="text-xl leading-relaxed" data-testid="question-text" dangerouslySetInnerHTML={{ __html: q.textHtml }} />
-        <div role="radiogroup" aria-label="Answer choices" className="mt-5 grid gap-3">
-          {q.optionsHtml.map((html, i) => {
-            const letter = LETTERS[i];
-            const selected = answers[q.id] === letter;
-            return (
-              <button
-                key={letter}
-                role="radio"
-                aria-checked={selected}
-                data-testid={`option-${letter}`}
-                onClick={() => choose(q.id, letter)}
-                disabled={saving || submitting}
-                className={`flex min-h-14 items-center gap-3 rounded-xl border-2 px-4 py-3 text-left text-lg transition focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300 ${selected ? 'border-brand-600 bg-brand-50 font-semibold' : 'border-slate-200 bg-white hover:border-brand-300'}`}
-              >
-                <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-base font-bold ${selected ? 'bg-brand-600 text-white' : 'bg-slate-100 text-slate-600'}`}>{letter}</span>
-                <span className="min-w-0 overflow-x-auto" dangerouslySetInnerHTML={{ __html: html }} />
-              </button>
-            );
-          })}
-        </div>
+        <QuestionInput qid={q.id} view={q.view} value={answers[q.id]} lang={lang} busy={saving || submitting} onCommit={(v) => choose(q.id, v)} />
         {saving && <p role="status" className="mt-3 text-sm text-slate-600">Saving answer…</p>}
         {error && (
           <p role="alert" className="mt-3 rounded-lg bg-rose-50 p-2 text-sm text-rose-700">
@@ -148,15 +139,15 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
           </p>
         )}
         <div className="mt-5 flex items-center justify-between gap-2">
-          <button className="btn-secondary" onClick={() => setIdx((i) => Math.max(0, i - 1))} disabled={idx === 0 || saving || submitting} data-testid="prev">
+          <button className="btn-secondary" onClick={() => setIdx((i) => Math.max(0, i - 1))} disabled={idx === 0 || submitting} data-testid="prev">
             <ChevronLeft size={18} /> Previous
           </button>
           {idx < questions.length - 1 ? (
-            <button className="btn-primary" onClick={() => setIdx((i) => i + 1)} disabled={saving || submitting} data-testid="next">
+            <button className="btn-primary" onClick={() => setIdx((i) => i + 1)} disabled={submitting} data-testid="next">
               Next <ChevronRight size={18} />
             </button>
           ) : (
-            <button className="btn-primary" onClick={() => setConfirm(true)} disabled={saving || submitting}>
+            <button className="btn-primary" onClick={() => setConfirm(true)} disabled={submitting}>
               <Send size={18} /> Submit
             </button>
           )}
@@ -175,7 +166,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
             <button
               key={x.id}
               onClick={() => setIdx(i)}
-              disabled={saving || submitting}
+              disabled={submitting}
               aria-label={`Question ${x.number}${answers[x.id] ? ', answered' : ', not answered'}`}
               aria-current={i === idx}
               className={`h-10 rounded-lg text-sm font-bold ring-1 ${i === idx ? 'ring-2 ring-brand-600' : 'ring-slate-200'} ${answers[x.id] ? 'bg-brand-600 text-white' : 'bg-white text-slate-600'}`}
@@ -184,7 +175,7 @@ export function TestRunner({ attemptId, title, expiresAt, serverNow, questions, 
             </button>
           ))}
         </div>
-        <button className="btn-primary mt-4 w-full" onClick={() => setConfirm(true)} disabled={saving || submitting} data-testid="submit-open">
+        <button className="btn-primary mt-4 w-full" onClick={() => setConfirm(true)} disabled={submitting} data-testid="submit-open">
           <Send size={18} /> Submit test
         </button>
       </nav>

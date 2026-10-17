@@ -39,8 +39,10 @@ async function bankSignature(tx: Tx, bankId: string) {
     tx.question.findMany({ where: { bankId }, orderBy: { questionId: 'asc' } }),
     tx.test.findMany({ where: { bankId }, orderBy: { testNumber: 'asc' } }),
   ]);
-  // Include IDs: attempts refer to these exact immutable questions.
-  return createHash('sha256').update(JSON.stringify({ questions, tests })).digest('hex');
+  // Include IDs: attempts refer to these exact immutable questions. The question type columns are left out for
+  // plain multiple choice rows so that signatures in backups made before question types existed still match.
+  const rows = questions.map(({ questionType, answerData, ...rest }) => (questionType === 'MCQ' && answerData === null ? rest : { ...rest, questionType, answerData }));
+  return createHash('sha256').update(JSON.stringify({ questions: rows, tests })).digest('hex');
 }
 
 async function capture(tx: Tx, studentId: string) {
@@ -102,12 +104,12 @@ export function parseProgress(value: unknown): Backup {
   for (const a of b.attempts) {
     let order: unknown;
     try { order = JSON.parse(a.questionOrder); } catch { invalid(); }
-    if (!Array.isArray(order) || order.length !== 30 || order.some((id) => typeof id !== 'string') || new Set(order).size !== order.length) invalid();
+    if (!Array.isArray(order) || order.length < 1 || order.length > 30 || order.some((id) => typeof id !== 'string') || new Set(order).size !== order.length) invalid();
     orders.set(a.id, order as string[]);
     if (!b.banks.some((bank) => bank.id === a.bankId) || !['IN_PROGRESS', 'SUBMITTED', 'TIMED_OUT'].includes(a.status) || a.testNumber < 1 || a.testNumber > 30 || a.expiresAt < a.startedAt || (a.status === 'IN_PROGRESS' ? a.submittedAt !== null : a.submittedAt === null)) invalid();
     for (const n of [a.score, a.correctCount, a.incorrectCount, a.unansweredCount]) if (n !== null && (n < 0 || n > 30)) invalid();
   }
-  for (const a of b.answers) if (!attempts.has(a.attemptId) || !orders.get(a.attemptId)?.includes(a.questionId) || (a.selectedAnswer !== null && !['A', 'B', 'C', 'D'].includes(a.selectedAnswer))) invalid();
+  for (const a of b.answers) if (!attempts.has(a.attemptId) || !orders.get(a.attemptId)?.includes(a.questionId) || (a.selectedAnswer !== null && (typeof a.selectedAnswer !== 'string' || a.selectedAnswer.length > 600))) invalid();
   for (const q of b.reviewQuestions) {
     if (!sessions.has(q.sessionId) || q.position < 1 || !['A', 'B', 'C', 'D'].includes(q.correctAnswer) || (q.selectedAnswer !== null && !['A', 'B', 'C', 'D'].includes(q.selectedAnswer))) invalid();
     try { JSON.parse(q.generatedQuestionData); } catch { invalid(); }
@@ -138,8 +140,9 @@ export async function importProgress(value: unknown, confirmation: unknown, stud
       if (await bankSignature(tx, bank.id) !== bank.signature) throw new AppError('A question bank is missing or has changed. Restore into the same question banks as the export.');
     }
     for (const a of b.attempts) {
-      const questions = await tx.question.findMany({ where: { id: { in: JSON.parse(a.questionOrder) }, bankId: a.bankId, testNumber: a.testNumber }, select: { id: true } });
-      if (questions.length !== 30) throw new AppError('The backup refers to missing or mismatched questions.');
+      const wanted: string[] = JSON.parse(a.questionOrder);
+      const questions = await tx.question.findMany({ where: { id: { in: wanted }, bankId: a.bankId, testNumber: a.testNumber }, select: { id: true } });
+      if (questions.length !== wanted.length) throw new AppError('The backup refers to missing or mismatched questions.');
     }
     const sourceIds = [...new Set(b.sessions.flatMap((s) => s.sourceQuestionId ? [s.sourceQuestionId] : []))];
     if (await tx.question.count({ where: { id: { in: sourceIds }, bankId: { in: b.banks.map((bank) => bank.id) } } }) !== sourceIds.length) throw new AppError('The backup refers to missing practice source questions.');

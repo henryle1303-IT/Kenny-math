@@ -1,4 +1,6 @@
-import { getStudent } from '@/lib/services/core';
+import { getStudent, getLang } from '@/lib/services/core';
+import { displayCorrect, displayResponse, typeOf } from '@/lib/question-types';
+import { qt } from '@/lib/i18n';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { AppError, getAttemptResult } from '@/lib/services/attempts';
@@ -14,6 +16,7 @@ const STATUS = {
 
 export default async function ReviewPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ filter?: string }> }) {
   const student = await getStudent();
+  const lang = await getLang();
   const { id } = await params;
   const { filter } = await searchParams;
   let r;
@@ -44,6 +47,20 @@ export default async function ReviewPage({ params, searchParams }: { params: Pro
               <span className={`badge ${STATUS[status].cls}`}>{STATUS[status].label}</span>
             </div>
             <p className="text-lg"><RichText text={q.questionText} /></p>
+            {typeOf(q.questionType) !== 'MCQ' ? (
+              <div className="mt-3 grid gap-2" data-testid={`review-typed-${number}`}>
+                <div className={`rounded-xl border-2 px-3 py-2 ${status === 'correct' ? 'border-emerald-500 bg-emerald-50' : 'border-rose-400 bg-rose-50'}`}>
+                  <div className="text-xs font-bold uppercase text-slate-600">{qt(lang, 'yourAnswer')}</div>
+                  <div className="text-lg">{selected ? <RichText text={displayResponse(q, selected)} /> : '–'}</div>
+                </div>
+                {status !== 'correct' && (
+                  <div className="rounded-xl border-2 border-emerald-500 bg-emerald-50 px-3 py-2">
+                    <div className="text-xs font-bold uppercase text-emerald-700">{qt(lang, 'correctAnswer')}</div>
+                    <div className="text-lg"><RichText text={displayCorrect(q)} /></div>
+                  </div>
+                )}
+              </div>
+            ) : (
             <ul className="mt-3 grid gap-2">
               {opts.map((o, i) => {
                 const L = 'ABCD'[i];
@@ -59,6 +76,7 @@ export default async function ReviewPage({ params, searchParams }: { params: Pro
                 );
               })}
             </ul>
+            )}
             {status === 'unanswered' && <p className="mt-2 text-sm text-slate-500">You did not answer this question.</p>}
             <Explanation explanation={q.explanation} commonMistake={q.commonMistake} learningTip={q.learningTip} />
             {status !== 'correct' && <div className="mt-3"><SimilarButton questionId={q.id} /></div>}

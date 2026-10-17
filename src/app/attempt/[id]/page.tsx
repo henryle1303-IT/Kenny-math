@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import katex from 'katex';
 import { getAttemptForTaking, AppError } from '@/lib/services/attempts';
 import { TestRunner } from '@/components/TestRunner';
+import type { ClientView } from '@/components/QuestionInput';
+import { BLANK_RE, type StudentView } from '@/lib/question-types';
 
 export const dynamic = 'force-dynamic';
 
@@ -22,8 +24,19 @@ function html(text: string): string {
     .join('');
 }
 
+function toClientView(v: StudentView): ClientView {
+  switch (v.type) {
+    case 'MCQ': return { type: 'MCQ', optionsHtml: v.options.map(html) };
+    case 'MULTI_SELECT': return { type: 'MULTI_SELECT', optionsHtml: v.options.map(html) };
+    case 'TRUE_FALSE': return { type: 'TRUE_FALSE', statementsHtml: v.statements.map(html) };
+    case 'ORDERING': return { type: 'ORDERING', items: v.items.map((x) => ({ index: x.index, html: html(x.text) })) };
+    default: return v;
+  }
+}
+
 export default async function AttemptPage({ params }: { params: Promise<{ id: string }> }) {
   const student = await getStudent();
+  const lang = await getLang();
   const { id } = await params;
   let data;
   try {
@@ -40,7 +53,8 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
       expiresAt={data.expiresAt}
       serverNow={data.serverNow}
       initialAnswers={data.answers}
-      questions={data.questions.map((q) => ({ id: q.id, number: q.number, textHtml: html(q.text), optionsHtml: q.options.map(html) }))}
+      lang={lang}
+      questions={data.questions.map((q) => ({ id: q.id, number: q.number, textHtml: html(q.view.type === 'FILL_BLANK' ? q.text.replace(BLANK_RE, '[ $1 ]') : q.text), view: toClientView(q.view) }))}
     />
   );
 }
