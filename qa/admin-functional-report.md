@@ -36,7 +36,7 @@
 - Production build local đã đạt, bao gồm TypeScript và ESLint; Vercel build dùng PostgreSQL và môi trường production.
 - E2E mở rộng: **19/19 bài đạt** trong 2,7 phút trên bản mã nguồn cuối.
 - Các bài kiểm tra có thay đổi dữ liệu sử dụng `prisma/test.db` và `prisma/e2e.db`, tách khỏi `prisma/dev.db` và production.
-- Ảnh mobile đã kiểm tra: [admin-functional-mobile.png](admin-functional-mobile.png).
+- Ảnh mobile đã được kiểm tra; các lần chạy mới lưu ảnh dưới `test-results/` bằng Playwright `testInfo.outputPath`, không commit ảnh sinh tự động.
 
 ## Triển khai
 
@@ -70,4 +70,4 @@ Cấu hình cũ `all_except_custom_domains` đã chặn cả domain production v
 
 Tái hiện trên production bằng thao tác User Profiles → Henry: điều hướng phía client giữ cả section Profile for Kenny cũ và section Henry mới, có trùng ID tab/panel. Tab trên hồ sơ cũ không còn phản hồi. Bài `profile-navigation.spec.ts` thất bại trước sửa (hồ sơ Kenny vẫn còn sau 15 giây). Đổi link thẻ user sang điều hướng trang đầy đủ để hủy toàn bộ form của user trước. Bài kiểm tra chuyển Henry → Moon → Kenny → Henry, chỉ có một panel, đúng tên, tab Question Banks và nút Assign đúng user.
 
-Kết quả sau sửa: production build local đạt TypeScript/ESLint; 4/4 E2E liên quan đạt (48,7 giây), gồm test mới và ba luồng multi-user/import private. Deployment `dpl_6Yx5g8z8dPJRYaRFA9kLMrJq7QfN` READY, build 2 phút 3 giây, đã promote. Xác minh trên `luyentoankids.vercel.app` bằng trình duyệt: Kenny → Henry chỉ còn hồ sơ Henry, tab Question Banks hiển thị lựa chọn ngân hàng và Assign bank to Henry. Không thay ngân hàng hoặc tiến độ production. Ảnh: [henry-question-banks-fixed.png](henry-question-banks-fixed.png).
+Kết quả sau sửa: production build local đạt TypeScript/ESLint; 4/4 E2E liên quan đạt (48,7 giây), gồm test mới và ba luồng multi-user/import private. Deployment `dpl_6Yx5g8z8dPJRYaRFA9kLMrJq7QfN` READY, build 2 phút 3 giây, đã promote. Xác minh trên `luyentoankids.vercel.app` bằng trình duyệt: Kenny → Henry chỉ còn hồ sơ Henry, tab Question Banks hiển thị lựa chọn ngân hàng và Assign bank to Henry. Không thay ngân hàng hoặc tiến độ production. Ảnh xác minh cũ được bỏ khỏi nhánh hiện tại khi dọn repository; có thể xem lại trong lịch sử Git.

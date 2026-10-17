@@ -235,11 +235,11 @@ test('settings reject blank/decimal days; admin password change invalidates the 
   } finally { await second.dispose(); }
 });
 
-test('admin pages stay within phone width', async ({ page }) => {
+test('admin pages stay within phone width', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 375, height: 740 });
   for (const url of ['/admin', '/admin/import', '/admin/students?userId=moon', '/admin/banks', '/admin/questions', '/admin/settings', '/admin/generator']) {
     await page.goto(url);
     expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), url).toBeLessThanOrEqual(1);
   }
-  await page.screenshot({ path: 'qa/admin-functional-mobile.png', fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('admin-functional-mobile.png'), fullPage: true });
 });

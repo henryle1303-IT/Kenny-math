@@ -1,14 +1,10 @@
 node_modules
 .vercel
-.next
-.next-e2e
+.next*
 demo-dist
 out
 *.db
 *.db-journal
-.env
-.env.local
-.env.*.local
 test-results
 playwright-report
 tsconfig.tsbuildinfo
@@ -18,4 +14,5 @@ data/
 !.env.example
 !.env.postgres.example
 
-.next-multiuser
+# Generated QA images belong in Playwright test-results.
+qa/*.png

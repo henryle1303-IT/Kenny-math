@@ -1,6 +1,14 @@
 node_modules
-.next
+.git
+.vercel
+.next*
+demo-dist
+out
+data
 *.db
-.env
+*.db-journal
+.env*
 test-results
 playwright-report
+tsconfig.tsbuildinfo
+qa/*.png

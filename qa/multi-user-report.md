@@ -31,10 +31,7 @@ E2E covers the existing complete test/review/progress workflow, CSV import/expor
 
 Integration coverage also checks invalid/expired/disabled sessions, rate limiting, cross-site writes, independent settings, idempotent account initialization (including a renamed username), cross-user backup rejection and restore, historical timers surviving bank changes, ownership retained on private clones and rejection of another user's private source bank.
 
-Screenshots inspected:
-
-- [Student mobile interface](multi-user-henry-mobile.png)
-- [Admin profiles](multi-user-admin-profiles.png)
+Student mobile and admin profile screenshots were inspected. New runs save these generated images under Playwright `test-results/` via `testInfo.outputPath`; images are not committed. Earlier screenshots remain available in Git history.
 
 ## Local accounts and deployment boundary
 

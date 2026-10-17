@@ -42,7 +42,7 @@ test('four users see their own names, independent history, and protected resourc
   }
 });
 
-test('admin profiles update names and language per user; password changes revoke sessions', async ({ page }) => {
+test('admin profiles update names and language per user; password changes revoke sessions', async ({ page }, testInfo) => {
   await page.goto('/admin/login');
   await page.getByLabel('Email', { exact: true }).fill(ADMIN_EMAIL);
   await page.getByLabel('Password', { exact: true }).fill(ADMIN_PASSWORD);
@@ -79,10 +79,10 @@ test('admin profiles update names and language per user; password changes revoke
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Henry Math Challenge' })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
-  await page.screenshot({ path: 'qa/multi-user-henry-mobile.png', fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('multi-user-henry-mobile.png'), fullPage: true });
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/admin/students?userId=moon');
-  await page.screenshot({ path: 'qa/multi-user-admin-profiles.png', fullPage: true });
+  await page.screenshot({ path: testInfo.outputPath('multi-user-admin-profiles.png'), fullPage: true });
 });
 
 test('admin imports and publishes a private bank for Moon through the profile', async ({ page }) => {
