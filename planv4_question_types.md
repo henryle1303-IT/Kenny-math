@@ -24,7 +24,7 @@ b) TRUE_FALSE: Đúng/Sai cho một hoặc vài mệnh đề; tính đúng khi t
 c) MULTI_SELECT: chọn tất cả đáp án đúng (2-6 lựa chọn). Đúng khi chọn chính xác tập đáp án đúng.
 d) FILL_BLANK: điền nhiều chỗ trống (ví dụ "3/4 + {1} = 1" hoặc dãy số có 2-3 ô trống). Mỗi ô là một đáp án số; đúng khi tất cả ô đúng.
 e) ORDERING: sắp xếp 3-6 mục theo thứ tự (ví dụ xếp phân số từ nhỏ đến lớn), chọn bằng nút lên/xuống hoặc bấm lần lượt, không cần kéo thả.
-f) SHORT_TEXT (ít dùng): trả lời chữ ngắn từ danh sách đáp án chấp nhận, không phân biệt hoa thường. Chỉ cho câu logic đơn giản; có thể hoãn.
+f) SHORT_TEXT (ít dùng): trả lời chữ ngắn từ danh sách đáp án chấp nhận. Chỉ cho câu logic đơn giản; có thể hoãn. Áp dụng quy tắc chuẩn hóa chữ ở mục 3A.
 
 Không làm ở giai đoạn 1: hình/sơ đồ, ghép cặp, kéo thả, vẽ trên đường thẳng số, chấm điểm từng phần.
 
@@ -37,6 +37,17 @@ Không làm ở giai đoạn 1: hình/sơ đồ, ghép cặp, kéo thả, vẽ t
 - Cấu hình và đáp án chấp nhận được lưu trong một cột JSON mới của Question (answerData), không nhồi vào optionA..D.
 - Đề bài vẫn qua RichText/KaTeX; câu trả lời nhập tay hiển thị dạng text, không thực thi HTML.
 - Mọi nhãn và hướng dẫn ("Chọn tất cả đáp án đúng", "Nhập số") có EN/VI qua src/lib/i18n.ts.
+
+3A. Quy tắc cho mọi câu trả lời nhập chữ (YÊU CẦU BẮT BUỘC)
+
+Áp dụng cho SHORT_TEXT, đơn vị của NUMERIC_INPUT và mọi ô nhập chữ về sau:
+- Không phân biệt chữ hoa và chữ thường: "Hình Vuông", "hình vuông", "HÌNH VUÔNG" đều đúng.
+- Bỏ khoảng trắng thừa đầu, cuối và gộp nhiều khoảng trắng liên tiếp thành một.
+- Chuẩn hóa Unicode (NFC) trước khi so sánh để dấu tiếng Việt gõ bằng các bộ gõ khác nhau vẫn khớp.
+- Mặc định vẫn phân biệt dấu tiếng Việt; admin liệt kê thêm biến thể không dấu trong danh sách accepted nếu muốn nhận (ví dụ "hinh vuong"). Có thể thêm tùy chọn ignoreDiacritics cho từng câu.
+- Chuẩn hóa áp dụng cho cả đáp án học sinh nhập và danh sách accepted, nên admin không cần liệt kê từng cách viết hoa.
+- Cần phân biệt hoa thường là ngoại lệ hiếm (ví dụ ký hiệu đơn vị): bật bằng cờ caseSensitive trong answerData, mặc định tắt.
+- Hàm chuẩn hóa nằm một chỗ trong src/lib/question-types và có unit test (hoa/thường, khoảng trắng, dấu, Unicode).
 
 4. Dữ liệu
 
@@ -55,7 +66,7 @@ Ví dụ answerData:
 - MULTI_SELECT: { options: [..], correct: [1,3] }
 - FILL_BLANK: { blanks: [{ accepted: ["1/4"] }, ...] } với thẻ {1}, {2} trong đề
 - ORDERING: { items: [..], order: [2,0,1] } (hiển thị xáo trộn cố định theo seed của lượt làm)
-- SHORT_TEXT: { accepted: ["..", ".."] }
+- SHORT_TEXT: { accepted: ["..", ".."], caseSensitive: false, ignoreDiacritics: false }
 
 5. Các bước triển khai
 
@@ -93,7 +104,7 @@ Bước 7. Kiểm thử và tài liệu: xem mục 6. Cập nhật README, QA_RE
 
 6. Kiểm thử
 
-- Unit: từng dạng (parse, chuẩn hóa, chấm, hiển thị đáp án đúng); nhiều biến thể nhập (0.5, 1/2, ".50", khoảng trắng, dấu phẩy thập phân, đơn vị); đầu vào độc hại (JSON hỏng, quá dài, sai kiểu).
+- Unit: từng dạng (parse, chuẩn hóa, chấm, hiển thị đáp án đúng); nhiều biến thể nhập (0.5, 1/2, ".50", khoảng trắng, dấu phẩy thập phân, đơn vị, chữ hoa/thường, dấu tiếng Việt); đầu vào độc hại (JSON hỏng, quá dài, sai kiểu).
 - Unit máy sinh: mỗi template mới qua verify, không tạo câu trùng, tỷ lệ dạng đúng cấu hình.
 - Integration: nộp bài hỗn hợp các dạng; lưu trả lời từng dạng; làm lại bài; XP, sao, kỹ năng đúng với dạng mới; sao lưu và khôi phục; Smart Review với dạng mới; nhập CSV cũ (không có cột mới) và CSV mới khép kín.
 - E2E: học sinh làm một bài có đủ dạng, kết quả đúng; admin tạo/sửa câu theo từng dạng và publish; chuyển EN/VI.
