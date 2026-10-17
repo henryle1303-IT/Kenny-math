@@ -2,7 +2,9 @@ import { BADGES } from '@/lib/xp/rules';
 import { xt, type Lang } from '@/lib/i18n';
 import type { XpSummary } from '@/lib/services/xp';
 
-const STAR = (n: number) => '★'.repeat(n) + '☆'.repeat(3 - n);
+function Stars({ n }: { n: number }) {
+  return <span aria-label={`${n}/3`}>{[1, 2, 3].map((i) => <span key={i} className={i <= n ? 'text-amber-500' : 'text-slate-300'}>★</span>)}</span>;
+}
 
 /** Progress against yourself only: weekly XP, badges and stars by topic. */
 export function XpProgress({ xp, lang }: { xp: XpSummary; lang: Lang }) {
@@ -51,7 +53,7 @@ export function XpProgress({ xp, lang }: { xp: XpSummary; lang: Lang }) {
         <h2 className="mb-2 text-lg font-bold">{xt(lang, 'topicStars')}</h2>
         {xp.topics.length === 0 ? <p className="text-slate-500">{xt(lang, 'noTopics')}</p> : (
           <ul className="divide-y">
-            {xp.topics.map((t) => <li key={t.topic} className="flex items-center justify-between py-1.5"><span>{t.topic}</span><span className="text-amber-500" aria-label={`${t.stars}/3`}>{STAR(t.stars)}</span></li>)}
+            {xp.topics.map((t) => <li key={t.topic} className="flex items-center justify-between py-1.5"><span>{t.topic}</span><Stars n={t.stars} /></li>)}
           </ul>
         )}
       </section>
