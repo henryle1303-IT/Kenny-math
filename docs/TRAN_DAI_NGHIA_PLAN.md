@@ -428,3 +428,18 @@ mọi nhập/xóa ngân hàng Tdn có audit log và xuất sao lưu JSON trướ
  8) Thứ tự ưu tiên nếu thời gian hạn chế: Luyện theo chuyên đề (G3) trước hay Thi thử (G4) trước.
 
 Chưa có hạng mục nào được thực hiện. Sau khi bạn trả lời mục 11 và duyệt, tôi bắt đầu từ Giai đoạn 0 (không đổi code) rồi Giai đoạn 1.
+
+======================================================================
+12. QUYẾT ĐỊNH ĐÃ CHỐT (17/10/2026) - GHI ĐÈ CÁC MỤC TRƯỚC NẾU MÂU THUẪN
+======================================================================
+ 1) "Set 1-3" = 30 bài Beginner/Intermediate/Advanced hiện có: giữ nguyên hoàn toàn.
+ 2) Hiển thị chuyên mục: chỉ user trandainghia và user được admin bật (cờ trong Student.preferences).
+ 3) KHÔNG chấm tự luận. Hệ quả: bỏ cơ chế tự chấm theo barem (mục 6.3) và cột gradedBy=SELF/ADMIN, rubric không bắt buộc.
+    Ý tự luận chỉ hiển thị đề, ô nhập nháp (tùy chọn, không chấm) và lời giải mẫu sau khi nộp; không tính vào điểm/mastery.
+    Điểm tự động chỉ gồm các ý có đáp số (NUMBER/FRACTION/TEXT_SHORT/CHOICE/LIST).
+ 4) Nội dung: chỉ lưu BIẾN THỂ/bản diễn đạt lại, không lưu nguyên văn đề chính thức. Bài gốc chỉ được ghi dạng
+    "mô tả dạng bài + nguồn tham khảo" (không chép đề); bài lưu trong ngân hàng là bài tự soạn theo dạng, có số liệu/ngữ cảnh khác.
+    sourceKind chuyển thành: DERIVED_FROM_OFFICIAL (biến thể từ dạng đề thật), AUTHORED. Đối chiếu đáp án nguồn dùng cho dạng, không chép lời giải.
+ 5) Mật khẩu 123 cho trandainghia trên production: chấp nhận.
+ 6) Nguồn đề: không có file; nghiên cứu qua tìm kiếm web. Kết quả và giới hạn: docs/TDN_CONTENT_MAP.md.
+Trạng thái: các quyết định trên chưa phải là phê duyệt triển khai code. Giai đoạn 1 (migration) vẫn chờ duyệt riêng.
