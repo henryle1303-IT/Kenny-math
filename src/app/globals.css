@@ -15,3 +15,6 @@ body { @apply bg-gradient-to-b from-brand-50 to-white text-slate-800 antialiased
 .label { @apply mb-1 block text-sm font-semibold text-slate-700; }
 .badge { @apply inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-semibold; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
+@keyframes xp-pop { 0% { transform: scale(.85); opacity: 0; } 60% { transform: scale(1.06); opacity: 1; } 100% { transform: scale(1); } }
+.xp-pop { animation: xp-pop .5s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .xp-pop { animation: none; } }

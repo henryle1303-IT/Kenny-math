@@ -3,6 +3,7 @@ import { prisma } from '../db';
 import { gradeAnswers, isExpired, timeUsedSeconds } from '../grading';
 import { recordSkillEvents } from './skills';
 import { STUDENT_ID } from './core';
+import { awardForTest } from './xp';
 
 export class AppError extends Error {
   constructor(message: string, public status = 400, public code = 'BAD_REQUEST') {
@@ -117,16 +118,23 @@ export async function saveAnswer(attemptId: string, questionId: string, selected
 
 /** Grade and close an attempt. Idempotent: only the first caller does the work. */
 export async function finalizeAttempt(attemptId: string, now: Date = new Date()) {
+  const { attempt, fresh } = await gradeAttempt(attemptId, now);
+  // XP is best effort and runs after grading, so a problem here can never lose a submitted test.
+  if (fresh) await awardForTest(attemptId).catch((e) => console.error('[xp] test award failed', e));
+  return attempt;
+}
+
+async function gradeAttempt(attemptId: string, now: Date) {
   return prisma.$transaction(async (tx) => {
     const attempt = await tx.testAttempt.findUnique({ where: { id: attemptId } });
     if (!attempt) throw new AppError('Test not found.', 404, 'NOT_FOUND');
-    if (attempt.status !== 'IN_PROGRESS') return attempt;
+    if (attempt.status !== 'IN_PROGRESS') return { attempt, fresh: false };
     const expired = now.getTime() >= attempt.expiresAt.getTime();
     const claim = await tx.testAttempt.updateMany({
       where: { id: attemptId, status: 'IN_PROGRESS' },
       data: { status: expired ? 'TIMED_OUT' : 'SUBMITTED', submittedAt: now, inProgressKey: null },
     });
-    if (claim.count === 0) return (await tx.testAttempt.findUnique({ where: { id: attemptId } }))!;
+    if (claim.count === 0) return { attempt: (await tx.testAttempt.findUnique({ where: { id: attemptId } }))!, fresh: false };
 
     const order: string[] = JSON.parse(attempt.questionOrder);
     const [questions, answers] = await Promise.all([
@@ -167,7 +175,7 @@ export async function finalizeAttempt(attemptId: string, now: Date = new Date())
       tx,
       attempt.studentId,
     );
-    return updated;
+    return { attempt: updated, fresh: true };
   }, { timeout: 30000, maxWait: 10000 });
 }
 

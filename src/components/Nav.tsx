@@ -1,18 +1,22 @@
 import { StudentLogout } from './StudentLogout';
 import Link from 'next/link';
-import { BookOpenCheck, Home, LineChart, Sparkles } from 'lucide-react';
+import { BookOpenCheck, Gift, Home, LineChart, Sparkles } from 'lucide-react';
 import { getLang, getStudent } from '@/lib/services/core';
 import { tr } from '@/lib/i18n';
 import { LangToggle } from './LangToggle';
+import { XpChip } from './xp/XpChip';
+import { getXpChip } from '@/lib/services/xp';
 
 export async function Nav() {
   const lang = await getLang();
   const student = await getStudent();
+  const chip = await getXpChip(student.id).catch(() => null);
   const items = [
     { href: '/', label: 'Home', Icon: Home },
     { href: '/tests', label: 'Math Tests', Icon: BookOpenCheck },
     { href: '/review', label: 'Smart Review', Icon: Sparkles },
     { href: '/progress', label: 'My Progress', Icon: LineChart },
+    ...(chip?.shop ? [{ href: '/rewards', label: 'Rewards', Icon: Gift }] : []),
   ];
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
@@ -28,6 +32,7 @@ export async function Nav() {
               <span className="sr-only sm:hidden">{tr(lang, label)}</span>
             </Link>
           ))}
+          {chip && <XpChip level={chip.level} totalXp={chip.totalXp} streak={chip.streak} lang={lang} />}
           <LangToggle lang={lang} />
           <Link href="/account" className="btn-ghost max-w-32 truncate text-sm" aria-label={lang === 'vi' ? `Tài khoản ${student.name}` : `Account for ${student.name}`}>{student.name}</Link>
           <StudentLogout lang={lang} />

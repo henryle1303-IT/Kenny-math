@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { prisma } from '../db';
 import { AppError } from './attempts';
 import { STUDENT_ID } from './core';
+import { wipeXp } from './xp';
 
 export const MAX_PROGRESS_BYTES = 4 * 1024 * 1024;
 const backupKey = (studentId: string) => `progressBackup:${studentId}`;
@@ -149,6 +150,7 @@ export async function importProgress(value: unknown, confirmation: unknown, stud
     await tx.reviewSession.deleteMany({ where: { studentId } });
     await tx.skillEvent.deleteMany({ where: { studentId } });
     await tx.skillProgress.deleteMany({ where: { studentId } });
+    await wipeXp(tx, studentId); // XP is rebuilt from the restored history on the next visit
     const ids = new Map([...b.attempts, ...b.sessions].map((r) => [r.id, randomUUID()]));
     await batches(b.attempts.map((a) => ({ ...a, id: ids.get(a.id)!, studentId, inProgressKey: a.status === 'IN_PROGRESS' ? `${studentId}:${a.testNumber}` : null })), (data) => tx.testAttempt.createMany({ data }));
     await batches(b.answers.map((a) => ({ ...a, id: randomUUID(), attemptId: ids.get(a.attemptId)! })), (data) => tx.studentAnswer.createMany({ data }));

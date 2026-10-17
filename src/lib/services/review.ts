@@ -7,6 +7,7 @@ import { planSession, SESSION_SIZE, type SkillSnapshot } from '../learning/plann
 import { getLearningConfig, STUDENT_ID } from './core';
 import { recordSkillEvents } from './skills';
 import { AppError } from './attempts';
+import { awardForReviewAnswer, weakSkillIds, type XpAward } from './xp';
 
 const RECENT_FINGERPRINTS = 200;
 
@@ -164,17 +165,18 @@ export async function getReviewSession(sessionId: string, studentId = STUDENT_ID
 
 export async function answerReviewQuestion(reviewQuestionId: string, selected: string, studentId = STUDENT_ID) {
   if (!['A', 'B', 'C', 'D'].includes(selected)) throw new AppError('Please choose A, B, C or D.');
-  return prisma.$transaction(async (tx) => {
+  const weak = await weakSkillIds(prisma, studentId);
+  const result = await prisma.$transaction(async (tx) => {
     const q = await tx.reviewQuestion.findUnique({ where: { id: reviewQuestionId }, include: { session: true } });
     if (!q || q.session.studentId !== studentId) throw new AppError('Question not found.', 404, 'NOT_FOUND');
     const d = JSON.parse(q.generatedQuestionData) as { commonMistake: string; learningTip: string; topic: string };
     const reveal = (sel: string, ok: boolean) => ({ selected: sel, isCorrect: ok, correct: q.correctAnswer, explanation: q.explanation, commonMistake: d.commonMistake, learningTip: d.learningTip });
-    if (q.selectedAnswer !== null) return { alreadyAnswered: true, ...reveal(q.selectedAnswer, q.isCorrect === true), sessionCompleted: !!q.session.completedAt };
+    if (q.selectedAnswer !== null) return { alreadyAnswered: true, ...reveal(q.selectedAnswer, q.isCorrect === true), sessionCompleted: !!q.session.completedAt, award: null as null | { correct: boolean; kind: string; sourceQuestionId: string | null; sessionId: string; skillId: string } };
     const ok = selected === q.correctAnswer;
     const claim = await tx.reviewQuestion.updateMany({ where: { id: q.id, selectedAnswer: null }, data: { selectedAnswer: selected, isCorrect: ok, answeredAt: new Date() } });
     if (claim.count === 0) {
       const again = (await tx.reviewQuestion.findUnique({ where: { id: q.id } }))!;
-      return { alreadyAnswered: true, ...reveal(again.selectedAnswer ?? selected, again.isCorrect === true), sessionCompleted: false };
+      return { alreadyAnswered: true, ...reveal(again.selectedAnswer ?? selected, again.isCorrect === true), sessionCompleted: false, award: null };
     }
     await recordSkillEvents([{ skillId: q.skillId, topic: d.topic, isCorrect: ok, source: 'REVIEW', sessionKey: q.sessionId, tier: q.tier }], tx, q.session.studentId);
     const all = await tx.reviewQuestion.findMany({ where: { sessionId: q.sessionId } });
@@ -182,8 +184,16 @@ export async function answerReviewQuestion(reviewQuestionId: string, selected: s
     if (finished) {
       await tx.reviewSession.update({ where: { id: q.sessionId }, data: { completedAt: new Date(), score: all.filter((x) => x.isCorrect).length } });
     }
-    return { alreadyAnswered: false, ...reveal(selected, ok), sessionCompleted: finished };
+    return { alreadyAnswered: false, ...reveal(selected, ok), sessionCompleted: finished, award: { correct: ok, kind: q.session.kind, sourceQuestionId: q.session.sourceQuestionId, sessionId: q.sessionId, skillId: q.skillId } };
   }, { timeout: 20000, maxWait: 10000 });
+  const { award, ...rest } = result;
+  // XP is best effort and runs after the answer is saved.
+  let xp: XpAward | null = null;
+  if (award) {
+    xp = await awardForReviewAnswer({ studentId, reviewQuestionId, sessionId: award.sessionId, skillId: award.skillId, kind: award.kind, sourceQuestionId: award.sourceQuestionId, correct: award.correct, sessionCompleted: rest.sessionCompleted, weak: weak.has(award.skillId) })
+      .catch((e) => { console.error('[xp] review award failed', e); return null; });
+  }
+  return { ...rest, xp };
 }
 
 export { getLearningConfig };

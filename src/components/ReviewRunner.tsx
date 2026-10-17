@@ -5,6 +5,8 @@ import { CheckCircle2, XCircle } from 'lucide-react';
 import { Explanation } from './Explanation';
 import { ProgressBar } from './ui';
 import { SimilarButton } from './SimilarButton';
+import { XpGain, type XpGainData } from './xp/XpGain';
+import { xt, type Lang } from '@/lib/i18n';
 
 export interface RQ {
   id: string;
@@ -24,19 +26,21 @@ export interface RQ {
 }
 interface Props {
   studentName: string;
+  lang: Lang;
   sessionId: string;
   kind: string;
   sourceQuestionId: string | null;
   questions: RQ[];
 }
 
-export function ReviewRunner({ studentName, sessionId, kind, sourceQuestionId, questions: initial }: Props) {
+export function ReviewRunner({ studentName, lang, sessionId, kind, sourceQuestionId, questions: initial }: Props) {
   const [qs, setQs] = useState(initial);
   const firstOpen = initial.findIndex((q) => q.selected === null);
   const [idx, setIdx] = useState(firstOpen === -1 ? 0 : firstOpen);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   const [done, setDone] = useState(firstOpen === -1);
+  const [gains, setGains] = useState<Record<string, XpGainData>>({});
 
   const q = qs[idx];
   const answered = qs.filter((x) => x.selected !== null).length;
@@ -49,6 +53,7 @@ export function ReviewRunner({ studentName, sessionId, kind, sourceQuestionId, q
       const res = await fetch('/api/review/answer', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ reviewQuestionId: q.id, selected: letter }) });
       const d = await res.json();
       if (!res.ok) throw new Error(d.error);
+      if (d.xp) setGains((g) => ({ ...g, [q.id]: d.xp as XpGainData }));
       setQs((all) => all.map((x) => (x.id === q.id ? { ...x, selected: d.selected, isCorrect: d.isCorrect, correct: d.correct, explanation: d.explanation, commonMistake: d.commonMistake, learningTip: d.learningTip } : x)));
     } catch (e) {
       setErr((e as Error).message);
@@ -60,6 +65,8 @@ export function ReviewRunner({ studentName, sessionId, kind, sourceQuestionId, q
   if (done) {
     const right = qs.filter((x) => x.isCorrect).length;
     const wrongOnes = qs.filter((x) => x.isCorrect === false);
+    const sessionXp = Object.values(gains).reduce((s, g) => s + g.gained, 0);
+    const lastGain = qs.map((x) => gains[x.id]).filter(Boolean).pop();
     return (
       <div className="space-y-4">
         <div className="card bg-gradient-to-br from-emerald-500 to-teal-600 p-6 text-white">
@@ -67,6 +74,9 @@ export function ReviewRunner({ studentName, sessionId, kind, sourceQuestionId, q
           <div className="text-5xl font-black" data-testid="review-score">{right}/{qs.length}</div>
           <p className="mt-2 text-lg font-semibold">{right === qs.length ? 'Perfect! You really understand this. 🌟' : right >= qs.length / 2 ? `Nice work, ${studentName}! Every question you practise makes you stronger. 💪` : 'Good try! Read the explanations and have another go – you will get there. 🌱'}</p>
         </div>
+        {sessionXp > 0 && (
+          <div className="card p-4 text-lg font-bold text-amber-700" data-testid="xp-session">⭐ {xt(lang, 'sessionXp')}: +{sessionXp} XP{lastGain && ` · ${xt(lang, 'level', { n: lastGain.level })}`}{lastGain && lastGain.streak > 0 && ` · 🔥 ${xt(lang, 'streakDays', { n: lastGain.streak })}`}</div>
+        )}
         {wrongOnes.length > 0 && (
           <div className="card p-4">
             <h2 className="mb-2 font-bold">Questions to look at again</h2>
@@ -122,6 +132,7 @@ export function ReviewRunner({ studentName, sessionId, kind, sourceQuestionId, q
         {err && <p role="alert" className="mt-2 text-sm text-rose-600">{err}</p>}
         {revealed && (
           <div data-testid="review-feedback">
+            <XpGain xp={gains[q.id]} lang={lang} />
             <p className={`mt-4 text-lg font-bold ${q.isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>{q.isCorrect ? 'Correct! Well done! 🎉' : 'Not quite – let’s learn from it.'}</p>
             {!q.isCorrect && <Explanation explanation={q.explanation ?? ''} commonMistake={q.commonMistake} learningTip={q.learningTip} />}
             <div className="mt-4 flex justify-end">

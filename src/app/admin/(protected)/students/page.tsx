@@ -9,6 +9,7 @@ import { getLearningConfig } from '@/lib/services/core';
 import { UserProfile, CreateUser } from '@/components/admin/UserProfile';
 import { ImportExport } from '@/components/admin/ImportExport';
 import { ProgressBackup } from '@/components/admin/ProgressBackup';
+import { AdminUserXp } from '@/components/admin/AdminUserXp';
 
 export default async function StudentsPage({ searchParams }: { searchParams: Promise<{ userId?: string }> }) {
   const users = await prisma.student.findMany({ select: { id: true, name: true, username: true, isActive: true, bankAssignment: { include: { bank: { select: { name: true } } } }, attempts: { orderBy: { startedAt: 'desc' }, take: 1, select: { startedAt: true } }, reviewSessions: { orderBy: { startedAt: 'desc' }, take: 1, select: { startedAt: true } } }, orderBy: { createdAt: 'asc' } });
@@ -58,6 +59,7 @@ export default async function StudentsPage({ searchParams }: { searchParams: Pro
       <section className="card p-4"><h2 className="mb-2 font-bold">Recent Smart Review sessions</h2>
         <ul className="text-sm">{sessions.map((s) => <li key={s.id} className="flex justify-between border-b py-1"><span>{s.startedAt.toLocaleString()} ({s.kind.toLowerCase()})</span><span>{s.completedAt ? `${s.score}/${s.total}` : 'unfinished'}</span></li>)}</ul>
       </section>
+      <AdminUserXp key={`xp-${student.id}`} studentId={student.id} studentName={student.name} />
       <ClearProgress key={student.id} studentName={student.name} studentId={student.id} />
     </div>
   );

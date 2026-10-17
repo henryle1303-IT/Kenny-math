@@ -1,6 +1,6 @@
 # Kế hoạch v3: Hệ thống điểm thưởng XP
 
-Ngày lập: 17/10/2026. Trạng thái: CHỜ DUYỆT, chưa triển khai.
+Ngày lập: 17/10/2026. Trạng thái: ĐÃ TRIỂN KHAI (xem mục 13).
 
 ## 1. Phạm vi đã chốt
 
@@ -122,3 +122,12 @@ Lưu ý hạ tầng kiểm thử: hiện Vitest và Playwright chạy trên SQLi
 - Backfill phải idempotent để deploy lặp lại không nhân đôi XP.
 - Không có bảng xếp hạng nên không cần chia sẻ dữ liệu giữa các hồ sơ.
 - Giữ giao diện nhẹ, không gây áp lực: nhiệm vụ nhỏ, chuỗi có thẻ bảo vệ, bỏ lỡ không bị phạt.
+
+## 13. Kết quả triển khai và khác biệt so với kế hoạch
+
+- Đã làm đủ: nền tảng XP, cấp độ, chuỗi ngày và thẻ bảo vệ, nhiệm vụ ngày và tuần, huy hiệu, sao theo chủ đề, avatar và màu theo cấp, so với chính mình theo tuần, backfill cho học sinh cũ, cửa hàng phần thưởng, trang quản trị, bản dịch EN/VI.
+- Phương án A cho SQLite: chỉ có migration PostgreSQL; DB SQLite tạm của test tạo bảng XP bằng `prisma db push`.
+- Backfill chạy lười (lazy): lần đầu mỗi học sinh mở trang sau khi triển khai, XP được tính từ lịch sử (idempotent). `npm run xp:backfill` để xem trước hoặc tạo sẵn.
+- Khôi phục sao lưu tiến độ: định dạng sao lưu không đổi (phiên bản 1); sau khi khôi phục, XP được xóa và tính lại từ lịch sử đã khôi phục. Xóa tiến độ cũng xóa XP. Chi tiêu ở cửa hàng không nằm trong sao lưu.
+- Chống lạm dụng thêm: Smart Review chỉ trả đủ XP cho 50 câu đúng mỗi ngày (mặc định), sau đó 2 XP mỗi câu; thưởng "sửa lỗi" chỉ trả một lần cho mỗi câu.
+- Chưa kiểm thử trên PostgreSQL/Neon thật (môi trường không có PostgreSQL). Migration được sinh bằng `prisma migrate diff`, chỉ tạo bảng mới; schema PostgreSQL được `prisma validate` đạt.

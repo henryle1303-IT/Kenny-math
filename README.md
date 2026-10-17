@@ -4,6 +4,7 @@ An interactive Grade 5 maths platform:
 
 * **30 official tests × 30 questions (900 questions)**, 30 minutes each, easy → advanced, automatic grading and step-by-step explanations.
 * **Smart Review** – personalised 10-question practice built from Kenny's mistakes, adaptive difficulty, skill mastery and spaced review. No paid AI needed.
+* **XP and rewards** – XP for correct answers, levels, a daily streak with shields, two small daily quests plus a weekly challenge, badges, stars by topic, and an optional reward shop that parents control. Progress is compared only with the student's own earlier weeks; there is no leaderboard.
 * **My Progress** – scores, topic accuracy, mastery, retake history.
 * **Admin panel** (`/admin`) – generate, edit, validate, import/export (CSV), version, publish and roll back question banks.
 
@@ -40,6 +41,15 @@ npm run build:vercel         # migration + seed + production build
 Stop any running local server before switching Prisma providers on Windows. To return to SQLite, remove `.env.local`, run `npx prisma generate`, then `npm run dev`. The default `npm test` suite uses a disposable SQLite database and needs the SQLite client. `npm run test:deploy` also checks the deployment configuration and schema parity; it does not contact Neon.
 
 To run the full browser suite against Neon, use a disposable **preview branch**. Set `DATABASE_URL` and `DATABASE_URL_UNPOOLED` to that branch, seed with `ADMIN_EMAIL=e2e-admin@example.com` / `ADMIN_PASSWORD=e2e-password-123`, and run `npm run build:vercel`. Then set `POSTGRES_TEST_DATABASE_URL` to that preview pooled URL and run `npm run test:e2e:postgres`. This suite edits banks and clears student progress in the supplied test database; it does not create or reset a database automatically. It starts the production server on port 3210. Use the same `NEXT_DIST_DIR` for build and test if overriding the build directory.
+
+## XP and rewards
+
+* Rules live in `src/lib/xp/rules.ts` (pure, unit-tested) and the award logic in `src/lib/services/xp.ts`. XP is added on the server right after a test is graded or a Smart Review answer is saved, with unique ledger keys so nothing is paid twice. A problem while awarding XP never loses a submitted test.
+* Defaults: 10 XP per correct answer (+5 the first time a question is seen, half for repeats), +20 for finishing a test (+50 for 30/30), +15 for finishing a Smart Review, +15 for fixing an old mistake. Reaching 5 correct answers in a day keeps the streak; every 7 streak days earn a shield (max 2) that covers a missed day. Days are counted in Vietnam time (Asia/Ho_Chi_Minh). Admin > XP & Rewards changes the numbers, switches features on or off, and manages parent-set rewards and requests; Admin > User Profiles can give, take, rebuild or reset one user's XP.
+* All XP text follows the existing EN/VI language button (dictionary `xt()` in `src/lib/i18n.ts`).
+* The XP tables are added by the PostgreSQL migration `prisma/postgres/migrations/20261018000100_xp_rewards`. There is intentionally no SQLite migration: the disposable SQLite databases used by the tests (`tests/global-setup.ts`, `scripts/e2e-prepare.ts`) get the tables with `prisma db push`.
+* Existing history is worth XP: the first time a student's XP is needed after deployment (any student page loads the nav chip), their finished tests and Smart Review sessions are converted to XP (10 per correct answer, 20 per finished test, 50 per 30/30, 15 per finished Smart Review) and the streak is rebuilt from the days with 5+ correct answers. The conversion is idempotent. Preview it with `npm run xp:backfill` (dry run) or create the profiles ahead of time with `npm run xp:backfill -- --apply`.
+* Clearing a student's progress also removes their XP; restoring a progress backup rebuilds XP from the restored history (shop spending is not part of backups).
 
 ## Optional browser demo (no database)
 

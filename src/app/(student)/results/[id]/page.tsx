@@ -8,6 +8,9 @@ import { PercentBars, ScoreLine } from '@/components/charts';
 import { ProgressBar, Stars } from '@/components/ui';
 import { PracticeButton } from '@/components/PracticeButton';
 import { StartTestButton } from '@/components/StartTestButton';
+import { getLang } from '@/lib/services/core';
+import { attemptXp } from '@/lib/services/xp';
+import { XpResult } from '@/components/xp/XpResult';
 
 function feedback(pct: number, improvement: number | null, pb: boolean, name: string): string {
   if (pb) return `New personal best! Amazing work, ${name}! 🎉`;
@@ -30,6 +33,7 @@ export default async function ResultPage({ params }: { params: Promise<{ id: str
     throw e;
   }
   const { attempt, grade } = r;
+  const [lang, xpResult] = await Promise.all([getLang(), attemptXp(student.id, id).catch(() => null)]);
   const pctScore = grade.percentage;
   return (
     <div className="space-y-6">
@@ -42,6 +46,8 @@ export default async function ResultPage({ params }: { params: Promise<{ id: str
         </div>
         <p className="mt-3 text-lg font-semibold" data-testid="feedback">{feedback(pctScore, r.improvement, r.isPersonalBest, student.name)}</p>
       </div>
+
+      <XpResult r={xpResult} lang={lang} />
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Stat icon={<CheckCircle2 className="text-emerald-600" />} label="Correct" value={grade.correct} />

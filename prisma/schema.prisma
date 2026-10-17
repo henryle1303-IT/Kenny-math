@@ -28,6 +28,13 @@ model Student {
   reviewSessions ReviewSession[]
   skillProgress  SkillProgress[]
   skillEvents    SkillEvent[]
+  xp             StudentXp?
+  xpLedger       XpLedger[]
+  dailyActivity  DailyActivity[]
+  badges         StudentBadge[]
+  quests         Quest[]
+  rewards        Reward[]
+  redemptions    RewardRedemption[]
 }
 
 model QuestionBank {
@@ -284,4 +291,113 @@ model ImportJob {
 model Setting {
   key   String @id
   value String
+}
+
+// ---- XP rewards ----
+model StudentXp {
+  studentId    String   @id
+  totalXp      Int      @default(0) // lifetime XP earned; decides the level, never reduced by spending
+  spentXp      Int      @default(0) // XP spent in the reward shop (net of refunds)
+  level        Int      @default(1)
+  streak       Int      @default(0)
+  bestStreak   Int      @default(0)
+  freezes      Int      @default(0)
+  freezeMark   Int      @default(0) // streak length at which the last streak freeze was granted
+  lastStudyDay String? // YYYY-MM-DD in Asia/Ho_Chi_Minh
+  updatedAt    DateTime @updatedAt
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model XpLedger {
+  id        String   @id @default(cuid())
+  studentId String
+  amount    Int
+  source    String // TEST | REVIEW | QUEST | STREAK | BACKFILL | ADMIN | REDEEM
+  reason    String
+  refKey    String // idempotency key, unique per student
+  day       String // YYYY-MM-DD in Asia/Ho_Chi_Minh
+  createdAt DateTime @default(now())
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, refKey])
+  @@index([studentId, createdAt])
+  @@index([studentId, day])
+}
+
+model DailyActivity {
+  id            String @id @default(cuid())
+  studentId     String
+  day           String // YYYY-MM-DD in Asia/Ho_Chi_Minh
+  answered      Int    @default(0)
+  correct       Int    @default(0)
+  fixed         Int    @default(0)
+  weakCorrect   Int    @default(0)
+  smartSessions Int    @default(0)
+  tests         Int    @default(0)
+  xp            Int    @default(0)
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, day])
+}
+
+model StudentBadge {
+  id        String   @id @default(cuid())
+  studentId String
+  badgeKey  String
+  earnedAt  DateTime @default(now())
+  refKey    String? // attempt or review session that earned it
+  quiet     Boolean  @default(false) // true when granted from history (no celebration)
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, badgeKey])
+}
+
+model Quest {
+  id          String    @id @default(cuid())
+  studentId   String
+  kind        String // DAILY | WEEKLY
+  period      String // day (DAILY) or Monday of the week (WEEKLY), YYYY-MM-DD
+  key         String
+  target      Int
+  rewardXp    Int       @default(0)
+  completedAt DateTime?
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, kind, period, key])
+}
+
+model Reward {
+  id         String   @id @default(cuid())
+  name       String
+  nameVi     String   @default("")
+  description String  @default("")
+  costXp     Int
+  studentId  String? // null = available to every user
+  maxPerWeek Int? // null = unlimited
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+
+  student     Student?           @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  redemptions RewardRedemption[]
+}
+
+model RewardRedemption {
+  id        String    @id @default(cuid())
+  rewardId  String
+  studentId String
+  costXp    Int
+  status    String    @default("PENDING") // PENDING | APPROVED | REJECTED
+  createdAt DateTime  @default(now())
+  decidedAt DateTime?
+
+  reward  Reward  @relation(fields: [rewardId], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([studentId, createdAt])
+  @@index([status])
 }
