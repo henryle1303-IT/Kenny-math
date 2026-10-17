@@ -4,8 +4,8 @@ import { loadEnvConfig } from '@next/env';
 import { postgresEnvironment } from './postgres-env';
 
 const mode = process.argv[2];
-if (!['build', 'setup', 'dev'].includes(mode)) {
-  console.error('Usage: tsx scripts/postgres.ts build|setup|dev');
+if (!['build', 'setup', 'dev', 'demo'].includes(mode)) {
+  console.error('Usage: tsx scripts/postgres.ts build|setup|dev|demo');
   process.exit(1);
 }
 try {
@@ -22,10 +22,12 @@ try {
   }
   run('prisma/build/index.js', ['generate', '--schema', schema]);
   // Setup is explicit. `dev:postgres` cannot migrate or seed a remote database.
-  if (mode !== 'dev') {
+  if (mode === 'build' || mode === 'setup') {
     run('prisma/build/index.js', ['migrate', 'deploy', '--schema', schema]);
     run('tsx/dist/cli.mjs', ['prisma/seed.ts']);
   }
+  // Explicit and manual: creates the weak-password demo user and demo bank in the database named by DATABASE_URL.
+  if (mode === 'demo') run('tsx/dist/cli.mjs', ['scripts/demo-seed.ts', ...process.argv.slice(3)]);
   if (mode === 'build') run('next/dist/bin/next', ['build']);
   if (mode === 'dev') run('next/dist/bin/next', ['dev']);
 } catch (error) {

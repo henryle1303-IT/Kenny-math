@@ -106,6 +106,7 @@ To test while the development server is running, set `NEXT_DIST_DIR=.next-e2e`, 
 | `npm run db:migrate` / `db:seed` / `db:setup` | migrations / seed / both |
 | `npm run bank:export` | writes the reference bank to `exports/kenny-math-bank-v1.csv` |
 | `npm run demo:seed` | creates (or refreshes) the demo user `demo` / password `123` and the private bank "Demo - all question types" (see below) |
+| `npm run demo:seed:postgres` | same demo user and bank, written to the PostgreSQL/Neon database named by `DATABASE_URL` and `DATABASE_URL_UNPOOLED` (manual only; add `-- --reset-password` to restore `123`) |
 | `npm run qa:report` | validates the reference bank and writes `qa/content-report.md` |
 
 The ready-made 900-question file is in [`exports/kenny-math-bank-v1.csv`](exports/kenny-math-bank-v1.csv); it can be imported again through **Admin → Import / Export**.
@@ -186,7 +187,7 @@ Limits of this first version: the generator still produces multiple choice only;
 
 ### Demo user and demo bank
 
-`npm run demo:seed` creates the student **demo** (password **123**, Vietnamese by default) with a private published bank of 18 hand-written questions in tests 1, 11 and 21, covering all seven types. It can be run again at any time: it keeps a changed password unless you run `npm run demo:seed -- --reset-password` (use this if `demo` / `123` is rejected), and it does not touch other users or the shared bank. The password is deliberately weak, so the script is **not** run by `db:setup` or by the Vercel build. Remove the demo user in Admin > User Profiles before real use. The bank is intentionally not a complete 30 x 30 bank, so running "Validate" on it in Admin reports the missing tests; it is already published and does not need that step.
+`npm run demo:seed` creates the student **demo** (password **123**, Vietnamese by default) with a private published bank of 18 hand-written questions in tests 1, 11 and 21, covering all seven types. It can be run again at any time: it keeps a changed password unless you run `npm run demo:seed -- --reset-password` (use this if `demo` / `123` is rejected), and it does not touch other users or the shared bank. The password is deliberately weak, so the script is **not** run by `db:setup` or by the Vercel build. On Vercel/Neon the new question types do not appear by themselves: the generated bank is multiple choice only, so run `npm run demo:seed:postgres` once (with the Neon connection strings in the environment, for example after `vercel env pull .env.local`) and sign in as `demo`. Remove the demo user in Admin > User Profiles before real use. The bank is intentionally not a complete 30 x 30 bank, so running "Validate" on it in Admin reports the missing tests; it is already published and does not need that step.
 
 ## Project documents
 
