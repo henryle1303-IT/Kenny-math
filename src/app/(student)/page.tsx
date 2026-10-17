@@ -6,13 +6,16 @@ import { tr } from '@/lib/i18n';
 import { MasteryBadge, pct } from '@/components/ui';
 import { PracticeButton } from '@/components/PracticeButton';
 import { prisma } from '@/lib/db';
+import { getXpSummary } from '@/lib/services/xp';
+import { XpCard } from '@/components/xp/XpCard';
 
 export default async function HomePage() {
   const student = await getStudent();
-  const [p, lang, open] = await Promise.all([
+  const [p, lang, open, xp] = await Promise.all([
     getProgress(student.id),
     getLang(),
     prisma.testAttempt.findFirst({ where: { studentId: student.id, status: 'IN_PROGRESS', expiresAt: { gt: new Date() } }, orderBy: { startedAt: 'desc' } }),
+    getXpSummary(student.id).catch(() => null),
   ]);
   const cards = [
     { href: '/tests', title: 'Math Tests', text: '30 tests, from easy to challenging', Icon: BookOpenCheck, color: 'from-sky-500 to-brand-600' },
@@ -25,6 +28,8 @@ export default async function HomePage() {
         <h1 className="text-4xl font-black text-brand-800">{lang === 'vi' ? `Thử thách Toán của ${student.name}` : `${student.name} Math Challenge`}</h1>
         <p className="mt-1 text-lg text-slate-600">{tr(lang, 'Welcome back')}, <b>{student.name}</b>! 👋</p>
       </section>
+
+      {xp && <XpCard xp={xp} lang={lang} name={student.name} />}
 
       {open && (
         <Link href={`/attempt/${open.id}`} className="card flex items-center justify-between border-l-4 border-amber-400 p-4">

@@ -3,9 +3,13 @@ import { getProgress } from '@/lib/services/progress';
 import { MasteryBars, PercentBars, ScoreLine, TrendLine } from '@/components/charts';
 import { MasteryBadge, pct } from '@/components/ui';
 import { MASTERY_LABELS } from '@/lib/learning/mastery';
+import { getLang } from '@/lib/services/core';
+import { getXpSummary } from '@/lib/services/xp';
+import { XpProgress } from '@/components/xp/XpProgress';
 
 export default async function ProgressPage() {
-  const p = await getProgress((await getStudent()).id);
+  const student = await getStudent();
+  const [p, lang, xp] = await Promise.all([getProgress(student.id), getLang(), getXpSummary(student.id).catch(() => null)]);
   const colors: Record<string, string> = { NOT_ENOUGH_DATA: '#cbd5e1', NEEDS_PRACTICE: '#f43f5e', DEVELOPING: '#f59e0b', IMPROVING: '#38bdf8', MASTERED: '#10b981' };
   const mastery = Object.entries(MASTERY_LABELS).map(([k, v]) => ({ name: v, value: p.masteryCounts[k] ?? 0, fill: colors[k] }));
   const stats: [string, string | number][] = [
@@ -19,6 +23,7 @@ export default async function ProgressPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-extrabold text-brand-800">My Learning Progress</h1>
+      {xp && <XpProgress xp={xp} lang={lang} />}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         {stats.map(([l, v]) => (
           <div key={l} className="card p-4">

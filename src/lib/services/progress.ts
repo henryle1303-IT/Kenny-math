@@ -3,6 +3,7 @@ import { skillLabel } from '../gen/registry';
 import { MASTERY_LABELS, type Mastery } from '../learning/mastery';
 import { STUDENT_ID } from './core';
 import { AppError } from './attempts';
+import { wipeXp } from './xp';
 
 /** Reset learning history while keeping the student and question banks. */
 export async function clearStudentProgress(confirmation: unknown, studentId = STUDENT_ID) {
@@ -12,6 +13,7 @@ export async function clearStudentProgress(confirmation: unknown, studentId = ST
     const reviews = await tx.reviewSession.deleteMany({ where: { studentId } });
     const events = await tx.skillEvent.deleteMany({ where: { studentId } });
     const skills = await tx.skillProgress.deleteMany({ where: { studentId } });
+    await wipeXp(tx, studentId); // XP is built from this history
     return { attempts: attempts.count, reviewSessions: reviews.count, skillEvents: events.count, skills: skills.count };
   }, { timeout: 30000, maxWait: 10000 });
 }

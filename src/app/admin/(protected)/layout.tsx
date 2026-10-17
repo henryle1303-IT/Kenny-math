@@ -10,6 +10,7 @@ const NAV = [
   ['/admin/import', 'Import / Export'],
   ['/admin/banks', 'Bank Versions'],
   ['/admin/students', 'User Profiles'],
+  ['/admin/xp', 'XP & Rewards'],
   ['/admin/settings', 'Settings'],
 ];
 

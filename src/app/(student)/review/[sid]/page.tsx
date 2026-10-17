@@ -1,4 +1,4 @@
-import { getStudent } from '@/lib/services/core';
+import { getLang, getStudent } from '@/lib/services/core';
 import { notFound } from 'next/navigation';
 import katex from 'katex';
 import { AppError } from '@/lib/services/attempts';
@@ -36,6 +36,7 @@ export default async function SessionPage({ params }: { params: Promise<{ sid: s
   return (
     <ReviewRunner
       studentName={student.name}
+      lang={await getLang()}
       sessionId={s.id}
       kind={s.kind}
       sourceQuestionId={s.sourceQuestionId}

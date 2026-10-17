@@ -34,7 +34,7 @@ export default async function AdminDashboard() {
         <h2 className="mb-2 font-bold">Recent admin activity</h2>
         <ul className="divide-y text-sm">
           {logs.map((l) => (
-            <li key={l.id} className="flex justify-between gap-2 py-1.5"><span className="font-mono">{l.operation}</span><span className="truncate text-slate-500">{l.details.slice(0, 80)}</span><time className="shrink-0 text-slate-400">{l.timestamp.toLocaleString()}</time></li>
+            <li key={l.id} className="flex flex-wrap justify-between gap-x-2 py-1.5"><span className="font-mono">{l.operation}</span><span className="truncate text-slate-500">{l.details.slice(0, 80)}</span><time className="shrink-0 text-slate-400">{l.timestamp.toLocaleString()}</time></li>
           ))}
           {logs.length === 0 && <li className="py-2 text-slate-500">No activity yet.</li>}
         </ul>

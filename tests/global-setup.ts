@@ -7,5 +7,8 @@ export default function setup() {
   for (const f of [db, `${db}-journal`]) if (fs.existsSync(f)) fs.rmSync(f);
   // SQLite accepts an empty file; pre-create it for Prisma on Windows.
   fs.closeSync(fs.openSync(db, 'wx'));
-  execSync('npx prisma migrate deploy', { env: { ...process.env, DATABASE_URL: `file:${db}` }, stdio: 'pipe' });
+  const env = { ...process.env, DATABASE_URL: `file:${db}` };
+  execSync('npx prisma migrate deploy', { env, stdio: 'pipe' });
+  // XP tables ship as a PostgreSQL migration only; the disposable SQLite test database gets them from the schema.
+  execSync('npx prisma db push --skip-generate', { env, stdio: 'pipe' });
 }
