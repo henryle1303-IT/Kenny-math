@@ -100,6 +100,15 @@ Bước 6. Giao diện học sinh
 - Trang results/[id]/review: hiển thị đáp án theo từng dạng.
 - Demo tĩnh: thêm dạng mới ở mức tối thiểu hoặc ghi rõ demo chỉ có MCQ.
 
+Bước 6A. Người dùng demo và ngân hàng demo đủ các dạng (YÊU CẦU BẮT BUỘC)
+
+- Người dùng: username demo, mật khẩu 123 (hợp lệ với validateStudentPassword, tối thiểu 3 ký tự), tên hiển thị "Demo", ngôn ngữ mặc định vi.
+- Ngân hàng: "Demo - tất cả dạng câu hỏi", source MANUAL, đã PUBLISHED, ownerId là người dùng demo và gán sẵn cho demo (cơ chế ngân hàng riêng của người dùng đã có ở banks.ts), nên không đổi ngân hàng chung đang active của Kenny, Henry, Xoai, Moon.
+- Nội dung: viết tay, không sinh ngẫu nhiên, để ổn định khi chạy demo. Khoảng 3 bài ngắn (6-8 câu mỗi bài) ở các mức Beginner/Intermediate/Advanced, mỗi dạng (MCQ, NUMERIC_INPUT, TRUE_FALSE, MULTI_SELECT, FILL_BLANK, ORDERING, SHORT_TEXT) có ít nhất 2 câu, kèm giải thích, lỗi hay gặp, mẹo học, có cả câu thử nhập 0.5 / 1/2, chữ hoa/thường, cả câu đúng và câu dễ sai để minh họa. Mỗi câu pass validate; chạy thử toàn bộ 7 dạng và Smart Review trên bank này.
+- Cách tạo: script idempotent npm run demo:seed (scripts/demo-seed.ts): tạo hoặc giữ người dùng demo (không ghi đè mật khẩu nếu đã đổi), tạo hoặc cập nhật ngân hàng demo theo questionId cố định, chạy lại không nhân đôi. Dữ liệu câu hỏi nằm trong một file dữ liệu riêng (ví dụ prisma/demo-bank.ts hoặc CSV mẫu có cột question_type/answer_data) để cũng dùng làm file mẫu nhập CSV.
+- An toàn: mật khẩu 123 yếu nên KHÔNG tự chạy trong db:setup hay khi deploy Vercel/Neon production. Chỉ chạy khi gọi tay npm run demo:seed hoặc đặt DEMO_SEED=1; README ghi rõ cách xóa người dùng demo (nút xóa tiến độ/xóa ngân hàng trong admin) trước khi dùng thật.
+- Test e2e dùng người dùng demo để chạy một bài đủ 7 dạng; thêm vào demo tĩnh (demo/model.ts) cùng bộ câu hỏi để Vercel demo cũng thấy đủ dạng.
+
 Bước 7. Kiểm thử và tài liệu: xem mục 6. Cập nhật README, QA_REPORT.md và mục "Kết quả triển khai" cuối file này.
 
 6. Kiểm thử
@@ -140,4 +149,5 @@ Câu hỏi có hình/sơ đồ (SVG sinh từ code cho hình học, đường th
 2) Dạng nào ưu tiên đầu tiên (đề xuất NUMERIC_INPUT trước)?
 3) Bài hiện có giữ 100% MCQ, admin tự bật dạng mới cho bài mới: đồng ý không?
 4) Có cần chấm điểm từng phần cho MULTI_SELECT/FILL_BLANK không (đề xuất không, giữ đúng/sai tuyệt đối)?
-5) Có cần migration SQLite không, hay chỉ PostgreSQL như v3 (test dùng prisma db push)?
+5) Người dùng demo/mật khẩu 123 chỉ tạo khi gọi tay (không chạy khi deploy production): đồng ý không?
+6) Có cần migration SQLite không, hay chỉ PostgreSQL như v3 (test dùng prisma db push)?
