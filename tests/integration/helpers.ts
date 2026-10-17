@@ -36,6 +36,6 @@ export async function answerAttempt(attemptId: string, correctCount: number, tot
     const q = byId.get(order[i])!;
     const right = q.correctAnswer;
     const wrong = right === 'A' ? 'B' : 'A';
-    await saveAnswer(attemptId, q.id, i < correctCount ? right : wrong);
+    await saveAnswer(attemptId, q.id, i < correctCount ? right : wrong, a.studentId);
   }
 }

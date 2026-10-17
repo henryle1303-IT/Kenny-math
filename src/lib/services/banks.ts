@@ -1,3 +1,4 @@
+import { bankTransaction, type BankDb } from './transaction';
 import { Prisma } from '@prisma/client';
 import { prisma } from '../db';
 import { AppError } from './attempts';
@@ -30,20 +31,21 @@ export function toQuestionData(q: Question): QuestionData {
   };
 }
 
-export async function nextVersion(): Promise<number> {
-  const max = await prisma.questionBank.aggregate({ _max: { version: true } });
+export async function nextVersion(db: BankDb = prisma): Promise<number> {
+  const max = await db.questionBank.aggregate({ _max: { version: true } });
   return (max._max.version ?? 0) + 1;
 }
 
-export async function createBank(opts: { name: string; source: 'GENERATED' | 'IMPORTED' | 'CLONED' | 'MANUAL'; parentBankId?: string | null; seed?: string; notes?: string }) {
+export async function createBank(opts: { name: string; source: 'GENERATED' | 'IMPORTED' | 'CLONED' | 'MANUAL'; parentBankId?: string | null; seed?: string; notes?: string; ownerId?: string | null }, db: BankDb = prisma) {
   const name = opts.name.trim().slice(0, 120);
   if (!name) throw new AppError('Please give the bank a name.');
   for (let attempt = 0; attempt < 5; attempt++) {
     try {
-      const version = await nextVersion();
-      return await prisma.questionBank.create({
+      const version = await nextVersion(db);
+      return await db.questionBank.create({
         data: {
           name,
+          ownerId: opts.ownerId ?? null,
           version,
           source: opts.source,
           parentBankId: opts.parentBankId ?? null,
@@ -60,15 +62,15 @@ export async function createBank(opts: { name: string; source: 'GENERATED' | 'IM
         },
       });
     } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') continue;
+      if ('$transaction' in db && e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') continue;
       throw e;
     }
   }
   throw new AppError('Could not allocate a version number. Please try again.', 500);
 }
 
-export async function getBankOrThrow(bankId: string) {
-  const b = await prisma.questionBank.findUnique({ where: { id: bankId } });
+export async function getBankOrThrow(bankId: string, db: BankDb = prisma) {
+  const b = await db.questionBank.findUnique({ where: { id: bankId } });
   if (!b) throw new AppError('Question bank not found.', 404, 'NOT_FOUND');
   return b;
 }
@@ -128,9 +130,9 @@ export async function generateTests(bankId: string, opts: GenerateOptions) {
   return { generated: rows.length, tests };
 }
 
-export async function validateBankById(bankId: string): Promise<BankValidationReport> {
-  const bank = await getBankOrThrow(bankId);
-  const questions = await prisma.question.findMany({ where: { bankId }, orderBy: [{ testNumber: 'asc' }, { position: 'asc' }] });
+export async function validateBankById(bankId: string, db: BankDb = prisma): Promise<BankValidationReport> {
+  const bank = await getBankOrThrow(bankId, db);
+  const questions = await db.question.findMany({ where: { bankId }, orderBy: [{ testNumber: 'asc' }, { position: 'asc' }] });
   const manual = new Set(questions.filter((q) => q.validationStatus === 'MANUAL_OK').map((q) => q.questionId));
   const report = validateBank(questions.map(toQuestionData), { requireComplete: true, manuallyReviewed: manual });
   const byRow = new Map<number, string[]>();
@@ -139,7 +141,7 @@ export async function validateBankById(bankId: string): Promise<BankValidationRe
     byRow.get(i.row)!.push(i.message);
   }
   const editable = EDITABLE.includes(bank.status);
-  await prisma.$transaction(async (tx) => {
+  await bankTransaction(db, async (tx) => {
     if (editable) {
       const updates = new Map<string, { ids: string[]; status: string; notes: string }>();
       for (const [idx, q] of questions.entries()) {
@@ -169,32 +171,34 @@ export async function validateBankById(bankId: string): Promise<BankValidationRe
         ...(editable ? { status: report.ok ? 'READY_FOR_REVIEW' : 'DRAFT' } : {}),
       },
     });
-  }, { timeout: 60000, maxWait: 10000 });
+  });
   return report;
 }
 
-export async function publishBank(bankId: string, opts: { acknowledgeReview?: boolean }) {
-  const bank = await getBankOrThrow(bankId);
+export async function publishBank(bankId: string, opts: { acknowledgeReview?: boolean }, db: BankDb = prisma) {
+  const bank = await getBankOrThrow(bankId, db);
   if (!EDITABLE.includes(bank.status)) throw new AppError('Only draft banks can be published. Use “Activate” for banks that were published before.', 409);
-  const report = await validateBankById(bankId);
+  const report = await validateBankById(bankId, db);
   if (!report.ok) throw new AppError(`This bank still has ${report.invalidRows + report.bankErrors.length} validation problem(s). Fix them before publishing.`, 422, 'VALIDATION_FAILED');
   if (report.reviewRows + report.warningRows > 0 && !opts.acknowledgeReview) {
     throw new AppError(`${report.reviewRows + report.warningRows} question(s) are flagged for manual review. Review them, or confirm that you accept them as they are.`, 422, 'REVIEW_REQUIRED');
   }
-  await prisma.$transaction(async (tx) => {
-    await tx.questionBank.updateMany({ where: { isActive: true }, data: { isActive: false } });
-    await tx.questionBank.update({ where: { id: bankId }, data: { status: 'PUBLISHED', publishedAt: new Date(), activatedAt: new Date(), isActive: true } });
+  await bankTransaction(db, async (tx) => {
+    if (!bank.ownerId) await tx.questionBank.updateMany({ where: { isActive: true, ownerId: null }, data: { isActive: false } });
+    await tx.questionBank.update({ where: { id: bankId }, data: { status: 'PUBLISHED', publishedAt: new Date(), activatedAt: new Date(), isActive: !bank.ownerId } });
+    if (bank.ownerId) await tx.studentBankAssignment.upsert({ where: { studentId: bank.ownerId }, create: { studentId: bank.ownerId, bankId }, update: { bankId } });
   });
   return { published: true };
 }
 
 /** Make a previously published bank the one used for new tests (also used for rollback). */
-export async function activateBank(bankId: string) {
-  const bank = await getBankOrThrow(bankId);
+export async function activateBank(bankId: string, db: BankDb = prisma) {
+  const bank = await getBankOrThrow(bankId, db);
   if (!bank.publishedAt) throw new AppError('Only published banks can be activated.', 409);
-  await prisma.$transaction(async (tx) => {
-    await tx.questionBank.updateMany({ where: { isActive: true, NOT: { id: bankId } }, data: { isActive: false } });
-    await tx.questionBank.update({ where: { id: bankId }, data: { status: 'PUBLISHED', isActive: true, activatedAt: new Date() } });
+  await bankTransaction(db, async (tx) => {
+    if (!bank.ownerId) await tx.questionBank.updateMany({ where: { isActive: true, ownerId: null, NOT: { id: bankId } }, data: { isActive: false } });
+    await tx.questionBank.update({ where: { id: bankId }, data: { status: 'PUBLISHED', isActive: !bank.ownerId, activatedAt: new Date() } });
+    if (bank.ownerId) await tx.studentBankAssignment.upsert({ where: { studentId: bank.ownerId }, create: { studentId: bank.ownerId, bankId }, update: { bankId } });
   });
   return { activated: true };
 }
@@ -202,12 +206,14 @@ export async function activateBank(bankId: string) {
 export async function archiveBank(bankId: string) {
   const bank = await getBankOrThrow(bankId);
   if (bank.isActive) throw new AppError('The active bank cannot be archived. Activate another bank first.', 409);
+  if (await prisma.studentBankAssignment.count({ where: { bankId } }) || await prisma.testAttempt.count({ where: { bankId, status: 'IN_PROGRESS' } })) throw new AppError('This bank is assigned or referenced by an unfinished test.', 409);
   if (bank.status === 'DRAFT' || bank.status === 'READY_FOR_REVIEW') throw new AppError('Drafts can be deleted instead of archived.', 409);
   await prisma.questionBank.update({ where: { id: bankId }, data: { status: 'ARCHIVED' } });
 }
 
 export async function deleteBank(bankId: string, confirmName: string) {
   const bank = await getBankOrThrow(bankId);
+  if (await prisma.studentBankAssignment.count({ where: { bankId } })) throw new AppError('This bank is assigned to a user.', 409);
   if (bank.isActive) throw new AppError('The active bank cannot be deleted.', 409);
   if (!EDITABLE.includes(bank.status)) throw new AppError('Only draft banks can be deleted. Published banks are kept for the history.', 409);
   const used = await prisma.testAttempt.count({ where: { bankId } });
@@ -219,7 +225,7 @@ export async function deleteBank(bankId: string, confirmName: string) {
 /** New draft copy of any bank (the way to “edit” a published bank). */
 export async function cloneBank(bankId: string, name?: string) {
   const src = await getBankOrThrow(bankId);
-  const copy = await createBank({ name: name?.trim() || `${src.name} (draft copy)`, source: 'CLONED', parentBankId: src.id, seed: src.seed });
+  const copy = await createBank({ name: name?.trim() || `${src.name} (draft copy)`, source: 'CLONED', ownerId: src.ownerId, parentBankId: src.id, seed: src.seed });
   const qs = await prisma.question.findMany({ where: { bankId } });
   await prisma.$transaction(async (tx) => {
     for (let i = 0; i < qs.length; i += 100) {
@@ -343,6 +349,10 @@ export interface QuestionFilter {
 }
 
 export async function listQuestions(bankId: string, f: QuestionFilter) {
+  await getBankOrThrow(bankId);
+  for (const [label, value, max] of [['page', f.page, 1000000], ['page size', f.pageSize, 100], ['test', f.test, 30], ['difficulty', f.difficulty, 5]] as const) {
+    if (value !== undefined && (!Number.isInteger(value) || value < 1 || value > max)) throw new AppError(`Invalid ${label}.`);
+  }
   const where: Prisma.QuestionWhereInput = { bankId };
   if (f.test) where.testNumber = f.test;
   if (f.topic) where.topic = f.topic;
@@ -376,13 +386,13 @@ export async function exportBankCsv(bankId: string, tests?: number[]) {
 }
 
 export async function listBanks() {
-  const banks = await prisma.questionBank.findMany({ orderBy: { version: 'desc' }, include: { _count: { select: { questions: true, attempts: true } } } });
+  const banks = await prisma.questionBank.findMany({ orderBy: { version: 'desc' }, include: { owner: { select: { name: true } }, assignments: { select: { studentId: true, student: { select: { name: true } } } }, _count: { select: { questions: true, attempts: true } } } });
   return banks;
 }
 
 /** Insert a full set of validated rows as questions of a bank. */
-export async function insertQuestions(bankId: string, rows: { data: QuestionData; status: string; notes: string }[]) {
-  await prisma.$transaction(async (tx) => {
+export async function insertQuestions(bankId: string, rows: { data: QuestionData; status: string; notes: string }[], db: BankDb = prisma) {
+  await bankTransaction(db, async (tx) => {
     for (let i = 0; i < rows.length; i += 100) {
       await tx.question.createMany({
         data: rows.slice(i, i + 100).map(({ data: d, status, notes }) => ({
@@ -392,7 +402,7 @@ export async function insertQuestions(bankId: string, rows: { data: QuestionData
         })),
       });
     }
-  }, { timeout: 60000, maxWait: 10000 });
+  });
 }
 
 export { fingerprintOf };

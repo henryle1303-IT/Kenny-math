@@ -5,7 +5,9 @@ import { AppError } from './services/attempts';
 export async function handle<T>(fn: () => Promise<T>, init?: ResponseInit): Promise<NextResponse> {
   try {
     const data = await fn();
-    return NextResponse.json(data, init);
+    const response = NextResponse.json(data, init);
+    response.headers.set('Cache-Control', 'no-store');
+    return response;
   } catch (e) {
     return errorResponse(e);
   }

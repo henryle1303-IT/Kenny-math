@@ -1,3 +1,4 @@
+import { getStudent } from '@/lib/services/core';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Award, CheckCircle2, CircleHelp, Clock, TrendingUp, XCircle } from 'lucide-react';
@@ -8,20 +9,21 @@ import { ProgressBar, Stars } from '@/components/ui';
 import { PracticeButton } from '@/components/PracticeButton';
 import { StartTestButton } from '@/components/StartTestButton';
 
-function feedback(pct: number, improvement: number | null, pb: boolean): string {
-  if (pb) return 'New personal best! Amazing work, Kenny! 🎉';
+function feedback(pct: number, improvement: number | null, pb: boolean, name: string): string {
+  if (pb) return `New personal best! Amazing work, ${name}! 🎉`;
   if (improvement !== null && improvement > 0) return `You improved by ${improvement} point${improvement === 1 ? '' : 's'} since last time. Keep it up! 🚀`;
-  if (pct >= 90) return 'Fantastic, Kenny! You are a maths star! ⭐';
-  if (pct >= 75) return 'Great job, Kenny! You really understand this. 👏';
-  if (pct >= 50) return 'Good effort, Kenny! Look at the explanations and try Smart Review to get even better. 💪';
+  if (pct >= 90) return `Fantastic, ${name}! You are a maths star! ⭐`;
+  if (pct >= 75) return `Great job, ${name}! You really understand this. 👏`;
+  if (pct >= 50) return `Good effort, ${name}! Look at the explanations and try Smart Review to get even better. 💪`;
   return 'Every mistake is a chance to learn. Read the explanations, then practise – you can do it! 🌱';
 }
 
 export default async function ResultPage({ params }: { params: Promise<{ id: string }> }) {
+  const student = await getStudent();
   const { id } = await params;
   let r;
   try {
-    r = await getAttemptResult(id);
+    r = await getAttemptResult(id, student.id);
   } catch (e) {
     if (e instanceof AppError && e.status === 404) notFound();
     if (e instanceof AppError && e.code === 'IN_PROGRESS') return <div className="card p-6">This test is still in progress. <Link className="underline" href={`/attempt/${id}`}>Go back to the test</Link></div>;
@@ -38,7 +40,7 @@ export default async function ResultPage({ params }: { params: Promise<{ id: str
           <div className="pb-2 text-2xl font-bold">{pctScore}%</div>
           <div className="pb-2"><Stars count={starsFor(pctScore)} size={26} /></div>
         </div>
-        <p className="mt-3 text-lg font-semibold" data-testid="feedback">{feedback(pctScore, r.improvement, r.isPersonalBest)}</p>
+        <p className="mt-3 text-lg font-semibold" data-testid="feedback">{feedback(pctScore, r.improvement, r.isPersonalBest, student.name)}</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">

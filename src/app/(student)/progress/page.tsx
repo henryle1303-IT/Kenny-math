@@ -1,10 +1,11 @@
+import { getStudent } from '@/lib/services/core';
 import { getProgress } from '@/lib/services/progress';
 import { MasteryBars, PercentBars, ScoreLine, TrendLine } from '@/components/charts';
 import { MasteryBadge, pct } from '@/components/ui';
 import { MASTERY_LABELS } from '@/lib/learning/mastery';
 
 export default async function ProgressPage() {
-  const p = await getProgress();
+  const p = await getProgress((await getStudent()).id);
   const colors: Record<string, string> = { NOT_ENOUGH_DATA: '#cbd5e1', NEEDS_PRACTICE: '#f43f5e', DEVELOPING: '#f59e0b', IMPROVING: '#38bdf8', MASTERED: '#10b981' };
   const mastery = Object.entries(MASTERY_LABELS).map(([k, v]) => ({ name: v, value: p.masteryCounts[k] ?? 0, fill: colors[k] }));
   const stats: [string, string | number][] = [

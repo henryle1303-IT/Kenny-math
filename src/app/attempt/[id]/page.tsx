@@ -1,3 +1,4 @@
+import { getStudent, getLang } from '@/lib/services/core';
 import { redirect } from 'next/navigation';
 import katex from 'katex';
 import { getAttemptForTaking, AppError } from '@/lib/services/attempts';
@@ -22,10 +23,11 @@ function html(text: string): string {
 }
 
 export default async function AttemptPage({ params }: { params: Promise<{ id: string }> }) {
+  const student = await getStudent();
   const { id } = await params;
   let data;
   try {
-    data = await getAttemptForTaking(id);
+    data = await getAttemptForTaking(id, student.id);
   } catch (e) {
     if (e instanceof AppError && e.status === 404) return <div className="p-8 text-center">This test could not be found. <a className="underline" href="/tests">Back to tests</a></div>;
     throw e;
@@ -41,4 +43,9 @@ export default async function AttemptPage({ params }: { params: Promise<{ id: st
       questions={data.questions.map((q) => ({ id: q.id, number: q.number, textHtml: html(q.text), optionsHtml: q.options.map(html) }))}
     />
   );
+}
+
+export async function generateMetadata() {
+  const student = await getStudent(); const lang = await getLang();
+  return { title: lang === 'vi' ? `Thử thách Toán của ${student.name}` : `${student.name} Math Challenge` };
 }

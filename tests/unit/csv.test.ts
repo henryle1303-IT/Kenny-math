@@ -28,7 +28,11 @@ describe('CSV export', () => {
   it('parses test ranges', () => {
     expect(parseTests('1-3,7,9-10')).toEqual([1, 2, 3, 7, 9, 10]);
     expect(parseTests('5')).toEqual([5]);
-    expect(parseTests('x')).toEqual([]);
+    expect(() => parseTests('x')).toThrow();
+    expect(() => parseTests('1,wrong')).toThrow();
+    expect(() => parseTests('31')).toThrow();
+    expect(parseTests('  ')).toBeUndefined();
+    expect(parseTests('5-3,3,1')).toEqual([1, 3, 4, 5]);
     expect(parseTests(null)).toBeUndefined();
   });
 });

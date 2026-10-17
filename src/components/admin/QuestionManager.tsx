@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { api } from './api';
 import { RichText } from '../RichText';
 
@@ -22,28 +22,32 @@ export function QuestionManager({ banks, topics, initialBank }: { banks: Bank[];
   const [edit, setEdit] = useState<Q | null>(null);
   const [preview, setPreview] = useState<Q | null>(null);
   const [msg, setMsg] = useState<{ ok: boolean; t: string } | null>(null);
+  const loadVersion = useRef(0);
   const cur = banks.find((b) => b.id === bank);
   const editable = !!cur?.editable;
 
   const load = useCallback(async () => {
     if (!bank) return;
+    const version = ++loadVersion.current;
     const p = new URLSearchParams({ page: String(page) });
     for (const [k, v] of Object.entries(filters)) if (v) p.set(k, v);
     try {
-      setData(await api(`/api/admin/banks/${bank}/questions?${p}`, 'GET'));
+      const result = await api<{ total: number; pageSize: number; items: Q[] }>(`/api/admin/banks/${bank}/questions?${p}`, 'GET');
+      if (version === loadVersion.current) setData(result);
     } catch (e) {
-      setMsg({ ok: false, t: (e as Error).message });
+      if (version === loadVersion.current) setMsg({ ok: false, t: (e as Error).message });
     }
   }, [bank, filters, page]);
   useEffect(() => { void load(); }, [load]);
 
-  async function act(label: string, fn: () => Promise<unknown>) {
+  async function act(label: string, fn: () => Promise<unknown>, rethrow = false) {
     try {
       await fn();
       setMsg({ ok: true, t: `${label} done.` });
       await load();
     } catch (e) {
       setMsg({ ok: false, t: `${label}: ${(e as Error).message}` });
+      if (rethrow) throw e;
     }
   }
 
@@ -62,7 +66,7 @@ export function QuestionManager({ banks, topics, initialBank }: { banks: Bank[];
       <div className="card grid gap-3 p-4 sm:grid-cols-3 lg:grid-cols-6">
         <div className="sm:col-span-3 lg:col-span-2">
           <label className="label" htmlFor="qb">Bank</label>
-          <select id="qb" className="input" value={bank} onChange={(e) => { setBank(e.target.value); setPage(1); }}>{banks.map((b) => <option key={b.id} value={b.id}>{b.label}</option>)}</select>
+          <select id="qb" className="input" value={bank} onChange={(e) => { loadVersion.current++; setBank(e.target.value); setPage(1); setEdit(null); setPreview(null); setMsg(null); setData({ total: 0, pageSize: 30, items: [] }); }}>{banks.map((b) => <option key={b.id} value={b.id}>{b.label}</option>)}</select>
         </div>
         <div className="lg:col-span-2"><label className="label" htmlFor="qs">Search</label><input id="qs" className="input" placeholder="text, id, skill…" value={filters.q} onChange={(e) => { setFilters({ ...filters, q: e.target.value }); setPage(1); }} /></div>
         <div><label className="label" htmlFor="qt">Test</label><input id="qt" type="number" min={1} max={30} className="input" value={filters.test} onChange={(e) => { setFilters({ ...filters, test: e.target.value }); setPage(1); }} /></div>
@@ -118,7 +122,7 @@ export function QuestionManager({ banks, topics, initialBank }: { banks: Bank[];
       </div>
 
       {preview && <Modal onClose={() => setPreview(null)} title={`Student view – ${preview.questionId}`}><Preview q={preview} /></Modal>}
-      {edit && <EditModal q={edit} onClose={() => setEdit(null)} onSave={async (body) => { await act('Save', () => api(`/api/admin/banks/${bank}/questions/${edit.id}`, 'PUT', body)); setEdit(null); }} />}
+      {edit && <EditModal q={edit} onClose={() => setEdit(null)} onSave={async (body) => { await act('Save', () => api(`/api/admin/banks/${bank}/questions/${edit.id}`, 'PUT', body), true); setEdit(null); }} />}
     </div>
   );
 }
@@ -150,6 +154,8 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
 
 function EditModal({ q, onClose, onSave }: { q: Q; onClose: () => void; onSave: (b: unknown) => Promise<void> }) {
   const [f, setF] = useState({ ...q });
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState('');
   const set = (k: keyof Q, v: string | number) => setF({ ...f, [k]: v });
   return (
     <Modal title={`Edit ${q.questionId}`} onClose={onClose}>
@@ -168,9 +174,10 @@ function EditModal({ q, onClose, onSave }: { q: Q; onClose: () => void; onSave: 
         <div><label className="label" htmlFor="e-m">Common mistake</label><input id="e-m" className="input" value={f.commonMistake} onChange={(e) => set('commonMistake', e.target.value)} /></div>
         <div><label className="label" htmlFor="e-l">Learning tip</label><input id="e-l" className="input" value={f.learningTip} onChange={(e) => set('learningTip', e.target.value)} /></div>
         <div><label className="label" htmlFor="e-v">Verification expression (optional, e.g. 3/4+1/8)</label><input id="e-v" className="input font-mono" value={f.verifyExpr ?? ''} onChange={(e) => set('verifyExpr', e.target.value)} /></div>
+        {error && <p role="alert" className="text-rose-700">{error}</p>}
         <div className="flex justify-end gap-2">
           <button className="btn-secondary" onClick={onClose}>Cancel</button>
-          <button className="btn-primary" onClick={() => onSave({ questionText: f.questionText, options: [f.optionA, f.optionB, f.optionC, f.optionD], correctAnswer: f.correctAnswer, difficulty: f.difficulty, topic: f.topic, skill: f.skill, explanation: f.explanation, commonMistake: f.commonMistake, learningTip: f.learningTip, verifyExpr: f.verifyExpr ?? '' })}>Save and re-check</button>
+          <button className="btn-primary" disabled={busy} onClick={async () => { setBusy(true); setError(''); try { await onSave({ questionText: f.questionText, options: [f.optionA, f.optionB, f.optionC, f.optionD], correctAnswer: f.correctAnswer, difficulty: f.difficulty, topic: f.topic, skill: f.skill, explanation: f.explanation, commonMistake: f.commonMistake, learningTip: f.learningTip, verifyExpr: f.verifyExpr ?? '' }); } catch (e) { setError((e as Error).message); } finally { setBusy(false); } }}>Save and re-check</button>
         </div>
       </div>
     </Modal>

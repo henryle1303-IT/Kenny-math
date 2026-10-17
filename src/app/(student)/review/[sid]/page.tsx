@@ -1,3 +1,4 @@
+import { getStudent } from '@/lib/services/core';
 import { notFound } from 'next/navigation';
 import katex from 'katex';
 import { AppError } from '@/lib/services/attempts';
@@ -23,16 +24,18 @@ function html(text: string): string {
 }
 
 export default async function SessionPage({ params }: { params: Promise<{ sid: string }> }) {
+  const student = await getStudent();
   const { sid } = await params;
   let s;
   try {
-    s = await getReviewSession(sid);
+    s = await getReviewSession(sid, student.id);
   } catch (e) {
     if (e instanceof AppError) notFound();
     throw e;
   }
   return (
     <ReviewRunner
+      studentName={student.name}
       sessionId={s.id}
       kind={s.kind}
       sourceQuestionId={s.sourceQuestionId}

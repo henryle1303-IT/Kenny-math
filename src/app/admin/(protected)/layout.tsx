@@ -9,7 +9,7 @@ const NAV = [
   ['/admin/generator', 'Question Generator'],
   ['/admin/import', 'Import / Export'],
   ['/admin/banks', 'Bank Versions'],
-  ['/admin/students', 'Student Progress'],
+  ['/admin/students', 'User Profiles'],
   ['/admin/settings', 'Settings'],
 ];
 

@@ -1,14 +1,15 @@
 import { CheckCircle2, Clock, ListChecks } from 'lucide-react';
 import Link from 'next/link';
 import { listTestSummaries } from '@/lib/services/attempts';
-import { getLang } from '@/lib/services/core';
+import { getLang, getStudent } from '@/lib/services/core';
 import { tr } from '@/lib/i18n';
 import { StartTestButton } from '@/components/StartTestButton';
 import { LEVEL_STYLE, Stars } from '@/components/ui';
 import { starsFor } from '@/lib/grading';
 
 export default async function TestsPage() {
-  const [tests, lang] = await Promise.all([listTestSummaries(), getLang()]);
+  const student = await getStudent();
+  const [tests, lang] = await Promise.all([listTestSummaries(student.id), getLang()]);
   if (!tests.length) {
     return <div className="card p-6">No tests are available yet. Please ask a grown-up to publish a question bank.</div>;
   }

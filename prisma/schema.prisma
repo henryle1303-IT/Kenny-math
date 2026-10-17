@@ -13,6 +13,14 @@ datasource db {
 model Student {
   id          String   @id @default(cuid())
   name        String
+  username    String? @unique
+  passwordHash String?
+  isActive    Boolean @default(true)
+  learningConfig String?
+  sessions    StudentSession[]
+  bankAssignment StudentBankAssignment?
+  ownedBanks QuestionBank[] @relation("BankOwner")
+  imports ImportJob[]
   preferences String   @default("{}") // JSON: { lang: "en" | "vi" }
   createdAt   DateTime @default(now())
 
@@ -29,6 +37,9 @@ model QuestionBank {
   status        String    @default("DRAFT") // DRAFT | VALIDATING | READY_FOR_REVIEW | PUBLISHED | ARCHIVED
   source        String    @default("GENERATED") // GENERATED | IMPORTED | CLONED | MANUAL
   isActive      Boolean   @default(false)
+  ownerId       String?
+  owner         Student? @relation("BankOwner", fields: [ownerId], references: [id])
+  assignments   StudentBankAssignment[]
   parentBankId  String?
   notes         String    @default("")
   seed          String    @default("")
@@ -237,7 +248,28 @@ model AdminAuditLog {
   @@index([timestamp])
 }
 
+model StudentSession {
+  id String @id @default(cuid())
+  studentId String
+  tokenHash String @unique
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@index([studentId])
+}
+
+// One active bank per student; all other published shared/owned banks may be selected by admin.
+model StudentBankAssignment {
+  studentId String @id
+  bankId String
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  bank QuestionBank @relation(fields: [bankId], references: [id])
+  @@index([bankId])
+}
+
 model ImportJob {
+  targetStudentId String?
+  targetStudent Student? @relation(fields: [targetStudentId], references: [id])
   id        String   @id @default(cuid())
   filename  String
   mode      String // NEW_BANK | REPLACE_ACTIVE | UPDATE_SELECTED

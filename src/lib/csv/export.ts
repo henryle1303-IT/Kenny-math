@@ -107,15 +107,15 @@ export { CORE_COLUMNS };
 
 /** `tests` accepts ranges and lists, e.g. 1-5,9,12 . Omit for the whole bank. */
 export function parseTests(s: string | null): number[] | undefined {
-  if (!s) return undefined;
+  if (!s?.trim()) return undefined;
   const out = new Set<number>();
   for (const part of s.split(',')) {
     const m = /^\s*(\d+)\s*(?:-\s*(\d+))?\s*$/.exec(part);
-    if (!m) continue;
+    if (!m) throw new RangeError('Enter test numbers from 1 to 30, for example 5, 1-10 or 3,7,12-14.');
     const a = Number(m[1]);
     const b = m[2] ? Number(m[2]) : a;
-    for (let i = Math.min(a, b); i <= Math.max(a, b) && i <= 30; i++) if (i >= 1) out.add(i);
+    if (!Number.isInteger(a) || !Number.isInteger(b) || a < 1 || a > 30 || b < 1 || b > 30) throw new RangeError('Test numbers must be between 1 and 30.');
+    for (let i = Math.min(a, b); i <= Math.max(a, b); i++) out.add(i);
   }
-  return [...out];
+  return [...out].sort((a, b) => a - b);
 }
-

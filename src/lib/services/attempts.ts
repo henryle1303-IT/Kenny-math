@@ -10,8 +10,12 @@ export class AppError extends Error {
   }
 }
 
-export async function getActiveBank() {
-  return prisma.questionBank.findFirst({ where: { isActive: true, status: 'PUBLISHED' } });
+export async function getActiveBank(studentId?: string) {
+  if (studentId) {
+    const assigned = await prisma.studentBankAssignment.findUnique({ where: { studentId }, include: { bank: true } });
+    if (assigned) return assigned.bank.status === 'PUBLISHED' && (!assigned.bank.ownerId || assigned.bank.ownerId === studentId) ? assigned.bank : null;
+  }
+  return prisma.questionBank.findFirst({ where: { isActive: true, status: 'PUBLISHED', ownerId: null } });
 }
 
 /** Start a test, or resume the unfinished attempt for it. */
@@ -22,7 +26,7 @@ export async function startAttempt(testNumber: number, studentId = STUDENT_ID) {
     if (!isExpired(open.expiresAt)) return { attemptId: open.id, resumed: true };
     await finalizeAttempt(open.id);
   }
-  const bank = await getActiveBank();
+  const bank = await getActiveBank(studentId);
   if (!bank) throw new AppError('No question bank is active yet. Please ask a grown-up to publish one.', 409, 'NO_ACTIVE_BANK');
   const [test, questions] = await Promise.all([
     prisma.test.findUnique({ where: { bankId_testNumber: { bankId: bank.id, testNumber } } }),
@@ -53,9 +57,9 @@ export async function startAttempt(testNumber: number, studentId = STUDENT_ID) {
 }
 
 /** Data the test page needs. Never includes answers or explanations while the test is open. */
-export async function getAttemptForTaking(attemptId: string) {
+export async function getAttemptForTaking(attemptId: string, studentId = STUDENT_ID) {
   let attempt = await prisma.testAttempt.findUnique({ where: { id: attemptId } });
-  if (!attempt) throw new AppError('Test not found.', 404, 'NOT_FOUND');
+  if (!attempt || attempt.studentId !== studentId) throw new AppError('Test not found.', 404, 'NOT_FOUND');
   if (attempt.status === 'IN_PROGRESS' && isExpired(attempt.expiresAt)) {
     await finalizeAttempt(attemptId);
     attempt = (await prisma.testAttempt.findUnique({ where: { id: attemptId } }))!;
@@ -87,10 +91,10 @@ export async function getAttemptForTaking(attemptId: string) {
 
 const GRACE_MS = 3000;
 
-export async function saveAnswer(attemptId: string, questionId: string, selected: string | null) {
+export async function saveAnswer(attemptId: string, questionId: string, selected: string | null, studentId = STUDENT_ID) {
   if (selected !== null && !['A', 'B', 'C', 'D'].includes(selected)) throw new AppError('Please choose A, B, C or D.');
   const attempt = await prisma.testAttempt.findUnique({ where: { id: attemptId } });
-  if (!attempt) throw new AppError('Test not found.', 404, 'NOT_FOUND');
+  if (!attempt || attempt.studentId !== studentId) throw new AppError('Test not found.', 404, 'NOT_FOUND');
   if (attempt.status !== 'IN_PROGRESS') throw new AppError('This test has already been submitted.', 409, 'SUBMITTED');
   if (Date.now() > attempt.expiresAt.getTime() + GRACE_MS) {
     await finalizeAttempt(attemptId);
@@ -167,14 +171,16 @@ export async function finalizeAttempt(attemptId: string, now: Date = new Date())
   }, { timeout: 30000, maxWait: 10000 });
 }
 
-export async function submitAttempt(attemptId: string) {
+export async function submitAttempt(attemptId: string, studentId = STUDENT_ID) {
+  const owned = await prisma.testAttempt.findFirst({ where: { id: attemptId, studentId } });
+  if (!owned) throw new AppError('Test not found.', 404);
   const a = await finalizeAttempt(attemptId);
   return { attemptId: a.id, status: a.status, score: a.score };
 }
 
-export async function getAttemptResult(attemptId: string) {
+export async function getAttemptResult(attemptId: string, studentId = STUDENT_ID) {
   const attempt = await prisma.testAttempt.findUnique({ where: { id: attemptId }, include: { bank: { select: { name: true, version: true } } } });
-  if (!attempt) throw new AppError('Result not found.', 404, 'NOT_FOUND');
+  if (!attempt || attempt.studentId !== studentId) throw new AppError('Result not found.', 404, 'NOT_FOUND');
   if (attempt.status === 'IN_PROGRESS') throw new AppError('This test is still in progress.', 409, 'IN_PROGRESS');
   const order: string[] = JSON.parse(attempt.questionOrder);
   const [questions, answers, previous] = await Promise.all([
@@ -207,7 +213,7 @@ export async function getAttemptResult(attemptId: string) {
 }
 
 export async function listTestSummaries(studentId = STUDENT_ID) {
-  const bank = await getActiveBank();
+  const bank = await getActiveBank(studentId);
   const attempts = await prisma.testAttempt.findMany({ where: { studentId }, orderBy: { startedAt: 'asc' } });
   const tests = bank ? await prisma.test.findMany({ where: { bankId: bank.id }, orderBy: { testNumber: 'asc' } }) : [];
   return tests.map((t) => {

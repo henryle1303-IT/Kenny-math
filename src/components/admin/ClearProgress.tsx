@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from './api';
 
-export function ClearProgress({ studentName }: { studentName: string }) {
+export function ClearProgress({ studentName, studentId }: { studentName: string; studentId: string }) {
   const router = useRouter();
   const dialog = useRef<HTMLDialogElement>(null);
   const [confirmation, setConfirmation] = useState('');
@@ -16,7 +16,7 @@ export function ClearProgress({ studentName }: { studentName: string }) {
     setBusy(true);
     setError('');
     try {
-      await api('/api/admin/progress/clear', 'POST', { confirmation });
+      await api(`/api/admin/progress/clear?studentId=${encodeURIComponent(studentId)}`, 'POST', { confirmation });
       dialog.current?.close();
       setDone(true);
       router.refresh();

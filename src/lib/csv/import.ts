@@ -4,7 +4,7 @@ import { ALL_COLUMNS, CORE_COLUMNS } from './columns';
 import { unsanitizeCell } from './export';
 import type { QuestionData } from '../validate/question';
 
-export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+export { MAX_UPLOAD_BYTES } from './limits';
 
 export interface DecodedText {
   text: string;

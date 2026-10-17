@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  const res = await page.request.post('/api/student/login', { data: { username: 'kenny', password: '123' } });
+  expect(res.ok()).toBe(true);
+});
+
 test('student: pick a test, answer, refresh without losing progress, submit, review, Smart Review, progress', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Kenny Math Challenge' })).toBeVisible();

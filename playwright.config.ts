@@ -16,7 +16,7 @@ export default defineConfig({
     { name: 'desktop', use: { ...devices['Desktop Chrome'], ...(process.env.PW_CHROMIUM ? { launchOptions: { executablePath: process.env.PW_CHROMIUM } } : {}) } },
   ],
   webServer: {
-    command: `npx tsx scripts/e2e-prepare.ts && npx next start -p ${PORT}`,
+    command: `node node_modules/tsx/dist/cli.mjs scripts/e2e-prepare.ts && node node_modules/next/dist/bin/next start -p ${PORT}`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: false,
     timeout: 120_000,

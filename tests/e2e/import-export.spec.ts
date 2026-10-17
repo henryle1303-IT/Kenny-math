@@ -6,6 +6,11 @@ import { questionToCsvRow, rowsToCsv } from '../../src/lib/csv/export';
 import { mapCsvRows, parseCsvText } from '../../src/lib/csv/import';
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from './creds';
 
+test.beforeEach(async ({ page }) => {
+  const res = await page.request.post('/api/student/login', { data: { username: 'kenny', password: '123' } });
+  expect(res.ok()).toBe(true);
+});
+
 const generated = generateFullBank('qa-external-import-2026-10-16');
 const inputRows = generated.map((q) => questionToCsvRow({
   questionId: `NEW-${q.questionId}`, testNumber: q.testNumber, position: q.position, level: q.level,
@@ -87,6 +92,7 @@ test('imports a genuinely new 900-question CSV, exports identical content, publi
     await card.getByRole('button', { name: 'Publish / Activate', exact: true }).click();
   }
   await expect(card.getByText('ACTIVE', { exact: true })).toBeVisible();
+  expect((await page.request.post('/api/admin/users/kenny', { data: { action: 'bank', bankId: imported.id } })).ok()).toBe(true);
   const started = await page.request.post('/api/attempts', { data: { testNumber: 25 } });
   expect(started.ok()).toBe(true);
   const { attemptId } = await started.json();
@@ -98,6 +104,7 @@ test('imports a genuinely new 900-question CSV, exports identical content, publi
   expect(result.ok()).toBe(true);
   expect((await result.json()).score).toBe(1);
 
+  expect((await page.request.post('/api/admin/users/kenny', { data: { action: 'bank', bankId: original.id } })).ok()).toBe(true);
   // Restore the previous bank so this test does not affect later student tests.
   page.once('dialog', (d) => d.accept());
   const originalCard = page.getByTestId(`bank-${original.version}`);

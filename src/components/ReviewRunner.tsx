@@ -23,13 +23,14 @@ export interface RQ {
   topic: string;
 }
 interface Props {
+  studentName: string;
   sessionId: string;
   kind: string;
   sourceQuestionId: string | null;
   questions: RQ[];
 }
 
-export function ReviewRunner({ sessionId, kind, sourceQuestionId, questions: initial }: Props) {
+export function ReviewRunner({ studentName, sessionId, kind, sourceQuestionId, questions: initial }: Props) {
   const [qs, setQs] = useState(initial);
   const firstOpen = initial.findIndex((q) => q.selected === null);
   const [idx, setIdx] = useState(firstOpen === -1 ? 0 : firstOpen);
@@ -64,7 +65,7 @@ export function ReviewRunner({ sessionId, kind, sourceQuestionId, questions: ini
         <div className="card bg-gradient-to-br from-emerald-500 to-teal-600 p-6 text-white">
           <div className="text-sm opacity-90">{kind === 'SIMILAR' ? 'Practice question' : 'Smart Review'} finished</div>
           <div className="text-5xl font-black" data-testid="review-score">{right}/{qs.length}</div>
-          <p className="mt-2 text-lg font-semibold">{right === qs.length ? 'Perfect! You really understand this. 🌟' : right >= qs.length / 2 ? 'Nice work, Kenny! Every question you practise makes you stronger. 💪' : 'Good try! Read the explanations and have another go – you will get there. 🌱'}</p>
+          <p className="mt-2 text-lg font-semibold">{right === qs.length ? 'Perfect! You really understand this. 🌟' : right >= qs.length / 2 ? `Nice work, ${studentName}! Every question you practise makes you stronger. 💪` : 'Good try! Read the explanations and have another go – you will get there. 🌱'}</p>
         </div>
         {wrongOnes.length > 0 && (
           <div className="card p-4">

@@ -45,7 +45,7 @@ export function exportCsv(bank: Bank, tests?: number[]) {
 }
 export async function importCsv(file: File, base?: Bank) {
   if (!/\.csv$/i.test(file.name)) throw new Error('Please choose a .csv file.');
-  if (!file.size || file.size > MAX_UPLOAD_BYTES) throw new Error('Use a non-empty CSV file up to 5 MB.');
+  if (!file.size || file.size > MAX_UPLOAD_BYTES) throw new Error('Use a non-empty CSV file up to 4 MB.');
   const parsed = parseCsvBytes(new Uint8Array(await file.arrayBuffer()));
   const mapped = mapCsvRows(parsed);
   const errors = [...parsed.parseErrors, ...mapped.missingColumns.map((c) => `Missing column: ${c}`), ...mapped.problems.map((p) => `Row ${p.row}: ${p.message}`)];

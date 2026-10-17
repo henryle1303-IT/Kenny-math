@@ -3,7 +3,7 @@ import 'katex/dist/katex.min.css';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Kenny Math Challenge',
+  title: 'Math Challenge',
   description: 'Grade 5 maths tests, smart review and progress tracking',
 };
 export const viewport: Viewport = { width: 'device-width', initialScale: 1 };

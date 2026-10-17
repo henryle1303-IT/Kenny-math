@@ -28,7 +28,7 @@ export async function recordSkillEvents(events: SkillEventInput[], db: Tx = pris
 }
 
 export async function recomputeSkills(skillIds: string[], db: Tx = prisma, studentId = STUDENT_ID, tiers = new Map<string, number>(), topics = new Map<string, string>(), reviewTier = false) {
-  const cfg = await getLearningConfig(db);
+  const cfg = await getLearningConfig(db, studentId);
   for (const skillId of skillIds) {
     const evs = await db.skillEvent.findMany({ where: { studentId, skillId }, orderBy: [{ createdAt: 'asc' }, { id: 'asc' }] });
     const st = computeSkillState(evs, cfg);

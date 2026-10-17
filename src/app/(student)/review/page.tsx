@@ -3,20 +3,21 @@ import { getProgress } from '@/lib/services/progress';
 import { PracticeButton } from '@/components/PracticeButton';
 import { MasteryBadge, pct, ProgressBar } from '@/components/ui';
 import { prisma } from '@/lib/db';
-import { STUDENT_ID } from '@/lib/services/core';
+import { getStudent } from '@/lib/services/core';
 import { PercentBars, TrendLine } from '@/components/charts';
 
 export default async function ReviewHome() {
+  const student = await getStudent();
   const [p, sessions] = await Promise.all([
-    getProgress(),
-    prisma.reviewSession.findMany({ where: { studentId: STUDENT_ID, kind: 'SMART' }, orderBy: { startedAt: 'desc' }, take: 8 }),
+    getProgress(student.id),
+    prisma.reviewSession.findMany({ where: { studentId: student.id, kind: 'SMART' }, orderBy: { startedAt: 'desc' }, take: 8 }),
   ]);
   const noData = p.skills.length === 0;
   const improvedMsg = p.improved[0];
   return (
     <div className="space-y-6">
       <div className="card bg-gradient-to-br from-violet-600 to-brand-700 p-6 text-white">
-        <h1 className="text-3xl font-extrabold">Kenny Smart Review</h1>
+        <h1 className="text-3xl font-extrabold">{student.name} Smart Review</h1>
         <p className="mt-2 max-w-xl text-lg opacity-95">
           {noData ? 'Take a maths test first and I will find the skills to practise. You can also try a warm-up mix now!' : 'Ten fresh questions, chosen from the things you find tricky. No timer – take your time and learn!'}
         </p>
@@ -25,7 +26,7 @@ export default async function ReviewHome() {
 
       {improvedMsg && (
         <div className="card border-l-4 border-emerald-500 p-4 text-lg" data-testid="improved-message">
-          🎉 Great job, Kenny! Your <b>{improvedMsg.label}</b> accuracy improved from <b>{pct(improvedMsg.previousAccuracy)}</b> to <b>{pct(improvedMsg.accuracy)}</b>. Keep practising!
+          🎉 Great job, {student.name}! Your <b>{improvedMsg.label}</b> accuracy improved from <b>{pct(improvedMsg.previousAccuracy)}</b> to <b>{pct(improvedMsg.accuracy)}</b>. Keep practising!
         </div>
       )}
 

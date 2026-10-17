@@ -1,3 +1,123 @@
+# Cải tiến quản lý nhiều user — triển khai theo kế hoạch đã duyệt
+
+Ngày lập: 17/10/2026. **Trạng thái: đã được người dùng yêu cầu triển khai. Đã triển khai production trên Vercel, áp dụng migration PostgreSQL và giữ dữ liệu cũ. Kiểm thử 116 tests và 19 E2E đã đạt; chi tiết phát hành tại `qa/admin-functional-report.md`.**
+
+## 1. Mục tiêu và phạm vi
+
+- Bổ sung đăng nhập bằng username/password cho phần học sinh; mỗi user có hồ sơ, mật khẩu, cấu hình và tiến độ độc lập.
+- Admin có thẻ **User Profiles** để quản lý từng user, gán ngân hàng câu hỏi, import ngân hàng riêng và xem tiến độ riêng.
+- Khởi tạo bốn tài khoản dưới đây, cùng sử dụng ngân hàng câu hỏi hiện có. Việc tạo tài khoản nằm trong giai đoạn triển khai sau duyệt.
+
+| Username | Tên hiển thị ban đầu | Mật khẩu ban đầu | Ngân hàng ban đầu | Tiến độ ban đầu |
+|---|---|---|---|---|
+| `kenny` | Kenny | `123` | Ngân hàng hiện có đang kích hoạt | Giữ toàn bộ lịch sử Kenny |
+| `henry` | Henry | `123` | Cùng ngân hàng với Kenny | Trống |
+| `xoai` | Xoai | `123` | Cùng ngân hàng với Kenny | Trống |
+| `moon` | Moon | `123` | Cùng ngân hàng với Kenny | Trống |
+
+Mật khẩu `123` được áp dụng cho bốn tài khoản khởi tạo theo yêu cầu; mỗi tài khoản lưu hash riêng và có thể đổi mật khẩu độc lập. Không thay đổi tài khoản hay chính sách mật khẩu admin.
+
+## 2. Hiện trạng đã kiểm tra
+
+- `src/lib/services/core.ts` cố định `STUDENT_ID = 'kenny'`; `getStudent()` tự tìm/tạo Kenny và cấu hình học tập lấy từ setting chung `learningConfig`.
+- Schema đã liên kết bài làm, phiên ôn tập, sự kiện kỹ năng và tiến độ với `studentId`; chưa có username, password hoặc session học sinh.
+- Ngân hàng đang dùng `QuestionBank.isActive` toàn hệ thống; chưa có quyền sở hữu và ngân hàng đang học theo user.
+- Admin Settings chỉnh tên một học sinh và cấu hình chung; Student Progress hiển thị một học sinh. Trang này cũng đang có phần backup tiến độ cần chuyển sang đúng user được chọn.
+- Có SQLite cho local và schema/migrations PostgreSQL riêng cho triển khai; thay đổi dữ liệu phải đồng bộ cả hai.
+
+## 3. Thiết kế giao diện dự kiến
+
+### 3.1. Admin → User Profiles
+
+- Danh sách user: username, tên hiển thị, trạng thái hoạt động, ngân hàng được gán, hoạt động gần nhất; có nút tạo user và mở hồ sơ.
+- Hồ sơ từng user có các thẻ:
+  - **Profile:** tên hiển thị, username duy nhất, ngôn ngữ EN/VI, trạng thái tài khoản.
+  - **Learning Settings:** cấu hình khoảng ôn tập riêng, khởi tạo từ cấu hình hiện tại; thay đổi một user chỉ áp dụng cho user đó. Dùng quy tắc áp dụng hiện tại: lần cập nhật kỹ năng tiếp theo.
+  - **Password:** admin đặt/reset mật khẩu; không hiển thị mật khẩu đã lưu. Đổi/reset mật khẩu thu hồi session học sinh cũ.
+  - **Question Banks:** chọn ngân hàng chung được phép dùng, import ngân hàng riêng cho user, xem phiên bản và chọn ngân hàng đang học.
+  - **Progress:** số bài hoàn thành, số lượt làm, điểm trung bình, biểu đồ điểm, kỹ năng, lịch sử bài làm và Smart Review.
+- Giữ thao tác lưu/xuất/khôi phục/xóa tiến độ, nhưng tất cả phải ghi rõ user đích và chỉ tác động user đó. Thao tác thay thế/xóa giữ cơ chế xác nhận hiện có.
+- Admin tiếp tục có phần quản trị ngân hàng chung và đổi mật khẩu admin như hiện tại.
+
+### 3.2. Giao diện học sinh
+
+- Thêm `/login`: username, password, thông báo sai thông tin và nút đăng nhập.
+- Sau đăng nhập, hiển thị tên user đang dùng, đăng xuất và đổi mật khẩu cá nhân (cần mật khẩu hiện tại).
+- Cá nhân hóa toàn bộ tên trên giao diện học sinh theo **tên hiển thị của user đang đăng nhập**: các chỗ đang ghi Kenny (tiêu đề, lời chào, điều hướng, nội dung hướng dẫn và nhãn liên quan) phải hiển thị đúng Kenny/Henry/Xoai/Moon hoặc tên mới do admin đặt. Rà soát cả bản tiếng Anh và tiếng Việt, tiêu đề trang và nhãn hỗ trợ truy cập; không cố định tên Kenny trong giao diện dùng chung.
+- Tên hiển thị được lấy từ hồ sơ user, không suy ra từ username. Khi admin đổi tên hiển thị, giao diện phản ánh tên mới ở lần tải/làm mới tiếp theo; username đăng nhập giữ nguyên nếu admin chỉ đổi tên hiển thị.
+- Giữ các luồng học hiện có: trang chủ, Tests, làm bài, Results, Review, Smart Review và My Progress; dữ liệu và cấu hình lấy từ session của user.
+- Chưa đăng nhập thì chuyển đến trang đăng nhập; API học sinh trả lỗi xác thực. Không tự đăng nhập Kenny.
+- Giai đoạn này chưa mở tự đăng ký, email khôi phục mật khẩu hoặc cho học sinh tự import. Admin import và quản lý ngân hàng riêng trong hồ sơ user.
+
+## 4. Thiết kế dữ liệu và phân quyền dự kiến
+
+| Thành phần | Thay đổi dự kiến |
+|---|---|
+| `Student` | Thêm `username` duy nhất, `passwordHash`, `isActive`; giữ `id`, tên và preferences hiện có |
+| Cấu hình học tập | Lưu theo user bằng bản ghi riêng hoặc trường JSON đã kiểm tra; mỗi user nhận bản sao cấu hình hiện tại khi chuyển đổi |
+| `StudentSession` | Session thuộc user, token hash, thời điểm tạo và hết hạn; cookie HttpOnly, SameSite, Secure trên production |
+| `QuestionBank` | Thêm phạm vi chung/riêng và chủ sở hữu cho ngân hàng riêng; giữ nội dung và phiên bản hiện có |
+| `StudentBankAssignment` | Liên kết user với ngân hàng được phép dùng và trạng thái đang học; tối đa một ngân hàng hoạt động cho mỗi user |
+| `ImportJob` | Ghi nhận user đích và phạm vi từ bước upload đến commit; không được đổi user đích khi commit |
+| Backup và audit | Khóa backup theo user; nhật ký có admin thao tác và user đích, không ghi mật khẩu/session token |
+
+- Giữ `AdminUser` và cơ chế đăng nhập admin riêng; quyền admin không được suy ra từ username học sinh.
+- Thay `getStudent()` cố định bằng lấy học sinh đã xác thực. API luôn lấy `studentId` từ session, không tin ID do trình duyệt gửi để xác định chủ dữ liệu.
+- Kiểm tra quyền ở cả trang, API và service: bài làm, đáp án, kết quả, phiên ôn tập, dữ liệu kỹ năng và ngân hàng đều thuộc phạm vi user hợp lệ. User không đọc/sửa được dữ liệu user khác bằng cách đổi URL/ID.
+- Kiểm tra quyền sở hữu của tài nguyên con (câu hỏi, đáp án) thông qua bài làm/phiên tương ứng; không gửi đáp án đúng trước thời điểm luồng học cho phép.
+- Tận dụng cách băm mật khẩu, session token, kiểm tra origin và giới hạn thử đăng nhập của cơ chế admin hiện có cho cơ chế học sinh riêng.
+
+## 5. Ngân hàng chung và import ngân hàng riêng
+
+1. Khi chuyển đổi, gán cùng ngân hàng hiện có đang kích hoạt cho cả bốn user bằng liên kết; không nhân bản 900 câu hỏi cho từng user.
+2. Nếu chưa có ngân hàng hợp lệ đang kích hoạt, kiểm tra và báo admin chọn ngân hàng hiện có trước khi hoàn tất khởi tạo; không tự tạo nội dung thay thế.
+3. Admin chọn user trước khi import. Mặc định import thành ngân hàng riêng của user đó và hiển thị rõ đích trước khi lưu.
+4. Tái sử dụng luồng CSV hiện tại: upload → kiểm tra → preview/báo lỗi → commit bản nháp → publish → gán/kích hoạt cho user đích.
+5. Giữ quy tắc CSV hiện tại: ngân hàng đầy đủ 30 đề × 30 câu; cập nhật một phần tạo bản nháp từ ngân hàng nguồn được phép dùng. Không mở rộng định dạng import trong đợt này.
+6. Nếu lấy ngân hàng chung làm nguồn cập nhật riêng, tạo bản sao riêng trước khi sửa. Việc kích hoạt ngân hàng riêng chỉ đổi liên kết user đích; không đổi ngân hàng của các user khác.
+7. Bài làm đã bắt đầu giữ ngân hàng/câu hỏi gốc và thời hạn gốc. Lịch sử vẫn đọc được khi user được chuyển sang ngân hàng khác; kiểm tra quyền theo chủ bài làm và tham chiếu gốc.
+8. Ngân hàng riêng chỉ được gán cho chủ sở hữu; admin có quyền quản lý tất cả. Không cho archive/xóa ngân hàng nếu làm hỏng lượt làm đang chạy hoặc lịch sử tham chiếu.
+
+## 6. Bảo toàn dữ liệu và khởi tạo tài khoản
+
+- Sao lưu dữ liệu trước migration; rà soát cả hai schema và tiến trình seed/build hiện có.
+- Giữ nguyên `Student.id = 'kenny'`, nối tài khoản đăng nhập vào hồ sơ Kenny đang có để bảo toàn attempts, review, mastery, lịch ôn và backup hiện tại.
+- Tạo Henry, Xoai, Moon với tiến độ trống; không sao chép tiến độ Kenny.
+- Tách cấu hình chung hiện tại thành cấu hình khởi tạo riêng cho từng user; giữ ngôn ngữ Kenny và dùng giá trị mặc định ứng dụng cho user mới.
+- Khởi tạo bốn tài khoản theo cơ chế chạy lặp an toàn: lần đầu đặt mật khẩu `123`; các lần seed/build sau không reset mật khẩu, cấu hình, ngân hàng đã gán hoặc tiến độ. Nếu gặp username trùng hồ sơ khác phải báo lỗi để xử lý, không tự gộp.
+- Backup/restore phải kiểm tra user đích, các ngân hàng tham chiếu và phiên bản định dạng. File cũ của Kenny cần tương thích có kiểm soát; không cho khôi phục chéo user ngoài ý muốn.
+
+## 7. Trình tự thực hiện sau khi duyệt
+
+1. **Dữ liệu:** sao lưu, migration SQLite/PostgreSQL, tài khoản/session, cấu hình và liên kết ngân hàng; chuyển dữ liệu Kenny.
+2. **Đăng nhập học sinh:** login/logout/đổi mật khẩu, bảo vệ toàn bộ trang và API, loại bỏ các chỗ cố định Kenny.
+3. **Admin profiles:** danh sách/hồ sơ user, cấu hình và reset mật khẩu; xem tiến độ và quản lý backup theo user.
+4. **Ngân hàng riêng:** phân quyền ngân hàng, import gắn user, publish/gán/kích hoạt riêng và giữ lịch sử.
+5. **Khởi tạo bốn user:** gán ngân hàng đang có và kiểm tra bảo toàn dữ liệu cũ.
+6. **Kiểm thử và bàn giao:** chạy kiểm tra phù hợp, cập nhật hướng dẫn; triển khai theo phạm vi được duyệt.
+
+## 8. Tiêu chí nghiệm thu
+
+- Bốn username `kenny`, `henry`, `xoai`, `moon` đăng nhập lần đầu với `123`; đổi mật khẩu một user không tác động user khác. Đăng xuất/reset mật khẩu làm session cũ mất hiệu lực theo thiết kế.
+- Cả bốn truy cập cùng ngân hàng hiện có ngay sau khởi tạo; bài làm/điểm/ôn tập của từng người độc lập.
+- Admin thay tên/ngôn ngữ/khoảng ôn tập/ngân hàng của Henry không thay cấu hình Kenny, Xoai, Moon.
+- Khi đăng nhập từng user, mọi vị trí từng ghi Kenny trên giao diện học sinh phải hiển thị tên tương ứng của user đó. Đổi tên hiển thị Henry thành tên khác rồi tải lại phải thấy tên mới; chuyển tài khoản không còn hiển thị tên của user trước. Kiểm tra cả EN/VI và giao diện di động.
+- Import và kích hoạt ngân hàng riêng cho Moon chỉ tác động Moon; lỗi CSV không tạo ngân hàng đã kích hoạt hay mất dữ liệu.
+- Admin xem đúng tiến độ, backup, restore và xóa theo từng user; lịch sử Kenny trước chuyển đổi được giữ nguyên.
+- User A không đọc hoặc ghi bài làm, kết quả, review, ngân hàng riêng của B qua URL/API; người chưa đăng nhập không gọi được API học sinh.
+- Đổi ngân hàng giữa lúc làm bài không đổi câu hỏi hoặc timer của bài đang làm; đăng nhập user khác không hiện lại dữ liệu user trước trong giao diện/cache.
+- Seed chạy lại không reset tài khoản; migration SQLite và PostgreSQL đều được kiểm tra. Chạy typecheck/lint, các kiểm thử đơn vị/tích hợp liên quan và E2E nhiều user cùng hồi quy luồng học/admin hiện có.
+
+## 9. Phạm vi đã duyệt triển khai
+
+Người dùng đã yêu cầu “implement plan.md”, bao gồm mục 1–8 và bổ sung cá nhân hóa tên giao diện. Admin quản lý/import ngân hàng cho từng user; học sinh đăng nhập, đổi mật khẩu và học theo cấu hình được gán. Các bước kiểm tra được ghi tại `qa/multi-user-report.md`.
+
+---
+
+# Kiến trúc và quyết định thiết kế trước cải tiến (tài liệu tham chiếu)
+
+Phần dưới mô tả phiên bản một học sinh trước kế hoạch trên; các mục “completed” chỉ thuộc phiên bản cũ, không phải trạng thái của cải tiến nhiều user.
+
 # Kenny Math Challenge – plan and design decisions
 
 This document records the architecture and the decisions behind the implementation. It was written first and updated as the build progressed; where the final code differs from the first draft the final decision is what is described here.

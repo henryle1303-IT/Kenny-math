@@ -99,20 +99,36 @@ To test while the development server is running, set `NEXT_DIST_DIR=.next-e2e`, 
 
 The ready-made 900-question file is in [`exports/kenny-math-bank-v1.csv`](exports/kenny-math-bank-v1.csv); it can be imported again through **Admin → Import / Export**.
 
+## Student accounts and User Profiles
+
+Students sign in at `/login` using a username and password. The first migration/seed initializes `kenny`, `henry`, `xoai`, and `moon`, each with initial password `123` and the existing active shared question bank. Kenny keeps the same student ID and history; the other new users begin with empty progress. Later seeds never reset passwords, profile settings, bank assignments or progress.
+
+The student interface, navigation, review feedback and page title use the signed-in student's display name (including Vietnamese labels). Admin changes to the display name appear on the next page load; changing a display name does not change the login username. Students can change their own password in the account page. Password changes and admin resets invalidate all existing student sessions.
+
+**Admin → User Profiles** lists accounts, status, assigned banks and last study activity. Select a user to edit their profile/language, learning intervals, password, question bank and progress. Learning settings are independent snapshots: changing defaults in Settings affects new users; changing a user's intervals applies to their next skill update. Admin passwords remain separate.
+
+Import inside a user profile creates a **private bank for that user**, using the existing CSV validation and draft workflow. Publish it in Bank Versions to assign it to that user only. Import from the general Import / Export page creates a shared bank. Shared-bank activation changes the default for unassigned users; existing explicit assignments stay unchanged. Select a different published shared/owned bank in a user profile to change that user's new tests. In-flight tests keep their original questions and expiry. Private banks cannot be assigned to other users, and private copies retain their owner.
+
+Progress backup, export, restore and clear operate on the selected user. Restore rejects files from another student and checks original bank/question references. Existing version-1 Kenny backup files remain supported for Kenny. Student APIs derive identity from the server session and check ownership of tests, answers, results and review sessions.
+
+For an existing installation, back up the database before applying migrations. Both SQLite and PostgreSQL migration histories include the upgrade. Run the normal migration + seed flow (`npm run db:setup` locally or `npm run build:vercel` for the configured PostgreSQL deployment). Seeding requires an active published shared bank when banks already exist; it reports the missing bank rather than replacing existing content. Production deployment and remote database migration are separate from local validation.
+
 ## Using the app
 
-**Kenny:** Home → *Math Tests* → Start. Answers are saved on every click; refreshing or closing the tab never resets the timer (the expiry time is stored on the server) and the test is submitted automatically when time is up. After submitting: score, topic chart, comparison with earlier attempts, and a full review with explanations and *Try a Similar Question*. *Smart Review → Practice My Mistakes* gives ten new questions on weak skills (untimed).
+**Student:** Sign in → Home → *Math Tests* → Start. Answers are saved on every click; refreshing or closing the tab never resets the timer (the expiry time is stored on the server) and the test is submitted automatically when time is up. After submitting: score, topic chart, comparison with earlier attempts, and a full review with explanations and *Try a Similar Question*. *Smart Review → Practice My Mistakes* gives ten new questions on weak skills (untimed).
 
 **Administrator:**
 
 1. **Question Generator** → *Generate 900 Questions* (progress bar; creates a *draft* bank and validates it).
 2. **Question Manager** → search/filter, preview, edit, duplicate, regenerate, delete (drafts only), *Mark reviewed* for flagged questions.
-3. **Bank Versions** → *Validate*, *Publish / Activate* (explicit confirmation; flagged questions must be acknowledged). Published banks are read-only – use *Create draft copy* to change them. *Restore / Activate* rolls back to an older published bank. Tests Kenny already started keep their original questions.
+3. **Bank Versions** → *Validate*, *Publish / Activate* (explicit confirmation; flagged questions must be acknowledged). Published banks are read-only – use *Create draft copy* to change them. *Restore / Activate* rolls back to an older published bank. Tests students already started keep their original questions.
 4. **Import / Export** → export a whole bank, one test or a range; import a CSV as a new draft bank (A), replace the active bank after typing `REPLACE` (B), or update selected questions by `question_id` (C). The validation report can be downloaded as an error CSV. *Download CSV Template* gives headers, field descriptions and three example rows (ignored unless “include example rows” is ticked).
 
    New-bank imports (A/B) require 900 questions arranged as 30 tests × 30 questions. For a smaller CSV, use update-selected mode (C) with IDs from an existing bank. Changing the file, import mode, base bank or example-row option requires uploading and validating again before saving.
-5. **Settings** → spaced-review intervals, student name, admin password, activity log.
-6. **Student Progress → Clear progress** → type `CLEAR` to delete test attempts (including unfinished ones), saved answers, practice sessions, skill mastery and review schedules. Question banks, student settings and admin accounts are kept. The action is recorded in the activity log.
+5. **Settings** → default spaced-review intervals for new users, admin password, activity log. Use **User Profiles** for individual names, settings, passwords and progress.
+6. **User Profiles → select user → Clear progress** → type `CLEAR` to delete test attempts (including unfinished ones), saved answers, practice sessions, skill mastery and review schedules. Question banks, student settings and admin accounts are kept. The action is recorded in the activity log.
+
+7. **User Profiles → select user → Save, export & import progress**: answers continue to save automatically. **Save progress** stores one backup in the database (replacing the previous saved backup); **Export progress** downloads a versioned JSON file with all attempts, answers, Smart Review questions, skill events, mastery and review schedules. **Download saved backup** downloads the last database snapshot. To restore, select an exported JSON file (up to 4 MB), review its counts, type `RESTORE`, then choose **Import & replace progress**. Restore replaces the current student's history atomically and first saves the previous history as the database backup. Download that backup and import it to undo a restore. Original timers are preserved, so expired attempts remain expired. The exact original question banks and question IDs must exist unchanged in the destination database; progress files do not transfer question banks or student/admin settings. All backup operations require administrator access and are audited.
 
 ### CSV format
 
@@ -138,7 +154,7 @@ Put it behind HTTPS (Caddy, nginx, Cloudflare Tunnel, or your platform's TLS). T
 
 ## Security notes
 
-Password hashes (bcrypt), server-side sessions with hashed tokens, HttpOnly/SameSite cookies, server-side authorisation on every admin API route, origin check on writes, login rate limiting, 5 MB upload limit, CSV formula neutralisation on export, audit log. No stack traces are shown to students; API errors are friendly messages. Change the seeded admin password in *Settings* after first sign-in.
+Password hashes (bcrypt), server-side sessions with hashed tokens, HttpOnly/SameSite cookies, server-side authorisation on every admin API route, origin check on writes, login rate limiting, 4 MB upload limit, CSV formula neutralisation on export, audit log. No stack traces are shown to students; API errors are friendly messages. Change the seeded admin password in *Settings* after first sign-in.
 
 ## Project documents
 

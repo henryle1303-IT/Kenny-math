@@ -1,3 +1,4 @@
+import { initializeStudents } from '../src/lib/services/users';
 import { randomBytes } from 'node:crypto';
 import { prisma } from '../src/lib/db';
 import { hashPassword } from '../src/lib/services/admin-auth';
@@ -11,7 +12,6 @@ async function main() {
       (!process.env.ADMIN_EMAIL?.trim() || !process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD.length < 12)) {
     throw new Error('For the first production seed, set ADMIN_EMAIL and ADMIN_PASSWORD (at least 12 characters).');
   }
-  await prisma.student.upsert({ where: { id: 'kenny' }, update: {}, create: { id: 'kenny', name: 'Kenny' } });
 
   if (needsAdmin) {
     const pw = process.env.ADMIN_PASSWORD || randomBytes(9).toString('base64url');
@@ -33,6 +33,7 @@ async function main() {
       console.log('Bank left as draft because validation failed.');
     }
   }
+  await initializeStudents();
 }
 
 main()

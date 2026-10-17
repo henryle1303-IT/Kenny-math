@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from './api';
+import type { BankValidationReport } from '@/lib/validate/bank';
 
 interface Props {
   id: string;
@@ -19,12 +20,12 @@ export function BankActions({ id, name, status, isActive, everPublished, hasAtte
   const [ack, setAck] = useState(false);
   const editable = status === 'DRAFT' || status === 'READY_FOR_REVIEW';
 
-  async function run(label: string, fn: () => Promise<unknown>, okText: string) {
+  async function run<T>(label: string, fn: () => Promise<T>, okText: string | ((result: T) => { ok: boolean; text: string })) {
     setBusy(true);
     setMsg(null);
     try {
-      await fn();
-      setMsg({ ok: true, text: okText });
+      const result = await fn();
+      setMsg(typeof okText === 'function' ? okText(result) : { ok: true, text: okText });
       router.refresh();
     } catch (e) {
       setMsg({ ok: false, text: `${label}: ${(e as Error).message}` });
@@ -37,10 +38,8 @@ export function BankActions({ id, name, status, isActive, everPublished, hasAtte
     <div className="space-y-2">
       <div className="flex flex-wrap gap-2">
         <a className="btn-secondary !min-h-9 text-sm" href={`/admin/questions?bank=${id}`}>Questions</a>
-        <button disabled={busy} className="btn-secondary !min-h-9 text-sm" onClick={() => run('Validate', async () => {
-          const r = await api('/api/admin/banks/' + id + '/validate', 'POST');
-          setMsg({ ok: r.ok, text: `${r.validRows}/${r.totalRows} valid, ${r.verifiedRows} verified, ${r.reviewRows + r.warningRows} need review${r.bankErrors.length ? '. ' + r.bankErrors.slice(0, 3).join(' ') : ''}` });
-        }, 'Validated.')}>Validate</button>
+        <button disabled={busy} className="btn-secondary !min-h-9 text-sm" onClick={() => run('Validate', () => api<BankValidationReport>('/api/admin/banks/' + id + '/validate', 'POST'),
+          (r) => ({ ok: r.ok, text: `${r.validRows}/${r.totalRows} valid, ${r.verifiedRows} verified, ${r.reviewRows + r.warningRows} need review${r.bankErrors.length ? '. ' + r.bankErrors.slice(0, 3).join(' ') : ''}` }))}>Validate</button>
         <a className="btn-secondary !min-h-9 text-sm" href={`/api/admin/banks/${id}/export`}>Export CSV</a>
         <button disabled={busy} className="btn-secondary !min-h-9 text-sm" onClick={() => run('Copy', () => api('/api/admin/banks/' + id + '/clone', 'POST', {}), 'Draft copy created.')}>Create draft copy</button>
       </div>
@@ -49,14 +48,14 @@ export function BankActions({ id, name, status, isActive, everPublished, hasAtte
           <>
             <label className="flex items-center gap-1 text-xs text-slate-600"><input type="checkbox" checked={ack} onChange={(e) => setAck(e.target.checked)} /> accept questions flagged for review</label>
             <button disabled={busy} className="btn-primary !min-h-9 text-sm" data-testid={`publish-${id}`} onClick={() => {
-              if (!confirm(`Publish and activate “${name}”? Kenny will use it for NEW tests. Tests already in progress keep their original questions.`)) return;
+              if (!confirm(`Publish and activate “${name}”? Shared banks become the default for unassigned users. Private banks are assigned only to their owner. Existing user assignments are kept. Tests already in progress keep their original questions.`)) return;
               void run('Publish', () => api('/api/admin/banks/' + id + '/publish', 'POST', { confirm: true, acknowledgeReview: ack }), 'Published and activated.');
             }}>Publish / Activate</button>
           </>
         )}
         {!editable && everPublished && !isActive && (
           <button disabled={busy} className="btn-primary !min-h-9 text-sm" onClick={() => {
-            if (!confirm(`Make “${name}” the active bank? New tests will use it. Existing results are not changed.`)) return;
+            if (!confirm(`Make “${name}” the active bank? Shared banks become the default for unassigned users; private banks are assigned only to their owner. Existing user assignments and results are kept.`)) return;
             void run('Activate', () => api('/api/admin/banks/' + id + '/activate', 'POST', { confirm: true }), 'Activated.');
           }}>Restore / Activate</button>
         )}

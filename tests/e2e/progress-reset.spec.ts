@@ -1,8 +1,13 @@
 import { expect, test } from '@playwright/test';
 import { ADMIN_EMAIL, ADMIN_PASSWORD } from './creds';
 
+test.beforeEach(async ({ page }) => {
+  const res = await page.request.post('/api/student/login', { data: { username: 'kenny', password: '123' } });
+  expect(res.ok()).toBe(true);
+});
+
 test('admin clears progress only after confirmation, keeps the bank and can start again', async ({ page, request }) => {
-  const clearUrl = '/api/admin/progress/clear';
+  const clearUrl = '/api/admin/progress/clear?studentId=kenny';
   expect((await request.post(clearUrl, { data: { confirmation: 'CLEAR' } })).status()).toBe(401);
 
   const started = await page.request.post('/api/attempts', { data: { testNumber: 5 } });
@@ -33,7 +38,7 @@ test('admin clears progress only after confirmation, keeps the bank and can star
   expect((await page.request.post(clearUrl, { data: { confirmation: 'wrong' } })).status()).toBe(400);
   expect((await page.request.post(clearUrl, { data: { confirmation: 'CLEAR' }, headers: { origin: 'http://evil.example' } })).status()).toBe(403);
 
-  await page.getByRole('link', { name: 'Student Progress', exact: true }).click();
+  await page.getByRole('link', { name: 'User Profiles', exact: true }).click();
   await page.getByRole('button', { name: 'Clear progress', exact: true }).click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();

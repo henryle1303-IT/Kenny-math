@@ -35,23 +35,23 @@ beforeAll(async () => {
 
   submittedId = (await startAttempt(28, target)).attemptId;
   const first = await prisma.question.findFirstOrThrow({ where: { testNumber: 28, bank: { isActive: true } } });
-  await saveAnswer(submittedId, first.id, first.correctAnswer);
-  await submitAttempt(submittedId);
+  await saveAnswer(submittedId, first.id, first.correctAnswer, target);
+  await submitAttempt(submittedId, target);
   openId = (await startAttempt(29, target)).attemptId;
   const second = await prisma.question.findFirstOrThrow({ where: { testNumber: 29, bank: { isActive: true } } });
-  await saveAnswer(openId, second.id, 'A');
+  await saveAnswer(openId, second.id, 'A', target);
   const smart = await createSmartSession(target);
   const rq = await prisma.reviewQuestion.findFirstOrThrow({ where: { sessionId: smart } });
-  await answerReviewQuestion(rq.id, rq.correctAnswer);
+  await answerReviewQuestion(rq.id, rq.correctAnswer, target);
   const similar = await createSimilarSession(first.id, undefined, target);
   reviewIds = [smart, similar];
 
   const keep = await startAttempt(27, other);
   const keepQuestion = await prisma.question.findFirstOrThrow({ where: { testNumber: 27, bank: { isActive: true } } });
-  await saveAnswer(keep.attemptId, keepQuestion.id, 'B');
+  await saveAnswer(keep.attemptId, keepQuestion.id, 'B', other);
   const keepReview = await createSmartSession(other);
   const keepRq = await prisma.reviewQuestion.findFirstOrThrow({ where: { sessionId: keepReview } });
-  await answerReviewQuestion(keepRq.id, keepRq.correctAnswer);
+  await answerReviewQuestion(keepRq.id, keepRq.correctAnswer, other);
 });
 
 afterAll(async () => {
@@ -64,7 +64,7 @@ afterAll(async () => {
 describe('clearing student progress', () => {
   it('requires admin authentication, same-origin requests and explicit confirmation', async () => {
     const before = await history('kenny');
-    const request = (body: string, headers: Record<string, string> = {}) => new Request('http://localhost:3000/api/admin/progress/clear', {
+    const request = (body: string, headers: Record<string, string> = {}) => new Request('http://localhost:3000/api/admin/progress/clear?studentId=kenny', {
       method: 'POST', headers: { 'content-type': 'application/json', host: 'localhost:3000', ...headers }, body,
     });
     expect((await POST(request('{"confirmation":"CLEAR"}'))).status).toBe(401);

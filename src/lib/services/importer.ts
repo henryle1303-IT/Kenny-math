@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { prisma } from '../db';
 import { AppError } from './attempts';
 import { createBank, getBankOrThrow, insertQuestions, toQuestionData, validateBankById, activateBank, EDITABLE } from './banks';
@@ -20,10 +21,17 @@ export interface ImportReport extends BankValidationReport {
   previewRows: { row: number; questionId: string; testNumber: number; position: number; topic: string; difficulty: number; text: string; correct: string; status: string }[];
 }
 
-export async function analyzeImport(file: { name: string; bytes: Uint8Array }, mode: ImportMode, opts: { baseBankId?: string | null; includeExamples?: boolean }) {
+export async function analyzeImport(file: { name: string; bytes: Uint8Array }, mode: ImportMode, opts: { baseBankId?: string | null; includeExamples?: boolean; targetStudentId?: string | null }) {
   if (file.bytes.byteLength === 0) throw new AppError('The file is empty.');
   if (file.bytes.byteLength > MAX_UPLOAD_BYTES) throw new AppError(`The file is too large (limit ${MAX_UPLOAD_BYTES / 1024 / 1024} MB).`, 413);
   if (!/\.csv$/i.test(file.name)) throw new AppError('Please upload a .csv file.');
+  const target = opts.targetStudentId ?? null;
+  if (target && !await prisma.student.findUnique({ where: { id: target } })) throw new AppError('User not found.', 404);
+  const baseBankId = mode === 'UPDATE_SELECTED' ? opts.baseBankId : null;
+  if (baseBankId) {
+    const base = await getBankOrThrow(baseBankId);
+    if (base.ownerId && base.ownerId !== target) throw new AppError('The source bank belongs to another user.', 403);
+  }
   const parsed = parseCsvBytes(file.bytes);
   const mapped = mapCsvRows(parsed, { includeExamples: opts.includeExamples });
   const headerProblems: string[] = [...parsed.parseErrors.slice(0, 5)];
@@ -87,9 +95,10 @@ export async function analyzeImport(file: { name: string; bytes: Uint8Array }, m
   report.canCommit = report.ok;
   const job = await prisma.importJob.create({
     data: {
+      targetStudentId: target,
       filename: file.name.slice(0, 200),
       mode,
-      baseBankId: opts.baseBankId ?? null,
+      baseBankId: baseBankId ?? null,
       status: report.ok ? 'VALIDATED' : 'REJECTED',
       reportJson: JSON.stringify({ ...report, issues: report.issues.slice(0, 2000), perQuestion: undefined }),
       rowsJson: JSON.stringify(rows),
@@ -116,43 +125,57 @@ export async function errorReportCsv(jobId: string) {
 }
 
 export async function commitImport(jobId: string, opts: { name?: string; activate?: boolean; confirmText?: string; acknowledgeReview?: boolean }) {
-  const { job, report } = await getImportJob(jobId);
-  if (job.status === 'COMMITTED') throw new AppError('This import has already been saved.', 409);
-  if (!report.ok) throw new AppError('This file has validation errors, so nothing was saved. Fix the file and upload it again.', 422, 'VALIDATION_FAILED');
-  const rows = JSON.parse(job.rowsJson) as QuestionData[];
-  const mode = job.mode as ImportMode;
-  if (mode === 'REPLACE_ACTIVE' && opts.activate && opts.confirmText !== 'REPLACE') {
-    throw new AppError('Type REPLACE to confirm replacing the active bank.', 400, 'CONFIRM_REQUIRED');
+  for (let retry = 0; ; retry++) {
+    try {
+      return await prisma.$transaction(async (tx) => {
+        const job = await tx.importJob.findUnique({ where: { id: jobId } });
+        if (!job) throw new AppError('Import not found.', 404, 'NOT_FOUND');
+        const report = JSON.parse(job.reportJson) as ImportReport;
+        if (job.status === 'COMMITTED') throw new AppError('This import has already been saved.', 409);
+        if (!report.ok) throw new AppError('This file has validation errors, so nothing was saved. Fix the file and upload it again.', 422, 'VALIDATION_FAILED');
+        if (job.status !== 'VALIDATED') throw new AppError('This import cannot be committed.', 409);
+        const claim = await tx.importJob.updateMany({ where: { id: jobId, status: 'VALIDATED' }, data: { status: 'COMMITTING' } });
+        if (claim.count !== 1) throw new AppError('This import is already being saved.', 409);
+        const rows = JSON.parse(job.rowsJson) as QuestionData[];
+        const mode = job.mode as ImportMode;
+        if (mode === 'REPLACE_ACTIVE' && opts.activate && opts.confirmText !== 'REPLACE') {
+          throw new AppError('Type REPLACE to confirm replacing the active bank.', 400, 'CONFIRM_REQUIRED');
+        }
+        const stamp = new Date().toISOString().slice(0, 10);
+        let bankId: string;
+        if (mode === 'UPDATE_SELECTED') {
+          if (!job.baseBankId) throw new AppError('The base bank is missing.');
+          const base = await getBankOrThrow(job.baseBankId, tx);
+          const copy = await createBank({ name: opts.name?.trim() || `${base.name} (updated ${stamp})`, source: 'IMPORTED', ownerId: job.targetStudentId, parentBankId: base.id, seed: base.seed, notes: `Updated ${rows.length} question(s) from ${job.filename}` }, tx);
+          const baseQs = await tx.question.findMany({ where: { bankId: base.id } });
+          const updates = new Map(rows.map((r) => [r.questionId, r]));
+          const merged = baseQs.map((q) => {
+            const u = updates.get(q.questionId);
+            return { data: u ? { ...toQuestionData(q), ...u, level: q.level } : toQuestionData(q), status: u ? 'PENDING' : q.validationStatus, notes: u ? '' : q.validationNotes, templateId: q.templateId };
+          });
+          await insertQuestions(copy.id, merged, tx);
+          bankId = copy.id;
+        } else {
+          const bank = await createBank({ name: opts.name?.trim() || `Imported ${stamp} (${job.filename})`.slice(0, 120), source: 'IMPORTED', ownerId: job.targetStudentId, notes: `Imported from ${job.filename}` }, tx);
+          await insertQuestions(bank.id, rows.map((data) => ({ data, status: 'PENDING', notes: '' })), tx);
+          bankId = bank.id;
+        }
+        const finalReport = await validateBankById(bankId, tx);
+        await tx.importJob.update({ where: { id: jobId }, data: { status: 'COMMITTED', resultBankId: bankId } });
+        let activated = false;
+        if (mode === 'REPLACE_ACTIVE' && opts.activate) {
+          const { publishBank } = await import('./banks');
+          await publishBank(bankId, { acknowledgeReview: !!opts.acknowledgeReview }, tx);
+          await activateBank(bankId, tx);
+          activated = true;
+        }
+        return { bankId, activated, report: finalReport };
+      }, { isolationLevel: 'Serializable', timeout: 60000, maxWait: 10000 });
+    } catch (error) {
+      if (retry < 2 && error instanceof Prisma.PrismaClientKnownRequestError && ['P2034', 'P2002'].includes(error.code)) continue;
+      throw error;
+    }
   }
-  const stamp = new Date().toISOString().slice(0, 10);
-  let bankId: string;
-  if (mode === 'UPDATE_SELECTED') {
-    if (!job.baseBankId) throw new AppError('The base bank is missing.');
-    const base = await getBankOrThrow(job.baseBankId);
-    const copy = await createBank({ name: opts.name?.trim() || `${base.name} (updated ${stamp})`, source: 'IMPORTED', parentBankId: base.id, seed: base.seed, notes: `Updated ${rows.length} question(s) from ${job.filename}` });
-    const baseQs = await prisma.question.findMany({ where: { bankId: base.id } });
-    const updates = new Map(rows.map((r) => [r.questionId, r]));
-    const merged = baseQs.map((q) => {
-      const u = updates.get(q.questionId);
-      return { data: u ? { ...toQuestionData(q), ...u, level: q.level } : toQuestionData(q), status: u ? 'PENDING' : q.validationStatus, notes: u ? '' : q.validationNotes, templateId: q.templateId };
-    });
-    await insertQuestions(copy.id, merged);
-    bankId = copy.id;
-  } else {
-    const bank = await createBank({ name: opts.name?.trim() || `Imported ${stamp} (${job.filename})`.slice(0, 120), source: 'IMPORTED', notes: `Imported from ${job.filename}` });
-    await insertQuestions(bank.id, rows.map((data) => ({ data, status: 'PENDING', notes: '' })));
-    bankId = bank.id;
-  }
-  const finalReport = await validateBankById(bankId);
-  await prisma.importJob.update({ where: { id: jobId }, data: { status: 'COMMITTED', resultBankId: bankId } });
-  let activated = false;
-  if (mode === 'REPLACE_ACTIVE' && opts.activate) {
-    const { publishBank } = await import('./banks');
-    await publishBank(bankId, { acknowledgeReview: !!opts.acknowledgeReview });
-    await activateBank(bankId);
-    activated = true;
-  }
-  return { bankId, activated, report: finalReport };
 }
 
 export { EDITABLE };

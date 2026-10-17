@@ -4,9 +4,10 @@ import { DEFAULT_CONFIG, type LearningConfig } from '../learning/mastery';
 export const STUDENT_ID = 'kenny';
 
 export async function getStudent() {
-  const s = await prisma.student.findUnique({ where: { id: STUDENT_ID } });
-  if (s) return s;
-  return prisma.student.upsert({ where: { id: STUDENT_ID }, update: {}, create: { id: STUDENT_ID, name: 'Kenny' } });
+  const { currentStudent } = await import('./student-auth');
+  const s = await currentStudent();
+  if (!s) { const { redirect } = await import('next/navigation'); redirect('/login'); }
+  return s!;
 }
 
 export async function getSetting(key: string, db: Pick<typeof prisma, 'setting'> = prisma): Promise<string | null> {
@@ -16,8 +17,9 @@ export async function setSetting(key: string, value: string) {
   await prisma.setting.upsert({ where: { key }, update: { value }, create: { key, value } });
 }
 
-export async function getLearningConfig(db: Pick<typeof prisma, 'setting'> = prisma): Promise<LearningConfig> {
-  const raw = await getSetting('learningConfig', db);
+export async function getLearningConfig(db: Pick<typeof prisma, 'setting' | 'student'> = prisma, studentId?: string): Promise<LearningConfig> {
+  const personal = studentId ? await db.student.findUnique({ where: { id: studentId }, select: { learningConfig: true } }) : null;
+  const raw = personal?.learningConfig ?? await getSetting('learningConfig', db);
   if (!raw) return DEFAULT_CONFIG;
   try {
     const p = JSON.parse(raw) as Partial<LearningConfig>;

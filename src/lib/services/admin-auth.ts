@@ -17,7 +17,7 @@ export async function hashPassword(pw: string) {
 }
 
 export function validatePasswordStrength(pw: string) {
-  if (pw.length < 10) throw new AppError('Use a password with at least 10 characters.');
+  if (pw.length < 10 || Buffer.byteLength(pw) > 72) throw new AppError('Use a password with at least 10 characters and at most 72 bytes.');
 }
 
 export async function login(email: string, password: string, ip: string) {
@@ -97,11 +97,15 @@ export async function audit(adminId: string | null, operation: string, details: 
   }
 }
 
-export async function changePassword(adminId: string, current: string, next: string) {
+export async function changePassword(adminId: string, current: string, next: string, keepToken?: string) {
   const a = await prisma.adminUser.findUnique({ where: { id: adminId } });
   if (!a || !(await bcrypt.compare(current, a.passwordHash))) throw new AppError('Your current password is not correct.', 400);
   validatePasswordStrength(next);
-  await prisma.adminUser.update({ where: { id: adminId }, data: { passwordHash: await hashPassword(next) } });
+  const passwordHash = await hashPassword(next);
+  await prisma.$transaction(async (tx) => {
+    await tx.adminUser.update({ where: { id: adminId }, data: { passwordHash } });
+    await tx.adminSession.deleteMany({ where: { adminId, ...(keepToken ? { tokenHash: { not: sha(keepToken) } } : {}) } });
+  });
   await audit(adminId, 'password.changed', {});
 }
 

@@ -1,3 +1,4 @@
+import { getStudent } from '@/lib/services/core';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { AppError, getAttemptResult } from '@/lib/services/attempts';
@@ -12,11 +13,12 @@ const STATUS = {
 } as const;
 
 export default async function ReviewPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ filter?: string }> }) {
+  const student = await getStudent();
   const { id } = await params;
   const { filter } = await searchParams;
   let r;
   try {
-    r = await getAttemptResult(id);
+    r = await getAttemptResult(id, student.id);
   } catch (e) {
     if (e instanceof AppError) notFound();
     throw e;

@@ -36,7 +36,7 @@ export function Generator({ drafts, topics }: { drafts: BankOpt[]; topics: strin
       let done = 0;
       for (let i = 0; i < tests.length; i += batch) {
         const chunk = tests.slice(i, i + batch);
-        const r = await api('/api/admin/banks/' + id + '/generate', 'POST', { tests: chunk, onlyTopic: topic || undefined });
+        const r = await api('/api/admin/banks/' + id + '/generate', 'POST', { tests: chunk, onlyTopic: target === 'new' ? undefined : topic || undefined });
         done += chunk.length;
         setProgress(Math.round((done / tests.length) * 100));
         setLog((l) => [...l, `Generated ${r.generated} questions for test${chunk.length > 1 ? 's' : ''} ${chunk.join(', ')}.`]);
@@ -56,7 +56,7 @@ export function Generator({ drafts, topics }: { drafts: BankOpt[]; topics: strin
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="target">Where to put the questions</label>
-          <select id="target" className="input" value={target} onChange={(e) => setTarget(e.target.value)}>
+          <select id="target" className="input" value={target} onChange={(e) => { setTarget(e.target.value); if (e.target.value === 'new') setTopic(''); }}>
             <option value="new">A new draft bank</option>
             {drafts.map((d) => <option key={d.id} value={d.id}>{d.label}</option>)}
           </select>

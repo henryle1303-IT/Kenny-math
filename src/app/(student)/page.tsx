@@ -8,11 +8,11 @@ import { PracticeButton } from '@/components/PracticeButton';
 import { prisma } from '@/lib/db';
 
 export default async function HomePage() {
-  const [student, p, lang, open] = await Promise.all([
-    getStudent(),
-    getProgress(),
+  const student = await getStudent();
+  const [p, lang, open] = await Promise.all([
+    getProgress(student.id),
     getLang(),
-    prisma.testAttempt.findFirst({ where: { status: 'IN_PROGRESS', expiresAt: { gt: new Date() } }, orderBy: { startedAt: 'desc' } }),
+    prisma.testAttempt.findFirst({ where: { studentId: student.id, status: 'IN_PROGRESS', expiresAt: { gt: new Date() } }, orderBy: { startedAt: 'desc' } }),
   ]);
   const cards = [
     { href: '/tests', title: 'Math Tests', text: '30 tests, from easy to challenging', Icon: BookOpenCheck, color: 'from-sky-500 to-brand-600' },
@@ -22,7 +22,7 @@ export default async function HomePage() {
   return (
     <div className="space-y-6">
       <section>
-        <h1 className="text-4xl font-black text-brand-800">{tr(lang, 'Kenny Math Challenge')}</h1>
+        <h1 className="text-4xl font-black text-brand-800">{lang === 'vi' ? `Thử thách Toán của ${student.name}` : `${student.name} Math Challenge`}</h1>
         <p className="mt-1 text-lg text-slate-600">{tr(lang, 'Welcome back')}, <b>{student.name}</b>! 👋</p>
       </section>
 

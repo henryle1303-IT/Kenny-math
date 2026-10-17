@@ -1,14 +1,18 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { parseTests } from '@/lib/csv/export';
+import { MAX_UPLOAD_BYTES } from '@/lib/csv/limits';
+import type { ImportReport } from '@/lib/services/importer';
 
 interface BankOpt { id: string; label: string }
-type Report = any;
+type Report = ImportReport;
 
-export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: BankOpt[] }) {
+export function ImportExport({ banks, drafts, targetStudentId, targetStudentName }: { banks: BankOpt[]; drafts: BankOpt[]; targetStudentId?: string; targetStudentName?: string }) {
   const router = useRouter();
   const [exportBank, setExportBank] = useState(banks[0]?.id ?? '');
   const [range, setRange] = useState('');
+  const [exportError, setExportError] = useState('');
   const [mode, setMode] = useState('NEW_BANK');
   const [base, setBase] = useState(banks[0]?.id ?? '');
   const [includeExamples, setIncludeExamples] = useState(false);
@@ -32,14 +36,16 @@ export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: Bank
   }
 
   async function upload() {
-    if (!file) return;
+    if (busy || !file) return;
     setBusy(true);
     invalidateImport();
     try {
+      if (file.size > MAX_UPLOAD_BYTES) throw new Error('The file is too large (limit 4 MB).');
       const fd = new FormData();
       fd.set('file', file);
+      if (targetStudentId) fd.set('targetStudentId', targetStudentId);
       fd.set('mode', mode);
-      fd.set('baseBankId', base);
+      if (mode === 'UPDATE_SELECTED') fd.set('baseBankId', base);
       fd.set('includeExamples', String(includeExamples));
       const res = await fetch('/api/admin/import', { method: 'POST', body: fd });
       const d = await res.json();
@@ -53,14 +59,14 @@ export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: Bank
   }
 
   async function commit() {
-    if (!job) return;
+    if (busy || !job) return;
     setBusy(true);
     setErr('');
     try {
       const res = await fetch(`/api/admin/import/${job.jobId}/commit`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ name: name || undefined, activate: mode === 'REPLACE_ACTIVE' && activate, confirmText, acknowledgeReview: ack }) });
       const d = await res.json();
       if (!res.ok) throw new Error(d.error);
-      setDone(d.activated ? 'Saved, published and activated.' : 'Saved as a new draft bank. Validate and publish it on the Bank Versions page.');
+      setDone(d.activated ? 'Saved, published and activated.' : d.ok === false ? 'Saved as a draft with validation problems. Review and fix them in Question Manager before publishing.' : 'Saved as a new draft bank. Validate and publish it on the Bank Versions page.');
       setJob(null);
       router.refresh();
     } catch (e) {
@@ -82,18 +88,22 @@ export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: Bank
           </div>
           <div>
             <label className="label" htmlFor="rng">Tests (blank = all 900). Examples: 5 · 1-10 · 3,7,12-14</label>
-            <input id="rng" className="input" value={range} onChange={(e) => setRange(e.target.value)} placeholder="all tests" />
+            <input id="rng" className="input" value={range} onChange={(e) => { setRange(e.target.value); setExportError(''); }} placeholder="all tests" />
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          <a data-testid="export-link" className="btn-primary" href={exportBank ? `/api/admin/banks/${exportBank}/export${range.trim() ? `?tests=${encodeURIComponent(range.trim())}` : ''}` : '#'}>Export Question Bank to CSV</a>
+          <a data-testid="export-link" aria-disabled={!exportBank} onClick={(e) => {
+            try { if (!exportBank) throw new Error('Choose a question bank to export.'); parseTests(range); setExportError(''); }
+            catch (error) { e.preventDefault(); setExportError((error as Error).message); }
+          }} className="btn-primary" href={exportBank ? `/api/admin/banks/${exportBank}/export${range.trim() ? `?tests=${encodeURIComponent(range.trim())}` : ''}` : '#'}>Export Question Bank to CSV</a>
           <a className="btn-secondary" href="/api/admin/template">Download CSV Template</a>
         </div>
+        {exportError && <p role="alert" className="text-sm text-rose-700">{exportError}</p>}
         <p className="text-xs text-slate-500">UTF-8 with BOM (opens correctly in Excel). Formula characters at the start of cells are neutralised.</p>
       </section>
 
       <section className="card space-y-3 p-5">
-        <h2 className="text-lg font-bold">Import Question Bank from CSV</h2>
+        <h2 className="text-lg font-bold">Import Question Bank from CSV{targetStudentName ? ` — ${targetStudentName} (private)` : ' — shared'}</h2>
         <fieldset className="space-y-2" disabled={busy}>
           <legend className="label">Import mode</legend>
           {[
@@ -111,7 +121,7 @@ export function ImportExport({ banks, drafts }: { banks: BankOpt[]; drafts: Bank
           </div>
         )}
         <div>
-          <label className="label" htmlFor="file">CSV file (max 5 MB)</label>
+          <label className="label" htmlFor="file">CSV file (max 4 MB)</label>
           <input id="file" data-testid="import-file" type="file" accept=".csv,text/csv" className="input" disabled={busy} onChange={(e) => { setFile(e.target.files?.[0] ?? null); invalidateImport(); }} />
         </div>
         <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={includeExamples} disabled={busy} onChange={(e) => { setIncludeExamples(e.target.checked); invalidateImport(); }} /> include example rows (question_id starting with EXAMPLE-)</label>

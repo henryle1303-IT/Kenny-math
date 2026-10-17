@@ -109,7 +109,8 @@ export async function createSmartSession(studentId = STUDENT_ID) {
 /** “Try a Similar Question”: one fresh question on the same skill as a missed official question. */
 export async function createSimilarSession(sourceQuestionId: string, tierOverride?: number, studentId = STUDENT_ID) {
   const src = await prisma.question.findUnique({ where: { id: sourceQuestionId } });
-  if (!src) throw new AppError('Question not found.', 404, 'NOT_FOUND');
+  const allowed = src && await prisma.questionBank.findFirst({ where: { id: src.bankId, OR: [{ ownerId: null, status: 'PUBLISHED' }, { ownerId: studentId, status: 'PUBLISHED' }, { attempts: { some: { studentId, status: { not: 'IN_PROGRESS' } } } }] } });
+  if (!src || !allowed) throw new AppError('Question not found.', 404, 'NOT_FOUND');
   if (!skillInfo(src.skill)) throw new AppError('There is no practice generator for this skill yet.', 404, 'NO_GENERATOR');
   const tier = Math.min(5, Math.max(1, tierOverride ?? src.difficulty)) as Tier;
   const avoid = await recentFingerprints(studentId);
@@ -127,9 +128,9 @@ export async function createSimilarSession(sourceQuestionId: string, tierOverrid
   return session.id;
 }
 
-export async function getReviewSession(sessionId: string) {
+export async function getReviewSession(sessionId: string, studentId = STUDENT_ID) {
   const s = await prisma.reviewSession.findUnique({ where: { id: sessionId }, include: { questions: { orderBy: { position: 'asc' } } } });
-  if (!s) throw new AppError('Practice session not found.', 404, 'NOT_FOUND');
+  if (!s || s.studentId !== studentId) throw new AppError('Practice session not found.', 404, 'NOT_FOUND');
   return {
     id: s.id,
     kind: s.kind,
@@ -161,11 +162,11 @@ export async function getReviewSession(sessionId: string) {
   };
 }
 
-export async function answerReviewQuestion(reviewQuestionId: string, selected: string) {
+export async function answerReviewQuestion(reviewQuestionId: string, selected: string, studentId = STUDENT_ID) {
   if (!['A', 'B', 'C', 'D'].includes(selected)) throw new AppError('Please choose A, B, C or D.');
   return prisma.$transaction(async (tx) => {
     const q = await tx.reviewQuestion.findUnique({ where: { id: reviewQuestionId }, include: { session: true } });
-    if (!q) throw new AppError('Question not found.', 404, 'NOT_FOUND');
+    if (!q || q.session.studentId !== studentId) throw new AppError('Question not found.', 404, 'NOT_FOUND');
     const d = JSON.parse(q.generatedQuestionData) as { commonMistake: string; learningTip: string; topic: string };
     const reveal = (sel: string, ok: boolean) => ({ selected: sel, isCorrect: ok, correct: q.correctAnswer, explanation: q.explanation, commonMistake: d.commonMistake, learningTip: d.learningTip });
     if (q.selectedAnswer !== null) return { alreadyAnswered: true, ...reveal(q.selectedAnswer, q.isCorrect === true), sessionCompleted: !!q.session.completedAt };

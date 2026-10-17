@@ -1,37 +1,32 @@
+import { z } from 'zod';
 import { adminHandle, readJson } from '@/lib/http';
-import { changePassword } from '@/lib/services/admin-auth';
-import { getLearningConfig, getStudent, setSetting } from '@/lib/services/core';
-import { prisma } from '@/lib/db';
+import { changePassword, cookieFromHeader, ADMIN_COOKIE } from '@/lib/services/admin-auth';
+import { getLearningConfig, setSetting } from '@/lib/services/core';
 import { AppError } from '@/lib/services/attempts';
 
+const days = z.number().int().min(0).max(365);
+const schema = z.discriminatedUnion('action', [
+  z.object({ action: z.literal('password'), current: z.string(), next: z.string() }).strict(),
+  z.object({ action: z.literal('intervals'), intervals: z.object({ afterIncorrect: days, afterCorrectOnce: days, afterCorrectTwice: days, afterConsistent: days }).strict() }).strict(),
+]);
+
 export async function GET(req: Request) {
-  return adminHandle(req, 'read.settings', async () => ({ learning: await getLearningConfig(), student: await getStudent() }));
+  return adminHandle(req, 'read.settings', async () => ({ learning: await getLearningConfig() }));
 }
 
 export async function POST(req: Request) {
-  const body = await readJson<{ action?: string; current?: string; next?: string; intervals?: Record<string, number>; studentName?: string }>(req);
-  return adminHandle(req, `settings.${body.action ?? 'unknown'}`, async (admin) => {
+  let action = '';
+  return adminHandle(req, 'settings.update', async (admin) => {
+    const parsed = schema.safeParse(await readJson(req));
+    if (!parsed.success) throw new AppError('Invalid settings. Review the password fields or enter whole days from 0 to 365 for every interval.');
+    const body = parsed.data;
+    action = body.action;
     if (body.action === 'password') {
-      await changePassword(admin.id, String(body.current ?? ''), String(body.next ?? ''));
-      return { ok: true };
+      await changePassword(admin.id, body.current, body.next, cookieFromHeader(req.headers.get('cookie'), ADMIN_COOKIE));
+    } else {
+      const current = await getLearningConfig();
+      await setSetting('learningConfig', JSON.stringify({ ...current, intervals: body.intervals }));
     }
-    if (body.action === 'intervals') {
-      const cur = await getLearningConfig();
-      const iv = body.intervals ?? {};
-      const num = (k: string, d: number) => {
-        const v = Number(iv[k]);
-        if (!Number.isFinite(v) || v < 0 || v > 365) throw new AppError(`Invalid number of days for ${k}.`);
-        return v ?? d;
-      };
-      await setSetting('learningConfig', JSON.stringify({ ...cur, intervals: { afterIncorrect: num('afterIncorrect', 0), afterCorrectOnce: num('afterCorrectOnce', 1), afterCorrectTwice: num('afterCorrectTwice', 3), afterConsistent: num('afterConsistent', 7) } }));
-      return { ok: true };
-    }
-    if (body.action === 'student') {
-      const name = String(body.studentName ?? '').trim().slice(0, 40);
-      if (!name) throw new AppError('Please enter a name.');
-      await prisma.student.update({ where: { id: (await getStudent()).id }, data: { name } });
-      return { ok: true };
-    }
-    throw new AppError('Unknown settings action.');
-  }, () => ({}));
+    return { ok: true };
+  }, () => ({ action }));
 }

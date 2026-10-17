@@ -14,7 +14,7 @@ export default async function BanksPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-extrabold">Bank versions</h1>
-      <p className="text-slate-600">Published banks are never changed. To edit one, create a draft copy. Only one bank is active for new tests; restoring an older bank is safe and keeps all results.</p>
+      <p className="text-slate-600">Published banks are never changed. To edit one, create a draft copy. One shared bank is the default. Each user can have a separate assigned bank in User Profiles. Publishing a private bank assigns it only to its owner; all historical results are kept.</p>
       {banks.map((b) => {
         const v = b.validationJson ? JSON.parse(b.validationJson) : null;
         return (
@@ -22,6 +22,8 @@ export default async function BanksPage() {
             <div className="flex flex-wrap items-center gap-2">
               <h2 className="text-lg font-bold">Bank {b.version} – {b.name}</h2>
               <span className={`badge ${STATUS_STYLE[b.status]}`}>{b.status.replace(/_/g, ' ')}</span>
+              {b.ownerId && <span className="badge bg-violet-100 text-violet-800">Private · {b.owner?.name ?? b.ownerId}</span>}
+              {b.assignments.map((a) => <span key={a.studentId} className="badge bg-sky-100 text-sky-800">Assigned: {a.student.name}</span>)}
               {b.isActive && <span className="badge bg-emerald-600 text-white">ACTIVE</span>}
             </div>
             <div className="grid gap-x-6 gap-y-1 text-sm text-slate-600 sm:grid-cols-4">
