@@ -51,6 +51,7 @@ describe('demo user and demo bank', () => {
     expect(again.created).toBe(false);
     expect(again.bankId).toBe(bankId);
     expect(await prisma.question.count({ where: { bankId } })).toBe(before);
+    expect(before).toBe(19);
     expect(await prisma.student.count({ where: { username: DEMO_USERNAME } })).toBe(1);
     expect(await prisma.questionBank.count({ where: { name: DEMO_BANK_NAME } })).toBe(1);
     const qs = await prisma.question.findMany({ where: { bankId } });
@@ -136,12 +137,14 @@ describe('taking a test with mixed question types', () => {
       await finalizeAttempt(attemptId);
       return getAttemptResult(attemptId, 'demo');
     };
+    const ratio = await prisma.question.findFirstOrThrow({ where: { bankId, testNumber: 21, questionType: 'NUMERIC_INPUT', answerData: { contains: 'ratio' } } });
+    expect(right(ratio)).toBe('2:3');
     const perfect = await run(1, right);
     expect(perfect.grade.correct).toBe(6);
     expect(perfect.items.every((i) => i.status === 'correct')).toBe(true);
     const bad = await run(21, wrong);
     expect(bad.grade.correct).toBe(0);
-    expect(bad.grade.incorrect).toBe(6);
+    expect(bad.grade.incorrect).toBe(7);
     expect(bad.items.every((i) => i.status === 'incorrect')).toBe(true);
     // equivalent spellings are accepted
     const alt = await run(11, (q) => (q.questionType === 'NUMERIC_INPUT' ? '0.75' : q.questionType === 'FILL_BLANK' ? '["1.0","10"]' : right(q)));

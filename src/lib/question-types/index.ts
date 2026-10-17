@@ -19,7 +19,7 @@ const str = (max: number) => z.string().trim().min(1).max(max);
 const accepted = z.array(str(60)).min(1).max(10);
 
 export const definitionSchemas = {
-  NUMERIC_INPUT: z.object({ accepted, tolerance: z.number().min(0).max(1000).optional(), unit: z.string().trim().max(20).nullable().optional(), requireSimplified: z.boolean().optional() }).strict(),
+  NUMERIC_INPUT: z.object({ accepted, format: z.enum(['number', 'fraction', 'ratio', 'mixed']).optional(), tolerance: z.number().min(0).max(1000).optional(), unit: z.string().trim().max(20).nullable().optional(), requireSimplified: z.boolean().optional() }).strict(),
   TRUE_FALSE: z.object({ statements: z.array(z.object({ text: str(300), truth: z.boolean() }).strict()).min(1).max(6) }).strict(),
   MULTI_SELECT: z.object({ options: z.array(str(200)).min(2).max(6), correct: z.array(z.number().int().min(0).max(5)).min(1).max(6) }).strict(),
   FILL_BLANK: z.object({ blanks: z.array(z.object({ accepted }).strict()).min(1).max(6) }).strict(),
@@ -225,7 +225,7 @@ export function displayResponse(row: TypedRow, stored: string | null): string {
 
 export type StudentView =
   | { type: 'MCQ'; options: string[] }
-  | { type: 'NUMERIC_INPUT'; unit: string | null }
+  | { type: 'NUMERIC_INPUT'; unit: string | null; format: 'number' | 'fraction' | 'ratio' | 'mixed' }
   | { type: 'TRUE_FALSE'; statements: string[] }
   | { type: 'MULTI_SELECT'; options: string[] }
   | { type: 'FILL_BLANK'; blanks: number }
@@ -260,7 +260,7 @@ export function studentView(row: TypedRow, seed: string): StudentView | null {
     case 'MCQ':
       return { type: 'MCQ', options: [row.optionA ?? '', row.optionB ?? '', row.optionC ?? '', row.optionD ?? ''] };
     case 'NUMERIC_INPUT':
-      return { type: 'NUMERIC_INPUT', unit: def.def.unit ?? null };
+      return { type: 'NUMERIC_INPUT', unit: def.def.unit ?? null, format: def.def.format ?? 'number' };
     case 'SHORT_TEXT':
       return { type: 'SHORT_TEXT' };
     case 'TRUE_FALSE':

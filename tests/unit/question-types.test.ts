@@ -195,3 +195,31 @@ describe('blank placeholders', () => {
     expect(blankNumbers('no blanks \\(x^{2}\\)')).toEqual([]);
   });
 });
+
+describe('answer formats', () => {
+  it('ratio answers are written a:b and compared by value', () => {
+    const o = { format: 'ratio' as const, requireSimplified: true };
+    expect(numericMatches('2:3', ['2:3'], o)).toBe(true);
+    expect(numericMatches('2 : 3', ['2:3'], o)).toBe(true);
+    expect(numericMatches('4:6', ['2:3'], o)).toBe(false); // not simplified
+    expect(numericMatches('4:6', ['2:3'], { format: 'ratio' })).toBe(true); // same ratio when simplifying is not required
+    expect(numericMatches('3:2', ['2:3'], o)).toBe(false);
+    expect(numericMatches('2/3', ['2:3'], o)).toBe(false); // a ratio question wants a colon
+    expect(numericMatches('2:0', ['2:3'], o)).toBe(false);
+  });
+  it('fraction and number questions do not read a colon as a fraction', () => {
+    expect(numericMatches('1:2', ['1/2'])).toBe(false);
+    expect(numericMatches('1:2', ['1/2'], { format: 'fraction' })).toBe(false);
+    expect(numericMatches('1/2', ['1/2'], { format: 'fraction' })).toBe(true);
+  });
+  it('the student view tells the browser which input to show, without the answer', () => {
+    const v = studentView(row('NUMERIC_INPUT', { accepted: ['2:3'], format: 'ratio' }), 's');
+    expect(v).toEqual({ type: 'NUMERIC_INPUT', unit: null, format: 'ratio' });
+    expect(studentView(row('NUMERIC_INPUT', { accepted: ['5'] }), 's')).toMatchObject({ format: 'number' });
+  });
+  it('validation checks accepted ratios', () => {
+    const q: QuestionData = { questionId: 'R-1', testNumber: 1, position: 1, level: 'Beginner', difficulty: 2, topic: 'Ratios', skill: 'ra.equiv', questionText: 'Write the ratio.', options: ['', '', '', ''], correctAnswer: '', explanation: 'It is 2:3.', commonMistake: 'x', learningTip: 'y', questionType: 'NUMERIC_INPUT', answerData: JSON.stringify({ accepted: ['2:3'], format: 'ratio' }), verifyExpr: '2/3' };
+    expect(validateQuestion(q).status).toBe('VERIFIED');
+    expect(validateQuestion({ ...q, answerData: JSON.stringify({ accepted: ['2/3'], format: 'ratio' }) }).issues.map((i) => i.code)).toContain('BAD_ANSWER_DATA');
+  });
+});

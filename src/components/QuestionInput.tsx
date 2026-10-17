@@ -5,7 +5,7 @@ import { qt, type Lang } from '@/lib/i18n';
 
 export type ClientView =
   | { type: 'MCQ'; optionsHtml: string[] }
-  | { type: 'NUMERIC_INPUT'; unit: string | null }
+  | { type: 'NUMERIC_INPUT'; unit: string | null; format: 'number' | 'fraction' | 'ratio' | 'mixed' }
   | { type: 'TRUE_FALSE'; statementsHtml: string[] }
   | { type: 'MULTI_SELECT'; optionsHtml: string[] }
   | { type: 'FILL_BLANK'; blanks: number }
@@ -77,6 +77,55 @@ function TextAnswer({ value, onCommit, placeholder, hint, testId, maxLength }: {
         onChange={(e) => d.change(e.target.value)}
         onBlur={() => d.flush(d.draft)}
       />
+    </div>
+  );
+}
+
+const boxCls = 'w-20 rounded-xl border-2 border-slate-200 px-3 py-2 text-center text-xl focus:border-brand-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-300';
+
+/** Two boxes for a fraction (stacked, with a bar) or a ratio (a : b). The answer is stored as "n/d" or "a:b". */
+function PairAnswer({ kind, value, onCommit, lang }: { kind: 'fraction' | 'ratio'; value: string | undefined; onCommit: (v: string | null) => void; lang: Lang }) {
+  const sep = kind === 'fraction' ? '/' : ':';
+  const [a0 = '', b0 = ''] = (value ?? '').split(sep);
+  const [a, setA] = useState(a0);
+  const [b, setB] = useState(b0);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const last = useRef(value ?? '');
+  const commit = useRef(onCommit);
+  commit.current = onCommit;
+  const join = (x: string, y: string) => (!x.trim() && !y.trim() ? '' : kind === 'fraction' && !y.trim() ? x.trim() : `${x.trim()}${sep}${y.trim()}`);
+  function flush(x: string, y: string) {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+    const v = join(x, y);
+    if (v === last.current) return;
+    last.current = v;
+    commit.current(v || null);
+  }
+  function change(x: string, y: string) {
+    setA(x);
+    setB(y);
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => flush(x, y), 700);
+  }
+  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
+  const inputProps = { inputMode: 'numeric' as const, autoComplete: 'off', maxLength: 6, className: boxCls };
+  return (
+    <div className="mt-5">
+      <p className="mb-3 text-sm text-slate-600">{qt(lang, kind)}</p>
+      {kind === 'fraction' ? (
+        <div className="inline-flex flex-col items-center gap-1" data-testid="fraction-input">
+          <input {...inputProps} data-testid="num-top" aria-label={qt(lang, 'numerator')} value={a} onChange={(e) => change(e.target.value, b)} onBlur={() => flush(a, b)} />
+          <div className="h-1 w-24 rounded bg-slate-700" aria-hidden />
+          <input {...inputProps} data-testid="num-bottom" aria-label={qt(lang, 'denominator')} value={b} onChange={(e) => change(a, e.target.value)} onBlur={() => flush(a, b)} />
+        </div>
+      ) : (
+        <div className="inline-flex items-center gap-3" data-testid="ratio-input">
+          <input {...inputProps} data-testid="ratio-first" aria-label={qt(lang, 'first')} value={a} onChange={(e) => change(e.target.value, b)} onBlur={() => flush(a, b)} />
+          <span className="text-2xl font-bold" aria-hidden>:</span>
+          <input {...inputProps} data-testid="ratio-second" aria-label={qt(lang, 'second')} value={b} onChange={(e) => change(a, e.target.value)} onBlur={() => flush(a, b)} />
+        </div>
+      )}
     </div>
   );
 }
@@ -156,7 +205,8 @@ export function QuestionInput({ qid, view, value, lang, busy, onCommit }: Props)
         </div>
       );
     case 'NUMERIC_INPUT':
-      return <TextAnswer key={qid} value={value} onCommit={onCommit} placeholder={view.unit ? `${qt(lang, 'numericPlaceholder')} (${view.unit})` : qt(lang, 'numericPlaceholder')} hint={qt(lang, 'numeric') + (view.unit ? ' ' + qt(lang, 'unit', { u: view.unit }) : '')} testId="answer-input" maxLength={40} />;
+      if (view.format === 'fraction' || view.format === 'ratio') return <PairAnswer key={qid} kind={view.format} value={value} onCommit={onCommit} lang={lang} />;
+      return <TextAnswer key={qid} value={value} onCommit={onCommit} placeholder={view.unit ? `${qt(lang, 'numericPlaceholder')} (${view.unit})` : qt(lang, 'numericPlaceholder')} hint={qt(lang, view.format === 'mixed' ? 'mixed' : 'numeric') + (view.unit ? ' ' + qt(lang, 'unit', { u: view.unit }) : '')} testId="answer-input" maxLength={40} />;
     case 'SHORT_TEXT':
       return <TextAnswer key={qid} value={value} onCommit={onCommit} placeholder={qt(lang, 'numericPlaceholder')} hint={qt(lang, 'short')} testId="answer-input" maxLength={80} />;
     case 'FILL_BLANK':

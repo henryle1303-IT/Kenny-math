@@ -43,6 +43,13 @@ export function tr(lang: Lang, key: string): string {
 // ---------- Question types: [English, Vietnamese] ----------
 const QT: Record<string, [string, string]> = {
   numeric: ['Type your answer as a number. Fractions like 3/4 and decimals like 0.75 are fine.', 'Nhập đáp án là một số. Có thể viết phân số như 3/4 hoặc số thập phân như 0.75.'],
+  fraction: ['Write a fraction: the top number in the first box and the bottom number in the second box. Example: 1/2 is 1 on top and 2 on the bottom.', 'Viết phân số: số ở trên vào ô thứ nhất, số ở dưới vào ô thứ hai. Ví dụ: 1/2 là 1 ở trên và 2 ở dưới.'],
+  ratio: ['Write the ratio with one number in each box. Example: the ratio 1 : 2 is 1 in the first box and 2 in the second box.', 'Viết tỉ số với mỗi ô một số. Ví dụ: tỉ số 1 : 2 là 1 ở ô thứ nhất và 2 ở ô thứ hai.'],
+  mixed: ['Write a mixed number with a space between the whole number and the fraction. Example: 1 1/2.', 'Viết hỗn số, cách một dấu cách giữa số nguyên và phân số. Ví dụ: 1 1/2.'],
+  numerator: ['Top number', 'Số ở trên'],
+  denominator: ['Bottom number', 'Số ở dưới'],
+  first: ['First number', 'Số thứ nhất'],
+  second: ['Second number', 'Số thứ hai'],
   numericPlaceholder: ['Your answer', 'Đáp án của bạn'],
   short: ['Type your answer. Capital letters do not matter.', 'Nhập đáp án. Không cần để ý chữ hoa hay chữ thường.'],
   trueFalse: ['Choose True or False for each statement.', 'Chọn Đúng hoặc Sai cho từng mệnh đề.'],

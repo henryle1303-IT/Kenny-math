@@ -111,8 +111,8 @@ function validateTyped(q: QuestionData): QuestionValidation {
   let method: QuestionValidation['method'] = 'none';
   switch (v.type) {
     case 'NUMERIC_INPUT': {
-      const nums = v.def.accepted.map((a) => parseNumberInput(a, v.def.unit));
-      if (nums.some((n) => !n)) err('BAD_ANSWER_DATA', 'Every accepted answer must be a number (for example 3/4, 0.75 or 12)');
+      const nums = v.def.accepted.map((a) => parseNumberInput(a, v.def.unit, v.def.format));
+      if (nums.some((n) => !n)) err('BAD_ANSWER_DATA', v.def.format === 'ratio' ? 'Every accepted answer must be a ratio written like 2:3' : 'Every accepted answer must be a number (for example 3/4, 0.75 or 12)');
       else if (!nums.every((n) => n!.value.eq(nums[0]!.value))) err('BAD_ANSWER_DATA', 'All accepted answers must have the same value');
       if (q.verifyExpr && q.verifyExpr.trim() && nums[0]) {
         try {

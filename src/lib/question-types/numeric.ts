@@ -2,8 +2,12 @@ import { Frac, gcd } from '../math/fraction';
 import { texToPlain } from '../math/parse';
 import { normalizeText } from './text';
 
+export type NumericFormat = 'number' | 'fraction' | 'ratio' | 'mixed';
+
 export interface NumericOptions {
   unit?: string | null;
+  /** How the student is asked to write the answer. 'ratio' reads a:b; everything else reads numbers, fractions and decimals. */
+  format?: NumericFormat;
   tolerance?: number;
   requireSimplified?: boolean;
 }
@@ -29,8 +33,13 @@ function stripUnit(s: string, unit?: string | null): string {
  * Read a whole student answer as a number. Accepts 12, 0.5, .5, 0,5, 1,000, 3/4, 1 1/2, -2.
  * Returns null for anything else, so "abc" or "3 apples" are simply wrong.
  */
-export function parseNumberInput(raw: string, unit?: string | null): ParsedNumber | null {
+export function parseNumberInput(raw: string, unit?: string | null, format?: NumericFormat): ParsedNumber | null {
   try {
+    if (format === 'ratio') {
+      const r = /^(\d+) ?: ?(\d+)$/.exec(raw.normalize('NFC').replace(/\s+/g, ' ').trim());
+      if (!r || Number(r[2]) === 0) return null;
+      return { value: new Frac(Number(r[1]), Number(r[2])), isFraction: true, reduced: gcd(Number(r[1]), Number(r[2])) === 1 };
+    }
     let s = texToPlain(stripUnit(raw, unit)).normalize('NFC').replace(/\s+/g, ' ').replace(/−/g, '-').replace(/^(-?)\$\s*/, '$1').trim();
     if (!s) return null;
     if (/^-?\d{1,3}(,\d{3})+(\.\d+)?$/.test(s)) s = s.replace(/,/g, '');
@@ -57,12 +66,12 @@ export function parseNumberInput(raw: string, unit?: string | null): ParsedNumbe
 }
 
 export function numericMatches(input: string, accepted: string[], opts: NumericOptions = {}): boolean {
-  const got = parseNumberInput(input, opts.unit);
+  const got = parseNumberInput(input, opts.unit, opts.format);
   if (!got) return false;
   if (opts.requireSimplified && got.isFraction && !got.reduced) return false;
   const tol = opts.tolerance ?? 0;
   return accepted.some((a) => {
-    const want = parseNumberInput(a, opts.unit);
+    const want = parseNumberInput(a, opts.unit, opts.format);
     if (!want) return false;
     return tol > 0 ? Math.abs(got.value.value - want.value.value) <= tol + 1e-12 : got.value.eq(want.value);
   });

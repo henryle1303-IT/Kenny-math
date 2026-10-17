@@ -29,9 +29,11 @@ test('test 11: numeric, multiple choice, fill blanks, true/false, multi select a
   await start(page, 11);
   await expect(page.getByTestId('progress-text')).toHaveText(/1 .* 6|Question 1 of 6/);
 
-  // 1 numeric input: an equivalent decimal is accepted; it saves by itself after a pause
-  await page.getByTestId('answer-input').fill('0.75');
-  await page.getByTestId('answer-input').blur();
+  // 1 fraction answer: two boxes (top / bottom) with a hint, saved by itself after a pause
+  await expect(page.getByTestId('fraction-input')).toBeVisible();
+  await page.getByTestId('num-top').fill('3');
+  await page.getByTestId('num-bottom').fill('4');
+  await page.getByTestId('num-bottom').blur();
   await next(page);
   // 2 multiple choice
   await page.getByTestId('option-C').click();
@@ -76,7 +78,8 @@ test('test 11: numeric, multiple choice, fill blanks, true/false, multi select a
   await page.reload();
   await expect(page.getByRole('button', { name: /Question 6, answered/ })).toBeVisible();
   await page.getByRole('button', { name: /Question 1, answered/ }).click();
-  await expect(page.getByTestId('answer-input')).toHaveValue('0.75');
+  await expect(page.getByTestId('num-top')).toHaveValue('3');
+  await expect(page.getByTestId('num-bottom')).toHaveValue('4');
   await page.getByRole('button', { name: /Question 3, answered/ }).click();
   await expect(page.getByTestId('blank-2')).toHaveValue('10');
 
@@ -84,9 +87,9 @@ test('test 11: numeric, multiple choice, fill blanks, true/false, multi select a
   await page.getByTestId('submit-confirm').click();
   await expect(page).toHaveURL(/\/results\//);
   await page.getByRole('link', { name: /review/i }).first().click();
-  // all six answers (including the decimal 0.75 for a fraction answer) are marked correct
+  // all six answers (including the fraction 3/4 typed in two boxes) are marked correct
   for (let n = 1; n <= 6; n++) await expect(page.getByTestId(`review-q-${n}`)).toContainText(/Correct|Đúng/);
-  await expect(page.getByTestId('review-typed-1')).toContainText('0.75');
+  await expect(page.getByTestId('review-typed-1')).toContainText('3/4');
 });
 
 test('test 21: wrong answers show the right answer in the review and typed text ignores capital letters', async ({ page }) => {
@@ -98,6 +101,12 @@ test('test 21: wrong answers show the right answer in the review and typed text 
   await next(page);
   await page.getByTestId('answer-input').fill('Cube');
   await page.getByTestId('answer-input').blur();
+  // the ratio question (7th... jump to it) has two boxes separated by a colon
+  await page.getByRole('button', { name: /Question 6/ }).click();
+  await expect(page.getByTestId('ratio-input')).toBeVisible();
+  await page.getByTestId('ratio-first').fill('4');
+  await page.getByTestId('ratio-second').fill('6');
+  await page.getByTestId('ratio-second').blur();
   await page.getByTestId('submit-open').click();
   await page.getByTestId('submit-confirm').click();
   await expect(page).toHaveURL(/\/results\//);
