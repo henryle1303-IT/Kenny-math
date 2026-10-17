@@ -444,5 +444,5 @@ Chưa có hạng mục nào được thực hiện. Sau khi bạn trả lời m�
  6) Nguồn đề: không có file; nghiên cứu qua tìm kiếm web. Kết quả và giới hạn: docs/TDN_CONTENT_MAP.md.
 
  7) Đã nhận PDF đề chính thức 2022, 2023, 2025 (và đáp án 2022, 2023). Chi tiết và đáp số tự giải lại: docs/TDN_CONTENT_MAP.md.
-    Điều chỉnh: điểm phần Toán tự luận là 15 (không phải 20); bài cuối chấm theo bước. Đề xuất chuyển bài "trình bày" thành bài dẫn từng bước có đáp số (mục 4a của bản đồ).
+    Điều chỉnh: điểm phần Toán tự luận là 15 (2022, 2023, 2025) hoặc 20 (2026), nên tổng điểm phải cấu hình được; đã có thêm đề 2026; bài cuối chấm theo bước. Đề xuất chuyển bài "trình bày" thành bài dẫn từng bước có đáp số (mục 4a của bản đồ).
 Trạng thái: các quyết định trên chưa phải là phê duyệt triển khai code. Giai đoạn 1 (migration) vẫn chờ duyệt riêng.
