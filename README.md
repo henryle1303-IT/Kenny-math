@@ -186,7 +186,7 @@ Limits of this first version: the generator still produces multiple choice only;
 
 ### Demo user and demo bank
 
-`npm run demo:seed` creates the student **demo** (password **123**, Vietnamese by default) with a private published bank of 18 hand-written questions in tests 1, 11 and 21, covering all seven types. It can be run again at any time: it never changes a password that was changed, and it does not touch other users or the shared bank. The password is deliberately weak, so the script is **not** run by `db:setup` or by the Vercel build. Remove the demo user in Admin > User Profiles before real use. The bank is intentionally not a complete 30 x 30 bank, so running "Validate" on it in Admin reports the missing tests; it is already published and does not need that step.
+`npm run demo:seed` creates the student **demo** (password **123**, Vietnamese by default) with a private published bank of 18 hand-written questions in tests 1, 11 and 21, covering all seven types. It can be run again at any time: it keeps a changed password unless you run `npm run demo:seed -- --reset-password` (use this if `demo` / `123` is rejected), and it does not touch other users or the shared bank. The password is deliberately weak, so the script is **not** run by `db:setup` or by the Vercel build. Remove the demo user in Admin > User Profiles before real use. The bank is intentionally not a complete 30 x 30 bank, so running "Validate" on it in Admin reports the missing tests; it is already published and does not need that step.
 
 ## Project documents
 

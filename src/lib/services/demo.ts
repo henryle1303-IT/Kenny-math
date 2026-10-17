@@ -8,9 +8,9 @@ import { DEMO_BANK_NAME, DEMO_PASSWORD, DEMO_TESTS, DEMO_USERNAME, demoQuestions
 
 /**
  * Create (or refresh) the demo user and the demo bank with one question of every type.
- * Idempotent. Never overwrites a changed demo password. Run by hand only: the password is deliberately weak.
+ * Idempotent. Keeps a changed demo password unless `resetPassword` is set. Run by hand only: the password is deliberately weak.
  */
-export async function seedDemo() {
+export async function seedDemo(opts: { resetPassword?: boolean } = {}) {
   const questions = demoQuestions();
   const checked = questions.map((q) => ({ q, v: validateQuestion(q) }));
   const bad = checked.filter((c) => c.v.status === 'INVALID');
@@ -19,7 +19,7 @@ export async function seedDemo() {
   const config = JSON.stringify(await getLearningConfig());
   const existing = await prisma.student.findUnique({ where: { username: DEMO_USERNAME } });
   const student = existing
-    ? await prisma.student.update({ where: { id: existing.id }, data: existing.passwordHash ? {} : { passwordHash: await hashPassword(DEMO_PASSWORD) } })
+    ? await prisma.student.update({ where: { id: existing.id }, data: existing.passwordHash && !opts.resetPassword ? {} : { passwordHash: await hashPassword(DEMO_PASSWORD) } })
     : await prisma.student.create({ data: { id: DEMO_USERNAME, username: DEMO_USERNAME, name: 'Demo', passwordHash: await hashPassword(DEMO_PASSWORD), preferences: JSON.stringify({ lang: 'vi' }), learningConfig: config } });
 
   let bank = await prisma.questionBank.findFirst({ where: { name: DEMO_BANK_NAME, ownerId: student.id } });

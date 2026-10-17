@@ -72,8 +72,10 @@ describe('demo user and demo bank', () => {
     await seedDemo();
     expect((await prisma.student.findUniqueOrThrow({ where: { id: 'demo' } })).passwordHash).toBe('custom-hash');
     expect(await prisma.student.findUnique({ where: { id: 'kenny' } })).toEqual(kenny);
-    const { hashPassword } = await import('@/lib/services/admin-auth');
-    await prisma.student.update({ where: { id: 'demo' }, data: { passwordHash: await hashPassword(DEMO_PASSWORD) } });
+    // --reset-password puts the documented password back
+    await expect(studentLogin(DEMO_USERNAME, DEMO_PASSWORD, 'reset-ip')).rejects.toThrow();
+    await seedDemo({ resetPassword: true });
+    expect((await studentLogin(DEMO_USERNAME, DEMO_PASSWORD, 'reset-ip')).token.length).toBeGreaterThan(10);
   });
 });
 
