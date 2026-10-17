@@ -442,4 +442,7 @@ Chưa có hạng mục nào được thực hiện. Sau khi bạn trả lời m�
     sourceKind chuyển thành: DERIVED_FROM_OFFICIAL (biến thể từ dạng đề thật), AUTHORED. Đối chiếu đáp án nguồn dùng cho dạng, không chép lời giải.
  5) Mật khẩu 123 cho trandainghia trên production: chấp nhận.
  6) Nguồn đề: không có file; nghiên cứu qua tìm kiếm web. Kết quả và giới hạn: docs/TDN_CONTENT_MAP.md.
+
+ 7) Đã nhận PDF đề chính thức 2022, 2023, 2025 (và đáp án 2022, 2023). Chi tiết và đáp số tự giải lại: docs/TDN_CONTENT_MAP.md.
+    Điều chỉnh: điểm phần Toán tự luận là 15 (không phải 20); bài cuối chấm theo bước. Đề xuất chuyển bài "trình bày" thành bài dẫn từng bước có đáp số (mục 4a của bản đồ).
 Trạng thái: các quyết định trên chưa phải là phê duyệt triển khai code. Giai đoạn 1 (migration) vẫn chờ duyệt riêng.
