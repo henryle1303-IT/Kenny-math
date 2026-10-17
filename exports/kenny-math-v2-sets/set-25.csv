@@ -1,0 +1,170 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T25-Q01,25,1,Advanced,3,Data,au.data,"In a picture graph, each ★ stands for 20 students who walk to school. Class 5A has 9 ★ and Class 5B has 6 ★. How many students walk to school altogether?",1080,15,320,300,D,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 20, so multiply the number of stars by 20.
+Step 1: Class 5A: 9 × 20 = 180. Class 5B: 6 × 20 = 120.
+Step 2: 180 + 120 = 300.
+Answer: 300",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,(9+6)*20,VERIFIED,MCQ,
+T25-Q02,25,2,Advanced,3,Operations & Problem Solving,wn.muldiv,Kenny has 639 beads and puts them into bags of 18. How many beads are left over after filling as many bags as possible?,,,,,,"What it asks: Find how many beads do not fit into a full bag.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 18 × 35 = 630, which is the biggest multiple of 18 that is not more than 639.
+Step 2: 639 − 630 = 9.
+Step 3: The remainder is 9, and it is smaller than 18, as a remainder must be.
+Answer: 9","Giving the quotient (35) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(639,18)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9""]}"
+T25-Q03,25,3,Advanced,3,Data,au.data,"A class survey recorded these votes: Bus 28, Train 27, Bike 7, Walk 10, Car 15. How many students voted altogether?",77,35,97,87,D,"What it asks: Add all the values in a table.
+Concept: Add every category to find the total.
+Step 1: 28 + 27 + 7 + 10 + 15 = 87.
+Answer: 87",Leaving out one of the categories.,Tick off each category as you add it.,,,28+27+7+10+15,VERIFIED,MCQ,
+T25-Q04,25,4,Advanced,3,Angles,ge.angles,"Angles around a point add up to 360°. Three angles are 53°, 86°, 65°. The angle that completes the turn is x. What is x?",,,,,,"What it asks: Find a missing angle around a point.
+Concept: A full turn is 360°, so all the angles around one point add to 360°.
+Step 1: Add the known angles: 53 + 86 + 65 = 204.
+Step 2: 360 − 204 = 156.
+Answer: 156°",Subtracting from 180° instead of 360°.,Straight line = 180°. Full turn around a point = 360°.,,,360-53-86-65,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""156""],""unit"":""°""}"
+T25-Q05,25,5,Advanced,3,Patterns & Algebra,pa.arith,"Complete the number pattern: 8, 23, {1}, 53, {2}, 83, 98.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 15 each time.
+Step 1: The difference between neighbouring numbers is 15.
+Step 2: Blank 1: 38. Blank 2: 68.
+Answer: 1) 38, 2) 68",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""38""]},{""accepted"":[""68""]}]}"
+T25-Q06,25,6,Advanced,3,Money,dec.money,"At the toy shop, Uma buys 7 stickers at $0.41 each and a pencil case for $1.47. Uma pays with $10.00. How much change does Uma get?",,,,,,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the stickers: 7 × $0.41 = $2.87.
+Step 2: Add a pencil case: $2.87 + $1.47 = $4.34.
+Step 3: Change: $10.00 − $4.34 = $5.66.
+Answer: $5.66",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,10-(0.41*7+1.47),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5.66""]}"
+T25-Q07,25,7,Advanced,3,Units of Measurement,me.convert,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Metric units change by 10, 100 or 1000. To change to a smaller unit, multiply.
+Step 1: Statement 1 is false: 1 kg = 1,000 g, so 1.5 kg = 1,500 g.
+Step 2: Statement 2 is true: 1 m = 100 cm, so 7 × 100 = 700.
+Step 3: Statement 3 is true: 1 km = 1,000 m, so 7 × 1,000 = 7,000.
+Answer: False, True, True",Dividing instead of multiplying when changing to a smaller unit.,Bigger unit to smaller unit: multiply. Smaller to bigger: divide.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""1.5 kg = 15,000 g"",""truth"":false},{""text"":""7 m = 700 cm"",""truth"":true},{""text"":""7 km = 7,000 m"",""truth"":true}]}"
+T25-Q08,25,8,Advanced,3,Fractions,fr.forms,Write \(\frac{30}{8}\) as a mixed number.,\(4\frac{6}{8}\),\(6\frac{3}{8}\),\(3\frac{6}{8}\),\(3\frac{2}{8}\),C,"What it asks: Find how many whole ones are in the fraction and what is left over.
+Concept: An improper fraction has a numerator bigger than its denominator. Divide to find wholes and remainder.
+Step 1: 30 ÷ 8 = 3 remainder 6.
+Step 2: So there are 3 wholes and 6/8 left.
+Step 3: The mixed number is 3 6/8.
+Answer: \(3\frac{6}{8}\)",Writing the remainder as the whole number or changing the denominator.,"Whole number = quotient, new numerator = remainder, denominator stays the same.",,,3+6/8,VERIFIED,MCQ,
+T25-Q09,25,9,Advanced,3,Place Value & Rounding,wn.place,"In the number 203,879, what is the value of the digit 8?",,,,,,"What it asks: Find what the digit 8 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 203,879, the digit 8 is in the hundreds place.
+Step 2: 8 × 100 = 800.
+Answer: 800",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,8*10^2,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""800""]}"
+T25-Q10,25,10,Advanced,3,Shapes & Objects,au.shapes,A design uses 4 triangles and 4 hexagons. How many sides are there altogether?,17,36,144,16,B,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 4 × 3 = 12.
+Step 2: 4 × 6 = 24.
+Step 3: 12 + 24 = 36.
+Answer: 36",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,4*3+4*6,VERIFIED,MCQ,
+T25-Q11,25,11,Advanced,4,Place Value & Rounding,wn.place,Put these numbers in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Compare the number of digits first, then the digits from the left.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 10,949, 77,965, 82,605, 394,781, 621,066.
+Answer: 10,949, 77,965, 82,605, 394,781, 621,066",Comparing only the last digits.,More digits means a bigger number; then compare place by place.,,,,VERIFIED,ORDERING,"{""items"":[""10,949"",""77,965"",""82,605"",""394,781"",""621,066""]}"
+T25-Q12,25,12,Advanced,4,Shapes & Objects,au.shapes,What is the name of a 2D shape with 10 sides?,,,,,,"What it asks: Answer with the correct word.
+Concept: A shape with ten sides is a decagon.
+Step 1: A shape with ten sides is a decagon.
+Answer: decagon",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""decagon""]}"
+T25-Q13,25,13,Advanced,4,Chance,au.chance,"A bag has 2 blue, 9 green, 6 yellow marbles. One marble is taken out without looking. What is the chance of taking a blue marble? Give a fraction in simplest form.",\(\frac{15}{17}\),\(\frac{1}{3}\),\(\frac{2}{17}\),\(\frac{2}{15}\),C,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 2 + 9 + 6 = 17.
+Step 2: blue marbles: 2.
+Step 3: Chance = \(\frac{2}{17}\).
+Answer: \(\frac{2}{17}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,2/17,VERIFIED,MCQ,
+T25-Q14,25,14,Advanced,4,Fractions,fr.addsub,Calculate \(3\frac{2}{3}\) − \(\frac{2}{6}\). Give your answer in simplest form (use a mixed number if needed).,,,,,,"What it asks: Subtract fractions whose denominators are related.
+Concept: 6 is a multiple of 3, so rewrite the first fraction with denominator 6 before subtracting.
+Step 1: \(3\frac{2}{3}\) = \(\frac{11}{3}\) (denominator 6).
+Step 2: Subtract the numerators: 22 − 2 = 20.
+Step 3: Simplify: \(3\frac{1}{3}\).
+Answer: \(3\frac{1}{3}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,11/3-2/6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""3 1/3"",""10/3""],""format"":""mixed"",""requireSimplified"":true}"
+T25-Q15,25,15,Advanced,4,Factors & Multiples,wn.factors,Choose ALL the factors of 48.,,,,,,"What it asks: Choose every correct answer.
+Concept: A factor divides a number exactly with no remainder.
+Step 1: 5: no, 48 ÷ 5 leaves a remainder.
+Step 2: 16: yes, 48 ÷ 16 = 3.
+Step 3: 23: no, 48 ÷ 23 leaves a remainder.
+Step 4: 12: yes, 48 ÷ 12 = 4.
+Step 5: 6: yes, 48 ÷ 6 = 8.
+Answer: 16, 12, 6",Mixing up factors and multiples.,Factors come in pairs that multiply to the number.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""5"",""16"",""23"",""12"",""6""],""correct"":[1,3,4]}"
+T25-Q16,25,16,Advanced,4,Time,ts.clock,Omar's tram leaves Parramatta at 7:45 AM and arrives at 9:00 AM. How many minutes does the trip take?,,,,,,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 7:45 AM to 9:00 AM.
+Step 2: 75 minutes pass.
+Answer: 75 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,75,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""75""],""unit"":""minutes""}"
+T25-Q17,25,17,Advanced,4,Location & Maps,au.maps,"On a town map the museum is at A4 and the oval is at D7. Walking along the grid lines (only east and north), how many squares must you cross to get from the museum to the oval?",3 squares,7 squares,6 squares,5 squares,C,"What it asks: Find the number of grid steps between two places.
+Concept: Add the steps east and the steps north.
+Step 1: East: A to D = 3.
+Step 2: North: 4 to 7 = 3.
+Step 3: 3 + 3 = 6.
+Answer: 6 squares",Taking only the larger of the two distances.,"Along grid lines, you add the two sides of the rectangle.",,,6,VERIFIED,MCQ,
+T25-Q18,25,18,Advanced,4,"Perimeter, Area & Volume",ge.perimeter,A rectangular garden has a perimeter of 70 m. Its length is 21 m. How wide is the garden?,26 m,49 m,28 m,14 m,D,"What it asks: Use the perimeter and the length to find the missing width.
+Concept: Half of the perimeter equals length + width.
+Step 1: Half the perimeter: 70 ÷ 2 = 35.
+Step 2: Width = 35 − 21 = 14 m.
+Answer: 14 m",Subtracting only one length from the perimeter without halving.,Length + width = half of the perimeter.,,,70/2-21,VERIFIED,MCQ,
+T25-Q19,25,19,Advanced,4,Decimals,dec.addsub,Find the value of \(33.730 + 123.442\).,157.173,157.162,157.172,157.182,C,"What it asks: Add the two decimal numbers.
+Concept: Line up the decimal points so tenths are under tenths and hundredths under hundredths, then calculate as with whole numbers.
+Step 1: Line up the decimal points: 33.730 and 123.442.
+Step 2: Add column by column from the right, carrying when needed.
+Step 3: 33.730 + 123.442 = 157.172.
+Answer: 157.172",Lining up the digits on the right instead of lining up the decimal points.,Write extra zeros so both numbers have the same number of decimal places (hundredths or thousandths).,,,33.730+123.442,VERIFIED,MCQ,
+T25-Q20,25,20,Advanced,4,Operations & Problem Solving,ms.planning,A recipe for 4 people uses 150 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 12 people?,2,5,1,450,C,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 12 people is 3 times 4 people, so flour needed = 150 × 3 = 450 g.
+Step 2: 450 g = 0.45 kg.
+Step 3: Bags are whole, so round up: 1.
+Answer: 1","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(150*3/1000),VERIFIED,MCQ,
+T25-Q21,25,21,Advanced,4,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is true: 14 × 11 = 154.
+Step 2: Statement 2 is false: area is length × width = 154, not 14 + 11.
+Step 3: Statement 3 is true: 6 × 6 × 6 = 216.
+Answer: True, False, True",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A rectangle 14 m long and 11 m wide has an area of 154 m²"",""truth"":true},{""text"":""A rectangle 14 m long and 11 m wide has an area of 25 m²"",""truth"":false},{""text"":""A cube with edges of 6 cm has a volume of 216 cm³"",""truth"":true}]}"
+T25-Q22,25,22,Advanced,4,Patterns & Algebra,pa.functions,"Matchsticks are used to build a row of joined hexagons. Shape 1 uses 7 matchsticks, Shape 2 uses 13, and Shape 3 uses 19. How many matchsticks are needed for Shape 20?",121,127,120,140,A,"What it asks: Find the rule for the nth shape.
+Concept: Each new shape adds 6 matchsticks, and there is 1 extra stick at the start: nth shape = 6 × n + 1.
+Step 1: The number of sticks goes up by 6 each time.
+Step 2: Rule: 6 × n + 1.
+Step 3: For Shape 20: 6 × 20 + 1 = 121.
+Answer: 121",Multiplying the first shape’s number of sticks by 20.,Test the rule on the shapes you know before using it on a big one.,,,6*20+1,VERIFIED,MCQ,
+T25-Q23,25,23,Advanced,4,Decimals,dec.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Line up the decimal places to compare decimals. Multiplying by 10 moves digits one place to the left.
+Step 1: Statement 1 is true: write both with the same number of decimal places: 8.000 and 0.530.
+Step 2: Statement 2 is false: write both with the same number of decimal places: 3.500 and 3.550.
+Step 3: Statement 3 is false: the digits move one place left, so the answer is 66, not 6.60.
+Answer: True, False, False",Believing a longer decimal is always a bigger number.,Give every decimal the same number of places before comparing.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""8 > 0.53"",""truth"":true},{""text"":""3.5 > 3.55"",""truth"":false},{""text"":""6.6 × 10 = 6.60"",""truth"":false}]}"
+T25-Q24,25,24,Advanced,4,Time,ts.clock,A train journey starts at 11:01 AM and ends at 12:35 PM. How long does it last?,2 h 34 min,1 h 34 min,1 h 44 min,1 h 24 min,B,"What it asks: Find the time between the start and the end.
+Concept: Elapsed time = end time − start time. Count up to the next hour, then add the rest.
+Step 1: From 11:01 AM to the next hour is 59 min.
+Step 2: Then count on to 12:35 PM.
+Step 3: Total: 1 h 34 min.
+Answer: 1 h 34 min",Subtracting the minutes as if there were 100 minutes in an hour.,There are 60 minutes in an hour. Use a number line to hop from 11:01 AM to 12:35 PM.,,,755-661,VERIFIED,MCQ,
+T25-Q25,25,25,Advanced,4,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 54 and 45?,,,,,,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 54: 1, 2, 3, 6, 9, 18, 27, 54.
+Step 2: Factors of 45: 1, 3, 5, 9, 15, 45.
+Step 3: The biggest number in both lists is 9.
+Answer: 9","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(54,45)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9""]}"
+T25-Q26,25,26,Advanced,5,Units of Measurement,me.convert,Convert: 3.5 L = {1} mL and 12 kg = {2} g.,,,,,,"What it asks: Change between metric units.
+Concept: To change to a smaller unit, multiply by 10, 100 or 1000.
+Step 1: 1 L = 1,000 mL, so 3.5 × 1,000 = 3,500.
+Step 2: 1 kg = 1,000 g, so 12 × 1,000 = 12,000.
+Answer: 1) 3500, 2) 12000",Dividing instead of multiplying.,Larger unit to smaller unit: multiply.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""3500""]},{""accepted"":[""12000""]}]}"
+T25-Q27,25,27,Advanced,5,Money,au.money,"Anna's shopping bill is $116.88. Anna pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Anna pay?",,,,,,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $116.88; look at the last digit of the cents, 8.
+Step 2: It is closer to $116.90 than to $116.85.
+Answer: $116.90","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,11690/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""116.90""]}"
+T25-Q28,25,28,Advanced,5,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{3}{8}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{9}{24}\): yes, multiply top and bottom of \(\frac{3}{8}\) by 3.
+Step 2: \(\frac{6}{17}\): no, the bottom should be 16 to stay equal.
+Step 3: \(\frac{6}{16}\): yes, multiply top and bottom of \(\frac{3}{8}\) by 2.
+Step 4: \(\frac{15}{41}\): no, the bottom should be 40 to stay equal.
+Step 5: \(\frac{10}{24}\): no, the top should be 9 to stay equal.
+Answer: \(\frac{9}{24}\), \(\frac{6}{16}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{9}{24}\\)"",""\\(\\frac{6}{17}\\)"",""\\(\\frac{6}{16}\\)"",""\\(\\frac{15}{41}\\)"",""\\(\\frac{10}{24}\\)""],""correct"":[0,2]}"
+T25-Q29,25,29,Advanced,5,Operations & Problem Solving,wn.muldiv,Complete the number sentences: {1} × 22 = 154 and 40 ÷ {2} = 4.,,,,,,"What it asks: Use multiplication and division as opposite operations.
+Concept: Multiplication and division undo each other.
+Step 1: 154 ÷ 22 = 7.
+Step 2: 40 ÷ 4 = 10.
+Answer: 1) 7, 2) 10",Using the wrong operation to find the missing number.,"To find a missing factor, divide the product by the known factor.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""7""]},{""accepted"":[""10""]}]}"
+T25-Q30,25,30,Advanced,5,Transformations & Symmetry,au.transform,"A flag is 5 squares from a mirror line. Its reflection is on the other side of the line, the same distance away. How many squares apart are the flag and its reflection?",10 squares,7 squares,5 squares,12 squares,A,"What it asks: Find the distance between a shape and its reflection.
+Concept: A reflection is as far behind the mirror line as the original is in front of it.
+Step 1: Each is 5 squares from the line.
+Step 2: 5 + 5 = 10.
+Answer: 10 squares",Giving the distance to the mirror line only.,"Distance to the line, doubled.",,,10,VERIFIED,MCQ,

@@ -1,0 +1,166 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T12-Q01,12,1,Intermediate,2,Operations & Problem Solving,wp.multiplicative,An and Tom have 44 marbles altogether. An has 3 times as many marbles as Tom. How many marbles does Tom have?,33,11,22,15,B,"What it asks: Split the total into 4 equal parts.
+Concept: If one amount is 3 times the other, the total is 3 + 1 = 4 equal parts.
+Step 1: Tom has 1 part and An has 3 parts: 4 parts in total.
+Step 2: 1 part = 44 ÷ 4 = 11.
+Answer: 11",Dividing by 3 instead of 4.,Draw a bar model: one short bar and k bars of the same length.,,,44/(3+1),VERIFIED,MCQ,
+T12-Q02,12,2,Intermediate,2,Time,ts.clock,Nina starts homework at 9:36 AM and it takes 1 h 35 min. What time does Nina finish?,11:11 AM,11:21 AM,12:11 PM,11:01 AM,A,"What it asks: Add the time taken to the start time.
+Concept: End time = start time + duration. Remember 60 minutes make 1 hour.
+Step 1: Add the hours: 9:36 AM + 1 h = 10:36 AM.
+Step 2: Add the minutes: + 35 min = 11:11 AM.
+Answer: 11:11 AM",Carrying over 100 minutes instead of 60.,"Add the hours first, then the minutes.",,,576+95,VERIFIED,MCQ,
+T12-Q03,12,3,Intermediate,2,Operations & Problem Solving,wp.rounding,Mai wants to buy a football that costs $65. Mai already has $15 and saves $5 each week. What is the smallest number of weeks Mai needs to save to afford it?,11,13,10,9,C,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $65 − $15 = $50.
+Step 2: 50 ÷ 5 = 10.00, so after 9 weeks it is not enough.
+Step 3: Mai needs 10 weeks.
+Answer: 10","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((65-15)/5),VERIFIED,MCQ,
+T12-Q04,12,4,Intermediate,2,Time,ts.clock,A football match starts at 9:05 AM and ends at 9:51 AM. How long does it last?,0 h 56 min,0 h 36 min,1 h 46 min,0 h 46 min,D,"What it asks: Find the time between the start and the end.
+Concept: Elapsed time = end time − start time. Count up to the next hour, then add the rest.
+Step 1: From 9:05 AM to the next hour is 55 min.
+Step 2: Then count on to 9:51 AM.
+Step 3: Total: 0 h 46 min.
+Answer: 0 h 46 min",Subtracting the minutes as if there were 100 minutes in an hour.,There are 60 minutes in an hour. Use a number line to hop from 9:05 AM to 9:51 AM.,,,591-545,VERIFIED,MCQ,
+T12-Q05,12,5,Intermediate,2,Patterns & Algebra,pa.arith,"Complete the number pattern: 1, 4, {1}, 10, {2}, 16, 19.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 3 each time.
+Step 1: The difference between neighbouring numbers is 3.
+Step 2: Blank 1: 7. Blank 2: 13.
+Answer: 1) 7, 2) 13",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""7""]},{""accepted"":[""13""]}]}"
+T12-Q06,12,6,Intermediate,2,Shapes & Objects,au.shapes,How many vertices does a square pyramid have?,,,,,,"What it asks: Count the vertices of a 3D object.
+Concept: A square pyramid has a square base and 4 triangular faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 5, edges: 8, vertices: 5.
+Step 2: The question asks for the vertices: 5.
+Answer: 5","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5""]}"
+T12-Q07,12,7,Intermediate,2,Angles,ge.angles,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Acute < 90°, right angle = 90°, obtuse between 90° and 180°, straight = 180°, reflex between 180° and 360°.
+Step 1: Statement 1 is true: 90° is a right angle.
+Step 2: Statement 2 is false: 90° is a right angle.
+Answer: True, False",Calling a 90° angle acute or obtuse.,Compare with a square corner (90°) first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""An angle of 90° is a right angle"",""truth"":true},{""text"":""An angle of 90° is reflex"",""truth"":false}]}"
+T12-Q08,12,8,Intermediate,2,Money,au.money,A cap costs $36.00. It is on sale for 50% off. What is the sale price?,,,,,,"What it asks: Find the price after a 50% discount.
+Concept: 50% is a half, so halve the price.
+Step 1: 50% of $36.00 = $18.00.
+Step 2: $36.00 − $18.00 = $18.00.
+Answer: $18.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,36-36*50/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""18.00""]}"
+T12-Q09,12,9,Intermediate,2,Units of Measurement,me.problems,A rope is 0.6 m long. It is cut into pieces that are each 15 cm long. How many pieces are there?,4,40,14,7,A,"What it asks: Change the rope length to centimetres, then divide.
+Concept: To divide a length into pieces, both lengths must use the same unit.
+Step 1: 0.6 m = 60 cm.
+Step 2: 60 ÷ 15 = 4.
+Answer: 4",Dividing 2.4 by 20 without changing the units.,Always check that both measurements use the same unit before dividing.,,,0.6*100/15,VERIFIED,MCQ,
+T12-Q10,12,10,Intermediate,2,Money,au.money,"Minh's shopping bill is $13.28. Minh pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Minh pay?",,,,,,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $13.28; look at the last digit of the cents, 8.
+Step 2: It is closer to $13.30 than to $13.25.
+Answer: $13.30","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,1330/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""13.30""]}"
+T12-Q11,12,11,Intermediate,2,Shapes & Objects,au.shapes,How many vertices does a triangular prism have?,9,6,5,7,B,"What it asks: Count the vertices of a 3D object.
+Concept: A triangular prism has 2 triangular ends and 3 rectangular sides. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 5, edges: 9, vertices: 6.
+Step 2: The question asks for the vertices: 6.
+Answer: 6","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,6,VERIFIED,MCQ,
+T12-Q12,12,12,Intermediate,2,Data,au.data,"In a picture graph, each ★ stands for 5 students who walk to school. Class 5C has 3 ★ and Class 5B has 7 ★. How many more students walk to school in Class 5B than in Class 5C?",4,25,20,50,C,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 5, so multiply the number of stars by 5.
+Step 1: Class 5C: 3 × 5 = 15. Class 5B: 7 × 5 = 35.
+Step 2: 35 − 15 = 20.
+Answer: 20",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,7*5-3*5,VERIFIED,MCQ,
+T12-Q13,12,13,Intermediate,2,Patterns & Algebra,pa.arith,"A number pattern starts 4, 10, 16, … and keeps adding 6. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 64: yes, 4 + 10 × 6 = 64.
+Step 2: 51: no, 51 is not 4 plus a multiple of 6.
+Step 3: 44: no, 44 is not 4 plus a multiple of 6.
+Step 4: 52: yes, 4 + 8 × 6 = 52.
+Step 5: 70: yes, 4 + 11 × 6 = 70.
+Answer: 64, 52, 70",Choosing numbers that are near the pattern but not on it.,Check that (number − 4) divides by 6.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""64"",""51"",""44"",""52"",""70""],""correct"":[0,3,4]}"
+T12-Q14,12,14,Intermediate,2,Factors & Multiples,wn.factors,What do we call a number that has more than two factors?,,,,,,"What it asks: Answer with the correct word.
+Concept: A number with more than two factors is composite.
+Step 1: A number with more than two factors is composite.
+Answer: composite",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""composite"",""composite number""]}"
+T12-Q15,12,15,Intermediate,2,"Perimeter, Area & Volume",ge.composite,Linh’s garden is made of two rectangular lawns: one 10 m by 9 m and one 5 m by 5 m. What is the total area of grass?,58 m²,90 m²,115 m²,120 m²,C,"What it asks: Split the shape into rectangles and add their areas.
+Concept: Composite shapes can be split into simple shapes; add the separate areas.
+Step 1: First rectangle: 10 × 9 = 90 m².
+Step 2: Second rectangle: 5 × 5 = 25 m².
+Step 3: Total: 90 + 25 = 115 m².
+Answer: 115 m²","Multiplying the overall length and width, which would include space that is not part of the room.",Draw a line to split the shape into rectangles you can measure.,,,10*9+5*5,VERIFIED,MCQ,
+T12-Q16,12,16,Intermediate,2,Chance,au.chance,"A bag has 5 green, 5 red marbles. One marble is taken out without looking. What is the chance of taking a green marble? Give a fraction in simplest form.",,,,,,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 5 + 5 = 10.
+Step 2: green marbles: 5.
+Step 3: Chance = \(\frac{5}{10}\) = \(\frac{1}{2}\).
+Answer: \(\frac{1}{2}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,5/10,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1/2""],""format"":""fraction"",""requireSimplified"":true}"
+T12-Q17,12,17,Intermediate,2,Decimals,dec.compare,Choose ALL the numbers that are greater than 3.2.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 4.5: yes, 4.5 is more than 3.2.
+Step 2: 3.9: yes, 3.9 is more than 3.2.
+Step 3: 3.7: yes, 3.7 is more than 3.2.
+Step 4: 1.7: no, 1.7 is less than 3.2.
+Step 5: 2.3: no, 2.3 is less than 3.2.
+Answer: 4.5, 3.9, 3.7",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""4.5"",""3.9"",""3.7"",""1.7"",""2.3""],""correct"":[0,1,2]}"
+T12-Q18,12,18,Intermediate,2,Place Value & Rounding,wn.place,Put these numbers in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Compare the number of digits first, then the digits from the left.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 4,903, 10,000, 58,094, 88,555.
+Answer: 4,903, 10,000, 58,094, 88,555",Comparing only the last digits.,More digits means a bigger number; then compare place by place.,,,,VERIFIED,ORDERING,"{""items"":[""4,903"",""10,000"",""58,094"",""88,555""]}"
+T12-Q19,12,19,Intermediate,2,Transformations & Symmetry,au.transform,"A star is 2 squares from a mirror line. Its reflection is on the other side of the line, the same distance away. How many squares apart are the star and its reflection?",4 squares,6 squares,5 squares,2 squares,A,"What it asks: Find the distance between a shape and its reflection.
+Concept: A reflection is as far behind the mirror line as the original is in front of it.
+Step 1: Each is 2 squares from the line.
+Step 2: 2 + 2 = 4.
+Answer: 4 squares",Giving the distance to the mirror line only.,"Distance to the line, doubled.",,,4,VERIFIED,MCQ,
+T12-Q20,12,20,Intermediate,2,"Perimeter, Area & Volume",ge.composite,A swimming-pool deck is made of a 6 m by 4 m part and a 5 m by 3 m part joined together. What is the total area of the deck?,,,,,,"What it asks: Split the shape into rectangles and add their areas.
+Concept: Composite shapes can be split into simple shapes; add the separate areas.
+Step 1: First rectangle: 6 × 4 = 24 m².
+Step 2: Second rectangle: 5 × 3 = 15 m².
+Step 3: Total: 24 + 15 = 39 m².
+Answer: 39 m²","Multiplying the overall length and width, which would include space that is not part of the room.",Draw a line to split the shape into rectangles you can measure.,,,6*4+5*3,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""39""],""unit"":""m²""}"
+T12-Q21,12,21,Intermediate,3,Location & Maps,au.maps,"On a town map the museum is at D2 and the oval is at E5. Walking along the grid lines (only east and north), how many squares must you cross to get from the museum to the oval?",5 squares,3 squares,6 squares,4 squares,D,"What it asks: Find the number of grid steps between two places.
+Concept: Add the steps east and the steps north.
+Step 1: East: D to E = 1.
+Step 2: North: 2 to 5 = 3.
+Step 3: 1 + 3 = 4.
+Answer: 4 squares",Taking only the larger of the two distances.,"Along grid lines, you add the two sides of the rectangle.",,,4,VERIFIED,MCQ,
+T12-Q22,12,22,Intermediate,3,Fractions,fr.forms,Find the missing number: \(\frac{4}{5} = \frac{\square}{25}\),20,24,9,25,A,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 5 × 5 = 25, so the denominator was multiplied by 5.
+Step 2: Do the same to the numerator: 4 × 5 = 20.
+Answer: 20",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,4*25/5,VERIFIED,MCQ,
+T12-Q23,12,23,Intermediate,3,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 81 and 45?,18,9,45,405,B,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 81: 1, 3, 9, 27, 81.
+Step 2: Factors of 45: 1, 3, 5, 9, 15, 45.
+Step 3: The biggest number in both lists is 9.
+Answer: 9","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(81,45)",VERIFIED,MCQ,
+T12-Q24,12,24,Intermediate,3,Fractions,fr.of,Grace has 88 marbles. Grace gives away \(\frac{3}{8}\) of them. How many marbles does Grace have left?,55,66,85,33,A,"What it asks: Find the amount that is NOT given away.
+Concept: To find a fraction of an amount, divide by the denominator, then multiply by the numerator.
+Step 1: Divide 88 into 8 equal parts: 88 ÷ 8 = 11.
+Step 2: Take 3 parts: 3 × 11 = 33.
+Step 3: Left over: 88 − 33 = 55.
+Answer: 55",Stopping at the number given away and forgetting to subtract.,"“3/8 of” means divide by 8, then multiply by 3.",,,88-88*3/8,VERIFIED,MCQ,
+T12-Q25,12,25,Intermediate,3,Decimals,dec.addsub,Complete: 0.3 + {1} = 1 and 3.19 ÷ 10 = {2}.,,,,,,"What it asks: Use decimals to make 1 and to multiply or divide by 10.
+Concept: Multiplying by 10 moves the digits one place left; dividing by 10 moves them one place right.
+Step 1: 1 − 0.3 = 0.7.
+Answer: 1) 0.7, 2) 0.319",Moving the decimal point the wrong way.,"Check: the answer to × 10 is bigger, to ÷ 10 is smaller.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.7""]},{""accepted"":[""0.319""]}]}"
+T12-Q26,12,26,Intermediate,3,Fractions,fr.of,Uma has 35 pages. Uma gives away \(\frac{3}{5}\) of them. How many pages does Uma give away?,14,15,21,28,C,"What it asks: Find the fraction of the total.
+Concept: To find a fraction of an amount, divide by the denominator, then multiply by the numerator.
+Step 1: Divide 35 into 5 equal parts: 35 ÷ 5 = 7.
+Step 2: Take 3 parts: 3 × 7 = 21.
+Answer: 21",Multiplying the amount by the denominator instead of dividing.,"“3/5 of” means divide by 5, then multiply by 3.",,,35*3/5,VERIFIED,MCQ,
+T12-Q27,12,27,Intermediate,3,Data,au.data,"A class survey recorded these votes: Dogs 7, Cats 18, Fish 15, Birds 12. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is true: 7 + 18 + 15 + 12 = 52.
+Step 2: Statement 2 is true: Cats has the most votes (18).
+Step 3: Statement 3 is false: 7 + 18 + 15 + 12 = 52.
+Answer: True, True, False",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The total number of votes was 52"",""truth"":true},{""text"":""Cats was the most popular choice"",""truth"":true},{""text"":""The total number of votes was 62"",""truth"":false}]}"
+T12-Q28,12,28,Intermediate,3,Units of Measurement,me.problems,Priya’s ribbon is 220 cm long. An’s ribbon is 1.5 m long. How many centimetres longer is Priya’s ribbon?,370 cm,80 cm,700 cm,70 cm,D,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 1.5 m = 150 cm.
+Step 2: Difference: 220 − 150 = 70 cm.
+Step 3: Priya’s ribbon is longer than An’s by 70 cm.
+Answer: 70 cm",Subtracting 1.5 from 220 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(220-1.5*100),VERIFIED,MCQ,
+T12-Q29,12,29,Intermediate,3,Place Value & Rounding,wn.round,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: To round, look at the digit to the right of the place you are rounding to: 5 or more rounds up.
+Step 1: Statement 1 is false: look at the digit to the right of the thousands place; 349,287 is closest to 349,000.
+Step 2: Statement 2 is true: look at the digit to the right of the tens place; 458,519 is closest to 458,520.
+Step 3: Statement 3 is true: 6 × 1,000 = 6,000.
+Answer: False, True, True",Rounding down when the next digit is 5 or more.,"Underline the rounding place, then check the next digit.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""349,287 rounded to the nearest thousand is 348,000"",""truth"":false},{""text"":""458,519 rounded to the nearest ten is 458,520"",""truth"":true},{""text"":""In 6,582, the digit 6 is in the thousands place"",""truth"":true}]}"
+T12-Q30,12,30,Intermediate,3,Operations & Problem Solving,wp.multiplicative,Sam has 26 marbles. This is 2 times as many as Nina has. Nina then gives 10 of them to Sam. How many marbles does Sam have now?,,,,,,"What it asks: Use the first fact to find the amounts and then apply the gift.
+Concept: Read each sentence in order and keep track of every change.
+Step 1: Sam starts with 26.
+Step 2: Nina gives 10 to Sam: 26 + 10 = 36.
+Answer: 36",Subtracting when the amount is being given to the person asked about.,Is the person gaining or losing? That tells you add or subtract.,,,13*2+10,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""36""]}"

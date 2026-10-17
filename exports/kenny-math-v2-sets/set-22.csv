@@ -1,0 +1,169 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T22-Q01,22,1,Advanced,3,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{2}{3}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{7}{9}\): no, the top should be 6 to stay equal.
+Step 2: \(\frac{6}{9}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 3.
+Step 3: \(\frac{8}{12}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 4.
+Step 4: \(\frac{10}{16}\): no, the bottom should be 15 to stay equal.
+Step 5: \(\frac{10}{15}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 5.
+Answer: \(\frac{6}{9}\), \(\frac{8}{12}\), \(\frac{10}{15}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{7}{9}\\)"",""\\(\\frac{6}{9}\\)"",""\\(\\frac{8}{12}\\)"",""\\(\\frac{10}{16}\\)"",""\\(\\frac{10}{15}\\)""],""correct"":[1,2,4]}"
+T22-Q02,22,2,Advanced,3,Location & Maps,au.maps,"On a town map the library is at D2 and the park is at E7. Walking along the grid lines (only east and north), how many squares must you cross to get from the library to the park?",5 squares,8 squares,6 squares,7 squares,C,"What it asks: Find the number of grid steps between two places.
+Concept: Add the steps east and the steps north.
+Step 1: East: D to E = 1.
+Step 2: North: 2 to 7 = 5.
+Step 3: 1 + 5 = 6.
+Answer: 6 squares",Taking only the larger of the two distances.,"Along grid lines, you add the two sides of the rectangle.",,,6,VERIFIED,MCQ,
+T22-Q03,22,3,Advanced,3,Decimals,dec.compare,Choose ALL the numbers that are greater than 3.5.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 3.45: no, 3.45 is less than 3.5.
+Step 2: 3.37: no, 3.37 is less than 3.5.
+Step 3: 3.51: yes, 3.51 is more than 3.5.
+Step 4: 3.41: no, 3.41 is less than 3.5.
+Step 5: 3.55: yes, 3.55 is more than 3.5.
+Answer: 3.51, 3.55",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""3.45"",""3.37"",""3.51"",""3.41"",""3.55""],""correct"":[2,4]}"
+T22-Q04,22,4,Advanced,3,"Perimeter, Area & Volume",ge.volume,"A packing crate is 9 cm long, 3 cm wide and 7 cm high. What is its volume?",,,,,,"What it asks: Find how much space is inside the box.
+Concept: Volume of a cuboid = length × width × height.
+Step 1: Base layer: 9 × 3 = 27 cubes.
+Step 2: 7 layers: 27 × 7 = 189 cm³.
+Answer: 189 cm³","Adding the dimensions, or finding the surface area.","Find one layer first, then multiply by the number of layers.",,,9*3*7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""189""],""unit"":""cm³""}"
+T22-Q05,22,5,Advanced,3,Patterns & Algebra,pa.arith,"Complete the number pattern: 90, 83, {1}, 69, 62, {2}, 48.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes down by 7 each time.
+Step 1: The difference between neighbouring numbers is 7.
+Step 2: Blank 1: 76. Blank 2: 55.
+Answer: 1) 76, 2) 55",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""76""]},{""accepted"":[""55""]}]}"
+T22-Q06,22,6,Advanced,3,Operations & Problem Solving,wn.muldiv,Work out \(60 \times 40\).,,,,,,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 60 × 40 = 2,400.
+Answer: 2,400","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,60*40,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""2400""]}"
+T22-Q07,22,7,Advanced,3,"Perimeter, Area & Volume",ms.measure,"A rectangular garden is 15 m long and 7 m wide. A fence goes all the way around it, except for a 1 m gap for the gate. The fence costs $6 per metre. What is the total cost of the fence?",$258,$630,$270,$264,A,"What it asks: Find the length of fence needed and then its cost.
+Concept: Perimeter gives the distance around; multiply by the price per metre for the cost.
+Step 1: Perimeter: 2 × (15 + 7) = 44 m.
+Step 2: Fence needed (without the gate): 44 − 1 = 43 m.
+Step 3: Cost: 43 × $6 = $258.
+Answer: $258","Forgetting the gate gap, or using the area instead of the perimeter.",Ask yourself: do I need the distance around (perimeter) or the space inside (area)?,,,(2*(15+7)-1)*6,VERIFIED,MCQ,
+T22-Q08,22,8,Advanced,3,Transformations & Symmetry,au.transform,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Lines of symmetry fold a shape onto itself. Slide = translation, flip = reflection, turn = rotation.
+Step 1: Statement 1 is false: a rhombus (not a square) has 2, not 4.
+Step 2: Statement 2 is false: a isosceles triangle (not equilateral) has 1, not 3.
+Step 3: Statement 3 is true: sliding is a translation.
+Answer: False, False, True",Counting diagonals of a rectangle as lines of symmetry.,Fold it in your mind: do both halves match exactly?,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A rhombus (not a square) has 4 lines of symmetry"",""truth"":false},{""text"":""A isosceles triangle (not equilateral) has 3 lines of symmetry"",""truth"":false},{""text"":""A slide of a shape is called a translation"",""truth"":true}]}"
+T22-Q09,22,9,Advanced,3,Operations & Problem Solving,wn.muldiv,Zoe has 296 beads and puts them into bags of 13. How many beads are left over after filling as many bags as possible?,9,10,3,11,B,"What it asks: Find how many beads do not fit into a full bag.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 13 × 22 = 286, which is the biggest multiple of 13 that is not more than 296.
+Step 2: 296 − 286 = 10.
+Step 3: The remainder is 10, and it is smaller than 13, as a remainder must be.
+Answer: 10","Giving the quotient (22) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(296,13)",VERIFIED,MCQ,
+T22-Q10,22,10,Advanced,3,Money,au.money,A pen costs $7.15 and it is paid for with $10.00. The change is $ {1}. A bill of $21.76 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 10.00 − 7.15 = 2.85.
+Step 2: 21.76 is closest to 21.75.
+Answer: 1) 2.85, 2) 21.75",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""2.85""]},{""accepted"":[""21.75""]}]}"
+T22-Q11,22,11,Advanced,3,Operations & Problem Solving,wp.twostep,16 children each collect 8 muffins. Then 5 more children join and each of them also collects 8 muffins. How many muffins are collected altogether?,,,,,,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: First group: 16 × 8 = 128.
+Step 2: New children: 5 × 8 = 40.
+Step 3: Total: 128 + 40 = 168.
+Answer: 168","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,(16+5)*8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""168""]}"
+T22-Q12,22,12,Advanced,3,Units of Measurement,me.problems,Priya has a ribbon of 5 m 22 cm and another one of 1 m 38 cm. What is the total in cm?,670 cm,660 cm,384 cm,760 cm,B,"What it asks: Change both amounts to cm and add.
+Concept: Convert everything to the same unit first. 1 m = 100 cm.
+Step 1: 5 m 22 cm = 522 cm.
+Step 2: 1 m 38 cm = 138 cm.
+Step 3: 522 + 138 = 660 cm.
+Answer: 660 cm",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,522+138,VERIFIED,MCQ,
+T22-Q13,22,13,Advanced,3,Data,au.data,"A class survey recorded these votes: Cricket 5, Netball 14, Swimming 21, Tennis 20, Soccer 9. How many more students chose Swimming than Cricket?",18,26,14,16,D,"What it asks: Find the difference between the largest and smallest values.
+Concept: Subtract the smaller number from the larger.
+Step 1: Swimming has 21; Cricket has 5.
+Step 2: 21 − 5 = 16.
+Answer: 16",Adding the two categories instead of finding the difference.,"""How many more"" means subtract.",,,21-5,VERIFIED,MCQ,
+T22-Q14,22,14,Advanced,3,Money,wp.money,Hugo buys 2 notebooks at $4.32 each and 2 calculators at $4.87 each and pays with $20.00. How much change should Hugo get?,$18.38,$11.36,$2.62,$1.62,D,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 2 × $4.32 = $8.64.
+Step 2: Calculators: 2 × $4.87 = $9.74.
+Step 3: Total: $18.38. Change: $20.00 − $18.38 = $1.62.
+Answer: $1.62",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,20-(4.32*2+4.87*2),VERIFIED,MCQ,
+T22-Q15,22,15,Advanced,3,Place Value & Rounding,wn.place,"Complete the place value: 7,411 = 7 thousands + {1} hundreds + {2} tens + 1 ones.",,,,,,"What it asks: Split a number into its place values.
+Concept: Each digit is worth its place: thousands, hundreds, tens or ones.
+Step 1: 7,411 has 7 thousands, 4 hundreds, 1 tens and 1 ones.
+Answer: 1) 4, 2) 1",Writing the digit in the wrong place.,Zero still holds a place.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""4""]},{""accepted"":[""1""]}]}"
+T22-Q16,22,16,Advanced,3,Patterns & Algebra,pa.special,"The first four square numbers are 1, 4, 9 and 16. What is the 8th square number?",16,64,49,81,B,"What it asks: Use the rule for square numbers.
+Concept: The nth square number is n × n.
+Step 1: 1 = 1×1, 4 = 2×2, 9 = 3×3, so the nth square number is n × n.
+Step 2: 8 × 8 = 64.
+Answer: 64",Doubling the number instead of multiplying it by itself.,Square numbers make square arrays of dots.,,,8^2,VERIFIED,MCQ,
+T22-Q17,22,17,Advanced,3,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is false: \(\frac{5}{8}\) is not made by multiplying both numbers by the same amount.
+Step 2: Statement 2 is false: use a common denominator: 24/60 and 20/60, so \(\frac{4}{10}\) is greater.
+Step 3: Statement 3 is true: multiplying top and bottom by 3 gives an equal fraction.
+Answer: False, False, True",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{2}{4}\\) = \\(\\frac{5}{8}\\)"",""truth"":false},{""text"":""\\(\\frac{4}{10}\\) < \\(\\frac{2}{6}\\)"",""truth"":false},{""text"":""\\(\\frac{3}{4}\\) = \\(\\frac{9}{12}\\)"",""truth"":true}]}"
+T22-Q18,22,18,Advanced,3,Factors & Multiples,wn.factors,Bus A leaves the station every 12 minutes and Bus B every 18 minutes. They leave together at 8:00. After how many minutes will they next leave together?,6,216,36,18,C,"What it asks: Find the first time both events happen together.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 12: 12, 24, 36, 48…
+Step 2: Multiples of 18: 18, 36, 54…
+Step 3: The first number in both lists is 36.
+Answer: 36","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(12,18)",VERIFIED,MCQ,
+T22-Q19,22,19,Advanced,3,Shapes & Objects,au.shapes,A design uses 3 triangles and 4 hexagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 3 × 3 = 9.
+Step 2: 4 × 6 = 24.
+Step 3: 9 + 24 = 33.
+Answer: 33",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,3*3+4*6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""33""]}"
+T22-Q20,22,20,Advanced,3,Units of Measurement,me.problems,A rope is 1.8 m long. It is cut into pieces that are each 15 cm long. How many pieces are there?,15,22,12,120,C,"What it asks: Change the rope length to centimetres, then divide.
+Concept: To divide a length into pieces, both lengths must use the same unit.
+Step 1: 1.8 m = 180 cm.
+Step 2: 180 ÷ 15 = 12.
+Answer: 12",Dividing 2.4 by 20 without changing the units.,Always check that both measurements use the same unit before dividing.,,,1.8*100/15,VERIFIED,MCQ,
+T22-Q21,22,21,Advanced,4,Data,au.data,A column graph shows the number of books read each week. Each gridline is 20 books. The bar for Week 1 reaches the 3rd gridline and the bar for Week 2 reaches the 5th gridline. How many more books were read in Week 2 than in Week 1?,100,40,60,2,B,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 20. Find each bar's value, then subtract.
+Step 1: Week 1: 3 × 20 = 60. Week 2: 5 × 20 = 100.
+Step 2: 100 − 60 = 40.
+Answer: 40",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,5*20-3*20,VERIFIED,MCQ,
+T22-Q22,22,22,Advanced,4,Angles,ge.angles,A right angle is split into two angles. One of them is 69°. What is the size of the other angle?,,,,,,"What it asks: Find an angle inside a right angle.
+Concept: A right angle is 90°.
+Step 1: 90 − 69 = 21.
+Answer: 21°",Using 180° (a straight line) instead of 90° (a right angle).,A right angle is a square corner and measures 90°.,,,90-69,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""21""],""unit"":""°""}"
+T22-Q23,22,23,Advanced,4,Shapes & Objects,au.shapes,A design uses 3 heptagons and 3 hexagons. How many sides are there altogether?,19,39,117,24,B,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 3 × 7 = 21.
+Step 2: 3 × 6 = 18.
+Step 3: 21 + 18 = 39.
+Answer: 39",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,3*7+3*6,VERIFIED,MCQ,
+T22-Q24,22,24,Advanced,4,Decimals,dec.addsub,What is \(38.299 + 193.934\)?,,,,,,"What it asks: Add the two decimal numbers.
+Concept: Line up the decimal points so tenths are under tenths and hundredths under hundredths, then calculate as with whole numbers.
+Step 1: Line up the decimal points: 38.299 and 193.934.
+Step 2: Add column by column from the right, carrying when needed.
+Step 3: 38.299 + 193.934 = 232.233.
+Answer: 232.233",Lining up the digits on the right instead of lining up the decimal points.,Write extra zeros so both numbers have the same number of decimal places (hundredths or thousandths).,,,38.299+193.934,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""232.233""]}"
+T22-Q25,22,25,Advanced,4,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is false: 6 is less than 7, so it is less than one whole.
+Step 2: Statement 2 is true: use a common denominator: 3/18 and 12/18, so \(\frac{1}{6}\) is less.
+Step 3: Statement 3 is true: 11 is bigger than 7, so there is more than one whole.
+Answer: False, True, True",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{6}{7}\\) is greater than 1 whole"",""truth"":false},{""text"":""\\(\\frac{1}{6}\\) < \\(\\frac{2}{3}\\)"",""truth"":true},{""text"":""\\(\\frac{11}{7}\\) is greater than 1 whole"",""truth"":true}]}"
+T22-Q26,22,26,Advanced,4,Time,ts.convert,"How many minutes are in a quarter of an hour? Write it in words (for example ""twenty"").",,,,,,"What it asks: Answer with the correct word.
+Concept: A quarter of 60 minutes is fifteen minutes.
+Step 1: A quarter of 60 minutes is fifteen minutes.
+Answer: fifteen",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""fifteen""]}"
+T22-Q27,22,27,Advanced,4,Factors & Multiples,wn.factors,How many different factors does 120 have?,,,,,,"What it asks: Count every whole number that divides 120 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 120, 2 × 60, 3 × 40, 4 × 30, 5 × 24, 6 × 20, 8 × 15, 10 × 12.
+Step 2: List all the factors: 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60, 120.
+Step 3: There are 16 factors.
+Answer: 16","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(120),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""16""]}"
+T22-Q28,22,28,Advanced,4,Chance,au.chance,"A bag has 8 blue, 2 green, 6 red marbles. One marble is taken out without looking. What is the chance of taking a green marble? Give a fraction in simplest form.",\(\frac{1}{7}\),\(\frac{7}{8}\),\(\frac{1}{8}\),\(\frac{1}{3}\),C,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 8 + 2 + 6 = 16.
+Step 2: green marbles: 2.
+Step 3: Chance = \(\frac{2}{16}\) = \(\frac{1}{8}\).
+Answer: \(\frac{1}{8}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,2/16,VERIFIED,MCQ,
+T22-Q29,22,29,Advanced,4,Place Value & Rounding,wn.round,"Round 556,802 to the nearest ten thousand.",,,,,,"What it asks: Find the ten thousand that 556,802 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 556,802 is between 550,000 and 560,000.
+Step 2: It is 6,802 above 550,000 and 3,198 below 560,000.
+Step 3: It is closer to 560,000.
+Answer: 560,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(556802/10000)*10000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""560000""]}"
+T22-Q30,22,30,Advanced,4,Time,ts.clock,Put these times in order from shortest to longest.,,,,,,"What it asks: Put the items in order, shortest to longest.
+Concept: Change every time to minutes before you compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 70 minutes, 86 minutes, 162 minutes, 2 h 47 min.
+Answer: 70 minutes, 86 minutes, 162 minutes, 2 h 47 min",Treating an hour as 100 minutes.,1 hour = 60 minutes.,,,,VERIFIED,ORDERING,"{""items"":[""70 minutes"",""86 minutes"",""162 minutes"",""2 h 47 min""]}"

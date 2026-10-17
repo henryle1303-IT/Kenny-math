@@ -1,0 +1,164 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T04-Q01,4,1,Beginner,1,Chance,au.chance,A coin is tossed and a standard six-sided die is rolled. How many different outcomes are possible?,,,,,,"What it asks: Count all the possible outcomes of a chance experiment.
+Concept: Multiply the number of outcomes of each part of the experiment.
+Step 1: 2 coin results × 6 die results = 12.
+Answer: 12",Adding the outcomes of each part instead of multiplying.,List the outcomes in an organised table or tree if you are unsure.,,,12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T04-Q02,4,2,Beginner,1,Decimals,dec.compare,Put these decimals in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Give each decimal the same number of places, then compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 3.2, 5.9, 6, 9.
+Answer: 3.2, 5.9, 6, 9",Thinking 0.45 is bigger than 0.5 because 45 is bigger than 5.,Write 0.5 as 0.50 to compare with 0.45.,,,,VERIFIED,ORDERING,"{""items"":[""3.2"",""5.9"",""6"",""9""]}"
+T04-Q03,4,3,Beginner,1,Shapes & Objects,au.shapes,How many sides does a heptagon have?,,,,,,"What it asks: Know the number of sides of a polygon.
+Concept: The name heptagon tells you the number of sides: 7.
+Step 1: A heptagon has 7 sides.
+Answer: 7",Mixing up hexagon (6) and octagon (8).,"Penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10.",,,7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""7""]}"
+T04-Q04,4,4,Beginner,1,Place Value & Rounding,wn.round,Round 726 to the nearest ten.,720,730,700,726,B,"What it asks: Find the ten that 726 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 726 is between 720 and 730.
+Step 2: It is 6 above 720 and 4 below 730.
+Step 3: It is closer to 730.
+Answer: 730","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(726/10)*10,VERIFIED,MCQ,
+T04-Q05,4,5,Beginner,1,Fractions,fr.of,Leo has 9 marbles. Leo gives away \(\frac{1}{3}\) of them. How many marbles does Leo give away?,6,4,3,1,C,"What it asks: Find the fraction of the total.
+Concept: To find a fraction of an amount, divide by the denominator, then multiply by the numerator.
+Step 1: Divide 9 into 3 equal parts: 9 ÷ 3 = 3.
+Step 2: Take 1 parts: 1 × 3 = 3.
+Answer: 3",Multiplying the amount by the denominator instead of dividing.,"“1/3 of” means divide by 3, then multiply by 1.",,,9*1/3,VERIFIED,MCQ,
+T04-Q06,4,6,Beginner,1,Operations & Problem Solving,wn.addsub,Work out \(526 + 192\).,708,818,718,728,C,"What it asks: Find the total of the two numbers.
+Concept: Addition: add the numbers one place value at a time.
+Step 1: Start with 526.
+Step 2: Add 100: 526 + 100 = 626.
+Step 3: Add 90: 626 + 90 = 716.
+Step 4: Add 2: 716 + 2 = 718.
+Answer: 718",Forgetting to carry (regroup) when a column adds to 10 or more.,"Add the biggest parts first, then the smaller parts. Check by estimating: round both numbers and add.",,,526+192,VERIFIED,MCQ,
+T04-Q07,4,7,Beginner,1,Money,wp.money,Isla buys 4 notebooks at $6.07 each and a calculator at $2.62 and pays with $30.00. How much change should Isla get?,$26.90,$3.10,$5.72,$4.10,B,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $6.07 = $24.28.
+Step 2: Calculator: 1 × $2.62 = $2.62.
+Step 3: Total: $26.90. Change: $30.00 − $26.90 = $3.10.
+Answer: $3.10",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,30-(6.07*4+2.62*1),VERIFIED,MCQ,
+T04-Q08,4,8,Beginner,1,Units of Measurement,me.convert,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Metric units change by 10, 100 or 1000. To change to a smaller unit, multiply.
+Step 1: Statement 1 is false: 1 L = 1,000 mL, so 8 L = 8,000 mL.
+Step 2: Statement 2 is true: 1 km = 1,000 m, so 6 × 1,000 = 6,000.
+Answer: False, True",Dividing instead of multiplying when changing to a smaller unit.,Bigger unit to smaller unit: multiply. Smaller to bigger: divide.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""8 L = 80,000 mL"",""truth"":false},{""text"":""6 km = 6,000 m"",""truth"":true}]}"
+T04-Q09,4,9,Beginner,1,Operations & Problem Solving,ms.planning,A recipe for 6 people uses 300 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 30 people?,2,1,1500,3,A,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 30 people is 5 times 6 people, so flour needed = 300 × 5 = 1,500 g.
+Step 2: 1,500 g = 1.5 kg.
+Step 3: Bags are whole, so round up: 2.
+Answer: 2","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(300*5/1000),VERIFIED,MCQ,
+T04-Q10,4,10,Beginner,1,"Perimeter, Area & Volume",ge.perimeter,A rectangle is 17 cm long and 8 cm wide. What is its perimeter?,52 cm,136 cm,50 cm,25 cm,C,"What it asks: Find the total distance around the rectangle.
+Concept: Perimeter is the distance around a shape. For a rectangle: 2 × (length + width).
+Step 1: Length + width = 17 + 8 = 25.
+Step 2: A rectangle has two of each: 2 × 25 = 50 cm.
+Answer: 50 cm","Adding only two sides, or multiplying (that gives area, not perimeter).",Walk around the edge and add every side.,,,2*(17+8),VERIFIED,MCQ,
+T04-Q11,4,11,Beginner,2,Location & Maps,au.maps,Finn is facing East. Finn turns clockwise to face South. Through how many degrees does Finn turn?,45°,135°,90°,270°,C,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From East clockwise to South is 2 steps of 45°.
+Step 2: 2 × 45° = 90°.
+Answer: 90°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,90,VERIFIED,MCQ,
+T04-Q12,4,12,Beginner,2,Place Value & Rounding,wn.round,"Choose ALL the numbers that round to 1,300 when rounded to the nearest hundred.",,,,,,"What it asks: Choose every correct answer.
+Concept: A number rounds to a target if it is within half a unit of it.
+Step 1: 1,214: no, 1,214 rounds to 1,200.
+Step 2: 1,287: yes, 1,287 is closest to 1,300.
+Step 3: 1,328: yes, 1,328 is closest to 1,300.
+Step 4: 1,374: no, 1,374 rounds to 1,400.
+Step 5: 1,363: no, 1,363 rounds to 1,400.
+Answer: 1,287, 1,328",Always rounding up.,"Numbers from 1,250 up to 1,349 round to 1,300.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""1,214"",""1,287"",""1,328"",""1,374"",""1,363""],""correct"":[1,2]}"
+T04-Q13,4,13,Beginner,2,"Perimeter, Area & Volume",ge.perimeter,What do we call the distance around the outside of a 2D shape?,,,,,,"What it asks: Answer with the correct word.
+Concept: The distance around a shape is its perimeter.
+Step 1: The distance around a shape is its perimeter.
+Answer: perimeter",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""perimeter""]}"
+T04-Q14,4,14,Beginner,2,Time,ts.clock,4 hours 15 minutes = {1} minutes. 10 PM is {2} o'clock in 24-hour time (type the hour number).,,,,,,"What it asks: Change between hours, minutes and 24-hour time.
+Concept: 1 hour = 60 minutes. After noon, add 12 to get 24-hour time.
+Step 1: 4 × 60 = 240, plus 15 = 255.
+Step 2: 10 + 12 = 22.
+Answer: 1) 255, 2) 22",Using 100 minutes in an hour.,"An hour is 60 minutes, not 100.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""255""]},{""accepted"":[""22""]}]}"
+T04-Q15,4,15,Beginner,2,Angles,ge.angles,Angles on a straight line add up to 180°. One of the angles is 135°. What is the other angle?,55°,45°,135°,225°,B,"What it asks: Use the straight line to find the missing angle.
+Concept: Angles on a straight line add up to 180°.
+Step 1: 180 − 135 = 45°.
+Answer: 45°",Subtracting from 90° or 360° instead of 180°.,A straight line is a half turn: 180°.,,,180-135,VERIFIED,MCQ,
+T04-Q16,4,16,Beginner,2,Time,ts.clock,Hugo's tram leaves Parramatta at 7:38 AM and arrives at 8:14 AM. How many minutes does the trip take?,,,,,,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 7:38 AM to 8:14 AM.
+Step 2: 36 minutes pass.
+Answer: 36 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,36,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""36""],""unit"":""minutes""}"
+T04-Q17,4,17,Beginner,2,Transformations & Symmetry,au.transform,"A point at (2, 4) is moved 5 units to the right and 1 unit down. What is the y-coordinate of the new point? (The first number is the x-coordinate, the second is the y-coordinate.)",4,7,3,2,C,"What it asks: Translate a point on a grid.
+Concept: Moving right or left changes the x-coordinate. Moving up or down changes the y-coordinate.
+Step 1: New x: 2 + 5 = 7.
+Step 2: New y: 4 − 1 = 3.
+Step 3: The y-coordinate is 3.
+Answer: 3","Changing the wrong coordinate, or adding when the move is down.","x goes along the corridor (left/right), y goes up the stairs (up/down).",,,3,VERIFIED,MCQ,
+T04-Q18,4,18,Beginner,2,Data,au.data,A column graph shows the number of books read each week. Each gridline is 10 books. The bar for Week 1 reaches the 4th gridline and the bar for Week 2 reaches the 7th gridline. How many more books were read in Week 2 than in Week 1?,30,70,40,3,A,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 10. Find each bar's value, then subtract.
+Step 1: Week 1: 4 × 10 = 40. Week 2: 7 × 10 = 70.
+Step 2: 70 − 40 = 30.
+Answer: 30",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,7*10-4*10,VERIFIED,MCQ,
+T04-Q19,4,19,Beginner,2,Patterns & Algebra,oo.basic,Uma worked out \(10 + 9 \times 8\) and got 152. Uma’s answer is not correct. What is the correct value?,153,92,82,72,C,"What it asks: Find the mistake in Uma’s method and give the correct value.
+Concept: Multiplication is done before addition and subtraction unless brackets say otherwise.
+Step 1: Uma worked left to right and got 152.
+Step 2: The correct order is to multiply first: 9 × 8 = 72.
+Step 3: Then add: 10 + 72 = 82.
+Answer: 82",Doing the operations in the order they are written instead of the order of operations.,"Underline the multiplication or division first, work it out, then rewrite the expression.",,,10+9*8,VERIFIED,MCQ,
+T04-Q20,4,20,Beginner,2,Factors & Multiples,wn.factors,How many different factors does 40 have?,6,7,9,8,D,"What it asks: Count every whole number that divides 40 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 40, 2 × 20, 4 × 10, 5 × 8.
+Step 2: List all the factors: 1, 2, 4, 5, 8, 10, 20, 40.
+Step 3: There are 8 factors.
+Answer: 8","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(40),VERIFIED,MCQ,
+T04-Q21,4,21,Beginner,2,Patterns & Algebra,pa.arith,"What is the next number in this pattern? 21, 27, 33, 39, …",39,46,51,45,D,"What it asks: Find the rule, then continue the pattern.
+Concept: In an arithmetic sequence the same amount is added (or subtracted) each time.
+Step 1: Differences: 27 − 21 = 6, and the next ones are the same.
+Step 2: Next term: 39 + 6 = 45.
+Answer: 45",Spotting a pattern in only the first two numbers without checking the others.,Check that the rule works for every pair of neighbouring numbers.,,,21+(6)*4,VERIFIED,MCQ,
+T04-Q22,4,22,Beginner,2,Operations & Problem Solving,wn.muldiv,What is the remainder when 121 is divided by 4?,11,1,2,3,B,"What it asks: Find what is left after dividing as many whole groups as possible.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 4 × 30 = 120, which is the biggest multiple of 4 that is not more than 121.
+Step 2: 121 − 120 = 1.
+Step 3: The remainder is 1, and it is smaller than 4, as a remainder must be.
+Answer: 1","Giving the quotient (30) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(121,4)",VERIFIED,MCQ,
+T04-Q23,4,23,Beginner,2,Factors & Multiples,wn.factors,Choose ALL the factors of 24.,,,,,,"What it asks: Choose every correct answer.
+Concept: A factor divides a number exactly with no remainder.
+Step 1: 2: yes, 24 ÷ 2 = 12.
+Step 2: 4: yes, 24 ÷ 4 = 6.
+Step 3: 11: no, 24 ÷ 11 leaves a remainder.
+Step 4: 6: yes, 24 ÷ 6 = 4.
+Step 5: 15: no, 24 ÷ 15 leaves a remainder.
+Answer: 2, 4, 6",Mixing up factors and multiples.,Factors come in pairs that multiply to the number.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""2"",""4"",""11"",""6"",""15""],""correct"":[0,1,3]}"
+T04-Q24,4,24,Beginner,2,Data,wp.table,"A class survey recorded these numbers. Cats: 23, Dogs: 12, Fish: 12, Birds: 22. How many votes were there altogether?",23,79,46,69,D,"What it asks: Add all the votes.
+Concept: “Altogether” means add every group.
+Step 1: 23 + 12 + 12 + 22 = 69.
+Answer: 69",Leaving one of the groups out.,Tick each number as you add it.,,,23+12+12+22,VERIFIED,MCQ,
+T04-Q25,4,25,Beginner,2,Shapes & Objects,au.shapes,How many faces does a triangular pyramid have?,4,6,5,3,A,"What it asks: Count the faces of a 3D object.
+Concept: A triangular pyramid has a triangular base and 3 triangular faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 4, edges: 6, vertices: 4.
+Step 2: The question asks for the faces: 4.
+Answer: 4","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,4,VERIFIED,MCQ,
+T04-Q26,4,26,Beginner,3,Fractions,fr.of,Leo has 98 coins. Leo gives away \(\frac{5}{7}\) of them. How many coins does Leo give away?,,,,,,"What it asks: Find the fraction of the total.
+Concept: To find a fraction of an amount, divide by the denominator, then multiply by the numerator.
+Step 1: Divide 98 into 7 equal parts: 98 ÷ 7 = 14.
+Step 2: Take 5 parts: 5 × 14 = 70.
+Answer: 70",Multiplying the amount by the denominator instead of dividing.,"“5/7 of” means divide by 7, then multiply by 5.",,,98*5/7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""70""]}"
+T04-Q27,4,27,Beginner,3,Decimals,dec.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Line up the decimal places to compare decimals. Multiplying by 10 moves digits one place to the left.
+Step 1: Statement 1 is false: 0.6 is 6 tenths but 0.06 is only 6 hundredths.
+Step 2: Statement 2 is true: a zero on the end of a decimal does not change its value.
+Step 3: Statement 3 is true: write both with the same number of decimal places: 9.000 and 0.357.
+Answer: False, True, True",Believing a longer decimal is always a bigger number.,Give every decimal the same number of places before comparing.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""0.6 = 0.06"",""truth"":false},{""text"":""0.60 = 0.6"",""truth"":true},{""text"":""9 > 0.357"",""truth"":true}]}"
+T04-Q28,4,28,Beginner,3,Fractions,fr.addsub,Calculate \(2\frac{4}{5} + 3\frac{1}{5}\). Give your answer as a mixed number in simplest form.,,,,,,"What it asks: Add the mixed numbers.
+Concept: Convert to improper fractions with a common denominator, calculate, then convert back to a mixed number.
+Step 1: Write as improper fractions over 5: 14/5 + 16/5.
+Step 2: Add numerators: 30/5.
+Step 3: Simplify and change to a mixed number: 6.
+Answer: \(6\)",Adding the whole numbers and the fractions separately but forgetting to carry when the fractions make more than 1.,"When in doubt, change both mixed numbers to improper fractions first.",,,14/5+16/5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""6""]}"
+T04-Q29,4,29,Beginner,3,Money,dec.money,"At the corner shop, Bao buys 8 notebooks at $1.97 each and a pen for $1.38. Bao pays with $25.00. How much change does Bao get?",$7.96,$17.14,$9.24,$7.86,D,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the notebooks: 8 × $1.97 = $15.76.
+Step 2: Add a pen: $15.76 + $1.38 = $17.14.
+Step 3: Change: $25.00 − $17.14 = $7.86.
+Answer: $7.86",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,25-(1.97*8+1.38),VERIFIED,MCQ,
+T04-Q30,4,30,Beginner,3,Units of Measurement,me.convert,How many kilograms are there in 3.3 tonnes?,"3,300 kg","4,300 kg","33,000 kg",330 kg,A,"What it asks: Change tonnes into kilograms.
+Concept: 1 t = 1,000 kg. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 t = 1,000 kg.
+Step 2: 3.3 × 1,000 = 3300.
+Answer: 3,300 kg","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,3.3*1000,VERIFIED,MCQ,

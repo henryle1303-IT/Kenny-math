@@ -1,0 +1,172 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T26-Q01,26,1,Advanced,3,Place Value & Rounding,wn.round,"Round 37,456 to the nearest thousand.",,,,,,"What it asks: Find the thousand that 37,456 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 37,456 is between 37,000 and 38,000.
+Step 2: It is 456 above 37,000 and 544 below 38,000.
+Step 3: It is closer to 37,000.
+Answer: 37,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(37456/1000)*1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""37000""]}"
+T26-Q02,26,2,Advanced,3,Decimals,dec.compare,Choose ALL the numbers that are greater than 3.5.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 3.51: yes, 3.51 is more than 3.5.
+Step 2: 3.62: yes, 3.62 is more than 3.5.
+Step 3: 3.44: no, 3.44 is less than 3.5.
+Step 4: 3.42: no, 3.42 is less than 3.5.
+Step 5: 3.46: no, 3.46 is less than 3.5.
+Answer: 3.51, 3.62",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""3.51"",""3.62"",""3.44"",""3.42"",""3.46""],""correct"":[0,1]}"
+T26-Q03,26,3,Advanced,3,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is true: 6 × 6 × 6 = 216.
+Step 2: Statement 2 is false: 255 is the area. The perimeter is 64 m.
+Step 3: Statement 3 is false: area is length × width = 255, not 17 + 15.
+Answer: True, False, False",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A cube with edges of 6 cm has a volume of 216 cm³"",""truth"":true},{""text"":""A rectangle 17 m long and 15 m wide has a perimeter of 255 m"",""truth"":false},{""text"":""A rectangle 17 m long and 15 m wide has an area of 32 m²"",""truth"":false}]}"
+T26-Q04,26,4,Advanced,3,Patterns & Algebra,pa.arith,"A number pattern starts 11, 14, 17, … and keeps adding 3. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 20: yes, 11 + 3 × 3 = 20.
+Step 2: 26: yes, 11 + 5 × 3 = 26.
+Step 3: 44: yes, 11 + 11 × 3 = 44.
+Step 4: 43: no, 43 is not 11 plus a multiple of 3.
+Step 5: 37: no, 37 is not 11 plus a multiple of 3.
+Answer: 20, 26, 44",Choosing numbers that are near the pattern but not on it.,Check that (number − 11) divides by 3.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""20"",""26"",""44"",""43"",""37""],""correct"":[0,1,2]}"
+T26-Q05,26,5,Advanced,3,Shapes & Objects,au.shapes,A design uses 4 quadrilaterals and 2 octagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 4 × 4 = 16.
+Step 2: 2 × 8 = 16.
+Step 3: 16 + 16 = 32.
+Answer: 32",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,4*4+2*8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""32""]}"
+T26-Q06,26,6,Advanced,3,Transformations & Symmetry,au.transform,"A point at (6, 6) is moved 5 to the right and 3 up. Its new position is ({1}, {2}).",,,,,,"What it asks: Find the new coordinates after a translation.
+Concept: Right/left changes x. Up/down changes y.
+Step 1: x: 6 + 5 = 11.
+Step 2: y: 6 + 3 = 9.
+Answer: 1) 11, 2) 9",Changing x when the move is up or down.,"x first, then y: along the corridor, then up the stairs.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""11""]},{""accepted"":[""9""]}]}"
+T26-Q07,26,7,Advanced,3,Chance,au.chance,What word do we use for an event that cannot happen?,,,,,,"What it asks: Answer with the correct word.
+Concept: An event that cannot happen is impossible.
+Step 1: An event that cannot happen is impossible.
+Answer: impossible",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""impossible""]}"
+T26-Q08,26,8,Advanced,3,Money,dec.money,"At the school store, Zoe buys 8 notebooks at $2.03 each and a pen for $2.63. Zoe pays with $25.00. How much change does Zoe get?",$8.76,$6.23,$6.13,$18.87,C,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the notebooks: 8 × $2.03 = $16.24.
+Step 2: Add a pen: $16.24 + $2.63 = $18.87.
+Step 3: Change: $25.00 − $18.87 = $6.13.
+Answer: $6.13",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,25-(2.03*8+2.63),VERIFIED,MCQ,
+T26-Q09,26,9,Advanced,3,Fractions,fr.addsub,Calculate \(\frac{2}{5}\) + \(\frac{9}{15}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{11}{5}\),\(\frac{11}{15}\),\(1\),\(\frac{11}{20}\),C,"What it asks: Add two fractions whose denominators are related.
+Concept: 15 is a multiple of 5, so change \(\frac{2}{5}\) to an equivalent fraction with denominator 15.
+Step 1: \(\frac{2}{5}\) = \(\frac{6}{15}\) (multiply top and bottom by 3).
+Step 2: \(\frac{6}{15}\) + \(\frac{9}{15}\) = \(\frac{15}{15}\).
+Step 3: Simplify (and write as a mixed number if the top is bigger than the bottom) to get \(1\).
+Answer: \(1\)","Adding the numerators and the denominators, for example 1/2 + 1/4 = 2/6.",Make the denominators the same first. Only the numerators are added.,,,2/5+9/15,VERIFIED,MCQ,
+T26-Q10,26,10,Advanced,3,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 32 and 72?,288,32,8,16,C,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 32: 1, 2, 4, 8, 16, 32.
+Step 2: Factors of 72: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72.
+Step 3: The biggest number in both lists is 8.
+Answer: 8","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(32,72)",VERIFIED,MCQ,
+T26-Q11,26,11,Advanced,4,Fractions,fr.addsub,Calculate \(4\frac{1}{3} + 3\frac{1}{8}\). Give your answer as a mixed number in simplest form.,\(7\frac{5}{12}\),\(7\frac{11}{24}\),\(7\frac{1}{2}\),\(7\frac{2}{11}\),B,"What it asks: Add the mixed numbers.
+Concept: Convert to improper fractions with a common denominator, calculate, then convert back to a mixed number.
+Step 1: Write as improper fractions over 24: 104/24 + 75/24.
+Step 2: Add numerators: 179/24.
+Step 3: Simplify and change to a mixed number: 179/24.
+Answer: \(7\frac{11}{24}\)",Adding the whole numbers and the fractions separately but forgetting to carry when the fractions make more than 1.,"When in doubt, change both mixed numbers to improper fractions first.",,,13/3+25/8,VERIFIED,MCQ,
+T26-Q12,26,12,Advanced,4,Data,wp.table,"A class survey recorded these numbers. Red: 78, Blue: 35, Green: 64, Yellow: 25. How many votes were there altogether?",167,202,78,212,B,"What it asks: Add all the votes.
+Concept: “Altogether” means add every group.
+Step 1: 78 + 35 + 64 + 25 = 202.
+Answer: 202",Leaving one of the groups out.,Tick each number as you add it.,,,78+35+64+25,VERIFIED,MCQ,
+T26-Q13,26,13,Advanced,4,Shapes & Objects,au.shapes,How many faces does a pentagonal prism have?,8,15,10,7,D,"What it asks: Count the faces of a 3D object.
+Concept: A pentagonal prism has 2 pentagonal ends and 5 rectangular sides. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 7, edges: 15, vertices: 10.
+Step 2: The question asks for the faces: 7.
+Answer: 7","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,7,VERIFIED,MCQ,
+T26-Q14,26,14,Advanced,4,Units of Measurement,me.problems,A jug holds 0.75 L of water. How many glasses of 150 mL can be filled completely from the jug?,,,,,,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 0.75 L = 750 mL.
+Step 2: 750 ÷ 150 = 5.
+Answer: 5",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,0.75*1000/150,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5""]}"
+T26-Q15,26,15,Advanced,4,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is false: 10:10 is 10:10 AM.
+Step 2: Statement 2 is true: 12:00 is 12:00 PM.
+Step 3: Statement 3 is true: 3 × 60 + 45 = 225.
+Answer: False, True, True",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""10:10 is the same time as 11:10 AM"",""truth"":false},{""text"":""12:00 is the same time as 12:00 PM"",""truth"":true},{""text"":""3 hours 45 minutes is 225 minutes"",""truth"":true}]}"
+T26-Q16,26,16,Advanced,4,Operations & Problem Solving,wn.muldiv,"Work out \(4{,}709 \div 17\).",277,267,278,287,A,"What it asks: Share the number equally and find the size of each share.
+Concept: Division is the opposite of multiplication. Break the number into friendly chunks.
+Step 1: Think: how many groups of 17 fit into 4,709?
+Step 2: 17 × 200 = 3,400, so take it away: 4,709 − 3,400 = 1,309.
+Step 3: 17 × 70 = 1,190, so take it away: 1,309 − 1,190 = 119.
+Step 4: 17 × 7 = 119, so take it away: 119 − 119 = 0.
+Step 5: The parts add up: 200 + 70 + 7 = 277.
+Answer: 277",Losing a zero or skipping a place in the answer.,"Check your answer: 277 × 17 should give back 4,709.",,,4709/17,VERIFIED,MCQ,
+T26-Q17,26,17,Advanced,4,Fractions,fr.forms,Find the missing number: \(\frac{40}{48} = \frac{5}{\square}\),,,,,,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 40 ÷ 8 = 5, so the numerator was divided by 8.
+Step 2: Do the same to the denominator: 48 ÷ 8 = 6.
+Answer: 6",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""6""]}"
+T26-Q18,26,18,Advanced,4,Factors & Multiples,wn.factors,What is the least common multiple (LCM) of 28 and 42?,84,1176,42,14,A,"What it asks: Find the smallest number that both numbers divide into.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 28: 28, 56, 84, 112…
+Step 2: Multiples of 42: 42, 84, 126…
+Step 3: The first number in both lists is 84.
+Answer: 84","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(28,42)",VERIFIED,MCQ,
+T26-Q19,26,19,Advanced,4,Operations & Problem Solving,wn.muldiv,Complete the number sentences: {1} × 19 = 247 and 136 ÷ {2} = 8.,,,,,,"What it asks: Use multiplication and division as opposite operations.
+Concept: Multiplication and division undo each other.
+Step 1: 247 ÷ 19 = 13.
+Step 2: 136 ÷ 8 = 17.
+Answer: 1) 13, 2) 17",Using the wrong operation to find the missing number.,"To find a missing factor, divide the product by the known factor.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""13""]},{""accepted"":[""17""]}]}"
+T26-Q20,26,20,Advanced,4,Money,wp.money,Ella buys 4 notebooks at $6.26 each and 2 calculators at $7.78 each and pays with $60.00. How much change should Ella get?,$34.96,$19.40,$20.40,$40.60,B,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $6.26 = $25.04.
+Step 2: Calculators: 2 × $7.78 = $15.56.
+Step 3: Total: $40.60. Change: $60.00 − $40.60 = $19.40.
+Answer: $19.40",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,60-(6.26*4+7.78*2),VERIFIED,MCQ,
+T26-Q21,26,21,Advanced,4,Operations & Problem Solving,ms.planning,A recipe for 8 people uses 300 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 40 people?,,,,,,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 40 people is 5 times 8 people, so flour needed = 300 × 5 = 1,500 g.
+Step 2: 1,500 g = 1.5 kg.
+Step 3: Bags are whole, so round up: 2.
+Answer: 2","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(300*5/1000),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""2""]}"
+T26-Q22,26,22,Advanced,4,Patterns & Algebra,pa.arith,"Find the missing number in this pattern: 15, 18, 21, □, 27",30,21,27,24,D,"What it asks: Use the numbers around the gap to find the rule.
+Concept: Work out the rule from two neighbouring numbers that are both known.
+Step 1: From the known numbers the difference per step is 3.
+Step 2: The missing number is 24.
+Answer: 24",Using the wrong step size when the gap is in the middle.,Check your answer fits in both directions: before and after the gap.,,,15+(3)*3,VERIFIED,MCQ,
+T26-Q23,26,23,Advanced,4,"Perimeter, Area & Volume",ge.volume,"A rectangular tray of ice is 15 cm long, 6 cm wide and 6 cm deep. How many 3 cm ice cubes can be cut from it?",,,,,,"What it asks: Count how many small cubes fit along each edge, then multiply.
+Concept: Number of cubes = (length ÷ s) × (width ÷ s) × (height ÷ s).
+Step 1: Along the length: 15 ÷ 3 = 5. Along the width: 6 ÷ 3 = 2. Up the height: 6 ÷ 3 = 2.
+Step 2: 5 × 2 × 2 = 20.
+Answer: 20",Dividing the big volume by the small side length instead of the small volume.,Or: box volume 540 ÷ cube volume 27 = 20.,,,(15/3)*(6/3)*(6/3),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""20""]}"
+T26-Q24,26,24,Advanced,4,Time,ts.clock,Put these times in order from shortest to longest.,,,,,,"What it asks: Put the items in order, shortest to longest.
+Concept: Change every time to minutes before you compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 41 minutes, 1 h 21 min, 147 minutes, 2 h 56 min.
+Answer: 41 minutes, 1 h 21 min, 147 minutes, 2 h 56 min",Treating an hour as 100 minutes.,1 hour = 60 minutes.,,,,VERIFIED,ORDERING,"{""items"":[""41 minutes"",""1 h 21 min"",""147 minutes"",""2 h 56 min""]}"
+T26-Q25,26,25,Advanced,4,Angles,ge.angles,Two angles in a triangle are 55° and 68°. What is the third angle?,,,,,,"What it asks: Find the missing angle in the triangle.
+Concept: The three angles in a triangle always add up to 180°.
+Step 1: 55 + 68 = 123.
+Step 2: 180 − 123 = 57°.
+Answer: 57°",Using 360° (that is for four-sided shapes) or 90°.,Triangle → 180°. Quadrilateral → 360°.,,,180-55-68,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""57""],""unit"":""°""}"
+T26-Q26,26,26,Advanced,5,Place Value & Rounding,wn.round,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: To round, look at the digit to the right of the place you are rounding to: 5 or more rounds up.
+Step 1: Statement 1 is true: look at the digit to the right of the tens place; 280,279 is closest to 280,280.
+Step 2: Statement 2 is false: look at the digit to the right of the thousands place; 285,498 is closest to 285,000.
+Step 3: Statement 3 is true: look at the digit to the right of the thousands place; 21,486 is closest to 21,000.
+Answer: True, False, True",Rounding down when the next digit is 5 or more.,"Underline the rounding place, then check the next digit.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""280,279 rounded to the nearest ten is 280,280"",""truth"":true},{""text"":""285,498 rounded to the nearest thousand is 284,000"",""truth"":false},{""text"":""21,486 rounded to the nearest thousand is 21,000"",""truth"":true}]}"
+T26-Q27,26,27,Advanced,5,Location & Maps,au.maps,"On a town map the school is at B1 and the pool is at G4. Walking along the grid lines (only east and north), how many squares must you cross to get from the school to the pool?",,,,,,"What it asks: Find the number of grid steps between two places.
+Concept: Add the steps east and the steps north.
+Step 1: East: B to G = 5.
+Step 2: North: 1 to 4 = 3.
+Step 3: 5 + 3 = 8.
+Answer: 8 squares",Taking only the larger of the two distances.,"Along grid lines, you add the two sides of the rectangle.",,,8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""],""unit"":""squares""}"
+T26-Q28,26,28,Advanced,5,Units of Measurement,me.convert,Convert: 3.5 L = {1} mL and 3.5 km = {2} m.,,,,,,"What it asks: Change between metric units.
+Concept: To change to a smaller unit, multiply by 10, 100 or 1000.
+Step 1: 1 L = 1,000 mL, so 3.5 × 1,000 = 3,500.
+Step 2: 1 km = 1,000 m, so 3.5 × 1,000 = 3,500.
+Answer: 1) 3500, 2) 3500",Dividing instead of multiplying.,Larger unit to smaller unit: multiply.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""3500""]},{""accepted"":[""3500""]}]}"
+T26-Q29,26,29,Advanced,5,Data,au.data,"In a picture graph, each ★ stands for 6 students who walk to school. Class 5D has 8 ★ and Class 5C has 6 ★. How many more students walk to school in Class 5D than in Class 5C?",12,84,2,18,A,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 6, so multiply the number of stars by 6.
+Step 1: Class 5D: 8 × 6 = 48. Class 5C: 6 × 6 = 36.
+Step 2: 48 − 36 = 12.
+Answer: 12",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,8*6-6*6,VERIFIED,MCQ,
+T26-Q30,26,30,Advanced,5,Decimals,dec.compare,Which of these decimals is the greatest?,6.212,6.565,6.641,6.778,D,"What it asks: Pick the decimal with the largest value.
+Concept: Compare decimals place by place from the left: ones, then tenths, then hundredths, then thousandths.
+Step 1: Write them with the same number of decimal places: 6.641, 6.212, 6.778, 6.565.
+Step 2: Compare digit by digit from the left.
+Step 3: Greatest: 6.778.
+Answer: 6.778","Thinking a decimal with more digits is bigger (0.45 is NOT smaller than 0.4500, and 0.5 is bigger than 0.499).","Add zeros at the end so all decimals have the same length, then compare as whole numbers.",,,"max(6.641,6.212,6.778,6.565)",VERIFIED,MCQ,

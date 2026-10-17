@@ -1,0 +1,160 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T16-Q01,16,1,Intermediate,2,Operations & Problem Solving,ms.planning,A recipe for 6 people uses 150 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 30 people?,,,,,,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 30 people is 5 times 6 people, so flour needed = 150 × 5 = 750 g.
+Step 2: 750 g = 0.75 kg.
+Step 3: Bags are whole, so round up: 1.
+Answer: 1","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(150*5/1000),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1""]}"
+T16-Q02,16,2,Intermediate,2,Chance,au.chance,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Chance words: impossible, unlikely, even chance, likely, certain.
+Step 1: Statement 1 is true: this event is unlikely.
+Step 2: Statement 2 is false: it is certain, not likely.
+Answer: True, False","Calling an event with a 1 in 6 chance ""even"".",Count the ways it can happen out of all the ways.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Rolling a 1 on a standard six-sided die is unlikely"",""truth"":true},{""text"":""A dropped ball falls to the ground is likely"",""truth"":false}]}"
+T16-Q03,16,3,Intermediate,2,Shapes & Objects,au.shapes,How many edges does a rectangular prism have?,,,,,,"What it asks: Count the edges of a 3D object.
+Concept: A rectangular prism has 6 rectangular faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 6, edges: 12, vertices: 8.
+Step 2: The question asks for the edges: 12.
+Answer: 12","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T16-Q04,16,4,Intermediate,2,Location & Maps,au.maps,"On a map, 1 cm stands for 10 km. Two towns are 7 cm apart on the map. What is the real distance between the towns?",80 km,70 km,17 km,700 km,B,"What it asks: Use a map scale to find a real distance.
+Concept: Multiply the map distance by the number of kilometres that 1 cm stands for.
+Step 1: 7 × 10 = 70.
+Answer: 70 km",Adding the scale instead of multiplying.,"Each centimetre is the same real distance, so multiply.",,,7*10,VERIFIED,MCQ,
+T16-Q05,16,5,Intermediate,2,Place Value & Rounding,wn.place,"Complete the place value: 6,557 = 6 thousands + {1} hundreds + {2} tens + 7 ones.",,,,,,"What it asks: Split a number into its place values.
+Concept: Each digit is worth its place: thousands, hundreds, tens or ones.
+Step 1: 6,557 has 6 thousands, 5 hundreds, 5 tens and 7 ones.
+Answer: 1) 5, 2) 5",Writing the digit in the wrong place.,Zero still holds a place.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""5""]},{""accepted"":[""5""]}]}"
+T16-Q06,16,6,Intermediate,2,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is false: a square has 4 equal sides: 4 × 11 = 44.
+Step 2: Statement 2 is true: 4 × 11 = 44.
+Answer: False, True",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A square with sides of 11 cm has a perimeter of 22 cm"",""truth"":false},{""text"":""A square with sides of 11 cm has a perimeter of 44 cm"",""truth"":true}]}"
+T16-Q07,16,7,Intermediate,2,Time,ts.clock,A train timetable shows a departure at 15:00. What time is that in 12-hour time?,2:00 PM,4:00 PM,3:00 AM,3:00 PM,D,"What it asks: Change a 24-hour time to 12-hour time with AM or PM.
+Concept: 24-hour times from 13:00 onwards are PM: subtract 12 hours. 00:xx is 12:xx AM and 12:xx is 12:xx PM.
+Step 1: 15 − 12 = 3.
+Step 2: So 15:00 is 3:00 PM.
+Answer: 3:00 PM","Writing AM instead of PM, or forgetting to subtract 12 hours.","After noon, subtract 12 from the hour and write PM.",,,900,VERIFIED,MCQ,
+T16-Q08,16,8,Intermediate,2,Money,dec.money,"At the toy shop, Dan buys 8 erasers at $2.19 each and pays with $20.00. How much change does Dan get?",$2.58,$17.52,$2.49,$2.48,D,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the erasers: 8 × $2.19 = $17.52.
+Step 2: Change: $20.00 − $17.52 = $2.48.
+Answer: $2.48",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,20-(2.19*8),VERIFIED,MCQ,
+T16-Q09,16,9,Intermediate,2,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is true: 11 × 6 = 66.
+Step 2: Statement 2 is false: 66 is the area. The perimeter is 34 m.
+Answer: True, False",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A rectangle 11 m long and 6 m wide has an area of 66 m²"",""truth"":true},{""text"":""A rectangle 11 m long and 6 m wide has a perimeter of 66 m"",""truth"":false}]}"
+T16-Q10,16,10,Intermediate,2,Operations & Problem Solving,wp.twostep,5 children each collect 5 eggs. Then 2 more children join and each of them also collects 5 eggs. How many eggs are collected altogether?,35,27,10,25,A,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: First group: 5 × 5 = 25.
+Step 2: New children: 2 × 5 = 10.
+Step 3: Total: 25 + 10 = 35.
+Answer: 35","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,(5+2)*5,VERIFIED,MCQ,
+T16-Q11,16,11,Intermediate,3,Decimals,dec.compare,Choose ALL the numbers that are greater than 3.5.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 3.59: yes, 3.59 is more than 3.5.
+Step 2: 3.34: no, 3.34 is less than 3.5.
+Step 3: 3.45: no, 3.45 is less than 3.5.
+Step 4: 3.43: no, 3.43 is less than 3.5.
+Step 5: 3.53: yes, 3.53 is more than 3.5.
+Answer: 3.59, 3.53",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""3.59"",""3.34"",""3.45"",""3.43"",""3.53""],""correct"":[0,4]}"
+T16-Q12,16,12,Intermediate,3,Patterns & Algebra,oo.basic,Vy worked out \(17 + 9 \times 8\) and got 208. Vy’s answer is not correct. What is the correct value?,209,79,89,99,C,"What it asks: Find the mistake in Vy’s method and give the correct value.
+Concept: Multiplication is done before addition and subtraction unless brackets say otherwise.
+Step 1: Vy worked left to right and got 208.
+Step 2: The correct order is to multiply first: 9 × 8 = 72.
+Step 3: Then add: 17 + 72 = 89.
+Answer: 89",Doing the operations in the order they are written instead of the order of operations.,"Underline the multiplication or division first, work it out, then rewrite the expression.",,,17+9*8,VERIFIED,MCQ,
+T16-Q13,16,13,Intermediate,3,Data,au.data,What do we call a chart that uses marks grouped in fives to count (one word)?,,,,,,"What it asks: Answer with the correct word.
+Concept: A tally chart groups marks in fives.
+Step 1: A tally chart groups marks in fives.
+Answer: tally",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""tally""]}"
+T16-Q14,16,14,Intermediate,3,Operations & Problem Solving,wp.multiplicative,Bao has 8 marbles. Grace has 5 times as many marbles as Bao. How many marbles do they have together?,40,13,56,48,D,"What it asks: Find both amounts and add them.
+Concept: “k times as many” means multiply by k.
+Step 1: Grace has 5 × 8 = 40.
+Step 2: Together: 8 + 40 = 48.
+Answer: 48",Stopping after finding only one person’s amount.,Re-read the question to see whether it asks for one amount or the total.,,,8+8*5,VERIFIED,MCQ,
+T16-Q15,16,15,Intermediate,3,Factors & Multiples,wn.factors,How many different factors does 56 have?,8,7,6,9,A,"What it asks: Count every whole number that divides 56 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 56, 2 × 28, 4 × 14, 7 × 8.
+Step 2: List all the factors: 1, 2, 4, 7, 8, 14, 28, 56.
+Step 3: There are 8 factors.
+Answer: 8","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(56),VERIFIED,MCQ,
+T16-Q16,16,16,Intermediate,3,Decimals,dec.place,"What is \(1.863 \times 1{,}000\)?",,,,,,"What it asks: Shift the digits to the left by the right number of places.
+Concept: Multiplying by 1,000 moves every digit 3 places left (bigger).
+Step 1: 1,000 has 3 zeros, so move the digits 3 places left.
+Step 2: 1.863 × 1,000 = 1863.
+Answer: 1863",Moving the decimal point the wrong way or by the wrong number of places.,Bigger number = point moves right. Smaller number = point moves left.,,,1.863*1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1863""]}"
+T16-Q17,16,17,Intermediate,3,Units of Measurement,me.convert,Choose ALL the measurements that are equal to 6 m.,,,,,,"What it asks: Choose every correct answer.
+Concept: Metric units change by factors of 10, 100 and 1000.
+Step 1: 600 cm: yes, 6 m = 600 cm.
+Step 2: 600 mm: no, that is not the same length as 6 m.
+Step 3: 6,000 cm: no, that is not the same length as 6 m.
+Step 4: 0.006 km: yes, 6 m = 0.006 km.
+Step 5: 6,000 mm: yes, 6 m = 6,000 mm.
+Answer: 600 cm, 0.006 km, 6,000 mm",Moving the decimal point the wrong number of places.,Convert every option to the same unit.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""600 cm"",""600 mm"",""6,000 cm"",""0.006 km"",""6,000 mm""],""correct"":[0,3,4]}"
+T16-Q18,16,18,Intermediate,3,Data,au.data,"In a picture graph, each ★ stands for 8 students who walk to school. Class 5B has 6 ★ and Class 5C has 5 ★. How many more students walk to school in Class 5B than in Class 5C?",16,1,88,8,D,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 8, so multiply the number of stars by 8.
+Step 1: Class 5B: 6 × 8 = 48. Class 5C: 5 × 8 = 40.
+Step 2: 48 − 40 = 8.
+Answer: 8",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,6*8-5*8,VERIFIED,MCQ,
+T16-Q19,16,19,Intermediate,3,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 40 that can be divided exactly by both 6 and 8?,,,,,,"What it asks: Find a multiple of both 6 and 8 that is just above 40.
+Concept: Numbers divisible by both 6 and 8 are multiples of their LCM, which is 24.
+Step 1: LCM of 6 and 8 is 24.
+Step 2: Multiples of 24: …, 24, 48, …
+Step 3: The first one greater than 40 is 48.
+Answer: 48",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(40/lcm(6,8))+1)*lcm(6,8)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""48""]}"
+T16-Q20,16,20,Intermediate,3,Money,au.money,"Khoa's shopping bill is $186.99. Khoa pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Khoa pay?",$186.90,$187.00,$186.99,$186.95,B,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $186.99; look at the last digit of the cents, 9.
+Step 2: It is closer to $187.00 than to $186.95.
+Answer: $187.00","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,18700/100,VERIFIED,MCQ,
+T16-Q21,16,21,Intermediate,3,Fractions,fr.forms,Write \(\frac{23}{9}\) as a mixed number.,\(2\frac{4}{9}\),\(2\frac{5}{9}\),\(5\frac{2}{9}\),\(3\frac{5}{9}\),B,"What it asks: Find how many whole ones are in the fraction and what is left over.
+Concept: An improper fraction has a numerator bigger than its denominator. Divide to find wholes and remainder.
+Step 1: 23 ÷ 9 = 2 remainder 5.
+Step 2: So there are 2 wholes and 5/9 left.
+Step 3: The mixed number is 2 5/9.
+Answer: \(2\frac{5}{9}\)",Writing the remainder as the whole number or changing the denominator.,"Whole number = quotient, new numerator = remainder, denominator stays the same.",,,2+5/9,VERIFIED,MCQ,
+T16-Q22,16,22,Intermediate,3,Transformations & Symmetry,au.transform,"A star is 9 squares from a mirror line. Its reflection is on the other side of the line, the same distance away. How many squares apart are the star and its reflection?",18 squares,9 squares,11 squares,20 squares,A,"What it asks: Find the distance between a shape and its reflection.
+Concept: A reflection is as far behind the mirror line as the original is in front of it.
+Step 1: Each is 9 squares from the line.
+Step 2: 9 + 9 = 18.
+Answer: 18 squares",Giving the distance to the mirror line only.,"Distance to the line, doubled.",,,18,VERIFIED,MCQ,
+T16-Q23,16,23,Intermediate,3,Units of Measurement,me.problems,A jug holds 1.6 L of juice. How many glasses of 200 mL can be filled completely from the jug?,18,7,8,80,C,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 1.6 L = 1,600 mL.
+Step 2: 1,600 ÷ 200 = 8.
+Answer: 8",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,1.6*1000/200,VERIFIED,MCQ,
+T16-Q24,16,24,Intermediate,3,Shapes & Objects,au.shapes,A design uses 3 octagons and 4 heptagons. How many sides are there altogether?,180,52,22,28,B,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 3 × 8 = 24.
+Step 2: 4 × 7 = 28.
+Step 3: 24 + 28 = 52.
+Answer: 52",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,3*8+4*7,VERIFIED,MCQ,
+T16-Q25,16,25,Intermediate,3,Patterns & Algebra,oo.basic,Calculate \((19 + 26) \div 9 + 5\).,,,,,,"What it asks: Work out the value of the expression using the correct order of operations.
+Concept: Order of operations: Brackets, then powers, then × and ÷ (left to right), then + and − (left to right).
+Step 1: Brackets first: 19 + 26 = 45.
+Step 2: Divide: 45 ÷ 9 = 5.
+Step 3: Add: 5 + 5 = 10.
+Answer: 10","Working strictly from left to right and ignoring that multiplication, division and brackets have priority.","Remember BODMAS/PEMDAS. Brackets first, then divide, then add.",,,(19+26)/9+5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""10""]}"
+T16-Q26,16,26,Intermediate,4,Place Value & Rounding,wn.place,"Complete the place value: 75,670 = 75 thousands + {1} hundreds + 7 tens + {2} ones.",,,,,,"What it asks: Split a number into its place values.
+Concept: Each digit is worth its place: thousands, hundreds, tens or ones.
+Step 1: 75,670 has 75 thousands, 6 hundreds, 7 tens and 0 ones.
+Answer: 1) 6, 2) 0",Writing the digit in the wrong place.,Zero still holds a place.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""6""]},{""accepted"":[""0""]}]}"
+T16-Q27,16,27,Intermediate,4,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{2}{6}\), \(\frac{3}{6}\), \(\frac{15}{12}\), \(\frac{8}{6}\).
+Answer: \(\frac{2}{6}\), \(\frac{3}{6}\), \(\frac{15}{12}\), \(\frac{8}{6}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{2}{6}\\)"",""\\(\\frac{3}{6}\\)"",""\\(\\frac{15}{12}\\)"",""\\(\\frac{8}{6}\\)""]}"
+T16-Q28,16,28,Intermediate,4,Angles,ge.angles,A right angle is split into two angles. One of them is 57°. What is the size of the other angle?,123°,147°,33°,57°,C,"What it asks: Find an angle inside a right angle.
+Concept: A right angle is 90°.
+Step 1: 90 − 57 = 33.
+Answer: 33°",Using 180° (a straight line) instead of 90° (a right angle).,A right angle is a square corner and measures 90°.,,,90-57,VERIFIED,MCQ,
+T16-Q29,16,29,Intermediate,4,Fractions,fr.compare,Which of these fractions is the smallest?,\(\frac{5}{6}\),\(\frac{1}{6}\),\(\frac{1}{8}\),\(\frac{1}{12}\),D,"What it asks: Pick the fraction with the smallest value.
+Concept: To compare fractions, give them the same denominator (or the same numerator) so the pieces are comparable.
+Step 1: Change every fraction to a denominator of 24.
+Step 2: In order from smallest to largest: 1/12 < 1/8 < 1/6 < 5/6.
+Step 3: The smallest is 1/12.
+Answer: \(\frac{1}{12}\)",Thinking the fraction with the bigger denominator is bigger (1/8 is smaller than 1/4).,"A bigger denominator means the whole is cut into more, smaller pieces.",,,"min(1/8,5/6,1/12,1/6)",VERIFIED,MCQ,
+T16-Q30,16,30,Intermediate,4,Time,ts.convert,How many minutes are there in 4.75 hours?,,,,,,"What it asks: Change hours into minutes.
+Concept: 1 hour = 60 minutes.
+Step 1: 4.75 × 60 = 285 minutes.
+Answer: 285 minutes",Using 100 instead of 60.,"Half an hour is 30 minutes, a quarter of an hour is 15 minutes.",,,4.75*60,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""285""],""unit"":""minutes""}"

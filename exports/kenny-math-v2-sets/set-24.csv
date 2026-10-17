@@ -1,0 +1,169 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T24-Q01,24,1,Advanced,3,Angles,ge.angles,What do we call an angle that is bigger than 90° but smaller than 180°?,,,,,,"What it asks: Answer with the correct word.
+Concept: Angles between 90° and 180° are obtuse.
+Step 1: Angles between 90° and 180° are obtuse.
+Answer: obtuse",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""obtuse""]}"
+T24-Q02,24,2,Advanced,3,Operations & Problem Solving,wp.rounding,Zoe wants to buy a science kit that costs $65. Zoe already has $10 and saves $6 each week. What is the smallest number of weeks Zoe needs to save to afford it?,11,12,9,10,D,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $65 − $10 = $55.
+Step 2: 55 ÷ 6 = 9.17, so after 9 weeks it is not enough.
+Step 3: Zoe needs 10 weeks.
+Answer: 10","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((65-10)/6),VERIFIED,MCQ,
+T24-Q03,24,3,Advanced,3,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{2}{3}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{7}{9}\): no, the top should be 6 to stay equal.
+Step 2: \(\frac{6}{10}\): no, the bottom should be 9 to stay equal.
+Step 3: \(\frac{10}{15}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 5.
+Step 4: \(\frac{11}{15}\): no, the top should be 10 to stay equal.
+Step 5: \(\frac{4}{6}\): yes, multiply top and bottom of \(\frac{2}{3}\) by 2.
+Answer: \(\frac{10}{15}\), \(\frac{4}{6}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{7}{9}\\)"",""\\(\\frac{6}{10}\\)"",""\\(\\frac{10}{15}\\)"",""\\(\\frac{11}{15}\\)"",""\\(\\frac{4}{6}\\)""],""correct"":[2,4]}"
+T24-Q04,24,4,Advanced,3,Decimals,dec.place,What is the value of the digit 8 in 7.8341?,,,,,,"What it asks: Find what the digit 8 is worth in the tenths place.
+Concept: Each place to the right of the decimal point is ten times smaller than the one before.
+Step 1: In 7.8341, the digit 8 is in the tenths place.
+Step 2: tenths means 8 ÷ 10 = 0.8.
+Answer: 0.8",Mixing up tenths (0.1) with tens (10) or reading the wrong place.,Say the number aloud: 3.25 is “three and twenty-five hundredths”.,,,8/10,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""0.8""]}"
+T24-Q05,24,5,Advanced,3,Units of Measurement,me.convert,Put these lengths in order from shortest to longest.,,,,,,"What it asks: Put the items in order, shortest to longest.
+Concept: Change every length to the same unit before comparing.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 383 mm, 62 cm, 87 cm, 94 cm.
+Answer: 383 mm, 62 cm, 87 cm, 94 cm",Comparing the numbers without the units.,"1 m = 100 cm = 1,000 mm.",,,,VERIFIED,ORDERING,"{""items"":[""383 mm"",""62 cm"",""87 cm"",""94 cm""]}"
+T24-Q06,24,6,Advanced,3,Time,ts.clock,Isla's tram leaves Fremantle at 9:09 AM and arrives at 10:41 AM. How many minutes does the trip take?,,,,,,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 9:09 AM to 10:41 AM.
+Step 2: 92 minutes pass.
+Answer: 92 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,92,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""92""],""unit"":""minutes""}"
+T24-Q07,24,7,Advanced,3,Place Value & Rounding,wn.place,"Which number is the same as \(3 \times 10{,}000 + 5 \times 100 + 3 \times 10\)?","31,530","30,530","3,503",353,B,"What it asks: Turn the expanded form into an ordinary number.
+Concept: Expanded form shows each digit multiplied by its place value.
+Step 1: Work out each part: 30,000, 500, 30.
+Step 2: Add them: 30,000 + 500 + 30 = 30,530.
+Step 3: Places with no part are zeros.
+Answer: 30,530",Leaving out the zero placeholders and writing a number that is too short.,Write a 0 in every place value that is missing from the expanded form.,,,30000+500+30,VERIFIED,MCQ,
+T24-Q08,24,8,Advanced,3,Money,au.money,A cap costs $32.00. It is on sale for 50% off. What is the sale price?,,,,,,"What it asks: Find the price after a 50% discount.
+Concept: 50% is a half, so halve the price.
+Step 1: 50% of $32.00 = $16.00.
+Step 2: $32.00 − $16.00 = $16.00.
+Answer: $16.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,32-32*50/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""16.00""]}"
+T24-Q09,24,9,Advanced,3,Fractions,fr.forms,Write \(\frac{9}{108}\) in its simplest form.,\(\frac{9}{12}\),\(\frac{1}{12}\),\(\frac{1}{108}\),\(\frac{2}{12}\),B,"What it asks: Write the fraction using the smallest possible numerator and denominator.
+Concept: Divide the numerator and denominator by their greatest common factor.
+Step 1: The greatest common factor of 9 and 108 is 9.
+Step 2: 9 ÷ 9 = 1 and 108 ÷ 9 = 12.
+Step 3: The simplest form is 1/12.
+Answer: \(\frac{1}{12}\)","Dividing the top and bottom by different numbers, or stopping before the fraction is fully simplified.",Whatever you do to the top you must do to the bottom.,,,9/108,VERIFIED,MCQ,
+T24-Q10,24,10,Advanced,3,Decimals,dec.place,What is \(5.675 \times 10\)?,56.75,0.5675,567.5,5.675,A,"What it asks: Shift the digits to the left by the right number of places.
+Concept: Multiplying by 10 moves every digit 1 place left (bigger).
+Step 1: 10 has 1 zero, so move the digits 1 place left.
+Step 2: 5.675 × 10 = 56.75.
+Answer: 56.75",Moving the decimal point the wrong way or by the wrong number of places.,Bigger number = point moves right. Smaller number = point moves left.,,,5.675*10,VERIFIED,MCQ,
+T24-Q11,24,11,Advanced,4,Fractions,fr.compare,Which of these fractions is the greatest?,\(\frac{1}{10}\),\(\frac{7}{8}\),\(\frac{7}{10}\),\(\frac{1}{6}\),B,"What it asks: Pick the fraction with the largest value.
+Concept: To compare fractions, give them the same denominator (or the same numerator) so the pieces are comparable.
+Step 1: Change every fraction to a denominator of 120.
+Step 2: In order from smallest to largest: 1/10 < 1/6 < 7/10 < 7/8.
+Step 3: The greatest is 7/8.
+Answer: \(\frac{7}{8}\)",Thinking the fraction with the bigger denominator is bigger (1/8 is smaller than 1/4).,"A bigger denominator means the whole is cut into more, smaller pieces.",,,"max(1/10,7/10,1/6,7/8)",VERIFIED,MCQ,
+T24-Q12,24,12,Advanced,4,Chance,au.chance,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Chance words: impossible, unlikely, even chance, likely, certain.
+Step 1: Statement 1 is true: this event is certain.
+Step 2: Statement 2 is false: it is certain, not impossible.
+Step 3: Statement 3 is false: it is certain, not an even chance.
+Answer: True, False, False","Calling an event with a 1 in 6 chance ""even"".",Count the ways it can happen out of all the ways.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A spinner with 4 equal colours lands on one of those 4 colours is certain"",""truth"":true},{""text"":""A dropped ball falls to the ground is impossible"",""truth"":false},{""text"":""A spinner with 4 equal colours lands on one of those 4 colours is an even chance"",""truth"":false}]}"
+T24-Q13,24,13,Advanced,4,Time,ts.clock,A train timetable shows a departure at 18:57. What time is that in 12-hour time?,6:57 AM,5:57 PM,6:57 PM,7:57 PM,C,"What it asks: Change a 24-hour time to 12-hour time with AM or PM.
+Concept: 24-hour times from 13:00 onwards are PM: subtract 12 hours. 00:xx is 12:xx AM and 12:xx is 12:xx PM.
+Step 1: 18 − 12 = 6.
+Step 2: So 18:57 is 6:57 PM.
+Answer: 6:57 PM","Writing AM instead of PM, or forgetting to subtract 12 hours.","After noon, subtract 12 from the hour and write PM.",,,1137,VERIFIED,MCQ,
+T24-Q14,24,14,Advanced,4,Data,au.data,"In a picture graph, each ★ stands for 4 students who walk to school. Class 5D has 6 ★ and Class 5B has 8 ★. How many more students walk to school in Class 5B than in Class 5D?",,,,,,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 4, so multiply the number of stars by 4.
+Step 1: Class 5D: 6 × 4 = 24. Class 5B: 8 × 4 = 32.
+Step 2: 32 − 24 = 8.
+Answer: 8",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,8*4-6*4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""]}"
+T24-Q15,24,15,Advanced,4,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is true: 25 × 14 = 350.
+Step 2: Statement 2 is false: volume is edge × edge × edge = 216.
+Step 3: Statement 3 is true: 4 × 9 = 36.
+Answer: True, False, True",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A rectangle 25 m long and 14 m wide has an area of 350 m²"",""truth"":true},{""text"":""A cube with edges of 6 cm has a volume of 18 cm³"",""truth"":false},{""text"":""A square with sides of 9 cm has a perimeter of 36 cm"",""truth"":true}]}"
+T24-Q16,24,16,Advanced,4,Shapes & Objects,au.shapes,A design uses 3 octagons and 5 pentagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 3 × 8 = 24.
+Step 2: 5 × 5 = 25.
+Step 3: 24 + 25 = 49.
+Answer: 49",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,3*8+5*5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""49""]}"
+T24-Q17,24,17,Advanced,4,Units of Measurement,me.problems,Kira has a bag of flour of 6 kg 650 g and another one of 3 kg 700 g. What is the total in g?,"10,360 g","10,350 g","11,350 g","2,950 g",B,"What it asks: Change both amounts to g and add.
+Concept: Convert everything to the same unit first. 1 kg = 1,000 g.
+Step 1: 6 kg 650 g = 6,650 g.
+Step 2: 3 kg 700 g = 3,700 g.
+Step 3: 6,650 + 3,700 = 10,350 g.
+Answer: 10,350 g",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,6650+3700,VERIFIED,MCQ,
+T24-Q18,24,18,Advanced,4,Factors & Multiples,wn.factors,Bus A leaves the station every 28 minutes and Bus B every 42 minutes. They leave together at 8:00. After how many minutes will they next leave together?,,,,,,"What it asks: Find the first time both events happen together.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 28: 28, 56, 84, 112…
+Step 2: Multiples of 42: 42, 84, 126…
+Step 3: The first number in both lists is 84.
+Answer: 84","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(28,42)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""84""]}"
+T24-Q19,24,19,Advanced,4,Patterns & Algebra,pa.arith,"Complete the number pattern: 20, {1}, 38, 47, 56, {2}, 74.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 9 each time.
+Step 1: The difference between neighbouring numbers is 9.
+Step 2: Blank 1: 29. Blank 2: 65.
+Answer: 1) 29, 2) 65",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""29""]},{""accepted"":[""65""]}]}"
+T24-Q20,24,20,Advanced,4,Operations & Problem Solving,wp.rounding,"239 chairs are put in rows of 34. How many rows are needed to seat everyone, if the last row can be shorter?",,,,,,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 239 ÷ 34 = 7 remainder 1.
+Step 2: The 1 left over still need space, so add one more.
+Step 3: 7 + 1 = 8.
+Answer: 8",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(239/34),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""]}"
+T24-Q21,24,21,Advanced,4,Patterns & Algebra,pa.functions,"A rule changes each input number to an output number. Input 2 gives 21, input 3 gives 29, and input 5 gives 45. What output does input 15 give?",20,125,120,133,B,"What it asks: Find the rule from the examples, then use it.
+Concept: Rules usually combine multiplying and adding: look at how the output changes when the input goes up by 1.
+Step 1: When the input goes up by 1, the output goes up by 8, so the rule includes × 8.
+Step 2: 2 × 8 = 16, and the output is 21, so we add 5.
+Step 3: For 15: 8 × 15 + 5 = 125.
+Answer: 125",Finding only the “+ b” part or only the “× a” part of the rule.,Test your rule on every example before using it.,,,8*15+5,VERIFIED,MCQ,
+T24-Q22,24,22,Advanced,4,Place Value & Rounding,wn.round,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: To round, look at the digit to the right of the place you are rounding to: 5 or more rounds up.
+Step 1: Statement 1 is true: 6 × 1,000 = 6,000.
+Step 2: Statement 2 is false: look at the digit to the right of the hundreds place; 195,118 is closest to 195,100.
+Step 3: Statement 3 is false: it is in the thousands place.
+Answer: True, False, False",Rounding down when the next digit is 5 or more.,"Underline the rounding place, then check the next digit.",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""In 6,284, the digit 6 is in the thousands place"",""truth"":true},{""text"":""195,118 rounded to the nearest hundred is 195,000"",""truth"":false},{""text"":""In 6,284, the digit 6 is in the hundreds place"",""truth"":false}]}"
+T24-Q23,24,23,Advanced,4,Location & Maps,au.maps,"On a map, 1 cm stands for 50 km. Two towns are 9 cm apart on the map. What is the real distance between the towns?",4500 km,59 km,500 km,450 km,D,"What it asks: Use a map scale to find a real distance.
+Concept: Multiply the map distance by the number of kilometres that 1 cm stands for.
+Step 1: 9 × 50 = 450.
+Answer: 450 km",Adding the scale instead of multiplying.,"Each centimetre is the same real distance, so multiply.",,,9*50,VERIFIED,MCQ,
+T24-Q24,24,24,Advanced,4,Money,au.money,A pen costs $14.10 and it is paid for with $20.00. The change is $ {1}. A bill of $5.69 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 20.00 − 14.10 = 5.90.
+Step 2: 5.69 is closest to 5.70.
+Answer: 1) 5.90, 2) 5.70",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""5.90""]},{""accepted"":[""5.70""]}]}"
+T24-Q25,24,25,Advanced,4,Shapes & Objects,au.shapes,A design uses 6 heptagons and 6 octagons. How many sides are there altogether?,48,540,27,90,D,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 6 × 7 = 42.
+Step 2: 6 × 8 = 48.
+Step 3: 42 + 48 = 90.
+Answer: 90",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,6*7+6*8,VERIFIED,MCQ,
+T24-Q26,24,26,Advanced,4,Transformations & Symmetry,au.transform,"A point at (2, 3) is moved 2 to the right and 1 up. Its new position is ({1}, {2}).",,,,,,"What it asks: Find the new coordinates after a translation.
+Concept: Right/left changes x. Up/down changes y.
+Step 1: x: 2 + 2 = 4.
+Step 2: y: 3 + 1 = 4.
+Answer: 1) 4, 2) 4",Changing x when the move is up or down.,"x first, then y: along the corridor, then up the stairs.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""4""]},{""accepted"":[""4""]}]}"
+T24-Q27,24,27,Advanced,4,Factors & Multiples,wn.primes,Choose ALL the prime numbers.,,,,,,"What it asks: Choose every correct answer.
+Concept: A prime number has exactly two factors: 1 and itself.
+Step 1: 54: no, 54 = 2 × 27.
+Step 2: 34: no, 34 = 2 × 17.
+Step 3: 2: yes, 2 has only the factors 1 and 2.
+Step 4: 20: no, 20 = 2 × 10.
+Step 5: 37: yes, 37 has only the factors 1 and 37.
+Answer: 2, 37",Thinking an odd number must be prime (for example 9 or 15).,"Test 2, 3, 5 and 7 first.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""54"",""34"",""2"",""20"",""37""],""correct"":[2,4]}"
+T24-Q28,24,28,Advanced,4,Operations & Problem Solving,wn.muldiv,Work out \(180 \times 35\).,"5,400","1,440","6,300","6,120",C,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 180 × 30 = 5,400.
+Step 2: 180 × 5 = 900.
+Step 3: Add the parts: 5,400 + 900 = 6,300.
+Answer: 6,300","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,180*35,VERIFIED,MCQ,
+T24-Q29,24,29,Advanced,4,"Perimeter, Area & Volume",ge.perimeter,The area of a square is 64 cm². What is its perimeter?,64 cm,256 cm,16 cm,32 cm,D,"What it asks: Use the area to find the side, then the perimeter.
+Concept: Area = side × side, so the side is the number that multiplies by itself to give the area.
+Step 1: 8 × 8 = 64, so the side is 8 cm.
+Step 2: Perimeter: 4 × 8 = 32 cm.
+Answer: 32 cm",Multiplying the area by 4.,Think: which number times itself gives the area?,,,4*sqrt(64),VERIFIED,MCQ,
+T24-Q30,24,30,Advanced,4,Data,au.data,A column graph shows the number of books read each week. Each gridline is 4 books. The bar for Week 1 reaches the 5th gridline and the bar for Week 2 reaches the 6th gridline. How many more books were read in Week 2 than in Week 1?,,,,,,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 4. Find each bar's value, then subtract.
+Step 1: Week 1: 5 × 4 = 20. Week 2: 6 × 4 = 24.
+Step 2: 24 − 20 = 4.
+Answer: 4",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,6*4-5*4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""4""]}"

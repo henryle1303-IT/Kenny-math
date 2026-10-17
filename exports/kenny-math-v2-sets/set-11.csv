@@ -1,0 +1,163 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T11-Q01,11,1,Intermediate,2,Data,au.data,"A class survey recorded these votes: Bus 5, Train 8, Bike 13, Walk 12. How many students voted altogether?",,,,,,"What it asks: Add all the values in a table.
+Concept: Add every category to find the total.
+Step 1: 5 + 8 + 13 + 12 = 38.
+Answer: 38",Leaving out one of the categories.,Tick off each category as you add it.,,,5+8+13+12,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""38""]}"
+T11-Q02,11,2,Intermediate,2,Units of Measurement,me.convert,Convert: 4 cm = {1} mm and 2 L = {2} mL.,,,,,,"What it asks: Change between metric units.
+Concept: To change to a smaller unit, multiply by 10, 100 or 1000.
+Step 1: 1 cm = 10 mm, so 4 × 10 = 40.
+Step 2: 1 L = 1,000 mL, so 2 × 1,000 = 2,000.
+Answer: 1) 40, 2) 2000",Dividing instead of multiplying.,Larger unit to smaller unit: multiply.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""40""]},{""accepted"":[""2000""]}]}"
+T11-Q03,11,3,Intermediate,2,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 20 that can be divided exactly by both 6 and 9?,18,36,24,54,B,"What it asks: Find a multiple of both 6 and 9 that is just above 20.
+Concept: Numbers divisible by both 6 and 9 are multiples of their LCM, which is 18.
+Step 1: LCM of 6 and 9 is 18.
+Step 2: Multiples of 18: …, 18, 36, …
+Step 3: The first one greater than 20 is 36.
+Answer: 36",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(20/lcm(6,9))+1)*lcm(6,9)",VERIFIED,MCQ,
+T11-Q04,11,4,Intermediate,2,Place Value & Rounding,wn.place,"In the number 49,708, what is the value of the digit 7?",,,,,,"What it asks: Find what the digit 7 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 49,708, the digit 7 is in the hundreds place.
+Step 2: 7 × 100 = 700.
+Answer: 700",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,7*10^2,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""700""]}"
+T11-Q05,11,5,Intermediate,2,Operations & Problem Solving,wn.muldiv,What is \(832 \div 8\)?,114,94,105,104,D,"What it asks: Share the number equally and find the size of each share.
+Concept: Division is the opposite of multiplication. Break the number into friendly chunks.
+Step 1: Think: how many groups of 8 fit into 832?
+Step 2: 8 × 100 = 800, so take it away: 832 − 800 = 32.
+Step 3: 8 × 4 = 32, so take it away: 32 − 32 = 0.
+Step 4: The parts add up: 100 + 4 = 104.
+Answer: 104",Losing a zero or skipping a place in the answer.,Check your answer: 104 × 8 should give back 832.,,,832/8,VERIFIED,MCQ,
+T11-Q06,11,6,Intermediate,2,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{1}{5}\), \(\frac{6}{10}\), \(\frac{9}{10}\).
+Answer: \(\frac{1}{5}\), \(\frac{6}{10}\), \(\frac{9}{10}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{1}{5}\\)"",""\\(\\frac{6}{10}\\)"",""\\(\\frac{9}{10}\\)""]}"
+T11-Q07,11,7,Intermediate,2,Operations & Problem Solving,wn.muldiv,Kenny has 122 beads and puts them into bags of 9. How many beads are left over after filling as many bags as possible?,4,7,5,6,C,"What it asks: Find how many beads do not fit into a full bag.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 9 × 13 = 117, which is the biggest multiple of 9 that is not more than 122.
+Step 2: 122 − 117 = 5.
+Step 3: The remainder is 5, and it is smaller than 9, as a remainder must be.
+Answer: 5","Giving the quotient (13) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(122,9)",VERIFIED,MCQ,
+T11-Q08,11,8,Intermediate,2,Shapes & Objects,au.shapes,How many sides does a nonagon have?,11,9,8,10,B,"What it asks: Know the number of sides of a polygon.
+Concept: The name nonagon tells you the number of sides: 9.
+Step 1: A nonagon has 9 sides.
+Answer: 9",Mixing up hexagon (6) and octagon (8).,"Penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10.",,,9,VERIFIED,MCQ,
+T11-Q09,11,9,Intermediate,2,Fractions,fr.forms,Write \(\frac{12}{15}\) in its simplest form.,\(\frac{4}{5}\),\(\frac{4}{15}\),\(\frac{12}{5}\),\(\frac{5}{5}\),A,"What it asks: Write the fraction using the smallest possible numerator and denominator.
+Concept: Divide the numerator and denominator by their greatest common factor.
+Step 1: The greatest common factor of 12 and 15 is 3.
+Step 2: 12 ÷ 3 = 4 and 15 ÷ 3 = 5.
+Step 3: The simplest form is 4/5.
+Answer: \(\frac{4}{5}\)","Dividing the top and bottom by different numbers, or stopping before the fraction is fully simplified.",Whatever you do to the top you must do to the bottom.,,,12/15,VERIFIED,MCQ,
+T11-Q10,11,10,Intermediate,2,Decimals,dec.fraction,Write 0.4 as a fraction in simplest form.,,,,,,"What it asks: Change the decimal into a fraction and simplify.
+Concept: Read the decimal as tenths, hundredths or thousandths, then simplify.
+Step 1: 0.4 = 4/10.
+Step 2: Simplify by dividing by the greatest common factor: 2/5.
+Answer: \(\frac{2}{5}\)","Forgetting to simplify, or using the wrong denominator.","Count the decimal places to choose 10, 100 or 1000 as the denominator.",,,2/5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""2/5""],""format"":""fraction"",""requireSimplified"":true}"
+T11-Q11,11,11,Intermediate,2,Data,au.data,"A class survey recorded these votes: Cricket 4, Netball 7, Swimming 15, Tennis 18. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is true: Swimming has 15 and Netball has 7.
+Step 2: Statement 2 is false: Netball has 7 and Swimming has 15.
+Answer: True, False",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Swimming got more votes than Netball"",""truth"":true},{""text"":""Netball got more votes than Swimming"",""truth"":false}]}"
+T11-Q12,11,12,Intermediate,2,Place Value & Rounding,wn.place,"Which number is the same as \(9 \times 1{,}000 + 4 \times 10 + 6 \times 1\)?","6,409","9,146",946,"9,046",D,"What it asks: Turn the expanded form into an ordinary number.
+Concept: Expanded form shows each digit multiplied by its place value.
+Step 1: Work out each part: 9,000, 40, 6.
+Step 2: Add them: 9,000 + 40 + 6 = 9,046.
+Step 3: Places with no part are zeros.
+Answer: 9,046",Leaving out the zero placeholders and writing a number that is too short.,Write a 0 in every place value that is missing from the expanded form.,,,9000+40+6,VERIFIED,MCQ,
+T11-Q13,11,13,Intermediate,2,Factors & Multiples,wn.factors,What is the least common multiple (LCM) of 8 and 12?,24,4,96,12,A,"What it asks: Find the smallest number that both numbers divide into.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 8: 8, 16, 24, 32…
+Step 2: Multiples of 12: 12, 24, 36…
+Step 3: The first number in both lists is 24.
+Answer: 24","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(8,12)",VERIFIED,MCQ,
+T11-Q14,11,14,Intermediate,2,Money,au.money,"Uma's shopping bill is $5.74. Uma pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Uma pay?",,,,,,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $5.74; look at the last digit of the cents, 4.
+Step 2: It is closer to $5.75 than to $5.70.
+Answer: $5.75","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,575/100,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5.75""]}"
+T11-Q15,11,15,Intermediate,2,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is true: 17:40 is 5:40 PM.
+Step 2: Statement 2 is false: 13:45 is 1:45 PM.
+Answer: True, False",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""17:40 is the same time as 5:40 PM"",""truth"":true},{""text"":""13:45 is the same time as 1:45 AM"",""truth"":false}]}"
+T11-Q16,11,16,Intermediate,2,Patterns & Algebra,pa.functions,"A rule changes each input number to an output number. Input 2 gives 16, input 3 gives 21, and input 5 gives 31. What output does input 8 give?",,,,,,"What it asks: Find the rule from the examples, then use it.
+Concept: Rules usually combine multiplying and adding: look at how the output changes when the input goes up by 1.
+Step 1: When the input goes up by 1, the output goes up by 5, so the rule includes × 5.
+Step 2: 2 × 5 = 10, and the output is 16, so we add 6.
+Step 3: For 8: 5 × 8 + 6 = 46.
+Answer: 46",Finding only the “+ b” part or only the “× a” part of the rule.,Test your rule on every example before using it.,,,5*8+6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""46""]}"
+T11-Q17,11,17,Intermediate,2,Time,ts.clock,Isla's tram leaves Southbank at 6:08 AM and arrives at 6:44 AM. How many minutes does the trip take?,46 minutes,76 minutes,26 minutes,36 minutes,D,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 6:08 AM to 6:44 AM.
+Step 2: 36 minutes pass.
+Answer: 36 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,36,VERIFIED,MCQ,
+T11-Q18,11,18,Intermediate,2,Transformations & Symmetry,au.transform,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Lines of symmetry fold a shape onto itself. Slide = translation, flip = reflection, turn = rotation.
+Step 1: Statement 1 is true: flipping over a mirror line is a reflection.
+Step 2: Statement 2 is false: a turn is a rotation.
+Answer: True, False",Counting diagonals of a rectangle as lines of symmetry.,Fold it in your mind: do both halves match exactly?,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A flip of a shape is called a reflection"",""truth"":true},{""text"":""A turn of a shape is called a translation"",""truth"":false}]}"
+T11-Q19,11,19,Intermediate,2,Chance,au.chance,"A bag has 5 red, 3 blue marbles. One marble is taken out without looking. What is the chance of taking a red marble? Give a fraction in simplest form.",\(\frac{5}{3}\),\(\frac{1}{2}\),\(\frac{3}{8}\),\(\frac{5}{8}\),D,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 5 + 3 = 8.
+Step 2: red marbles: 5.
+Step 3: Chance = \(\frac{5}{8}\).
+Answer: \(\frac{5}{8}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,5/8,VERIFIED,MCQ,
+T11-Q20,11,20,Intermediate,2,Decimals,dec.place,What is the value of the digit 6 in 5.196?,0.006,6,0.06,0.0006,A,"What it asks: Find what the digit 6 is worth in the thousandths place.
+Concept: Each place to the right of the decimal point is ten times smaller than the one before.
+Step 1: In 5.196, the digit 6 is in the thousandths place.
+Step 2: thousandths means 6 ÷ 1000 = 0.006.
+Answer: 0.006",Mixing up tenths (0.1) with tens (10) or reading the wrong place.,Say the number aloud: 3.25 is “three and twenty-five hundredths”.,,,6/1000,VERIFIED,MCQ,
+T11-Q21,11,21,Intermediate,3,Money,au.money,A soccer ball costs $40.00. It is on sale for 10% off. What is the sale price?,$30.00,$44.00,$36.00,$4.00,C,"What it asks: Find the price after a 10% discount.
+Concept: 10% is one tenth: divide by 10.
+Step 1: 10% of $40.00 = $4.00.
+Step 2: $40.00 − $4.00 = $36.00.
+Answer: $36.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,40-40*10/100,VERIFIED,MCQ,
+T11-Q22,11,22,Intermediate,3,"Perimeter, Area & Volume",ge.volume,"A rectangular tray of ice is 20 cm long, 15 cm wide and 20 cm deep. How many 5 cm ice cubes can be cut from it?",52,48,6000,1200,B,"What it asks: Count how many small cubes fit along each edge, then multiply.
+Concept: Number of cubes = (length ÷ s) × (width ÷ s) × (height ÷ s).
+Step 1: Along the length: 20 ÷ 5 = 4. Along the width: 15 ÷ 5 = 3. Up the height: 20 ÷ 5 = 4.
+Step 2: 4 × 3 × 4 = 48.
+Answer: 48",Dividing the big volume by the small side length instead of the small volume.,"Or: box volume 6,000 ÷ cube volume 125 = 48.",,,(20/5)*(15/5)*(20/5),VERIFIED,MCQ,
+T11-Q23,11,23,Intermediate,3,Patterns & Algebra,pa.arith,"A number pattern starts 10, 17, 24, … and keeps adding 7. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 66: yes, 10 + 8 × 7 = 66.
+Step 2: 45: yes, 10 + 5 × 7 = 45.
+Step 3: 47: no, 47 is not 10 plus a multiple of 7.
+Step 4: 79: no, 79 is not 10 plus a multiple of 7.
+Step 5: 75: no, 75 is not 10 plus a multiple of 7.
+Answer: 66, 45",Choosing numbers that are near the pattern but not on it.,Check that (number − 10) divides by 7.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""66"",""45"",""47"",""79"",""75""],""correct"":[0,1]}"
+T11-Q24,11,24,Intermediate,3,Operations & Problem Solving,ms.planning,A recipe for 4 people uses 150 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 8 people?,1,2,300,3,A,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 8 people is 2 times 4 people, so flour needed = 150 × 2 = 300 g.
+Step 2: 300 g = 0.3 kg.
+Step 3: Bags are whole, so round up: 1.
+Answer: 1","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(150*2/1000),VERIFIED,MCQ,
+T11-Q25,11,25,Intermediate,3,Fractions,fr.forms,Complete these equivalent fractions: 1/4 = {1}/24 and 2/4 = 1/{2}.,,,,,,"What it asks: Find the missing numbers in equal fractions.
+Concept: Multiply or divide the top and the bottom by the same number.
+Step 1: 4 × 6 = 24, so 1 × 6 = 6.
+Step 2: 2 ÷ 2 = 1, so 4 ÷ 2 = 2.
+Answer: 1) 6, 2) 2",Changing only the top or only the bottom.,"Whatever you do to the top, do to the bottom.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""6""]},{""accepted"":[""2""]}]}"
+T11-Q26,11,26,Intermediate,3,Angles,ge.angles,"Angles around a point add up to 360°. Three angles are 58°, 77°, 91°. The angle that completes the turn is x. What is x?",,,,,,"What it asks: Find a missing angle around a point.
+Concept: A full turn is 360°, so all the angles around one point add to 360°.
+Step 1: Add the known angles: 58 + 77 + 91 = 226.
+Step 2: 360 − 226 = 134.
+Answer: 134°",Subtracting from 180° instead of 360°.,Straight line = 180°. Full turn around a point = 360°.,,,360-58-77-91,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""134""],""unit"":""°""}"
+T11-Q27,11,27,Intermediate,3,"Perimeter, Area & Volume",ge.perimeter,The perimeter of a square is 24 cm. What is the area of the square?,24 cm²,576 cm²,36 cm²,12 cm²,C,"What it asks: Use the perimeter to find the side, then the area.
+Concept: A square has 4 equal sides: side = perimeter ÷ 4. Area = side × side.
+Step 1: Side: 24 ÷ 4 = 6 cm.
+Step 2: Area: 6 × 6 = 36 cm².
+Answer: 36 cm²",Squaring the perimeter instead of the side.,Always find the side length first.,,,(24/4)^2,VERIFIED,MCQ,
+T11-Q28,11,28,Intermediate,3,Units of Measurement,me.convert,What is the metric unit used to measure the mass of a small bag of sugar: grams or litres? Type the unit.,,,,,,"What it asks: Answer with the correct word.
+Concept: Mass is measured in grams (g) or kilograms (kg).
+Step 1: Mass is measured in grams (g) or kilograms (kg).
+Answer: grams",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""grams"",""gram"",""g""]}"
+T11-Q29,11,29,Intermediate,3,Shapes & Objects,au.shapes,Choose ALL the shapes that have all sides equal in length.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: regular pentagon: yes, all the sides of a regular pentagon are equal.
+Step 2: parallelogram: no, not all the sides of a parallelogram are equal.
+Step 3: right-angled triangle: no, not all the sides of a right-angled triangle are equal.
+Step 4: rhombus: yes, all the sides of a rhombus are equal.
+Step 5: regular hexagon: yes, all the sides of a regular hexagon are equal.
+Answer: regular pentagon, rhombus, regular hexagon",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""regular pentagon"",""parallelogram"",""right-angled triangle"",""rhombus"",""regular hexagon""],""correct"":[0,3,4]}"
+T11-Q30,11,30,Intermediate,3,Location & Maps,au.maps,"On a map, 1 cm stands for 50 km. Two towns are 13 cm apart on the map. What is the real distance between the towns?",6500 km,63 km,700 km,650 km,D,"What it asks: Use a map scale to find a real distance.
+Concept: Multiply the map distance by the number of kilometres that 1 cm stands for.
+Step 1: 13 × 50 = 650.
+Answer: 650 km",Adding the scale instead of multiplying.,"Each centimetre is the same real distance, so multiply.",,,13*50,VERIFIED,MCQ,

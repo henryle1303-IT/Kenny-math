@@ -1,0 +1,169 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T19-Q01,19,1,Intermediate,3,Shapes & Objects,au.shapes,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Know the properties of 2D shapes and 3D objects: sides, parallel lines, right angles, faces, edges and vertices.
+Step 1: Statement 1 is true: that is its definition.
+Step 2: Statement 2 is true: opposite sides of a rectangle are parallel.
+Step 3: Statement 3 is false: only a square has 4 equal sides; a rectangle has equal opposite sides.
+Answer: True, True, False","Mixing up the properties of a square, rectangle and rhombus.",Sketch the shape and count carefully.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A parallelogram has opposite sides that are parallel"",""truth"":true},{""text"":""A rectangle has 2 pairs of parallel sides"",""truth"":true},{""text"":""A rectangle always has 4 equal sides"",""truth"":false}]}"
+T19-Q02,19,2,Intermediate,3,Factors & Multiples,wn.factors,How many different factors does 64 have?,7,5,8,6,A,"What it asks: Count every whole number that divides 64 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 64, 2 × 32, 4 × 16, 8 × 8.
+Step 2: List all the factors: 1, 2, 4, 8, 16, 32, 64.
+Step 3: There are 7 factors.
+Answer: 7","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(64),VERIFIED,MCQ,
+T19-Q03,19,3,Intermediate,3,Data,wp.table,"A class survey recorded these numbers. Red: 9, Blue: 8, Green: 35, Yellow: 36. How many more votes did Yellow get than Green?",71,36,11,1,D,"What it asks: Compare the two numbers by subtracting.
+Concept: “How many more” is found by subtraction.
+Step 1: Yellow = 36 and Green = 35.
+Step 2: 36 − 35 = 1.
+Answer: 1",Adding the two numbers.,“More than” and “fewer than” are comparison words that usually mean subtract.,,,36-35,VERIFIED,MCQ,
+T19-Q04,19,4,Intermediate,3,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 21 and 49?,21,7,14,147,B,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 21: 1, 3, 7, 21.
+Step 2: Factors of 49: 1, 7, 49.
+Step 3: The biggest number in both lists is 7.
+Answer: 7","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(21,49)",VERIFIED,MCQ,
+T19-Q05,19,5,Intermediate,3,Time,ts.clock,A train timetable shows a departure at 05:00. What time is that in 12-hour time?,5:00 AM,4:00 AM,6:00 AM,5:00 PM,A,"What it asks: Change a 24-hour time to 12-hour time with AM or PM.
+Concept: 24-hour times from 13:00 onwards are PM: subtract 12 hours. 00:xx is 12:xx AM and 12:xx is 12:xx PM.
+Step 1: 05:00 is before noon, so it is AM.
+Step 2: So 05:00 is 5:00 AM.
+Answer: 5:00 AM","Writing AM instead of PM, or forgetting to subtract 12 hours.","After noon, subtract 12 from the hour and write PM.",,,300,VERIFIED,MCQ,
+T19-Q06,19,6,Intermediate,3,Decimals,dec.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Line up the decimal places to compare decimals. Multiplying by 10 moves digits one place to the left.
+Step 1: Statement 1 is true: multiplying by 10 moves each digit one place left: 7.7 × 10 = 77.
+Step 2: Statement 2 is true: a zero on the end of a decimal does not change its value.
+Step 3: Statement 3 is false: 0.2 is 2 tenths but 0.02 is only 2 hundredths.
+Answer: True, True, False",Believing a longer decimal is always a bigger number.,Give every decimal the same number of places before comparing.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""7.7 × 10 = 77"",""truth"":true},{""text"":""0.20 = 0.2"",""truth"":true},{""text"":""0.2 = 0.02"",""truth"":false}]}"
+T19-Q07,19,7,Intermediate,3,"Perimeter, Area & Volume",ge.area,A rectangular playground is 19 m long and 4 m wide. What is its area?,76 m²,46 m²,760 m²,23 m²,A,"What it asks: Find how much flat space the rectangle covers.
+Concept: Area of a rectangle = length × width, measured in square units.
+Step 1: Area = length × width = 19 × 4.
+Step 2: 19 × 4 = 76 m².
+Answer: 76 m²",Finding the perimeter by adding instead of multiplying.,Think of the number of 1-unit squares that fit inside.,,,19*4,VERIFIED,MCQ,
+T19-Q08,19,8,Intermediate,3,Data,au.data,A column graph shows the number of books read each week. Each gridline is 20 books. The bar for Week 1 reaches the 2nd gridline and the bar for Week 2 reaches the 9th gridline. How many more books were read in Week 2 than in Week 1?,180,160,7,140,D,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 20. Find each bar's value, then subtract.
+Step 1: Week 1: 2 × 20 = 40. Week 2: 9 × 20 = 180.
+Step 2: 180 − 40 = 140.
+Answer: 140",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,9*20-2*20,VERIFIED,MCQ,
+T19-Q09,19,9,Intermediate,3,Operations & Problem Solving,wp.multiplicative,Priya has 20 stickers. Nina has 4 times as many stickers as Priya. How many stickers do they have together?,120,80,24,100,D,"What it asks: Find both amounts and add them.
+Concept: “k times as many” means multiply by k.
+Step 1: Nina has 4 × 20 = 80.
+Step 2: Together: 20 + 80 = 100.
+Answer: 100",Stopping after finding only one person’s amount.,Re-read the question to see whether it asks for one amount or the total.,,,20+20*4,VERIFIED,MCQ,
+T19-Q10,19,10,Intermediate,3,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{3}{5}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{9}{16}\): no, the bottom should be 15 to stay equal.
+Step 2: \(\frac{15}{26}\): no, the bottom should be 25 to stay equal.
+Step 3: \(\frac{15}{25}\): yes, multiply top and bottom of \(\frac{3}{5}\) by 5.
+Step 4: \(\frac{12}{20}\): yes, multiply top and bottom of \(\frac{3}{5}\) by 4.
+Step 5: \(\frac{6}{10}\): yes, multiply top and bottom of \(\frac{3}{5}\) by 2.
+Answer: \(\frac{15}{25}\), \(\frac{12}{20}\), \(\frac{6}{10}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{9}{16}\\)"",""\\(\\frac{15}{26}\\)"",""\\(\\frac{15}{25}\\)"",""\\(\\frac{12}{20}\\)"",""\\(\\frac{6}{10}\\)""],""correct"":[2,3,4]}"
+T19-Q11,19,11,Intermediate,3,Transformations & Symmetry,au.transform,Khoa turns a shape clockwise through 3 quarter turns. How many degrees does the shape turn altogether?,540°,135°,360°,270°,D,"What it asks: Turn quarter turns into degrees.
+Concept: One quarter turn is 90°. A half turn is 180° and a full turn is 360°.
+Step 1: 3 × 90° = 270°.
+Answer: 270°",Using 45° or 180° for a quarter turn.,"Quarter turn 90°, half turn 180°, three-quarter turn 270°, full turn 360°.",,,270,VERIFIED,MCQ,
+T19-Q12,19,12,Intermediate,3,Angles,ge.angles,A right angle is split into two angles. One of them is 34°. What is the size of the other angle?,56°,124°,34°,146°,A,"What it asks: Find an angle inside a right angle.
+Concept: A right angle is 90°.
+Step 1: 90 − 34 = 56.
+Answer: 56°",Using 180° (a straight line) instead of 90° (a right angle).,A right angle is a square corner and measures 90°.,,,90-34,VERIFIED,MCQ,
+T19-Q13,19,13,Intermediate,3,Money,au.money,A pen costs $16.75 and it is paid for with $20.00. The change is $ {1}. A bill of $9.92 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 20.00 − 16.75 = 3.25.
+Step 2: 9.92 is closest to 9.90.
+Answer: 1) 3.25, 2) 9.90",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""3.25""]},{""accepted"":[""9.90""]}]}"
+T19-Q14,19,14,Intermediate,3,Patterns & Algebra,oo.basic,Dan worked out \(20 + 7 \times 5\) and got 135. Dan’s answer is not correct. What is the correct value?,,,,,,"What it asks: Find the mistake in Dan’s method and give the correct value.
+Concept: Multiplication is done before addition and subtraction unless brackets say otherwise.
+Step 1: Dan worked left to right and got 135.
+Step 2: The correct order is to multiply first: 7 × 5 = 35.
+Step 3: Then add: 20 + 35 = 55.
+Answer: 55",Doing the operations in the order they are written instead of the order of operations.,"Underline the multiplication or division first, work it out, then rewrite the expression.",,,20+7*5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""55""]}"
+T19-Q15,19,15,Intermediate,3,Decimals,dec.addsub,Complete: 0.2 + {1} = 1 and 1.99 ÷ 10 = {2}.,,,,,,"What it asks: Use decimals to make 1 and to multiply or divide by 10.
+Concept: Multiplying by 10 moves the digits one place left; dividing by 10 moves them one place right.
+Step 1: 1 − 0.2 = 0.8.
+Answer: 1) 0.8, 2) 0.199",Moving the decimal point the wrong way.,"Check: the answer to × 10 is bigger, to ÷ 10 is smaller.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.8""]},{""accepted"":[""0.199""]}]}"
+T19-Q16,19,16,Intermediate,3,Place Value & Rounding,wn.round,"Round 36,134 to the nearest thousand.",,,,,,"What it asks: Find the thousand that 36,134 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 36,134 is between 36,000 and 37,000.
+Step 2: It is 134 above 36,000 and 866 below 37,000.
+Step 3: It is closer to 36,000.
+Answer: 36,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(36134/1000)*1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""36000""]}"
+T19-Q17,19,17,Intermediate,3,Operations & Problem Solving,wn.muldiv,Find the value of \(671 \div 11\).,71,62,51,61,D,"What it asks: Share the number equally and find the size of each share.
+Concept: Division is the opposite of multiplication. Break the number into friendly chunks.
+Step 1: Think: how many groups of 11 fit into 671?
+Step 2: 11 × 60 = 660, so take it away: 671 − 660 = 11.
+Step 3: 11 × 1 = 11, so take it away: 11 − 11 = 0.
+Step 4: The parts add up: 60 + 1 = 61.
+Answer: 61",Losing a zero or skipping a place in the answer.,Check your answer: 61 × 11 should give back 671.,,,671/11,VERIFIED,MCQ,
+T19-Q18,19,18,Intermediate,3,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{3}{5}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{9}{15}\): yes, multiply top and bottom of \(\frac{3}{5}\) by 3.
+Step 2: \(\frac{6}{11}\): no, the bottom should be 10 to stay equal.
+Step 3: \(\frac{13}{20}\): no, the top should be 12 to stay equal.
+Step 4: \(\frac{6}{10}\): yes, multiply top and bottom of \(\frac{3}{5}\) by 2.
+Step 5: \(\frac{15}{26}\): no, the bottom should be 25 to stay equal.
+Answer: \(\frac{9}{15}\), \(\frac{6}{10}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{9}{15}\\)"",""\\(\\frac{6}{11}\\)"",""\\(\\frac{13}{20}\\)"",""\\(\\frac{6}{10}\\)"",""\\(\\frac{15}{26}\\)""],""correct"":[0,3]}"
+T19-Q19,19,19,Intermediate,3,Chance,au.chance,Put these events in order from least likely to most likely.,,,,,,"What it asks: Put the items in order, least likely to most likely.
+Concept: Impossible, unlikely, even chance, likely, certain: the chance gets bigger.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is You grow a tail tomorrow, Picking a blue marble from a bag of 9 red and 1 blue marbles, Rolling an even number on a standard six-sided die, A dropped ball falls to the ground.
+Answer: You grow a tail tomorrow, Picking a blue marble from a bag of 9 red and 1 blue marbles, Rolling an even number on a standard six-sided die, A dropped ball falls to the ground",Mixing up unlikely and impossible.,Think about how many ways each event can happen.,,,,VERIFIED,ORDERING,"{""items"":[""You grow a tail tomorrow"",""Picking a blue marble from a bag of 9 red and 1 blue marbles"",""Rolling an even number on a standard six-sided die"",""A dropped ball falls to the ground""]}"
+T19-Q20,19,20,Intermediate,3,Time,ts.convert,A school holiday lasts 7 weeks and 4 days. How many days is that altogether?,60 days,74 days,49 days,53 days,D,"What it asks: Change weeks into days and add the extra days.
+Concept: 1 week = 7 days.
+Step 1: 7 × 7 = 49 days.
+Step 2: 49 + 4 = 53 days.
+Answer: 53 days",Using 10 days in a week.,Seven days make a week.,,,7*7+4,VERIFIED,MCQ,
+T19-Q21,19,21,Intermediate,4,Location & Maps,au.maps,Which compass direction is opposite East?,,,,,,"What it asks: Answer with the correct word.
+Concept: West is opposite East.
+Step 1: West is opposite East.
+Answer: west",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""west""]}"
+T19-Q22,19,22,Intermediate,4,Patterns & Algebra,pa.arith,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: In a number pattern, find the rule from the difference between terms.
+Step 1: Statement 1 is false: the 7th number is 18 + 6 × 4 = 42.
+Step 2: Statement 2 is false: the difference between terms is 4.
+Step 3: Statement 3 is true: 30 + 4 = 34.
+Answer: False, False, True",Using the term number instead of the number of steps.,The 10th term is 9 steps after the first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The 7th number in 18, 22, 26, 30, … is 46"",""truth"":false},{""text"":""The pattern 18, 22, 26, 30, … adds 5 each time"",""truth"":false},{""text"":""The next number in 18, 22, 26, 30, … is 34"",""truth"":true}]}"
+T19-Q23,19,23,Intermediate,4,Place Value & Rounding,wn.place,"In the number 8,425,671, what is the value of the digit 7?",,,,,,"What it asks: Find what the digit 7 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 8,425,671, the digit 7 is in the tens place.
+Step 2: 7 × 10 = 70.
+Answer: 70",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,7*10^1,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""70""]}"
+T19-Q24,19,24,Intermediate,4,Units of Measurement,me.problems,Omar’s ribbon is 380 cm long. Lan’s ribbon is 3.5 m long. How many centimetres longer is Omar’s ribbon?,300 cm,40 cm,730 cm,30 cm,D,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 3.5 m = 350 cm.
+Step 2: Difference: 380 − 350 = 30 cm.
+Step 3: Omar’s ribbon is longer than Lan’s by 30 cm.
+Answer: 30 cm",Subtracting 3.5 from 380 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(380-3.5*100),VERIFIED,MCQ,
+T19-Q25,19,25,Intermediate,4,Operations & Problem Solving,wn.addsub,"What is \(24{,}177 - 24{,}095\)?",,,,,,"What it asks: Find the difference between the two numbers.
+Concept: Subtraction: take away one place value at a time.
+Step 1: Start with 24,177.
+Step 2: Take away 20,000: 24,177 − 20,000 = 4,177.
+Step 3: Take away 4,000: 4,177 − 4,000 = 177.
+Step 4: Take away 90: 177 − 90 = 87.
+Step 5: Take away 5: 87 − 5 = 82.
+Answer: 82",Forgetting to regroup (borrow) and subtracting the smaller digit from the larger one.,Check subtraction with addition: the answer plus the smaller number should give the larger number.,,,24177-24095,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""82""]}"
+T19-Q26,19,26,Intermediate,4,Fractions,fr.of,10 cards make up \(\frac{1}{5}\) of Minh’s collection. How many cards does Minh have in total?,60,50,15,10,B,"What it asks: Use the part to find the whole.
+Concept: If 1 parts equal 10, one part is 10 ÷ 1, and the whole is 5 parts.
+Step 1: 1 parts = 10, so 1 part = 10 ÷ 1 = 10.
+Step 2: The whole is 5 parts: 5 × 10 = 50.
+Answer: 50",Multiplying the part by the fraction instead of finding one part first.,"Find the value of ONE part first, then multiply by the total number of parts.",,,10/(1/5),VERIFIED,MCQ,
+T19-Q27,19,27,Intermediate,4,Units of Measurement,me.problems,Jack’s ribbon is 270 cm long. Isla’s ribbon is 2.4 m long. How many centimetres longer is Jack’s ribbon?,,,,,,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 2.4 m = 240 cm.
+Step 2: Difference: 270 − 240 = 30 cm.
+Step 3: Jack’s ribbon is longer than Isla’s by 30 cm.
+Answer: 30 cm",Subtracting 2.4 from 270 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(270-2.4*100),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""30""],""unit"":""cm""}"
+T19-Q28,19,28,Intermediate,4,"Perimeter, Area & Volume",ge.volume,"A box is 10 cm long, 4 cm wide and 6 cm high. How many cubes with edges of 2 cm can be packed into the box with no gaps?",30,120,35,240,A,"What it asks: Count how many small cubes fit along each edge, then multiply.
+Concept: Number of cubes = (length ÷ s) × (width ÷ s) × (height ÷ s).
+Step 1: Along the length: 10 ÷ 2 = 5. Along the width: 4 ÷ 2 = 2. Up the height: 6 ÷ 2 = 3.
+Step 2: 5 × 2 × 3 = 30.
+Answer: 30",Dividing the big volume by the small side length instead of the small volume.,Or: box volume 240 ÷ cube volume 8 = 30.,,,(10/2)*(4/2)*(6/2),VERIFIED,MCQ,
+T19-Q29,19,29,Intermediate,4,Money,wp.money,Leo buys 4 notebooks at $2.57 each and 3 calculators at $5.80 each and pays with $40.00. How much change should Leo get?,,,,,,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $2.57 = $10.28.
+Step 2: Calculators: 3 × $5.80 = $17.40.
+Step 3: Total: $27.68. Change: $40.00 − $27.68 = $12.32.
+Answer: $12.32",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,40-(2.57*4+5.8*3),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12.32""]}"
+T19-Q30,19,30,Intermediate,4,Shapes & Objects,au.shapes,A design uses 2 octagons and 5 quadrilaterals. How many sides are there altogether?,19,120,36,21,C,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 2 × 8 = 16.
+Step 2: 5 × 4 = 20.
+Step 3: 16 + 20 = 36.
+Answer: 36",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,2*8+5*4,VERIFIED,MCQ,

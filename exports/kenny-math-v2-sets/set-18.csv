@@ -1,0 +1,163 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T18-Q01,18,1,Intermediate,3,Chance,au.chance,A coin is tossed three times. How many different outcomes are possible?,,,,,,"What it asks: Count all the possible outcomes of a chance experiment.
+Concept: Multiply the number of outcomes of each part of the experiment.
+Step 1: 2 × 2 × 2 = 8.
+Answer: 8",Adding the outcomes of each part instead of multiplying.,List the outcomes in an organised table or tree if you are unsure.,,,8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""]}"
+T18-Q02,18,2,Intermediate,3,"Perimeter, Area & Volume",ge.volume,"A paddling pool is 50 cm long, 50 cm wide and 30 cm deep. How many litres of water fill it to the top? (1 litre = 1,000 cm³)",75 litres,"75,000 litres",750 litres,77 litres,A,"What it asks: Find the volume in cm³, then change it to litres.
+Concept: 1 litre = 1,000 cm³. Volume in cm³ ÷ 1,000 gives litres.
+Step 1: Volume: 50 × 50 × 30 = 75,000 cm³.
+Step 2: 75,000 ÷ 1,000 = 75 litres.
+Answer: 75 litres",Forgetting to convert from cm³ to litres.,A 10 cm × 10 cm × 10 cm cube holds exactly 1 litre.,,,50*50*30/1000,VERIFIED,MCQ,
+T18-Q03,18,3,Intermediate,3,Place Value & Rounding,wn.place,"In the number 639,540, what is the value of the digit 5?",,,,,,"What it asks: Find what the digit 5 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 639,540, the digit 5 is in the hundreds place.
+Step 2: 5 × 100 = 500.
+Answer: 500",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,5*10^2,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""500""]}"
+T18-Q04,18,4,Intermediate,3,Operations & Problem Solving,ms.planning,At a sports day there are 14 players and 3 coaches. Each of the players eats 2 wedges of watermelon and each of the coaches eats 2. Each watermelon has 6 wedges and costs $10. What is the least amount of money needed to buy enough watermelon?,$50,$60,$70,$80,B,"What it asks: Count the portions, then the whole items needed, then the cost.
+Concept: Find the total needed, divide by the pack size, round up, then multiply by the price.
+Step 1: Portions: 14 × 2 + 3 × 2 = 34.
+Step 2: Whole watermelons: 34 ÷ 6 = 5.67, so round up to 6.
+Step 3: Cost: 6 × $10 = $60.
+Answer: $60","Rounding down the number of whole items, so some people go without.",You cannot buy part of an item – round up.,,,ceil((14*2+3*2)/6)*10,VERIFIED,MCQ,
+T18-Q05,18,5,Intermediate,3,Time,ts.clock,Choose ALL the times that are the same as 1:05 PM.,,,,,,"What it asks: Choose every correct answer.
+Concept: 24-hour times from 13:00 are PM: subtract 12 for 12-hour time.
+Step 1: 1:05 AM: no, 13:05 is in the afternoon or evening: PM.
+Step 2: 13:05: yes, 13:05 is 1:05 PM.
+Step 3: 13:55: no, the minutes are 05, not 55.
+Step 4: 1.05 pm: yes, 1.05 pm is the same as 1:05 PM.
+Step 5: 1305 hours: yes, 1305 hours is another way to write 13:05.
+Answer: 13:05, 1.05 pm, 1305 hours",Forgetting whether it is AM or PM.,"After noon, add 12 to the hour for 24-hour time.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""1:05 AM"",""13:05"",""13:55"",""1.05 pm"",""1305 hours""],""correct"":[1,3,4]}"
+T18-Q06,18,6,Intermediate,3,Factors & Multiples,wn.factors,What is the least common multiple (LCM) of 9 and 12?,36,108,3,12,A,"What it asks: Find the smallest number that both numbers divide into.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 9: 9, 18, 27, 36, 45…
+Step 2: Multiples of 12: 12, 24, 36, 48…
+Step 3: The first number in both lists is 36.
+Answer: 36","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(9,12)",VERIFIED,MCQ,
+T18-Q07,18,7,Intermediate,3,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is false: \(\frac{5}{12}\) is not made by multiplying both numbers by the same amount.
+Step 2: Statement 2 is true: use a common denominator: 40/80 and 50/80, so \(\frac{5}{10}\) is less.
+Step 3: Statement 3 is true: 17 is bigger than 9, so there is more than one whole.
+Answer: False, True, True",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{1}{3}\\) = \\(\\frac{5}{12}\\)"",""truth"":false},{""text"":""\\(\\frac{5}{10}\\) < \\(\\frac{5}{8}\\)"",""truth"":true},{""text"":""\\(\\frac{17}{9}\\) is greater than 1 whole"",""truth"":true}]}"
+T18-Q08,18,8,Intermediate,3,Angles,ge.angles,Angles on a straight line add up to 180°. One of the angles is 62°. What is the other angle?,,,,,,"What it asks: Use the straight line to find the missing angle.
+Concept: Angles on a straight line add up to 180°.
+Step 1: 180 − 62 = 118°.
+Answer: 118°",Subtracting from 90° or 360° instead of 180°.,A straight line is a half turn: 180°.,,,180-62,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""118""],""unit"":""°""}"
+T18-Q09,18,9,Intermediate,3,Fractions,fr.addsub,Calculate \(\frac{1}{2}\) − \(\frac{2}{8}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{1}{4}\),\(\frac{3}{4}\),\(\frac{3}{8}\),\(\frac{1}{6}\),A,"What it asks: Subtract fractions whose denominators are related.
+Concept: 8 is a multiple of 2, so rewrite the first fraction with denominator 8 before subtracting.
+Step 1: \(\frac{1}{2}\) = \(\frac{1}{2}\) (denominator 8).
+Step 2: Subtract the numerators: 4 − 2 = 2.
+Step 3: Simplify: \(\frac{1}{4}\).
+Answer: \(\frac{1}{4}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,1/2-2/8,VERIFIED,MCQ,
+T18-Q10,18,10,Intermediate,3,Operations & Problem Solving,wp.twostep,6 children each collect 10 stickers. Then 3 more children join and each of them also collects 10 stickers. How many stickers are collected altogether?,63,60,90,30,C,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: First group: 6 × 10 = 60.
+Step 2: New children: 3 × 10 = 30.
+Step 3: Total: 60 + 30 = 90.
+Answer: 90","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,(6+3)*10,VERIFIED,MCQ,
+T18-Q11,18,11,Intermediate,3,Shapes & Objects,au.shapes,What is the name of a 2D shape with 8 sides?,,,,,,"What it asks: Answer with the correct word.
+Concept: A shape with eight sides is an octagon.
+Step 1: A shape with eight sides is an octagon.
+Answer: octagon",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""octagon""]}"
+T18-Q12,18,12,Intermediate,3,Data,wp.table,"A class survey recorded these numbers. Apples: 12, Bananas: 36, Cherries: 22, Grapes: 25. How many more votes did Grapes get than Cherries?",47,1,3,13,C,"What it asks: Compare the two numbers by subtracting.
+Concept: “How many more” is found by subtraction.
+Step 1: Grapes = 25 and Cherries = 22.
+Step 2: 25 − 22 = 3.
+Answer: 3",Adding the two numbers.,“More than” and “fewer than” are comparison words that usually mean subtract.,,,25-22,VERIFIED,MCQ,
+T18-Q13,18,13,Intermediate,3,Shapes & Objects,au.shapes,A design uses 4 heptagons and 3 hexagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 4 × 7 = 28.
+Step 2: 3 × 6 = 18.
+Step 3: 28 + 18 = 46.
+Answer: 46",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,4*7+3*6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""46""]}"
+T18-Q14,18,14,Intermediate,3,Fractions,fr.compare,Put these fractions in order from largest to smallest.,,,,,,"What it asks: Put the items in order, largest to smallest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{5}{4}\), \(\frac{7}{8}\), \(\frac{1}{2}\), \(\frac{1}{4}\).
+Answer: \(\frac{5}{4}\), \(\frac{7}{8}\), \(\frac{1}{2}\), \(\frac{1}{4}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{5}{4}\\)"",""\\(\\frac{7}{8}\\)"",""\\(\\frac{1}{2}\\)"",""\\(\\frac{1}{4}\\)""]}"
+T18-Q15,18,15,Intermediate,3,Decimals,dec.place,What is the value of the digit 6 in 9.6182?,0.006,0.6,6,0.06,B,"What it asks: Find what the digit 6 is worth in the tenths place.
+Concept: Each place to the right of the decimal point is ten times smaller than the one before.
+Step 1: In 9.6182, the digit 6 is in the tenths place.
+Step 2: tenths means 6 ÷ 10 = 0.6.
+Answer: 0.6",Mixing up tenths (0.1) with tens (10) or reading the wrong place.,Say the number aloud: 3.25 is “three and twenty-five hundredths”.,,,6/10,VERIFIED,MCQ,
+T18-Q16,18,16,Intermediate,3,Units of Measurement,me.convert,How many metres are there in 4.6 kilometres?,,,,,,"What it asks: Change kilometres into metres.
+Concept: 1 km = 1,000 m. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 km = 1,000 m.
+Step 2: 4.6 × 1,000 = 4600.
+Answer: 4,600 m","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,4.6*1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""4600""],""unit"":""m""}"
+T18-Q17,18,17,Intermediate,3,Patterns & Algebra,pa.arith,"What is the next number in this pattern? 35, 38, 41, 44, …",44,47,48,50,B,"What it asks: Find the rule, then continue the pattern.
+Concept: In an arithmetic sequence the same amount is added (or subtracted) each time.
+Step 1: Differences: 38 − 35 = 3, and the next ones are the same.
+Step 2: Next term: 44 + 3 = 47.
+Answer: 47",Spotting a pattern in only the first two numbers without checking the others.,Check that the rule works for every pair of neighbouring numbers.,,,35+(3)*4,VERIFIED,MCQ,
+T18-Q18,18,18,Intermediate,3,Operations & Problem Solving,wn.muldiv,Complete the number sentences: {1} × 14 = 168 and 63 ÷ {2} = 9.,,,,,,"What it asks: Use multiplication and division as opposite operations.
+Concept: Multiplication and division undo each other.
+Step 1: 168 ÷ 14 = 12.
+Step 2: 63 ÷ 9 = 7.
+Answer: 1) 12, 2) 7",Using the wrong operation to find the missing number.,"To find a missing factor, divide the product by the known factor.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""12""]},{""accepted"":[""7""]}]}"
+T18-Q19,18,19,Intermediate,3,Patterns & Algebra,rc.missing,What number goes in the box? \(3 \times (\square + 4) = 57\),15,23,19,53,A,"What it asks: Undo the multiplication first, then the addition.
+Concept: When brackets are involved, undo the outer operation first.
+Step 1: Undo “× 3”: 57 ÷ 3 = 19.
+Step 2: Undo “+ 4”: 19 − 4 = 15.
+Answer: 15",Subtracting 4 before dividing.,"Peel the layers: outside first, inside last.",,,57/3-4,VERIFIED,MCQ,
+T18-Q20,18,20,Intermediate,3,Data,au.data,"In a picture graph, each ★ stands for 25 students who walk to school. Class 5A has 8 ★ and Class 5B has 4 ★. How many students walk to school altogether?",800,12,300,325,C,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 25, so multiply the number of stars by 25.
+Step 1: Class 5A: 8 × 25 = 200. Class 5B: 4 × 25 = 100.
+Step 2: 200 + 100 = 300.
+Answer: 300",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,(8+4)*25,VERIFIED,MCQ,
+T18-Q21,18,21,Intermediate,3,Transformations & Symmetry,au.transform,How many lines of symmetry does a isosceles triangle (not equilateral) have?,1,3,2,11,A,"What it asks: Count the lines of symmetry of a shape.
+Concept: A line of symmetry is a fold line that makes the two halves match exactly.
+Step 1: A isosceles triangle (not equilateral) has 1 line of symmetry.
+Answer: 1",Counting the diagonals of a rectangle or rhombus that are not lines of symmetry.,Imagine folding the shape: both halves must fit exactly on top of each other.,,,1,VERIFIED,MCQ,
+T18-Q22,18,22,Intermediate,3,Money,au.money,A soccer ball costs $52.00. It is on sale for 25% off. What is the sale price?,$13.00,$65.00,$27.00,$39.00,D,"What it asks: Find the price after a 25% discount.
+Concept: 25% is a quarter: halve and halve again.
+Step 1: 25% of $52.00 = $13.00.
+Step 2: $52.00 − $13.00 = $39.00.
+Answer: $39.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,52-52*25/100,VERIFIED,MCQ,
+T18-Q23,18,23,Intermediate,3,Units of Measurement,me.convert,Convert: 3.5 kg = {1} g and 12 cm = {2} mm.,,,,,,"What it asks: Change between metric units.
+Concept: To change to a smaller unit, multiply by 10, 100 or 1000.
+Step 1: 1 kg = 1,000 g, so 3.5 × 1,000 = 3,500.
+Step 2: 1 cm = 10 mm, so 12 × 10 = 120.
+Answer: 1) 3500, 2) 120",Dividing instead of multiplying.,Larger unit to smaller unit: multiply.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""3500""]},{""accepted"":[""120""]}]}"
+T18-Q24,18,24,Intermediate,3,Money,wp.money,Ella buys 4 notebooks at $5.17 each and 2 calculators at $8.79 each and pays with $40.00. How much change should Ella get?,$38.26,$19.32,$1.74,$2.74,C,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $5.17 = $20.68.
+Step 2: Calculators: 2 × $8.79 = $17.58.
+Step 3: Total: $38.26. Change: $40.00 − $38.26 = $1.74.
+Answer: $1.74",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,40-(5.17*4+8.79*2),VERIFIED,MCQ,
+T18-Q25,18,25,Intermediate,3,Decimals,dec.compare,Choose ALL the numbers that are greater than 1.25.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 1.11: no, 1.11 is less than 1.25.
+Step 2: 1.2: no, 1.2 is less than 1.25.
+Step 3: 1.32: yes, 1.32 is more than 1.25.
+Step 4: 1.43: yes, 1.43 is more than 1.25.
+Step 5: 1.28: yes, 1.28 is more than 1.25.
+Answer: 1.32, 1.43, 1.28",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""1.11"",""1.2"",""1.32"",""1.43"",""1.28""],""correct"":[2,3,4]}"
+T18-Q26,18,26,Intermediate,4,Place Value & Rounding,wn.place,"In the number 8,096,234, what is the value of the digit 2?","2,000",200,20,2,B,"What it asks: Find what the digit 2 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 8,096,234, the digit 2 is in the hundreds place.
+Step 2: 2 × 100 = 200.
+Answer: 200",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,2*10^2,VERIFIED,MCQ,
+T18-Q27,18,27,Intermediate,4,Location & Maps,au.maps,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compass points are 45° apart. A map scale tells how far 1 cm stands for.
+Step 1: Statement 1 is true: the opposite of South-West is North-East.
+Step 2: Statement 2 is false: that is the anticlockwise direction.
+Step 3: Statement 3 is false: 4 × 2 = 8.
+Answer: True, False, False",Turning anticlockwise when the question says clockwise.,Clockwise goes N → E → S → W.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""South-West is opposite North-East"",""truth"":true},{""text"":""Turning clockwise through 90° from South, you face East"",""truth"":false},{""text"":""With a scale of 1 cm to 2 km, 4 cm on the map is 10 km"",""truth"":false}]}"
+T18-Q28,18,28,Intermediate,4,"Perimeter, Area & Volume",ge.perimeter,The area of a square is 121 cm². What is its perimeter?,,,,,,"What it asks: Use the area to find the side, then the perimeter.
+Concept: Area = side × side, so the side is the number that multiplies by itself to give the area.
+Step 1: 11 × 11 = 121, so the side is 11 cm.
+Step 2: Perimeter: 4 × 11 = 44 cm.
+Answer: 44 cm",Multiplying the area by 4.,Think: which number times itself gives the area?,,,4*sqrt(121),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""44""],""unit"":""cm""}"
+T18-Q29,18,29,Intermediate,4,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is false: 1 hour is 60 minutes, so 4 hours 30 minutes is 270 minutes.
+Step 2: Statement 2 is true: 00:25 is 12:25 AM.
+Step 3: Statement 3 is true: 09:29 is 9:29 AM.
+Answer: False, True, True",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""4 hours 30 minutes is 430 minutes"",""truth"":false},{""text"":""00:25 is the same time as 12:25 AM"",""truth"":true},{""text"":""09:29 is the same time as 9:29 AM"",""truth"":true}]}"
+T18-Q30,18,30,Intermediate,4,Factors & Multiples,wn.factors,"How many prime numbers are there from 20 to 50, including both 20 and 50 if they are prime?",8,16,6,7,D,"What it asks: Count the numbers in the range that have exactly two factors: 1 and themselves.
+Concept: A prime number has exactly two factors. Every even number except 2 is not prime.
+Step 1: Cross out all even numbers (except 2) and multiples of 3, 5 and 7.
+Step 2: The primes left are 23, 29, 31, 37, 41, 43, 47.
+Step 3: That is 7 prime numbers.
+Answer: 7","Counting odd numbers like 9, 15 or 21 as prime when they have other factors.","Test each odd number by trying 3, 5 and 7 as divisors.",,,"nprimes(20,50)",VERIFIED,MCQ,

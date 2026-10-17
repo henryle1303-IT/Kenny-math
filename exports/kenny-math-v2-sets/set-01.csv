@@ -1,0 +1,163 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T01-Q01,1,1,Beginner,1,Money,au.money,"Uma's shopping bill is $15.21. Uma pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Uma pay?",$15.25,$15.30,$15.21,$15.20,D,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $15.21; look at the last digit of the cents, 1.
+Step 2: It is closer to $15.20 than to $15.25.
+Answer: $15.20","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,1520/100,VERIFIED,MCQ,
+T01-Q02,1,2,Beginner,1,Place Value & Rounding,wn.round,"Choose ALL the numbers that round to 1,900 when rounded to the nearest hundred.",,,,,,"What it asks: Choose every correct answer.
+Concept: A number rounds to a target if it is within half a unit of it.
+Step 1: 1,940: yes, 1,940 is closest to 1,900.
+Step 2: 1,973: no, 1,973 rounds to 2,000.
+Step 3: 2,000: no, 2,000 rounds to 2,000.
+Step 4: 1,864: yes, 1,864 is closest to 1,900.
+Step 5: 1,961: no, 1,961 rounds to 2,000.
+Answer: 1,940, 1,864",Always rounding up.,"Numbers from 1,850 up to 1,949 round to 1,900.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""1,940"",""1,973"",""2,000"",""1,864"",""1,961""],""correct"":[0,3]}"
+T01-Q03,1,3,Beginner,1,Units of Measurement,me.convert,How many millimetres are there in 3 centimetres?,40 mm,3 mm,300 mm,30 mm,D,"What it asks: Change centimetres into millimetres.
+Concept: 1 cm = 10 mm. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 cm = 10 mm.
+Step 2: 3 × 10 = 30.
+Answer: 30 mm","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,3*10,VERIFIED,MCQ,
+T01-Q04,1,4,Beginner,1,"Perimeter, Area & Volume",ge.volume,A packing carton is 15 cm × 6 cm × 3 cm. How many 3 cm cube-shaped parcels fill it completely?,10,15,270,90,A,"What it asks: Count how many small cubes fit along each edge, then multiply.
+Concept: Number of cubes = (length ÷ s) × (width ÷ s) × (height ÷ s).
+Step 1: Along the length: 15 ÷ 3 = 5. Along the width: 6 ÷ 3 = 2. Up the height: 3 ÷ 3 = 1.
+Step 2: 5 × 2 × 1 = 10.
+Answer: 10",Dividing the big volume by the small side length instead of the small volume.,Or: box volume 270 ÷ cube volume 27 = 10.,,,(15/3)*(6/3)*(3/3),VERIFIED,MCQ,
+T01-Q05,1,5,Beginner,1,Units of Measurement,me.problems,A jug holds 1.05 L of juice. How many glasses of 150 mL can be filled completely from the jug?,,,,,,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 1.05 L = 1,050 mL.
+Step 2: 1,050 ÷ 150 = 7.
+Answer: 7",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,1.05*1000/150,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""7""]}"
+T01-Q06,1,6,Beginner,1,Operations & Problem Solving,ms.planning,At a birthday party there are 26 children and 3 adults. Each of the children eats 2 slices of pizza and each of the adults eats 2. Each pizza has 6 slices and costs $12. What is the least amount of money needed to buy enough pizza?,$120,$108,$144,$132,A,"What it asks: Count the portions, then the whole items needed, then the cost.
+Concept: Find the total needed, divide by the pack size, round up, then multiply by the price.
+Step 1: Portions: 26 × 2 + 3 × 2 = 58.
+Step 2: Whole pizzas: 58 ÷ 6 = 9.67, so round up to 10.
+Step 3: Cost: 10 × $12 = $120.
+Answer: $120","Rounding down the number of whole items, so some people go without.",You cannot buy part of an item – round up.,,,ceil((26*2+3*2)/6)*12,VERIFIED,MCQ,
+T01-Q07,1,7,Beginner,1,Fractions,fr.forms,Find the missing number: \(\frac{2}{4} = \frac{\square}{16}\),,,,,,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 4 × 4 = 16, so the denominator was multiplied by 4.
+Step 2: Do the same to the numerator: 2 × 4 = 8.
+Answer: 8",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,2*16/4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""8""]}"
+T01-Q08,1,8,Beginner,1,Operations & Problem Solving,wp.twostep,9 children each collect 8 eggs. Then 4 more children join and each of them also collects 8 eggs. How many eggs are collected altogether?,32,104,72,76,B,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: First group: 9 × 8 = 72.
+Step 2: New children: 4 × 8 = 32.
+Step 3: Total: 72 + 32 = 104.
+Answer: 104","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,(9+4)*8,VERIFIED,MCQ,
+T01-Q09,1,9,Beginner,1,Factors & Multiples,wn.factors,"How many prime numbers are there from 10 to 30, including both 10 and 30 if they are prime?",11,7,6,5,C,"What it asks: Count the numbers in the range that have exactly two factors: 1 and themselves.
+Concept: A prime number has exactly two factors. Every even number except 2 is not prime.
+Step 1: Cross out all even numbers (except 2) and multiples of 3, 5 and 7.
+Step 2: The primes left are 11, 13, 17, 19, 23, 29.
+Step 3: That is 6 prime numbers.
+Answer: 6","Counting odd numbers like 9, 15 or 21 as prime when they have other factors.","Test each odd number by trying 3, 5 and 7 as divisors.",,,"nprimes(10,30)",VERIFIED,MCQ,
+T01-Q10,1,10,Beginner,1,Transformations & Symmetry,au.transform,How many lines of symmetry does a rectangle (not a square) have?,,,,,,"What it asks: Count the lines of symmetry of a shape.
+Concept: A line of symmetry is a fold line that makes the two halves match exactly.
+Step 1: A rectangle (not a square) has 2 lines of symmetry.
+Answer: 2",Counting the diagonals of a rectangle or rhombus that are not lines of symmetry.,Imagine folding the shape: both halves must fit exactly on top of each other.,,,2,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""2""]}"
+T01-Q11,1,11,Beginner,1,Patterns & Algebra,oo.basic,Work out \(22 - 2 \times 3\).,60,16,6,26,B,"What it asks: Work out the value of the expression using the correct order of operations.
+Concept: Order of operations: Brackets, then powers, then × and ÷ (left to right), then + and − (left to right).
+Step 1: Multiplication comes first: 2 × 3 = 6.
+Step 2: Then subtract: 22 − 6 = 16.
+Answer: 16","Working strictly from left to right and ignoring that multiplication, division and brackets have priority.",Remember BODMAS/PEMDAS. Multiply before you subtract.,,,22-2*3,VERIFIED,MCQ,
+T01-Q12,1,12,Beginner,1,Angles,ge.angles,"Angles around a point add up to 360°. Two angles are 113°, 55°. The angle that completes the turn is x. What is x?",12°,212°,192°,172°,C,"What it asks: Find a missing angle around a point.
+Concept: A full turn is 360°, so all the angles around one point add to 360°.
+Step 1: Add the known angles: 113 + 55 = 168.
+Step 2: 360 − 168 = 192.
+Answer: 192°",Subtracting from 180° instead of 360°.,Straight line = 180°. Full turn around a point = 360°.,,,360-113-55,VERIFIED,MCQ,
+T01-Q13,1,13,Beginner,1,Fractions,fr.forms,Write \(\frac{9}{24}\) in its simplest form.,\(\frac{3}{24}\),\(\frac{4}{8}\),\(\frac{3}{8}\),\(\frac{9}{8}\),C,"What it asks: Write the fraction using the smallest possible numerator and denominator.
+Concept: Divide the numerator and denominator by their greatest common factor.
+Step 1: The greatest common factor of 9 and 24 is 3.
+Step 2: 9 ÷ 3 = 3 and 24 ÷ 3 = 8.
+Step 3: The simplest form is 3/8.
+Answer: \(\frac{3}{8}\)","Dividing the top and bottom by different numbers, or stopping before the fraction is fully simplified.",Whatever you do to the top you must do to the bottom.,,,9/24,VERIFIED,MCQ,
+T01-Q14,1,14,Beginner,1,Location & Maps,au.maps,On a town map the station is at B1 and the beach is at E1. How many squares east of the station is the beach? (Letters run west to east.),,,,,,"What it asks: Use a grid reference to count squares between two places.
+Concept: A grid reference gives the column letter, then the row number. Count the squares between the references.
+Step 1: The letters go from B to E: 3 squares.
+Answer: 3 squares",Counting the square you start on as well.,Subtract the two column positions (or row numbers); do not count the start square.,,,3,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""3""],""unit"":""squares""}"
+T01-Q15,1,15,Beginner,1,Operations & Problem Solving,wp.multiplicative,Finn has 90 shells. This is 5 times as many as Hugo has. Hugo then gives 17 of them to Finn. How many shells does Finn have now?,73,90,107,35,C,"What it asks: Use the first fact to find the amounts and then apply the gift.
+Concept: Read each sentence in order and keep track of every change.
+Step 1: Finn starts with 90.
+Step 2: Hugo gives 17 to Finn: 90 + 17 = 107.
+Answer: 107",Subtracting when the amount is being given to the person asked about.,Is the person gaining or losing? That tells you add or subtract.,,,18*5+17,VERIFIED,MCQ,
+T01-Q16,1,16,Beginner,1,Patterns & Algebra,rc.missing,Find the value of \(\square\) if \(4 \times \square + 36 = 76\).,28,40,10,19,C,"What it asks: Work backwards to find the missing number.
+Concept: Undo each operation with its opposite, in reverse order.
+Step 1: Undo “+ 36”: 76 − 36 = 40.
+Step 2: Undo “× 4”: 40 ÷ 4 = 10.
+Step 3: Check: 4 × 10 + 36 = 76. ✓
+Answer: 10","Subtracting 36 from the wrong place, or dividing before undoing the addition.",Always check by putting your answer back into the equation.,,,(76-36)/4,VERIFIED,MCQ,
+T01-Q17,1,17,Beginner,1,Shapes & Objects,au.shapes,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Know the properties of 2D shapes and 3D objects: sides, parallel lines, right angles, faces, edges and vertices.
+Step 1: Statement 1 is true: a rhombus is a ""pushed-over square"".
+Step 2: Statement 2 is false: a triangle has 3 vertices.
+Answer: True, False","Mixing up the properties of a square, rectangle and rhombus.",Sketch the shape and count carefully.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A rhombus has 4 equal sides"",""truth"":true},{""text"":""A triangle has 4 vertices"",""truth"":false}]}"
+T01-Q18,1,18,Beginner,1,Data,au.data,"A class survey recorded these votes: Dogs 11, Cats 7, Fish 10, Birds 8. How many more students chose Dogs than Cats?",4,2,6,18,A,"What it asks: Find the difference between the largest and smallest values.
+Concept: Subtract the smaller number from the larger.
+Step 1: Dogs has 11; Cats has 7.
+Step 2: 11 − 7 = 4.
+Answer: 4",Adding the two categories instead of finding the difference.,"""How many more"" means subtract.",,,11-7,VERIFIED,MCQ,
+T01-Q19,1,19,Beginner,1,Decimals,dec.place,What is the value of the digit 4 in 2.43?,,,,,,"What it asks: Find what the digit 4 is worth in the tenths place.
+Concept: Each place to the right of the decimal point is ten times smaller than the one before.
+Step 1: In 2.43, the digit 4 is in the tenths place.
+Step 2: tenths means 4 ÷ 10 = 0.4.
+Answer: 0.4",Mixing up tenths (0.1) with tens (10) or reading the wrong place.,Say the number aloud: 3.25 is “three and twenty-five hundredths”.,,,4/10,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""0.4""]}"
+T01-Q20,1,20,Beginner,1,Chance,au.chance,Choose ALL the events that are likely.,,,,,,"What it asks: Choose every correct answer.
+Concept: Describe chance with words: impossible, unlikely, even chance, likely, certain.
+Step 1: Picking a blue marble from a bag of 9 red and 1 blue marbles: no, this event is unlikely.
+Step 2: A dropped ball falls to the ground: no, this event is certain.
+Step 3: Rolling a number greater than 1 on a standard six-sided die: yes, this event is likely.
+Step 4: Getting heads when you toss a fair coin: no, this event is an even chance.
+Step 5: Picking a red marble from a bag of 9 red and 1 blue marbles: yes, this event is likely.
+Answer: Rolling a number greater than 1 on a standard six-sided die, Picking a red marble from a bag of 9 red and 1 blue marbles","Confusing ""unlikely"" with ""impossible"".",Think about how many outcomes make the event happen.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""Picking a blue marble from a bag of 9 red and 1 blue marbles"",""A dropped ball falls to the ground"",""Rolling a number greater than 1 on a standard six-sided die"",""Getting heads when you toss a fair coin"",""Picking a red marble from a bag of 9 red and 1 blue marbles""],""correct"":[2,4]}"
+T01-Q21,1,21,Beginner,2,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 9 and 12?,36,3,6,9,B,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 9: 1, 3, 9.
+Step 2: Factors of 12: 1, 2, 3, 4, 6, 12.
+Step 3: The biggest number in both lists is 3.
+Answer: 3","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(9,12)",VERIFIED,MCQ,
+T01-Q22,1,22,Beginner,2,Money,dec.money,"At the corner shop, Dan buys 5 pencils at $2.29 each and pays with $15.00. How much change does Dan get?",$11.45,$3.65,$3.56,$3.55,D,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the pencils: 5 × $2.29 = $11.45.
+Step 2: Change: $15.00 − $11.45 = $3.55.
+Answer: $3.55",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,15-(2.29*5),VERIFIED,MCQ,
+T01-Q23,1,23,Beginner,2,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{1}{4}\), \(\frac{1}{2}\), \(\frac{7}{8}\).
+Answer: \(\frac{1}{4}\), \(\frac{1}{2}\), \(\frac{7}{8}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{1}{4}\\)"",""\\(\\frac{1}{2}\\)"",""\\(\\frac{7}{8}\\)""]}"
+T01-Q24,1,24,Beginner,2,Shapes & Objects,au.shapes,What is the name of a 2D shape with 5 sides?,,,,,,"What it asks: Answer with the correct word.
+Concept: A shape with five sides is a pentagon.
+Step 1: A shape with five sides is a pentagon.
+Answer: pentagon",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""pentagon""]}"
+T01-Q25,1,25,Beginner,2,Decimals,dec.compare,Which of these decimals is the smallest?,6.837,6.602,6.735,6.045,D,"What it asks: Pick the decimal with the smallest value.
+Concept: Compare decimals place by place from the left: ones, then tenths, then hundredths, then thousandths.
+Step 1: Write them with the same number of decimal places: 6.837, 6.735, 6.045, 6.602.
+Step 2: Compare digit by digit from the left.
+Step 3: Smallest: 6.045.
+Answer: 6.045","Thinking a decimal with more digits is bigger (0.45 is NOT smaller than 0.4500, and 0.5 is bigger than 0.499).","Add zeros at the end so all decimals have the same length, then compare as whole numbers.",,,"min(6.837,6.735,6.045,6.602)",VERIFIED,MCQ,
+T01-Q26,1,26,Beginner,2,Place Value & Rounding,wn.place,"Which number is the same as \(5 \times 1{,}000 + 9 \times 100 + 9 \times 10\)?",995,"5,990",599,"6,090",B,"What it asks: Turn the expanded form into an ordinary number.
+Concept: Expanded form shows each digit multiplied by its place value.
+Step 1: Work out each part: 5,000, 900, 90.
+Step 2: Add them: 5,000 + 900 + 90 = 5,990.
+Step 3: Places with no part are zeros.
+Answer: 5,990",Leaving out the zero placeholders and writing a number that is too short.,Write a 0 in every place value that is missing from the expanded form.,,,5000+900+90,VERIFIED,MCQ,
+T01-Q27,1,27,Beginner,2,Time,ts.clock,5 hours 30 minutes = {1} minutes. 4 PM is {2} o'clock in 24-hour time (type the hour number).,,,,,,"What it asks: Change between hours, minutes and 24-hour time.
+Concept: 1 hour = 60 minutes. After noon, add 12 to get 24-hour time.
+Step 1: 5 × 60 = 300, plus 30 = 330.
+Step 2: 4 + 12 = 16.
+Answer: 1) 330, 2) 16",Using 100 minutes in an hour.,"An hour is 60 minutes, not 100.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""330""]},{""accepted"":[""16""]}]}"
+T01-Q28,1,28,Beginner,2,Data,au.data,"A class survey recorded these votes: Dogs 7, Cats 12, Fish 4, Birds 9. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is true: Cats has the most votes (12).
+Step 2: Statement 2 is false: Fish has the fewest votes (4).
+Answer: True, False",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Cats was the most popular choice"",""truth"":true},{""text"":""Fish was the most popular choice"",""truth"":false}]}"
+T01-Q29,1,29,Beginner,2,"Perimeter, Area & Volume",ms.measure,"A rectangular garden is 13 m long and 5 m wide. A fence goes all the way around it, except for a 3 m gap for the gate. The fence costs $4 per metre. What is the total cost of the fence?",$144,$260,$156,$132,D,"What it asks: Find the length of fence needed and then its cost.
+Concept: Perimeter gives the distance around; multiply by the price per metre for the cost.
+Step 1: Perimeter: 2 × (13 + 5) = 36 m.
+Step 2: Fence needed (without the gate): 36 − 3 = 33 m.
+Step 3: Cost: 33 × $4 = $132.
+Answer: $132","Forgetting the gate gap, or using the area instead of the perimeter.",Ask yourself: do I need the distance around (perimeter) or the space inside (area)?,,,(2*(13+5)-3)*4,VERIFIED,MCQ,
+T01-Q30,1,30,Beginner,2,Time,ts.clock,A train timetable shows a departure at 19:15. What time is that in 12-hour time?,7:15 AM,8:15 PM,6:15 PM,7:15 PM,D,"What it asks: Change a 24-hour time to 12-hour time with AM or PM.
+Concept: 24-hour times from 13:00 onwards are PM: subtract 12 hours. 00:xx is 12:xx AM and 12:xx is 12:xx PM.
+Step 1: 19 − 12 = 7.
+Step 2: So 19:15 is 7:15 PM.
+Answer: 7:15 PM","Writing AM instead of PM, or forgetting to subtract 12 hours.","After noon, subtract 12 from the hour and write PM.",,,1155,VERIFIED,MCQ,

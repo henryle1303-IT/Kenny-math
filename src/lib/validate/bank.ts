@@ -85,7 +85,7 @@ export function validateBank(rows: QuestionData[], opts: BankValidationOptions =
     const pp = positions.get(posKey);
     if (pp) add('DUPLICATE_POSITION', `Test ${q.testNumber} question ${q.position} is already used in row ${pp}`);
     else positions.set(posKey, row);
-    const tk = norm(q.questionText) + '|' + norm(typeOf(q.questionType) === 'MCQ' ? (q.options[['A', 'B', 'C', 'D'].indexOf(q.correctAnswer)] ?? '') : answerKeyText({ questionType: q.questionType, answerData: q.answerData, correctAnswer: '' }));
+    const tk = norm(q.questionText) + '|' + norm(typeOf(q.questionType) === 'MCQ' ? (q.options[['A', 'B', 'C', 'D'].indexOf(q.correctAnswer)] ?? '') : answerKeyText({ questionType: q.questionType, answerData: q.answerData, correctAnswer: '' }) + '|' + (q.answerData ?? ''));
     const tp = texts.get(tk);
     if (tp) add('DUPLICATE_QUESTION', `Same question and answer as row ${tp}`);
     else texts.set(tk, row);

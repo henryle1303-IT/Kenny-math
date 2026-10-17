@@ -174,3 +174,12 @@ Khác biệt so với kế hoạch (chưa làm, cần ghi nhận):
 - Chưa kiểm thử trên PostgreSQL/Neon thật: schema PostgreSQL qua prisma validate đạt, SQL migration đọc lại bằng mắt.
 
 Kiểm thử đã chạy: typecheck, lint, vitest (unit và integration, có test mới cho từng dạng, CSV, demo, sao lưu, import/export), Playwright (27 test, gồm bài mới chạy đủ các dạng bằng người dùng demo, và 2 test demo tĩnh). Hai test cũ phải đổi số kỳ vọng vì tiêu đề CSV có thêm 2 cột và file mẫu có 9 ví dụ thay vì 3.
+
+12. Bộ câu hỏi Úc lớp 5 (kenny-math-v2.csv)
+
+Đã làm theo kế hoạch Cách 1: exports/kenny-math-v2.csv (900 câu, 30 bộ x 30 câu) và exports/kenny-math-v2-sets/set-01..30.csv (mỗi bộ một file để đọc). Tạo lại bằng npm run bank:au (khoảng 2 giây). Mã nguồn: src/lib/gen/au (sections, mcq, typed, assemble, plan, csv) và scripts/build-au-bank.ts.
+- 16 mục (số, đo lường, hình, thống kê/xác suất), bối cảnh Úc (đô la Úc, làm tròn 5 xu, giờ 24, đơn vị mét, chính tả Anh-Úc). Bỏ tỉ số, vận tốc, phần trăm nhiều bước vì cao hơn lớp 5 Úc.
+- Số lượng đúng như bảng: tổng 450 trắc nghiệm, 190 nhập số, 80 đúng/sai, 60 chọn nhiều, 60 điền chỗ trống, 30 sắp xếp, 30 chữ ngắn. (Con số "khoảng 540 và 360" nêu lúc lập kế hoạch là tính nhầm; số đúng là 450 và 450.)
+- Kiểm tra: 900/900 câu VERIFIED, 0 lỗi, 0 câu cần duyệt tay; không trùng câu; 30 câu chữ ngắn khác nhau; mỗi đáp án lưu sẵn đều được chấm đúng, đáp án ngược đều bị chấm sai; nhập thật bằng importer rồi publish không cần xác nhận duyệt; làm 5 bài với đáp án đúng được 30/30; đã mở bằng trình duyệt cho học sinh thấy 30 bài và đủ các dạng ô nhập.
+- Thay đổi chung: kiểm tra trùng câu của ngân hàng nay tính cả answer_data (câu đúng/sai và sắp xếp có đề giống nhau nhưng nội dung khác không còn bị coi là trùng).
+- Giới hạn: danh sách mục dựng từ hiểu biết chung về chương trình Úc, chưa đối chiếu từng chuẩn; nội dung do máy sinh nên cần giáo viên đọc lướt một số bộ; câu thuộc các mục mới không có máy sinh câu luyện tập tương tự; không có hình; chưa thử trên Neon thật.

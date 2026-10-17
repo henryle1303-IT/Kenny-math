@@ -1,0 +1,166 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T10-Q01,10,1,Beginner,2,Data,au.data,A column graph shows the number of books read each week. Each gridline is 2 books. The bar for Week 1 reaches the 2nd gridline and the bar for Week 2 reaches the 4th gridline. How many more books were read in Week 2 than in Week 1?,,,,,,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 2. Find each bar's value, then subtract.
+Step 1: Week 1: 2 × 2 = 4. Week 2: 4 × 2 = 8.
+Step 2: 8 − 4 = 4.
+Answer: 4",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,4*2-2*2,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""4""]}"
+T10-Q02,10,2,Beginner,2,Operations & Problem Solving,wp.twostep,"A baker fills 7 trays with 15 muffins in each, and then has 3 muffins left over. How many muffins did they have at the start?",25,108,105,102,B,"What it asks: Work out the two steps one at a time.
+Concept: A two-step problem needs two calculations: do the first to unlock the second.
+Step 1: 7 trays × 15 = 105 muffins.
+Step 2: Add the 3 left over: 105 + 3 = 108.
+Answer: 108","Doing only the first step, or adding the numbers in the story without thinking about what they mean.","Underline the question, circle the numbers, and decide which operation each step needs.",,,15*7+3,VERIFIED,MCQ,
+T10-Q03,10,3,Beginner,2,Fractions,fr.forms,Write \(\frac{6}{15}\) in its simplest form.,,,,,,"What it asks: Write the fraction using the smallest possible numerator and denominator.
+Concept: Divide the numerator and denominator by their greatest common factor.
+Step 1: The greatest common factor of 6 and 15 is 3.
+Step 2: 6 ÷ 3 = 2 and 15 ÷ 3 = 5.
+Step 3: The simplest form is 2/5.
+Answer: \(\frac{2}{5}\)","Dividing the top and bottom by different numbers, or stopping before the fraction is fully simplified.",Whatever you do to the top you must do to the bottom.,,,6/15,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""2/5""],""format"":""fraction"",""requireSimplified"":true}"
+T10-Q04,10,4,Beginner,2,Place Value & Rounding,wn.place,"In the number 61,320, what is the value of the digit 3?","3,000",300,30,3,B,"What it asks: Find what the digit 3 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 61,320, the digit 3 is in the hundreds place.
+Step 2: 3 × 100 = 300.
+Answer: 300",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,3*10^2,VERIFIED,MCQ,
+T10-Q05,10,5,Beginner,2,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{2}{4}\), \(\frac{6}{8}\), \(\frac{7}{8}\).
+Answer: \(\frac{2}{4}\), \(\frac{6}{8}\), \(\frac{7}{8}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{2}{4}\\)"",""\\(\\frac{6}{8}\\)"",""\\(\\frac{7}{8}\\)""]}"
+T10-Q06,10,6,Beginner,2,Transformations & Symmetry,au.transform,Grace turns a shape clockwise through 3 quarter turns. How many degrees does the shape turn altogether?,540°,135°,360°,270°,D,"What it asks: Turn quarter turns into degrees.
+Concept: One quarter turn is 90°. A half turn is 180° and a full turn is 360°.
+Step 1: 3 × 90° = 270°.
+Answer: 270°",Using 45° or 180° for a quarter turn.,"Quarter turn 90°, half turn 180°, three-quarter turn 270°, full turn 360°.",,,270,VERIFIED,MCQ,
+T10-Q07,10,7,Beginner,2,Decimals,dec.place,Round 7.888 to the nearest tenth.,7.9,7.89,7.8,8.0,A,"What it asks: Find the tenth that 7.888 is nearest to.
+Concept: Look at the digit one place to the right of the rounding place: 5 or more rounds up, 4 or less stays.
+Step 1: 7.888 is between 7.8 and 7.9.
+Step 2: Look at the next digit to decide: it is closer to 7.9.
+Answer: 7.9","Rounding down every time, or changing the wrong place.",Keep the zero at the end if you round to a place (for example 3.50 to the nearest hundredth).,,,round(7.888*10)/10,VERIFIED,MCQ,
+T10-Q08,10,8,Beginner,2,Chance,au.chance,"A bag has 4 red, 3 blue marbles. One marble is taken out without looking. What is the chance of taking a blue marble? Give a fraction in simplest form.",,,,,,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 4 + 3 = 7.
+Step 2: blue marbles: 3.
+Step 3: Chance = \(\frac{3}{7}\).
+Answer: \(\frac{3}{7}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,3/7,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""3/7""],""format"":""fraction"",""requireSimplified"":true}"
+T10-Q09,10,9,Beginner,2,Time,ts.clock,Dan starts homework at 9:38 AM and it takes 1 h 25 min. What time does Dan finish?,12:03 PM,10:53 AM,11:13 AM,11:03 AM,D,"What it asks: Add the time taken to the start time.
+Concept: End time = start time + duration. Remember 60 minutes make 1 hour.
+Step 1: Add the hours: 9:38 AM + 1 h = 10:38 AM.
+Step 2: Add the minutes: + 25 min = 11:03 AM.
+Answer: 11:03 AM",Carrying over 100 minutes instead of 60.,"Add the hours first, then the minutes.",,,578+85,VERIFIED,MCQ,
+T10-Q10,10,10,Beginner,2,Operations & Problem Solving,wn.addsub,"Calculate \(9{,}980 - 9{,}000\).",990,880,980,"1,980",C,"What it asks: Find the difference between the two numbers.
+Concept: Subtraction: take away one place value at a time.
+Step 1: Start with 9,980.
+Step 2: Take away 9,000: 9,980 − 9,000 = 980.
+Answer: 980",Forgetting to regroup (borrow) and subtracting the smaller digit from the larger one.,Check subtraction with addition: the answer plus the smaller number should give the larger number.,,,9980-9000,VERIFIED,MCQ,
+T10-Q11,10,11,Beginner,2,Location & Maps,au.maps,Khoa is facing North. Khoa turns clockwise to face East. Through how many degrees does Khoa turn?,45°,90°,270°,135°,B,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From North clockwise to East is 2 steps of 45°.
+Step 2: 2 × 45° = 90°.
+Answer: 90°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,90,VERIFIED,MCQ,
+T10-Q12,10,12,Beginner,2,"Perimeter, Area & Volume",ge.volume,"A toy chest is 6 cm long, 7 cm wide and 4 cm high. What is its volume?",17 cm³,188 cm³,46 cm³,168 cm³,D,"What it asks: Find how much space is inside the box.
+Concept: Volume of a cuboid = length × width × height.
+Step 1: Base layer: 6 × 7 = 42 cubes.
+Step 2: 4 layers: 42 × 4 = 168 cm³.
+Answer: 168 cm³","Adding the dimensions, or finding the surface area.","Find one layer first, then multiply by the number of layers.",,,6*7*4,VERIFIED,MCQ,
+T10-Q13,10,13,Beginner,2,Place Value & Rounding,wn.round,"Choose ALL the numbers that round to 2,600 when rounded to the nearest hundred.",,,,,,"What it asks: Choose every correct answer.
+Concept: A number rounds to a target if it is within half a unit of it.
+Step 1: 2,568: yes, 2,568 is closest to 2,600.
+Step 2: 2,605: yes, 2,605 is closest to 2,600.
+Step 3: 2,670: no, 2,670 rounds to 2,700.
+Step 4: 2,645: yes, 2,645 is closest to 2,600.
+Step 5: 2,523: no, 2,523 rounds to 2,500.
+Answer: 2,568, 2,605, 2,645",Always rounding up.,"Numbers from 2,550 up to 2,649 round to 2,600.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""2,568"",""2,605"",""2,670"",""2,645"",""2,523""],""correct"":[0,1,3]}"
+T10-Q14,10,14,Beginner,2,Factors & Multiples,wn.factors,A red light flashes every 6 seconds and a blue light flashes every 10 seconds. They flash together now. After how many seconds will they next flash together?,,,,,,"What it asks: Find the first time both events happen together.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 6: 6, 12, 18, 24, 30, 36…
+Step 2: Multiples of 10: 10, 20, 30, 40…
+Step 3: The first number in both lists is 30.
+Answer: 30","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(6,10)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""30""]}"
+T10-Q15,10,15,Beginner,2,Patterns & Algebra,pa.arith,"A number pattern starts 7, 10, 13, … and keeps adding 3. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 35: no, 35 is not 7 plus a multiple of 3.
+Step 2: 40: yes, 7 + 11 × 3 = 40.
+Step 3: 34: yes, 7 + 9 × 3 = 34.
+Step 4: 32: no, 32 is not 7 plus a multiple of 3.
+Step 5: 19: yes, 7 + 4 × 3 = 19.
+Answer: 40, 34, 19",Choosing numbers that are near the pattern but not on it.,Check that (number − 7) divides by 3.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""35"",""40"",""34"",""32"",""19""],""correct"":[1,2,4]}"
+T10-Q16,10,16,Beginner,2,Data,wp.table,"A class survey recorded these numbers. Cats: 34, Dogs: 33, Fish: 32, Birds: 9. How many more votes did Dogs get than Birds?",42,14,34,24,D,"What it asks: Compare the two numbers by subtracting.
+Concept: “How many more” is found by subtraction.
+Step 1: Dogs = 33 and Birds = 9.
+Step 2: 33 − 9 = 24.
+Answer: 24",Adding the two numbers.,“More than” and “fewer than” are comparison words that usually mean subtract.,,,33-9,VERIFIED,MCQ,
+T10-Q17,10,17,Beginner,2,Angles,ge.angles,"Angles around a point add up to 360°. Two angles are 134°, 138°. The angle that completes the turn is x. What is x?",108°,68°,88°,92°,C,"What it asks: Find a missing angle around a point.
+Concept: A full turn is 360°, so all the angles around one point add to 360°.
+Step 1: Add the known angles: 134 + 138 = 272.
+Step 2: 360 − 272 = 88.
+Answer: 88°",Subtracting from 180° instead of 360°.,Straight line = 180°. Full turn around a point = 360°.,,,360-134-138,VERIFIED,MCQ,
+T10-Q18,10,18,Beginner,2,Fractions,fr.addsub,Calculate \(\frac{4}{5}\) − \(\frac{4}{10}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{1}{5}\),\(\frac{1}{2}\),\(\frac{2}{5}\),\(1\frac{1}{5}\),C,"What it asks: Subtract fractions whose denominators are related.
+Concept: 10 is a multiple of 5, so rewrite the first fraction with denominator 10 before subtracting.
+Step 1: \(\frac{4}{5}\) = \(\frac{4}{5}\) (denominator 10).
+Step 2: Subtract the numerators: 8 − 4 = 4.
+Step 3: Simplify: \(\frac{2}{5}\).
+Answer: \(\frac{2}{5}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,4/5-4/10,VERIFIED,MCQ,
+T10-Q19,10,19,Beginner,2,Money,wp.money,Grace buys 4 notebooks at $4.05 each and a calculator at $8.10 and pays with $30.00. How much change should Grace get?,,,,,,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $4.05 = $16.20.
+Step 2: Calculator: 1 × $8.10 = $8.10.
+Step 3: Total: $24.30. Change: $30.00 − $24.30 = $5.70.
+Answer: $5.70",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,30-(4.05*4+8.1*1),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5.70""]}"
+T10-Q20,10,20,Beginner,2,Operations & Problem Solving,wp.rounding,71 eggs are packed into cartons that hold 8 eggs each. How many cartons are needed to pack all the eggs?,10,9,8,11,B,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 71 ÷ 8 = 8 remainder 7.
+Step 2: The 7 left over still need space, so add one more.
+Step 3: 8 + 1 = 9.
+Answer: 9",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(71/8),VERIFIED,MCQ,
+T10-Q21,10,21,Beginner,3,Units of Measurement,me.problems,Isla’s ribbon is 280 cm long. Omar’s ribbon is 1.2 m long. How many centimetres longer is Isla’s ribbon?,160 cm,170 cm,"1,600 cm",400 cm,A,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 1.2 m = 120 cm.
+Step 2: Difference: 280 − 120 = 160 cm.
+Step 3: Isla’s ribbon is longer than Omar’s by 160 cm.
+Answer: 160 cm",Subtracting 1.2 from 280 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(280-1.2*100),VERIFIED,MCQ,
+T10-Q22,10,22,Beginner,3,"Perimeter, Area & Volume",ge.perimeter,A regular hexagon has sides that are each 6 cm long. What is its perimeter?,36 cm,30 cm,42 cm,12 cm,A,"What it asks: Find the distance around a shape with 6 equal sides.
+Concept: A regular polygon has all sides equal, so perimeter = number of sides × side length.
+Step 1: A hexagon has 6 sides.
+Step 2: 6 × 6 = 36 cm.
+Answer: 36 cm",Using the wrong number of sides.,"Count the sides carefully: pentagon 5, hexagon 6, octagon 8.",,,6*6,VERIFIED,MCQ,
+T10-Q23,10,23,Beginner,3,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 45 and 99?,9,495,18,45,A,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 45: 1, 3, 5, 9, 15, 45.
+Step 2: Factors of 99: 1, 3, 9, 11, 33, 99.
+Step 3: The biggest number in both lists is 9.
+Answer: 9","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(45,99)",VERIFIED,MCQ,
+T10-Q24,10,24,Beginner,3,Shapes & Objects,au.shapes,How many edges does a pentagonal prism have?,16,7,15,10,C,"What it asks: Count the edges of a 3D object.
+Concept: A pentagonal prism has 2 pentagonal ends and 5 rectangular sides. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 7, edges: 15, vertices: 10.
+Step 2: The question asks for the edges: 15.
+Answer: 15","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,15,VERIFIED,MCQ,
+T10-Q25,10,25,Beginner,3,Decimals,dec.fraction,Write \(\frac{5}{8}\) as a decimal.,0.0625,0.625,5.8,6.25,B,"What it asks: Change the fraction into a decimal number.
+Concept: A fraction is a division: numerator ÷ denominator. Or make the denominator 10, 100 or 1000.
+Step 1: 5/8 means 5 ÷ 8.
+Step 2: 5 ÷ 8 = 0.625.
+Answer: 0.625",Writing the numerator and denominator on either side of a decimal point (e.g. 3/4 = 3.4).,"Remember: 1/2 = 0.5, 1/4 = 0.25, 1/5 = 0.2, 1/8 = 0.125.",,,5/8,VERIFIED,MCQ,
+T10-Q26,10,26,Beginner,3,Units of Measurement,me.problems,Tom has a bag of flour of 5 kg 300 g and another one of 4 kg 100 g. What is the total in g?,"9,410 g","10,400 g","1,200 g","9,400 g",D,"What it asks: Change both amounts to g and add.
+Concept: Convert everything to the same unit first. 1 kg = 1,000 g.
+Step 1: 5 kg 300 g = 5,300 g.
+Step 2: 4 kg 100 g = 4,100 g.
+Step 3: 5,300 + 4,100 = 9,400 g.
+Answer: 9,400 g",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,5300+4100,VERIFIED,MCQ,
+T10-Q27,10,27,Beginner,3,Shapes & Objects,au.shapes,What is the name of a 2D shape with 7 sides?,,,,,,"What it asks: Answer with the correct word.
+Concept: A shape with seven sides is a heptagon.
+Step 1: A shape with seven sides is a heptagon.
+Answer: heptagon",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""heptagon""]}"
+T10-Q28,10,28,Beginner,3,Patterns & Algebra,pa.arith,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: In a number pattern, find the rule from the difference between terms.
+Step 1: Statement 1 is true: each term is 3 more than the one before.
+Step 2: Statement 2 is false: 11 + 3 = 14.
+Step 3: Statement 3 is true: 11 + 3 = 14.
+Answer: True, False, True",Using the term number instead of the number of steps.,The 10th term is 9 steps after the first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The pattern 2, 5, 8, 11, … adds 3 each time"",""truth"":true},{""text"":""The next number in 2, 5, 8, 11, … is 15"",""truth"":false},{""text"":""The next number in 2, 5, 8, 11, … is 14"",""truth"":true}]}"
+T10-Q29,10,29,Beginner,3,Money,au.money,A pen costs $4.95 and it is paid for with $5.00. The change is $ {1}. A bill of $25.29 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 5.00 − 4.95 = 0.05.
+Step 2: 25.29 is closest to 25.30.
+Answer: 1) 0.05, 2) 25.30",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.05""]},{""accepted"":[""25.30""]}]}"
+T10-Q30,10,30,Beginner,3,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is false: 06:22 is 6:22 AM.
+Step 2: Statement 2 is true: 1 × 60 + 50 = 110.
+Step 3: Statement 3 is false: 1 hour is 60 minutes, so 1 hours 50 minutes is 110 minutes.
+Answer: False, True, False",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""06:22 is the same time as 7:22 AM"",""truth"":false},{""text"":""1 hours 50 minutes is 110 minutes"",""truth"":true},{""text"":""1 hours 50 minutes is 150 minutes"",""truth"":false}]}"

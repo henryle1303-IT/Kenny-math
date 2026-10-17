@@ -1,0 +1,174 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T15-Q01,15,1,Intermediate,2,"Perimeter, Area & Volume",ge.perimeter,The perimeter of a square is 56 cm. What is the area of the square?,56 cm²,"3,136 cm²",28 cm²,196 cm²,D,"What it asks: Use the perimeter to find the side, then the area.
+Concept: A square has 4 equal sides: side = perimeter ÷ 4. Area = side × side.
+Step 1: Side: 56 ÷ 4 = 14 cm.
+Step 2: Area: 14 × 14 = 196 cm².
+Answer: 196 cm²",Squaring the perimeter instead of the side.,Always find the side length first.,,,(56/4)^2,VERIFIED,MCQ,
+T15-Q02,15,2,Intermediate,2,Transformations & Symmetry,au.transform,What is the name of a transformation that flips a shape over a line?,,,,,,"What it asks: Answer with the correct word.
+Concept: Flipping a shape over a mirror line is a reflection.
+Step 1: Flipping a shape over a mirror line is a reflection.
+Answer: reflection",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""reflection""]}"
+T15-Q03,15,3,Intermediate,2,"Perimeter, Area & Volume",ms.measure,"A rectangular garden is 9 m long and 6 m wide. A fence goes all the way around it, except for a 2 m gap for the gate. The fence costs $8 per metre. What is the total cost of the fence?",$224,$432,$256,$240,A,"What it asks: Find the length of fence needed and then its cost.
+Concept: Perimeter gives the distance around; multiply by the price per metre for the cost.
+Step 1: Perimeter: 2 × (9 + 6) = 30 m.
+Step 2: Fence needed (without the gate): 30 − 2 = 28 m.
+Step 3: Cost: 28 × $8 = $224.
+Answer: $224","Forgetting the gate gap, or using the area instead of the perimeter.",Ask yourself: do I need the distance around (perimeter) or the space inside (area)?,,,(2*(9+6)-2)*8,VERIFIED,MCQ,
+T15-Q04,15,4,Intermediate,2,Operations & Problem Solving,wp.rounding,A school trip has 31 students. Each minibus holds 9 students. How many minibuses are needed so that every student has a seat?,,,,,,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 31 ÷ 9 = 3 remainder 4.
+Step 2: The 4 left over still need space, so add one more.
+Step 3: 3 + 1 = 4.
+Answer: 4",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(31/9),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""4""]}"
+T15-Q05,15,5,Intermediate,2,Time,ts.clock,Put these times in order from shortest to longest.,,,,,,"What it asks: Put the items in order, shortest to longest.
+Concept: Change every time to minutes before you compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 78 minutes, 2 h 3 min, 145 minutes.
+Answer: 78 minutes, 2 h 3 min, 145 minutes",Treating an hour as 100 minutes.,1 hour = 60 minutes.,,,,VERIFIED,ORDERING,"{""items"":[""78 minutes"",""2 h 3 min"",""145 minutes""]}"
+T15-Q06,15,6,Intermediate,2,Units of Measurement,me.problems,A jug holds 1 L of water. How many glasses of 200 mL can be filled completely from the jug?,,,,,,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 1 L = 1,000 mL.
+Step 2: 1,000 ÷ 200 = 5.
+Answer: 5",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,1*1000/200,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5""]}"
+T15-Q07,15,7,Intermediate,2,Patterns & Algebra,pa.functions,"A rule changes each input number to an output number. Input 2 gives 8, input 3 gives 11, and input 5 gives 17. What output does input 13 give?",44,15,41,39,C,"What it asks: Find the rule from the examples, then use it.
+Concept: Rules usually combine multiplying and adding: look at how the output changes when the input goes up by 1.
+Step 1: When the input goes up by 1, the output goes up by 3, so the rule includes × 3.
+Step 2: 2 × 3 = 6, and the output is 8, so we add 2.
+Step 3: For 13: 3 × 13 + 2 = 41.
+Answer: 41",Finding only the “+ b” part or only the “× a” part of the rule.,Test your rule on every example before using it.,,,3*13+2,VERIFIED,MCQ,
+T15-Q08,15,8,Intermediate,2,Decimals,dec.addsub,Complete: 0.5 + {1} = 1 and 6.8 × 10 = {2}.,,,,,,"What it asks: Use decimals to make 1 and to multiply or divide by 10.
+Concept: Multiplying by 10 moves the digits one place left; dividing by 10 moves them one place right.
+Step 1: 1 − 0.5 = 0.5.
+Answer: 1) 0.5, 2) 68",Moving the decimal point the wrong way.,"Check: the answer to × 10 is bigger, to ÷ 10 is smaller.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.5""]},{""accepted"":[""68""]}]}"
+T15-Q09,15,9,Intermediate,2,Fractions,fr.addsub,Calculate \(6\frac{5}{6} + 3\frac{5}{6}\). Give your answer as a mixed number in simplest form.,\(10\frac{2}{3}\),\(10\frac{5}{6}\),\(9\frac{5}{6}\),\(10\frac{1}{2}\),A,"What it asks: Add the mixed numbers.
+Concept: Convert to improper fractions with a common denominator, calculate, then convert back to a mixed number.
+Step 1: Write as improper fractions over 6: 41/6 + 23/6.
+Step 2: Add numerators: 64/6.
+Step 3: Simplify and change to a mixed number: 32/3.
+Answer: \(10\frac{2}{3}\)",Adding the whole numbers and the fractions separately but forgetting to carry when the fractions make more than 1.,"When in doubt, change both mixed numbers to improper fractions first.",,,41/6+23/6,VERIFIED,MCQ,
+T15-Q10,15,10,Intermediate,2,Decimals,dec.addsub,What is \(20.95 - 14.33\)?,,,,,,"What it asks: Subtract the two decimal numbers.
+Concept: Line up the decimal points so tenths are under tenths and hundredths under hundredths, then calculate as with whole numbers.
+Step 1: Line up the decimal points: 20.95 and 14.33.
+Step 2: Subtract column by column from the right, regrouping when needed.
+Step 3: 20.95 − 14.33 = 6.62.
+Answer: 6.62",Lining up the digits on the right instead of lining up the decimal points.,Write extra zeros so both numbers have the same number of decimal places (hundredths or thousandths).,,,20.95-14.33,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""6.62""]}"
+T15-Q11,15,11,Intermediate,3,Place Value & Rounding,wn.place,"In the number 306,578, what is the value of the digit 7?",7,"7,000",70,700,C,"What it asks: Find what the digit 7 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 306,578, the digit 7 is in the tens place.
+Step 2: 7 × 10 = 70.
+Answer: 70",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,7*10^1,VERIFIED,MCQ,
+T15-Q12,15,12,Intermediate,3,Time,ts.clock,Leo's tram leaves Fremantle at 2:05 PM and arrives at 4:14 PM. How many minutes does the trip take?,,,,,,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 2:05 PM to 4:14 PM.
+Step 2: 129 minutes pass.
+Answer: 129 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,129,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""129""],""unit"":""minutes""}"
+T15-Q13,15,13,Intermediate,3,Data,au.data,"A class survey recorded these votes: Vegemite 15, Honey 4, Jam 7, Peanut butter 9. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is false: Honey has 4 and Vegemite has 15.
+Step 2: Statement 2 is true: Vegemite has the most votes (15).
+Step 3: Statement 3 is true: 15 + 4 + 7 + 9 = 35.
+Answer: False, True, True",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Honey got more votes than Vegemite"",""truth"":false},{""text"":""Vegemite was the most popular choice"",""truth"":true},{""text"":""The total number of votes was 35"",""truth"":true}]}"
+T15-Q14,15,14,Intermediate,3,Fractions,fr.addsub,Calculate \(2\frac{3}{4} + 2\frac{3}{4}\). Give your answer as a mixed number in simplest form.,,,,,,"What it asks: Add the mixed numbers.
+Concept: Convert to improper fractions with a common denominator, calculate, then convert back to a mixed number.
+Step 1: Write as improper fractions over 4: 11/4 + 11/4.
+Step 2: Add numerators: 22/4.
+Step 3: Simplify and change to a mixed number: 11/2.
+Answer: \(5\frac{1}{2}\)",Adding the whole numbers and the fractions separately but forgetting to carry when the fractions make more than 1.,"When in doubt, change both mixed numbers to improper fractions first.",,,11/4+11/4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5 1/2"",""11/2""],""format"":""mixed"",""requireSimplified"":true}"
+T15-Q15,15,15,Intermediate,3,Units of Measurement,me.problems,Anna has a ribbon of 1 m 12 cm and another one of 3 m 99 cm. What is the total in cm?,611 cm,287 cm,511 cm,521 cm,C,"What it asks: Change both amounts to cm and add.
+Concept: Convert everything to the same unit first. 1 m = 100 cm.
+Step 1: 1 m 12 cm = 112 cm.
+Step 2: 3 m 99 cm = 399 cm.
+Step 3: 112 + 399 = 511 cm.
+Answer: 511 cm",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,112+399,VERIFIED,MCQ,
+T15-Q16,15,16,Intermediate,3,Shapes & Objects,au.shapes,Choose ALL the shapes that have at least one pair of parallel sides.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: equilateral triangle: no, a equilateral triangle has 0 pair(s) of parallel sides.
+Step 2: square: yes, a square has 2 pair(s) of parallel sides.
+Step 3: regular pentagon: no, a regular pentagon has 0 pair(s) of parallel sides.
+Step 4: regular hexagon: yes, a regular hexagon has 3 pair(s) of parallel sides.
+Step 5: trapezium: yes, a trapezium has 1 pair(s) of parallel sides.
+Answer: square, regular hexagon, trapezium",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""equilateral triangle"",""square"",""regular pentagon"",""regular hexagon"",""trapezium""],""correct"":[1,3,4]}"
+T15-Q17,15,17,Intermediate,3,Chance,au.chance,"A bag has 6 green, 1 purple, 6 red marbles. One marble is taken out without looking. What is the chance of taking a green marble? Give a fraction in simplest form.",\(\frac{6}{13}\),\(\frac{6}{7}\),\(\frac{1}{3}\),\(\frac{7}{13}\),A,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 6 + 1 + 6 = 13.
+Step 2: green marbles: 6.
+Step 3: Chance = \(\frac{6}{13}\).
+Answer: \(\frac{6}{13}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,6/13,VERIFIED,MCQ,
+T15-Q18,15,18,Intermediate,3,Operations & Problem Solving,wn.muldiv,Lan has 259 beads and puts them into bags of 12. How many beads are left over after filling as many bags as possible?,7,8,9,5,A,"What it asks: Find how many beads do not fit into a full bag.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 12 × 21 = 252, which is the biggest multiple of 12 that is not more than 259.
+Step 2: 259 − 252 = 7.
+Step 3: The remainder is 7, and it is smaller than 12, as a remainder must be.
+Answer: 7","Giving the quotient (21) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(259,12)",VERIFIED,MCQ,
+T15-Q19,15,19,Intermediate,3,Place Value & Rounding,wn.round,"Choose ALL the numbers that round to 12,000 when rounded to the nearest thousand.",,,,,,"What it asks: Choose every correct answer.
+Concept: A number rounds to a target if it is within half a unit of it.
+Step 1: 11,683: yes, 11,683 is closest to 12,000.
+Step 2: 11,795: yes, 11,795 is closest to 12,000.
+Step 3: 12,501: no, 12,501 rounds to 13,000.
+Step 4: 12,752: no, 12,752 rounds to 13,000.
+Step 5: 11,624: yes, 11,624 is closest to 12,000.
+Answer: 11,683, 11,795, 11,624",Always rounding up.,"Numbers from 11,500 up to 12,499 round to 12,000.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""11,683"",""11,795"",""12,501"",""12,752"",""11,624""],""correct"":[0,1,4]}"
+T15-Q20,15,20,Intermediate,3,Angles,ge.angles,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Acute < 90°, right angle = 90°, obtuse between 90° and 180°, straight = 180°, reflex between 180° and 360°.
+Step 1: Statement 1 is true: a straight line is half a turn, 180°.
+Step 2: Statement 2 is false: 250° is reflex.
+Step 3: Statement 3 is false: 150° is obtuse.
+Answer: True, False, False",Calling a 90° angle acute or obtuse.,Compare with a square corner (90°) first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""Angles on a straight line add up to 180°"",""truth"":true},{""text"":""An angle of 250° is acute"",""truth"":false},{""text"":""An angle of 150° is acute"",""truth"":false}]}"
+T15-Q21,15,21,Intermediate,3,Factors & Multiples,wn.factors,A red light flashes every 16 seconds and a blue light flashes every 24 seconds. They flash together now. After how many seconds will they next flash together?,24,48,8,384,B,"What it asks: Find the first time both events happen together.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 16: 16, 32, 48, 64…
+Step 2: Multiples of 24: 24, 48, 72…
+Step 3: The first number in both lists is 48.
+Answer: 48","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(16,24)",VERIFIED,MCQ,
+T15-Q22,15,22,Intermediate,3,Money,dec.money,"At the toy shop, Mai buys 6 notebooks at $0.44 each and a pen for $0.73. Mai pays with $10.00. How much change does Mai get?",,,,,,"What it asks: Find how much money is left after paying.
+Concept: Total cost = number × price (+ other items). Change = money paid − total cost.
+Step 1: Cost of the notebooks: 6 × $0.44 = $2.64.
+Step 2: Add a pen: $2.64 + $0.73 = $3.37.
+Step 3: Change: $10.00 − $3.37 = $6.63.
+Answer: $6.63",Giving the total cost instead of the change.,Estimate first by rounding prices to the nearest dollar.,,,10-(0.44*6+0.73),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""6.63""]}"
+T15-Q23,15,23,Intermediate,3,Data,wp.table,"A class survey recorded these numbers. Apples: 10, Bananas: 39, Cherries: 28, Grapes: 27. How many more votes did Cherries get than Apples?",8,28,18,38,C,"What it asks: Compare the two numbers by subtracting.
+Concept: “How many more” is found by subtraction.
+Step 1: Cherries = 28 and Apples = 10.
+Step 2: 28 − 10 = 18.
+Answer: 18",Adding the two numbers.,“More than” and “fewer than” are comparison words that usually mean subtract.,,,28-10,VERIFIED,MCQ,
+T15-Q24,15,24,Intermediate,3,Patterns & Algebra,pa.arith,"Complete the number pattern: 96, 89, {1}, 75, {2}, 61, 54.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes down by 7 each time.
+Step 1: The difference between neighbouring numbers is 7.
+Step 2: Blank 1: 82. Blank 2: 68.
+Answer: 1) 82, 2) 68",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""82""]},{""accepted"":[""68""]}]}"
+T15-Q25,15,25,Intermediate,3,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 20 that can be divided exactly by both 9 and 12?,72,36,27,144,B,"What it asks: Find a multiple of both 9 and 12 that is just above 20.
+Concept: Numbers divisible by both 9 and 12 are multiples of their LCM, which is 36.
+Step 1: LCM of 9 and 12 is 36.
+Step 2: Multiples of 36: …, 0, 36, …
+Step 3: The first one greater than 20 is 36.
+Answer: 36",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(20/lcm(9,12))+1)*lcm(9,12)",VERIFIED,MCQ,
+T15-Q26,15,26,Intermediate,4,Location & Maps,au.maps,"On a town map the library is at B4 and the park is at J8. Walking along the grid lines (only east and north), how many squares must you cross to get from the library to the park?",12 squares,11 squares,8 squares,13 squares,A,"What it asks: Find the number of grid steps between two places.
+Concept: Add the steps east and the steps north.
+Step 1: East: B to J = 8.
+Step 2: North: 4 to 8 = 4.
+Step 3: 8 + 4 = 12.
+Answer: 12 squares",Taking only the larger of the two distances.,"Along grid lines, you add the two sides of the rectangle.",,,12,VERIFIED,MCQ,
+T15-Q27,15,27,Intermediate,4,Operations & Problem Solving,ms.planning,A recipe for 6 people uses 400 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 12 people?,2,800,1,8,C,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 12 people is 2 times 6 people, so flour needed = 400 × 2 = 800 g.
+Step 2: 800 g = 0.8 kg.
+Step 3: Bags are whole, so round up: 1.
+Answer: 1","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(400*2/1000),VERIFIED,MCQ,
+T15-Q28,15,28,Intermediate,4,Money,au.money,"Isla's shopping bill is $167.96. Isla pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Isla pay?",$168.00,$167.96,$168.05,$167.95,D,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $167.96; look at the last digit of the cents, 6.
+Step 2: It is closer to $167.95 than to $168.00.
+Answer: $167.95","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,16795/100,VERIFIED,MCQ,
+T15-Q29,15,29,Intermediate,4,Shapes & Objects,au.shapes,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Know the properties of 2D shapes and 3D objects: sides, parallel lines, right angles, faces, edges and vertices.
+Step 1: Statement 1 is true: that is what makes it a trapezium.
+Step 2: Statement 2 is true: a cylinder has a circle at each end.
+Step 3: Statement 3 is false: a cone has one flat circular face and a curved surface.
+Step 4: Statement 4 is false: a sphere has no flat faces.
+Answer: True, True, False, False","Mixing up the properties of a square, rectangle and rhombus.",Sketch the shape and count carefully.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A trapezium has exactly one pair of parallel sides"",""truth"":true},{""text"":""A cylinder has 2 flat circular faces"",""truth"":true},{""text"":""A cone has 2 flat faces"",""truth"":false},{""text"":""A sphere has 1 flat face"",""truth"":false}]}"
+T15-Q30,15,30,Intermediate,4,Fractions,fr.forms,Write \(\frac{40}{48}\) in its simplest form.,\(\frac{40}{6}\),\(\frac{5}{48}\),\(\frac{6}{6}\),\(\frac{5}{6}\),D,"What it asks: Write the fraction using the smallest possible numerator and denominator.
+Concept: Divide the numerator and denominator by their greatest common factor.
+Step 1: The greatest common factor of 40 and 48 is 8.
+Step 2: 40 ÷ 8 = 5 and 48 ÷ 8 = 6.
+Step 3: The simplest form is 5/6.
+Answer: \(\frac{5}{6}\)","Dividing the top and bottom by different numbers, or stopping before the fraction is fully simplified.",Whatever you do to the top you must do to the bottom.,,,40/48,VERIFIED,MCQ,

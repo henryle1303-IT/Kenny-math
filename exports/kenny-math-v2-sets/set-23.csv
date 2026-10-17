@@ -1,0 +1,167 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T23-Q01,23,1,Advanced,3,Shapes & Objects,au.shapes,A design uses 4 pentagons and 3 octagons. How many sides are there altogether?,,,,,,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 4 × 5 = 20.
+Step 2: 3 × 8 = 24.
+Step 3: 20 + 24 = 44.
+Answer: 44",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,4*5+3*8,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""44""]}"
+T23-Q02,23,2,Advanced,3,Units of Measurement,me.problems,A rope is 0.75 m long. It is cut into pieces that are each 15 cm long. How many pieces are there?,5,50,8,15,A,"What it asks: Change the rope length to centimetres, then divide.
+Concept: To divide a length into pieces, both lengths must use the same unit.
+Step 1: 0.75 m = 75 cm.
+Step 2: 75 ÷ 15 = 5.
+Answer: 5",Dividing 2.4 by 20 without changing the units.,Always check that both measurements use the same unit before dividing.,,,0.75*100/15,VERIFIED,MCQ,
+T23-Q03,23,3,Advanced,3,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is true: count on from the start time: 100 minutes.
+Step 2: Statement 2 is false: 1 hour is 60 minutes, so 2 hours 40 minutes is 160 minutes.
+Step 3: Statement 3 is true: 2 × 60 + 40 = 160.
+Answer: True, False, True",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A movie from 8:47 AM to 10:27 AM lasts 1 h 40 min"",""truth"":true},{""text"":""2 hours 40 minutes is 240 minutes"",""truth"":false},{""text"":""2 hours 40 minutes is 160 minutes"",""truth"":true}]}"
+T23-Q04,23,4,Advanced,3,Patterns & Algebra,oo.basic,Khoa worked out \(17 + 6 \times 6\) and got 138. Khoa’s answer is not correct. What is the correct value?,63,139,43,53,D,"What it asks: Find the mistake in Khoa’s method and give the correct value.
+Concept: Multiplication is done before addition and subtraction unless brackets say otherwise.
+Step 1: Khoa worked left to right and got 138.
+Step 2: The correct order is to multiply first: 6 × 6 = 36.
+Step 3: Then add: 17 + 36 = 53.
+Answer: 53",Doing the operations in the order they are written instead of the order of operations.,"Underline the multiplication or division first, work it out, then rewrite the expression.",,,17+6*6,VERIFIED,MCQ,
+T23-Q05,23,5,Advanced,3,Operations & Problem Solving,wp.multiplicative,Kira has 8 shells. Vy has 4 times as many shells as Kira. How many shells do they have together?,,,,,,"What it asks: Find both amounts and add them.
+Concept: “k times as many” means multiply by k.
+Step 1: Vy has 4 × 8 = 32.
+Step 2: Together: 8 + 32 = 40.
+Answer: 40",Stopping after finding only one person’s amount.,Re-read the question to see whether it asks for one amount or the total.,,,8+8*4,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""40""]}"
+T23-Q06,23,6,Advanced,3,Factors & Multiples,wn.factors,Choose ALL the multiples of 4.,,,,,,"What it asks: Choose every correct answer.
+Concept: A multiple of a number is in its times table.
+Step 1: 36: yes, 4 × 9 = 36.
+Step 2: 73: no, 73 ÷ 4 has a remainder of 1.
+Step 3: 100: yes, 4 × 25 = 100.
+Step 4: 95: no, 95 ÷ 4 has a remainder of 3.
+Step 5: 21: no, 21 ÷ 4 has a remainder of 1.
+Answer: 36, 100",Choosing numbers that are only close to a multiple.,Skip count by the number and check each option.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""36"",""73"",""100"",""95"",""21""],""correct"":[0,2]}"
+T23-Q07,23,7,Advanced,3,Money,au.money,A pair of sandals costs $30.00. It is on sale for 10% off. What is the sale price?,$3.00,$20.00,$27.00,$33.00,C,"What it asks: Find the price after a 10% discount.
+Concept: 10% is one tenth: divide by 10.
+Step 1: 10% of $30.00 = $3.00.
+Step 2: $30.00 − $3.00 = $27.00.
+Answer: $27.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,30-30*10/100,VERIFIED,MCQ,
+T23-Q08,23,8,Advanced,3,"Perimeter, Area & Volume",ge.volume,A cuboid has a volume of 320 cm³. It is 10 cm long and 4 cm wide. How high is it?,8 cm,18 cm,40 cm,32 cm,A,"What it asks: Work backwards from the volume to find the missing height.
+Concept: Volume = base area × height, so height = volume ÷ base area.
+Step 1: Base area: 10 × 4 = 40 cm².
+Step 2: Height = 320 ÷ 40 = 8 cm.
+Answer: 8 cm",Dividing the volume by only one dimension.,Check: base area × height should give back the volume.,,,320/(10*4),VERIFIED,MCQ,
+T23-Q09,23,9,Advanced,3,Angles,ge.angles,4 equal angles and one angle of 80° meet at a point. Angles around a point add up to 360°. What is the size of each of the 4 equal angles?,90°,70°,60°,80°,B,"What it asks: Share the remaining angle equally.
+Concept: Angles around a point add up to 360°.
+Step 1: The 4 equal angles share 360 − 80 = 280°.
+Step 2: Each is 280 ÷ 4 = 70°.
+Answer: 70°",Dividing 360° by the number of equal angles without removing the other angle.,"Subtract the known angles first, then share what is left.",,,(360-80)/4,VERIFIED,MCQ,
+T23-Q10,23,10,Advanced,3,Fractions,fr.compare,Put these fractions in order from largest to smallest.,,,,,,"What it asks: Put the items in order, largest to smallest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{7}{8}\), \(\frac{6}{8}\), \(\frac{4}{8}\), \(\frac{1}{4}\).
+Answer: \(\frac{7}{8}\), \(\frac{6}{8}\), \(\frac{4}{8}\), \(\frac{1}{4}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{7}{8}\\)"",""\\(\\frac{6}{8}\\)"",""\\(\\frac{4}{8}\\)"",""\\(\\frac{1}{4}\\)""]}"
+T23-Q11,23,11,Advanced,3,Data,au.data,"A class survey recorded these votes: Cricket 26, Netball 9, Swimming 25, Tennis 17, Soccer 15. How many more students chose Cricket than Netball?",,,,,,"What it asks: Find the difference between the largest and smallest values.
+Concept: Subtract the smaller number from the larger.
+Step 1: Cricket has 26; Netball has 9.
+Step 2: 26 − 9 = 17.
+Answer: 17",Adding the two categories instead of finding the difference.,"""How many more"" means subtract.",,,26-9,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""17""]}"
+T23-Q12,23,12,Advanced,3,Place Value & Rounding,wn.place,"In the number 210,756, what is the value of the digit 1?","10,000","100,000","1,000",1,A,"What it asks: Find what the digit 1 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 210,756, the digit 1 is in the ten thousands place.
+Step 2: 1 × 10,000 = 10,000.
+Answer: 10,000",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,1*10^4,VERIFIED,MCQ,
+T23-Q13,23,13,Advanced,3,Location & Maps,au.maps,An is facing South-East. An turns clockwise to face West. Through how many degrees does An turn?,,,,,,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From South-East clockwise to West is 3 steps of 45°.
+Step 2: 3 × 45° = 135°.
+Answer: 135°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,135,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""135""],""unit"":""°""}"
+T23-Q14,23,14,Advanced,3,Operations & Problem Solving,wn.muldiv,Find the value of \(43 \times 17\).,344,688,731,430,C,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 43 × 10 = 430.
+Step 2: 43 × 7 = 301.
+Step 3: Add the parts: 430 + 301 = 731.
+Answer: 731","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,43*17,VERIFIED,MCQ,
+T23-Q15,23,15,Advanced,3,Shapes & Objects,au.shapes,How many faces does a pentagonal pyramid have?,5,7,6,10,C,"What it asks: Count the faces of a 3D object.
+Concept: A pentagonal pyramid has a pentagonal base and 5 triangular faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 6, edges: 10, vertices: 6.
+Step 2: The question asks for the faces: 6.
+Answer: 6","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,6,VERIFIED,MCQ,
+T23-Q16,23,16,Advanced,3,Money,au.money,"Linh's shopping bill is $93.17. Linh pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Linh pay?",$93.20,$93.17,$93.25,$93.15,D,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $93.17; look at the last digit of the cents, 7.
+Step 2: It is closer to $93.15 than to $93.20.
+Answer: $93.15","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,9315/100,VERIFIED,MCQ,
+T23-Q17,23,17,Advanced,3,Units of Measurement,me.convert,How many tonnes are there in 9700 kilograms?,,,,,,"What it asks: Change kilograms into tonnes.
+Concept: 1 t = 1,000 kg. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 t = 1,000 kg.
+Step 2: 9700 ÷ 1,000 = 9.7.
+Answer: 9.7 t","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,9700/1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9.7""],""unit"":""t""}"
+T23-Q18,23,18,Advanced,3,Place Value & Rounding,wn.round,"Round 89,434 to the nearest thousand.","90,000","89,400","89,000","88,000",C,"What it asks: Find the thousand that 89,434 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 89,434 is between 89,000 and 90,000.
+Step 2: It is 434 above 89,000 and 566 below 90,000.
+Step 3: It is closer to 89,000.
+Answer: 89,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(89434/1000)*1000,VERIFIED,MCQ,
+T23-Q19,23,19,Advanced,3,Decimals,dec.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Line up the decimal places to compare decimals. Multiplying by 10 moves digits one place to the left.
+Step 1: Statement 1 is true: multiplying by 10 moves each digit one place left: 8.8 × 10 = 88.
+Step 2: Statement 2 is false: the digits move one place left, so the answer is 88, not 8.80.
+Step 3: Statement 3 is true: write both with the same number of decimal places: 2.800 and 2.300.
+Answer: True, False, True",Believing a longer decimal is always a bigger number.,Give every decimal the same number of places before comparing.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""8.8 × 10 = 88"",""truth"":true},{""text"":""8.8 × 10 = 8.80"",""truth"":false},{""text"":""2.8 > 2.3"",""truth"":true}]}"
+T23-Q20,23,20,Advanced,3,Time,ts.clock,Choose ALL the times that are the same as 1:10 PM.,,,,,,"What it asks: Choose every correct answer.
+Concept: 24-hour times from 13:00 are PM: subtract 12 for 12-hour time.
+Step 1: 1310 hours: yes, 1310 hours is another way to write 13:10.
+Step 2: 13:10: yes, 13:10 is 1:10 PM.
+Step 3: 14:10: no, that is an hour later.
+Step 4: 11:10: no, that is two hours earlier.
+Step 5: 1.10 pm: yes, 1.10 pm is the same as 1:10 PM.
+Answer: 1310 hours, 13:10, 1.10 pm",Forgetting whether it is AM or PM.,"After noon, add 12 to the hour for 24-hour time.",,,,VERIFIED,MULTI_SELECT,"{""options"":[""1310 hours"",""13:10"",""14:10"",""11:10"",""1.10 pm""],""correct"":[0,1,4]}"
+T23-Q21,23,21,Advanced,4,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is false: \(\frac{4}{6}\) is not made by multiplying both numbers by the same amount.
+Step 2: Statement 2 is true: multiplying top and bottom by 2 gives an equal fraction.
+Step 3: Statement 3 is true: use a common denominator: 30/100 and 60/100, so \(\frac{3}{10}\) is less.
+Answer: False, True, True",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{1}{2}\\) = \\(\\frac{4}{6}\\)"",""truth"":false},{""text"":""\\(\\frac{1}{2}\\) = \\(\\frac{2}{4}\\)"",""truth"":true},{""text"":""\\(\\frac{3}{10}\\) < \\(\\frac{6}{10}\\)"",""truth"":true}]}"
+T23-Q22,23,22,Advanced,4,Operations & Problem Solving,wn.addsub,"Calculate \(37{,}565 - 27{,}130\).","11,435","10,445","10,335","10,435",D,"What it asks: Find the difference between the two numbers.
+Concept: Subtraction: take away one place value at a time.
+Step 1: Start with 37,565.
+Step 2: Take away 20,000: 37,565 − 20,000 = 17,565.
+Step 3: Take away 7,000: 17,565 − 7,000 = 10,565.
+Step 4: Take away 100: 10,565 − 100 = 10,465.
+Step 5: Take away 30: 10,465 − 30 = 10,435.
+Answer: 10,435",Forgetting to regroup (borrow) and subtracting the smaller digit from the larger one.,Check subtraction with addition: the answer plus the smaller number should give the larger number.,,,37565-27130,VERIFIED,MCQ,
+T23-Q23,23,23,Advanced,4,Patterns & Algebra,pa.arith,"Complete the number pattern: 39, 51, {1}, 75, 87, {2}, 111.",,,,,,"What it asks: Find the rule of the pattern, then fill the missing numbers.
+Concept: The pattern goes up by 12 each time.
+Step 1: The difference between neighbouring numbers is 12.
+Step 2: Blank 1: 63. Blank 2: 99.
+Answer: 1) 63, 2) 99",Using the wrong step size for the second gap.,Subtract two neighbouring numbers to find the step.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""63""]},{""accepted"":[""99""]}]}"
+T23-Q24,23,24,Advanced,4,Transformations & Symmetry,au.transform,What is the name of a transformation that turns a shape around a point?,,,,,,"What it asks: Answer with the correct word.
+Concept: Turning a shape around a point is a rotation.
+Step 1: Turning a shape around a point is a rotation.
+Answer: rotation",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""rotation""]}"
+T23-Q25,23,25,Advanced,4,Data,au.data,A column graph shows the number of books read each week. Each gridline is 50 books. The bar for Week 1 reaches the 3rd gridline and the bar for Week 2 reaches the 9th gridline. How many more books were read in Week 2 than in Week 1?,350,6,450,300,D,"What it asks: Read a column graph with a scale.
+Concept: Each gridline stands for 50. Find each bar's value, then subtract.
+Step 1: Week 1: 3 × 50 = 150. Week 2: 9 × 50 = 450.
+Step 2: 450 − 150 = 300.
+Answer: 300",Subtracting the gridline numbers without using the scale.,Check how much one gridline is worth before reading a bar.,,,9*50-3*50,VERIFIED,MCQ,
+T23-Q26,23,26,Advanced,4,Decimals,dec.addsub,Complete: 0.1 + {1} = 1 and 6.9 × 10 = {2}.,,,,,,"What it asks: Use decimals to make 1 and to multiply or divide by 10.
+Concept: Multiplying by 10 moves the digits one place left; dividing by 10 moves them one place right.
+Step 1: 1 − 0.1 = 0.9.
+Answer: 1) 0.9, 2) 69",Moving the decimal point the wrong way.,"Check: the answer to × 10 is bigger, to ÷ 10 is smaller.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""0.9""]},{""accepted"":[""69""]}]}"
+T23-Q27,23,27,Advanced,4,"Perimeter, Area & Volume",ge.volume,"A water trough for animals measures 50 cm by 25 cm by 20 cm inside. How many litres can it hold when full? (1 litre = 1,000 cm³)",,,,,,"What it asks: Find the volume in cm³, then change it to litres.
+Concept: 1 litre = 1,000 cm³. Volume in cm³ ÷ 1,000 gives litres.
+Step 1: Volume: 50 × 25 × 20 = 25,000 cm³.
+Step 2: 25,000 ÷ 1,000 = 25 litres.
+Answer: 25 litres",Forgetting to convert from cm³ to litres.,A 10 cm × 10 cm × 10 cm cube holds exactly 1 litre.,,,50*25*20/1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""25""],""unit"":""litres""}"
+T23-Q28,23,28,Advanced,4,Fractions,fr.forms,Complete these equivalent fractions: 2/6 = {1}/36 and 5/10 = 1/{2}.,,,,,,"What it asks: Find the missing numbers in equal fractions.
+Concept: Multiply or divide the top and the bottom by the same number.
+Step 1: 6 × 6 = 36, so 2 × 6 = 12.
+Step 2: 5 ÷ 5 = 1, so 10 ÷ 5 = 2.
+Answer: 1) 12, 2) 2",Changing only the top or only the bottom.,"Whatever you do to the top, do to the bottom.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""12""]},{""accepted"":[""2""]}]}"
+T23-Q29,23,29,Advanced,4,Chance,au.chance,"A bag has 8 purple, 5 red, 5 yellow marbles. One marble is taken out without looking. What is the chance of taking a purple marble? Give a fraction in simplest form.",,,,,,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 8 + 5 + 5 = 18.
+Step 2: purple marbles: 8.
+Step 3: Chance = \(\frac{8}{18}\) = \(\frac{4}{9}\).
+Answer: \(\frac{4}{9}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,8/18,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""4/9""],""format"":""fraction"",""requireSimplified"":true}"
+T23-Q30,23,30,Advanced,4,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 20 that can be divided exactly by both 10 and 15?,,,,,,"What it asks: Find a multiple of both 10 and 15 that is just above 20.
+Concept: Numbers divisible by both 10 and 15 are multiples of their LCM, which is 30.
+Step 1: LCM of 10 and 15 is 30.
+Step 2: Multiples of 30: …, 0, 30, …
+Step 3: The first one greater than 20 is 30.
+Answer: 30",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(20/lcm(10,15))+1)*lcm(10,15)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""30""]}"

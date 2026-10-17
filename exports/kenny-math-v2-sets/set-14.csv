@@ -1,0 +1,159 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T14-Q01,14,1,Intermediate,2,Factors & Multiples,wn.factors,Bus A leaves the station every 8 minutes and Bus B every 12 minutes. They leave together at 8:00. After how many minutes will they next leave together?,24,96,12,4,A,"What it asks: Find the first time both events happen together.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 8: 8, 16, 24, 32…
+Step 2: Multiples of 12: 12, 24, 36…
+Step 3: The first number in both lists is 24.
+Answer: 24","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(8,12)",VERIFIED,MCQ,
+T14-Q02,14,2,Intermediate,2,Angles,ge.angles,A right angle is split into two angles. One of them is 16°. What is the size of the other angle?,,,,,,"What it asks: Find an angle inside a right angle.
+Concept: A right angle is 90°.
+Step 1: 90 − 16 = 74.
+Answer: 74°",Using 180° (a straight line) instead of 90° (a right angle).,A right angle is a square corner and measures 90°.,,,90-16,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""74""],""unit"":""°""}"
+T14-Q03,14,3,Intermediate,2,Operations & Problem Solving,wn.muldiv,Work out \(385 \times 8\).,"3,465","3,080","2,695","3,090",B,"What it asks: Find the product of the two numbers.
+Concept: Multiplication can be split into easier multiplications by place value (the distributive idea).
+Step 1: 385 × 8 = 3,080.
+Answer: 3,080","Forgetting that the tens digit means tens, so its partial product must be 10 times bigger.","Split the second number into tens and ones, multiply each part, then add.",,,385*8,VERIFIED,MCQ,
+T14-Q04,14,4,Intermediate,2,Place Value & Rounding,wn.place,"In the number 4,305, what is the name of the place where the digit 3 sits?",,,,,,"What it asks: Answer with the correct word.
+Concept: The 3 in 4,305 is in the hundreds place.
+Step 1: The 3 in 4,305 is in the hundreds place.
+Answer: hundreds",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""hundreds"",""hundred""]}"
+T14-Q05,14,5,Intermediate,2,Operations & Problem Solving,wn.muldiv,Complete the number sentences: {1} × 9 = 45 and 28 ÷ {2} = 7.,,,,,,"What it asks: Use multiplication and division as opposite operations.
+Concept: Multiplication and division undo each other.
+Step 1: 45 ÷ 9 = 5.
+Step 2: 28 ÷ 7 = 4.
+Answer: 1) 5, 2) 4",Using the wrong operation to find the missing number.,"To find a missing factor, divide the product by the known factor.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""5""]},{""accepted"":[""4""]}]}"
+T14-Q06,14,6,Intermediate,2,Fractions,fr.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Compare fractions with a common denominator; equal fractions come from multiplying or dividing top and bottom by the same number.
+Step 1: Statement 1 is true: multiplying top and bottom by 2 gives an equal fraction.
+Step 2: Statement 2 is false: use a common denominator: 8/96 and 12/96, so \(\frac{1}{12}\) is less.
+Answer: True, False",Thinking a bigger denominator means a bigger fraction.,Change to the same denominator before you compare.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""\\(\\frac{3}{5}\\) = \\(\\frac{6}{10}\\)"",""truth"":true},{""text"":""\\(\\frac{1}{12}\\) > \\(\\frac{1}{8}\\)"",""truth"":false}]}"
+T14-Q07,14,7,Intermediate,2,Shapes & Objects,au.shapes,How many edges does a triangular prism have?,6,10,5,9,D,"What it asks: Count the edges of a 3D object.
+Concept: A triangular prism has 2 triangular ends and 3 rectangular sides. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 5, edges: 9, vertices: 6.
+Step 2: The question asks for the edges: 9.
+Answer: 9","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,9,VERIFIED,MCQ,
+T14-Q08,14,8,Intermediate,2,Data,au.data,"A class survey recorded these votes: Cricket 15, Netball 12, Swimming 18, Tennis 4. Say whether each statement is true or false.",,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Read the table carefully: compare values, add them for a total, find the largest and smallest.
+Step 1: Statement 1 is true: 15 + 12 + 18 + 4 = 49.
+Step 2: Statement 2 is false: Tennis has the fewest votes (4).
+Answer: True, False",Reading the wrong row of the table.,Point to each number with your finger as you read.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The total number of votes was 49"",""truth"":true},{""text"":""Tennis was the most popular choice"",""truth"":false}]}"
+T14-Q09,14,9,Intermediate,2,Transformations & Symmetry,au.transform,How many lines of symmetry does a equilateral triangle have?,3,5,4,2,A,"What it asks: Count the lines of symmetry of a shape.
+Concept: A line of symmetry is a fold line that makes the two halves match exactly.
+Step 1: A equilateral triangle has 3 lines of symmetry.
+Answer: 3",Counting the diagonals of a rectangle or rhombus that are not lines of symmetry.,Imagine folding the shape: both halves must fit exactly on top of each other.,,,3,VERIFIED,MCQ,
+T14-Q10,14,10,Intermediate,2,Decimals,dec.addsub,What is \(41.66 - 17.72\)?,23.94,24.04,23.95,23.84,A,"What it asks: Subtract the two decimal numbers.
+Concept: Line up the decimal points so tenths are under tenths and hundredths under hundredths, then calculate as with whole numbers.
+Step 1: Line up the decimal points: 41.66 and 17.72.
+Step 2: Subtract column by column from the right, regrouping when needed.
+Step 3: 41.66 − 17.72 = 23.94.
+Answer: 23.94",Lining up the digits on the right instead of lining up the decimal points.,Write extra zeros so both numbers have the same number of decimal places (hundredths or thousandths).,,,41.66-17.72,VERIFIED,MCQ,
+T14-Q11,14,11,Intermediate,3,Factors & Multiples,wn.factors,How many different factors does 48 have?,11,9,10,8,C,"What it asks: Count every whole number that divides 48 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 48, 2 × 24, 3 × 16, 4 × 12, 6 × 8.
+Step 2: List all the factors: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48.
+Step 3: There are 10 factors.
+Answer: 10","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(48),VERIFIED,MCQ,
+T14-Q12,14,12,Intermediate,3,Units of Measurement,me.convert,How many centimetres are there in 6.5 metres?,"6,500 cm",750 cm,650 cm,65 cm,C,"What it asks: Change metres into centimetres.
+Concept: 1 m = 100 cm. Going to the smaller unit means multiplying; going to the bigger unit means dividing.
+Step 1: 1 m = 100 cm.
+Step 2: 6.5 × 100 = 650.
+Answer: 650 cm","Multiplying when you should divide (or the other way around), or using the wrong power of 10.",Smaller unit → bigger number (multiply). Bigger unit → smaller number (divide).,,,6.5*100,VERIFIED,MCQ,
+T14-Q13,14,13,Intermediate,3,Location & Maps,au.maps,Chloe is facing South. Chloe turns clockwise to face South-West. Through how many degrees does Chloe turn?,45°,315°,135°,90°,A,"What it asks: Turn between compass directions in degrees.
+Concept: Between two neighbouring compass points there is a 45° turn. North to East is 90°.
+Step 1: From South clockwise to South-West is 1 step of 45°.
+Step 2: 1 × 45° = 45°.
+Answer: 45°",Turning the wrong way (anticlockwise).,Clockwise is the way the hands of a clock move. N→E→S→W.,,,45,VERIFIED,MCQ,
+T14-Q14,14,14,Intermediate,3,Data,au.data,"In a picture graph, each ★ stands for 6 students who walk to school. Class 5B has 9 ★ and Class 5A has 7 ★. How many more students walk to school in Class 5B than in Class 5A?",,,,,,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 6, so multiply the number of stars by 6.
+Step 1: Class 5B: 9 × 6 = 54. Class 5A: 7 × 6 = 42.
+Step 2: 54 − 42 = 12.
+Answer: 12",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,9*6-7*6,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T14-Q15,14,15,Intermediate,3,Operations & Problem Solving,wp.rounding,"337 chairs are put in rows of 26. How many rows are needed to seat everyone, if the last row can be shorter?",13,14,12,15,A,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 337 ÷ 26 = 12 remainder 25.
+Step 2: The 25 left over still need space, so add one more.
+Step 3: 12 + 1 = 13.
+Answer: 13",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(337/26),VERIFIED,MCQ,
+T14-Q16,14,16,Intermediate,3,Time,ts.convert,How many minutes are there in 2.5 hours?,,,,,,"What it asks: Change hours into minutes.
+Concept: 1 hour = 60 minutes.
+Step 1: 2.5 × 60 = 150 minutes.
+Answer: 150 minutes",Using 100 instead of 60.,"Half an hour is 30 minutes, a quarter of an hour is 15 minutes.",,,2.5*60,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""150""],""unit"":""minutes""}"
+T14-Q17,14,17,Intermediate,3,Fractions,fr.forms,Choose ALL the fractions that are equal to \(\frac{2}{5}\).,,,,,,"What it asks: Choose every correct answer.
+Concept: Equal fractions come from multiplying (or dividing) the top and the bottom by the same number.
+Step 1: \(\frac{8}{20}\): yes, multiply top and bottom of \(\frac{2}{5}\) by 4.
+Step 2: \(\frac{4}{10}\): yes, multiply top and bottom of \(\frac{2}{5}\) by 2.
+Step 3: \(\frac{10}{25}\): yes, multiply top and bottom of \(\frac{2}{5}\) by 5.
+Step 4: \(\frac{10}{26}\): no, the bottom should be 25 to stay equal.
+Step 5: \(\frac{4}{11}\): no, the bottom should be 10 to stay equal.
+Answer: \(\frac{8}{20}\), \(\frac{4}{10}\), \(\frac{10}{25}\)",Adding the same number to the top and bottom.,Check that top ÷ bottom gives the same value.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""\\(\\frac{8}{20}\\)"",""\\(\\frac{4}{10}\\)"",""\\(\\frac{10}{25}\\)"",""\\(\\frac{10}{26}\\)"",""\\(\\frac{4}{11}\\)""],""correct"":[0,1,2]}"
+T14-Q18,14,18,Intermediate,3,Patterns & Algebra,rc.missing,What number goes in the box? \(6 \times (\square + 7) = 60\),53,3,10,17,B,"What it asks: Undo the multiplication first, then the addition.
+Concept: When brackets are involved, undo the outer operation first.
+Step 1: Undo “× 6”: 60 ÷ 6 = 10.
+Step 2: Undo “+ 7”: 10 − 7 = 3.
+Answer: 3",Subtracting 7 before dividing.,"Peel the layers: outside first, inside last.",,,60/6-7,VERIFIED,MCQ,
+T14-Q19,14,19,Intermediate,3,Money,wp.money,Hugo buys 4 notebooks at $2.96 each and 3 calculators at $1.53 each and pays with $20.00. How much change should Hugo get?,,,,,,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 4 × $2.96 = $11.84.
+Step 2: Calculators: 3 × $1.53 = $4.59.
+Step 3: Total: $16.43. Change: $20.00 − $16.43 = $3.57.
+Answer: $3.57",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,20-(2.96*4+1.53*3),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""3.57""]}"
+T14-Q20,14,20,Intermediate,3,Decimals,dec.compare,Choose ALL the numbers that are greater than 2.75.,,,,,,"What it asks: Choose every correct answer.
+Concept: Compare decimals place by place from the left.
+Step 1: 2.79: yes, 2.79 is more than 2.75.
+Step 2: 2.71: no, 2.71 is less than 2.75.
+Step 3: 2.58: no, 2.58 is less than 2.75.
+Step 4: 2.76: yes, 2.76 is more than 2.75.
+Step 5: 2.68: no, 2.68 is less than 2.75.
+Answer: 2.79, 2.76",Thinking more digits means a bigger decimal.,Write each decimal with the same number of places.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""2.79"",""2.71"",""2.58"",""2.76"",""2.68""],""correct"":[0,3]}"
+T14-Q21,14,21,Intermediate,3,Time,ts.clock,Put these times in order from shortest to longest.,,,,,,"What it asks: Put the items in order, shortest to longest.
+Concept: Change every time to minutes before you compare.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is 42 minutes, 152 minutes, 2 h 33 min, 3 h 9 min.
+Answer: 42 minutes, 152 minutes, 2 h 33 min, 3 h 9 min",Treating an hour as 100 minutes.,1 hour = 60 minutes.,,,,VERIFIED,ORDERING,"{""items"":[""42 minutes"",""152 minutes"",""2 h 33 min"",""3 h 9 min""]}"
+T14-Q22,14,22,Intermediate,3,"Perimeter, Area & Volume",ge.perimeter,A regular decagon has sides that are each 3 m long. What is its perimeter?,,,,,,"What it asks: Find the distance around a shape with 10 equal sides.
+Concept: A regular polygon has all sides equal, so perimeter = number of sides × side length.
+Step 1: A decagon has 10 sides.
+Step 2: 10 × 3 = 30 m.
+Answer: 30 m",Using the wrong number of sides.,"Count the sides carefully: pentagon 5, hexagon 6, octagon 8.",,,10*3,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""30""],""unit"":""m""}"
+T14-Q23,14,23,Intermediate,3,Patterns & Algebra,pa.special,"The first four triangular numbers are 1, 3, 6 and 10 (each is 1 + 2 + 3 + … up to n). What is the 10th triangular number?",100,65,45,55,D,"What it asks: Add 1 + 2 + 3 + … + 10.
+Concept: The nth triangular number is the sum of the whole numbers from 1 to n: n × (n + 1) ÷ 2.
+Step 1: Pair up the numbers: 1 + 10, 2 + 9, … each pair makes 11.
+Step 2: There are 10 numbers, so 10/2 pairs: 10 × 11 ÷ 2 = 55.
+Answer: 55",Squaring the number instead of using the sum.,Pair the first and last numbers; each pair has the same sum.,,,10*(10+1)/2,VERIFIED,MCQ,
+T14-Q24,14,24,Intermediate,3,Fractions,fr.forms,Find the missing number: \(\frac{3}{5} = \frac{\square}{40}\),,,,,,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 5 × 8 = 40, so the denominator was multiplied by 8.
+Step 2: Do the same to the numerator: 3 × 8 = 24.
+Answer: 24",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,3*40/5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""24""]}"
+T14-Q25,14,25,Intermediate,3,Place Value & Rounding,wn.round,"Round 67,244 to the nearest thousand.","68,000","67,200","70,000","67,000",D,"What it asks: Find the thousand that 67,244 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 67,244 is between 67,000 and 68,000.
+Step 2: It is 244 above 67,000 and 756 below 68,000.
+Step 3: It is closer to 67,000.
+Answer: 67,000","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(67244/1000)*1000,VERIFIED,MCQ,
+T14-Q26,14,26,Intermediate,4,Units of Measurement,me.convert,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Metric units change by 10, 100 or 1000. To change to a smaller unit, multiply.
+Step 1: Statement 1 is true: 1 kg = 1,000 g, so 1.5 × 1,000 = 1,500.
+Step 2: Statement 2 is false: 1 m = 100 cm, so 1.5 m = 150 cm.
+Step 3: Statement 3 is false: 1 kg = 1,000 g, so 1.5 kg = 1,500 g.
+Answer: True, False, False",Dividing instead of multiplying when changing to a smaller unit.,Bigger unit to smaller unit: multiply. Smaller to bigger: divide.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""1.5 kg = 1,500 g"",""truth"":true},{""text"":""1.5 m = 15 cm"",""truth"":false},{""text"":""1.5 kg = 15,000 g"",""truth"":false}]}"
+T14-Q27,14,27,Intermediate,4,Chance,au.chance,A spinner with 3 equal sections is spun and a coin is tossed. How many different outcomes are possible?,3,8,4,6,D,"What it asks: Count all the possible outcomes of a chance experiment.
+Concept: Multiply the number of outcomes of each part of the experiment.
+Step 1: 3 spinner results × 2 coin results = 6.
+Answer: 6",Adding the outcomes of each part instead of multiplying.,List the outcomes in an organised table or tree if you are unsure.,,,6,VERIFIED,MCQ,
+T14-Q28,14,28,Intermediate,4,Money,au.money,A pen costs $4.75 and it is paid for with $10.00. The change is $ {1}. A bill of $13.27 rounded to the nearest 5 cents is $ {2}.,,,,,,"What it asks: Work out change and round a cash total to 5 cents.
+Concept: Change = amount paid − cost. Cash totals round to the nearest 5 cents.
+Step 1: 10.00 − 4.75 = 5.25.
+Step 2: 13.27 is closest to 13.25.
+Answer: 1) 5.25, 2) 13.25",Subtracting the cents incorrectly.,Count up from the cost to the amount paid.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""5.25""]},{""accepted"":[""13.25""]}]}"
+T14-Q29,14,29,Intermediate,4,Shapes & Objects,au.shapes,A design uses 5 quadrilaterals and 2 pentagons. How many sides are there altogether?,16,30,22,90,B,"What it asks: Count the sides of several shapes together.
+Concept: Multiply the number of shapes by the sides of each, then add.
+Step 1: 5 × 4 = 20.
+Step 2: 2 × 5 = 10.
+Step 3: 20 + 10 = 30.
+Answer: 30",Adding the counts of shapes instead of multiplying by the sides of each.,"Number of shapes × sides per shape, for each kind of shape.",,,5*4+2*5,VERIFIED,MCQ,
+T14-Q30,14,30,Intermediate,4,"Perimeter, Area & Volume",ge.volume,A cuboid has a volume of 704 cm³. It is 8 cm long and 8 cm wide. How high is it?,88 cm,11 cm,64 cm,19 cm,B,"What it asks: Work backwards from the volume to find the missing height.
+Concept: Volume = base area × height, so height = volume ÷ base area.
+Step 1: Base area: 8 × 8 = 64 cm².
+Step 2: Height = 704 ÷ 64 = 11 cm.
+Answer: 11 cm",Dividing the volume by only one dimension.,Check: base area × height should give back the volume.,,,704/(8*8),VERIFIED,MCQ,

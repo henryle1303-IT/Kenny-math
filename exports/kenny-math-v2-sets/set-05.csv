@@ -1,0 +1,162 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T05-Q01,5,1,Beginner,1,Fractions,fr.addsub,Calculate \(\frac{3}{5}\) + \(\frac{6}{10}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{9}{10}\),\(1\frac{1}{5}\),\(\frac{9}{5}\),\(\frac{9}{15}\),B,"What it asks: Add two fractions whose denominators are related.
+Concept: 10 is a multiple of 5, so change \(\frac{3}{5}\) to an equivalent fraction with denominator 10.
+Step 1: \(\frac{3}{5}\) = \(\frac{6}{10}\) (multiply top and bottom by 2).
+Step 2: \(\frac{6}{10}\) + \(\frac{6}{10}\) = \(\frac{12}{10}\).
+Step 3: Simplify (and write as a mixed number if the top is bigger than the bottom) to get \(1\frac{1}{5}\).
+Answer: \(1\frac{1}{5}\)","Adding the numerators and the denominators, for example 1/2 + 1/4 = 2/6.",Make the denominators the same first. Only the numerators are added.,,,3/5+6/10,VERIFIED,MCQ,
+T05-Q02,5,2,Beginner,1,Patterns & Algebra,pa.arith,"A number pattern starts 8, 11, 14, … and keeps adding 3. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 16: no, 16 is not 8 plus a multiple of 3.
+Step 2: 29: yes, 8 + 7 × 3 = 29.
+Step 3: 31: no, 31 is not 8 plus a multiple of 3.
+Step 4: 38: yes, 8 + 10 × 3 = 38.
+Step 5: 17: yes, 8 + 3 × 3 = 17.
+Answer: 29, 38, 17",Choosing numbers that are near the pattern but not on it.,Check that (number − 8) divides by 3.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""16"",""29"",""31"",""38"",""17""],""correct"":[1,3,4]}"
+T05-Q03,5,3,Beginner,1,Operations & Problem Solving,ms.planning,At a sports day there are 22 players and 8 coaches. Each of the players eats 3 wedges of watermelon and each of the coaches eats 2. Each watermelon has 8 wedges and costs $12. What is the least amount of money needed to buy enough watermelon?,$984,$120,$144,$132,D,"What it asks: Count the portions, then the whole items needed, then the cost.
+Concept: Find the total needed, divide by the pack size, round up, then multiply by the price.
+Step 1: Portions: 22 × 3 + 8 × 2 = 82.
+Step 2: Whole watermelons: 82 ÷ 8 = 10.25, so round up to 11.
+Step 3: Cost: 11 × $12 = $132.
+Answer: $132","Rounding down the number of whole items, so some people go without.",You cannot buy part of an item – round up.,,,ceil((22*3+8*2)/8)*12,VERIFIED,MCQ,
+T05-Q04,5,4,Beginner,1,Shapes & Objects,au.shapes,How many faces does a cube have?,8,12,7,6,D,"What it asks: Count the faces of a 3D object.
+Concept: A cube has 6 square faces. Faces are the flat surfaces, edges are where two faces meet, and vertices are the corners.
+Step 1: Faces: 6, edges: 12, vertices: 8.
+Step 2: The question asks for the faces: 6.
+Answer: 6","Mixing up faces, edges and vertices, or missing the hidden ones at the back.",Check with Euler: faces + vertices − edges = 2.,,,6,VERIFIED,MCQ,
+T05-Q05,5,5,Beginner,1,Units of Measurement,me.problems,Jack has a bottle of water of 2 L 700 mL and another one of 2 L 600 mL. What is the total in mL?,"5,300 mL","5,310 mL","6,300 mL",100 mL,A,"What it asks: Change both amounts to mL and add.
+Concept: Convert everything to the same unit first. 1 L = 1,000 mL.
+Step 1: 2 L 700 mL = 2,700 mL.
+Step 2: 2 L 600 mL = 2,600 mL.
+Step 3: 2,700 + 2,600 = 5,300 mL.
+Answer: 5,300 mL",Adding the big units and small units separately and forgetting to convert when the small units go past the limit.,"Change everything into the smallest unit, calculate, then change back if needed.",,,2700+2600,VERIFIED,MCQ,
+T05-Q06,5,6,Beginner,1,Fractions,fr.addsub,Calculate \(\frac{1}{2}\) − \(\frac{2}{6}\). Give your answer in simplest form (use a mixed number if needed).,\(\frac{1}{4}\),\(\frac{5}{6}\),\(\frac{1}{3}\),\(\frac{1}{6}\),D,"What it asks: Subtract fractions whose denominators are related.
+Concept: 6 is a multiple of 2, so rewrite the first fraction with denominator 6 before subtracting.
+Step 1: \(\frac{1}{2}\) = \(\frac{1}{2}\) (denominator 6).
+Step 2: Subtract the numerators: 3 − 2 = 1.
+Step 3: Simplify: \(\frac{1}{6}\).
+Answer: \(\frac{1}{6}\)",Subtracting the denominators as well as the numerators.,Same denominators first. Then subtract the numerators only.,,,1/2-2/6,VERIFIED,MCQ,
+T05-Q07,5,7,Beginner,1,"Perimeter, Area & Volume",ge.volume,"A fish tank is 25 cm long, 20 cm wide and 30 cm high. How many litres of water does it hold when it is completely full? (1 litre = 1,000 cm³)","15,000 litres",15 litres,17 litres,150 litres,B,"What it asks: Find the volume in cm³, then change it to litres.
+Concept: 1 litre = 1,000 cm³. Volume in cm³ ÷ 1,000 gives litres.
+Step 1: Volume: 25 × 20 × 30 = 15,000 cm³.
+Step 2: 15,000 ÷ 1,000 = 15 litres.
+Answer: 15 litres",Forgetting to convert from cm³ to litres.,A 10 cm × 10 cm × 10 cm cube holds exactly 1 litre.,,,25*20*30/1000,VERIFIED,MCQ,
+T05-Q08,5,8,Beginner,1,Money,au.money,"Leo's shopping bill is $15.76. Leo pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Leo pay?",$15.80,$15.75,$15.85,$15.76,B,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $15.76; look at the last digit of the cents, 6.
+Step 2: It is closer to $15.75 than to $15.80.
+Answer: $15.75","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,1575/100,VERIFIED,MCQ,
+T05-Q09,5,9,Beginner,1,Decimals,dec.compare,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Line up the decimal places to compare decimals. Multiplying by 10 moves digits one place to the left.
+Step 1: Statement 1 is false: 0.3 is 3 tenths but 0.03 is only 3 hundredths.
+Step 2: Statement 2 is true: a zero on the end of a decimal does not change its value.
+Answer: False, True",Believing a longer decimal is always a bigger number.,Give every decimal the same number of places before comparing.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""0.3 = 0.03"",""truth"":false},{""text"":""0.30 = 0.3"",""truth"":true}]}"
+T05-Q10,5,10,Beginner,1,Data,au.data,"A class survey recorded these votes: Bus 14, Train 6, Bike 12, Walk 11. How many students voted altogether?",43,20,53,33,A,"What it asks: Add all the values in a table.
+Concept: Add every category to find the total.
+Step 1: 14 + 6 + 12 + 11 = 43.
+Answer: 43",Leaving out one of the categories.,Tick off each category as you add it.,,,14+6+12+11,VERIFIED,MCQ,
+T05-Q11,5,11,Beginner,2,Money,wp.money,Finn buys 3 notebooks at $5.76 each and a calculator at $3.23 and pays with $30.00. How much change should Finn get?,$12.72,$10.49,$9.49,$20.51,C,"What it asks: Find the total cost first, then the change.
+Concept: Change = money given − total cost.
+Step 1: Notebooks: 3 × $5.76 = $17.28.
+Step 2: Calculator: 1 × $3.23 = $3.23.
+Step 3: Total: $20.51. Change: $30.00 − $20.51 = $9.49.
+Answer: $9.49",Forgetting to multiply by the number of items.,Line up the decimal points when adding and subtracting money.,,,30-(5.76*3+3.23*1),VERIFIED,MCQ,
+T05-Q12,5,12,Beginner,2,Factors & Multiples,wn.factors,What is the greatest common factor (GCF) of 12 and 30?,12,7,6,60,C,"What it asks: Find the biggest number that divides both numbers exactly.
+Concept: The GCF is the largest factor the two numbers share.
+Step 1: Factors of 12: 1, 2, 3, 4, 6, 12.
+Step 2: Factors of 30: 1, 2, 3, 5, 6, 10, 15, 30.
+Step 3: The biggest number in both lists is 6.
+Answer: 6","Mixing up GCF (a factor, small) with LCM (a multiple, large).",List the factors of both numbers and circle the largest one that appears in both lists.,,,"gcd(12,30)",VERIFIED,MCQ,
+T05-Q13,5,13,Beginner,2,Chance,au.chance,A spinner with 4 equal sections is spun and a coin is tossed. How many different outcomes are possible?,4,8,10,6,B,"What it asks: Count all the possible outcomes of a chance experiment.
+Concept: Multiply the number of outcomes of each part of the experiment.
+Step 1: 4 spinner results × 2 coin results = 8.
+Answer: 8",Adding the outcomes of each part instead of multiplying.,List the outcomes in an organised table or tree if you are unsure.,,,8,VERIFIED,MCQ,
+T05-Q14,5,14,Beginner,2,Time,ts.convert,A camping trip lasts 3 days and 16 hours. How many hours is that altogether?,,,,,,"What it asks: Change the days into hours and add the extra hours.
+Concept: 1 day = 24 hours.
+Step 1: 3 × 24 = 72 hours.
+Step 2: 72 + 16 = 88 hours.
+Answer: 88 hours",Forgetting to add the extra hours.,"Do the big unit first, then add what is left.",,,3*24+16,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""88""],""unit"":""hours""}"
+T05-Q15,5,15,Beginner,2,Place Value & Rounding,wn.round,Choose ALL the numbers that round to 500 when rounded to the nearest hundred.,,,,,,"What it asks: Choose every correct answer.
+Concept: A number rounds to a target if it is within half a unit of it.
+Step 1: 475: yes, 475 is closest to 500.
+Step 2: 401: no, 401 rounds to 400.
+Step 3: 517: yes, 517 is closest to 500.
+Step 4: 499: yes, 499 is closest to 500.
+Step 5: 596: no, 596 rounds to 600.
+Answer: 475, 517, 499",Always rounding up.,Numbers from 450 up to 549 round to 500.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""475"",""401"",""517"",""499"",""596""],""correct"":[0,2,3]}"
+T05-Q16,5,16,Beginner,2,Location & Maps,au.maps,"On a map, 1 cm stands for 2 km. Two towns are 8 cm apart on the map. What is the real distance between the towns?",18 km,16 km,160 km,10 km,B,"What it asks: Use a map scale to find a real distance.
+Concept: Multiply the map distance by the number of kilometres that 1 cm stands for.
+Step 1: 8 × 2 = 16.
+Answer: 16 km",Adding the scale instead of multiplying.,"Each centimetre is the same real distance, so multiply.",,,8*2,VERIFIED,MCQ,
+T05-Q17,5,17,Beginner,2,"Perimeter, Area & Volume",ge.area,A rectangle is 21 m long and 4 m wide. What is its area?,50 m²,840 m²,84 m²,25 m²,C,"What it asks: Find how much flat space the rectangle covers.
+Concept: Area of a rectangle = length × width, measured in square units.
+Step 1: Area = length × width = 21 × 4.
+Step 2: 21 × 4 = 84 m².
+Answer: 84 m²",Finding the perimeter by adding instead of multiplying.,Think of the number of 1-unit squares that fit inside.,,,21*4,VERIFIED,MCQ,
+T05-Q18,5,18,Beginner,2,Factors & Multiples,rc.divisible,What is the smallest whole number greater than 50 that can be divided exactly by both 4 and 10?,,,,,,"What it asks: Find a multiple of both 4 and 10 that is just above 50.
+Concept: Numbers divisible by both 4 and 10 are multiples of their LCM, which is 20.
+Step 1: LCM of 4 and 10 is 20.
+Step 2: Multiples of 20: …, 40, 60, …
+Step 3: The first one greater than 50 is 60.
+Answer: 60",Choosing a multiple of only one of the numbers.,"Find the LCM first, then list its multiples.",,,"(floor(50/lcm(4,10))+1)*lcm(4,10)",VERIFIED,NUMERIC_INPUT,"{""accepted"":[""60""]}"
+T05-Q19,5,19,Beginner,2,Data,wp.table,"A class survey recorded these numbers. Cats: 13, Dogs: 10, Fish: 16, Birds: 12. How many votes were there altogether?",35,16,61,51,D,"What it asks: Add all the votes.
+Concept: “Altogether” means add every group.
+Step 1: 13 + 10 + 16 + 12 = 51.
+Answer: 51",Leaving one of the groups out.,Tick each number as you add it.,,,13+10+16+12,VERIFIED,MCQ,
+T05-Q20,5,20,Beginner,2,Shapes & Objects,au.shapes,What is the name of a 2D shape with 6 sides?,,,,,,"What it asks: Answer with the correct word.
+Concept: A shape with six sides is a hexagon.
+Step 1: A shape with six sides is a hexagon.
+Answer: hexagon",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""hexagon""]}"
+T05-Q21,5,21,Beginner,2,Fractions,fr.compare,Put these fractions in order from largest to smallest.,,,,,,"What it asks: Put the items in order, largest to smallest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{3}{4}\), \(\frac{5}{8}\), \(\frac{1}{2}\).
+Answer: \(\frac{3}{4}\), \(\frac{5}{8}\), \(\frac{1}{2}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{3}{4}\\)"",""\\(\\frac{5}{8}\\)"",""\\(\\frac{1}{2}\\)""]}"
+T05-Q22,5,22,Beginner,2,Units of Measurement,me.problems,Bao’s ribbon is 170 cm long. Ben’s ribbon is 2.6 m long. How many centimetres longer is Ben’s ribbon?,100 cm,430 cm,90 cm,900 cm,C,"What it asks: Compare the two lengths using the same unit.
+Concept: You can only compare or subtract lengths that use the same unit.
+Step 1: 2.6 m = 260 cm.
+Step 2: Difference: 260 − 170 = 90 cm.
+Step 3: Ben’s ribbon is longer than Bao’s by 90 cm.
+Answer: 90 cm",Subtracting 2.6 from 170 without changing metres to centimetres.,Convert to the smaller unit (centimetres) to avoid decimals.,,,abs(170-2.6*100),VERIFIED,MCQ,
+T05-Q23,5,23,Beginner,2,Place Value & Rounding,wn.place,"In the number 35,092, what is the value of the digit 2?",20,3,2,200,C,"What it asks: Find what the digit 2 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 35,092, the digit 2 is in the ones place.
+Step 2: 2 × 1 = 2.
+Answer: 2",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,2*10^0,VERIFIED,MCQ,
+T05-Q24,5,24,Beginner,2,Transformations & Symmetry,au.transform,How many lines of symmetry does a square have?,6,5,3,4,D,"What it asks: Count the lines of symmetry of a shape.
+Concept: A line of symmetry is a fold line that makes the two halves match exactly.
+Step 1: A square has 4 lines of symmetry.
+Answer: 4",Counting the diagonals of a rectangle or rhombus that are not lines of symmetry.,Imagine folding the shape: both halves must fit exactly on top of each other.,,,4,VERIFIED,MCQ,
+T05-Q25,5,25,Beginner,2,Time,ts.clock,Lan's tram leaves Glenelg at 3:04 PM and arrives at 3:25 PM. How many minutes does the trip take?,,,,,,"What it asks: Find how much time passes between two clock times.
+Concept: Count on from the first time to the next hour, then to the finish time.
+Step 1: From 3:04 PM to 3:25 PM.
+Step 2: 21 minutes pass.
+Answer: 21 minutes","Subtracting the minutes only, or treating 60 minutes as 100.","Count on to the next hour, then add the remaining minutes.",,,21,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""21""],""unit"":""minutes""}"
+T05-Q26,5,26,Beginner,3,Angles,ge.angles,"On a straight line, 38° + {1}° = 180°. Around a point, 106° + 204° + {2}° = 360°.",,,,,,"What it asks: Find missing angles on a straight line and around a point.
+Concept: Angles on a straight line add to 180°. Angles around a point add to 360°.
+Step 1: 180 − 38 = 142.
+Step 2: 360 − 106 − 204 = 50.
+Answer: 1) 142, 2) 50",Using 180° for angles around a point.,"Straight line 180°, full turn 360°.",,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""142""]},{""accepted"":[""50""]}]}"
+T05-Q27,5,27,Beginner,3,Operations & Problem Solving,wp.rounding,Lan wants to buy a bike lock that costs $40. Lan already has $5 and saves $8 each week. What is the smallest number of weeks Lan needs to save to afford it?,,,,,,"What it asks: Find how many weekly savings are needed to reach the price.
+Concept: First find how much is still needed, then divide by the weekly saving and round up.
+Step 1: Still needed: $40 − $5 = $35.
+Step 2: 35 ÷ 8 = 4.38, so after 4 weeks it is not enough.
+Step 3: Lan needs 5 weeks.
+Answer: 5","Dividing the full price and forgetting the money already saved, or rounding down.","If the answer is not a whole number, you still need to wait the whole extra week.",,,ceil((40-5)/8),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""5""]}"
+T05-Q28,5,28,Beginner,3,Patterns & Algebra,pa.arith,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: In a number pattern, find the rule from the difference between terms.
+Step 1: Statement 1 is false: the 7th number is 7 + 6 × 6 = 43.
+Step 2: Statement 2 is true: 25 + 6 = 31.
+Step 3: Statement 3 is true: each term is 6 more than the one before.
+Answer: False, True, True",Using the term number instead of the number of steps.,The 10th term is 9 steps after the first.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""The 7th number in 7, 13, 19, 25, … is 49"",""truth"":false},{""text"":""The next number in 7, 13, 19, 25, … is 31"",""truth"":true},{""text"":""The pattern 7, 13, 19, 25, … adds 6 each time"",""truth"":true}]}"
+T05-Q29,5,29,Beginner,3,Operations & Problem Solving,wp.rounding,A school trip has 120 students. Each minibus holds 13 students. How many minibuses are needed so that every student has a seat?,9,107,10,11,C,"What it asks: Decide what to do with the leftover.
+Concept: When there is a remainder you still need one more container, so round UP.
+Step 1: 120 ÷ 13 = 9 remainder 3.
+Step 2: The 3 left over still need space, so add one more.
+Step 3: 9 + 1 = 10.
+Answer: 10",Ignoring the remainder and rounding down.,"Ask: “Does the leftover still need a place?” If yes, round up.",,,ceil(120/13),VERIFIED,MCQ,
+T05-Q30,5,30,Beginner,3,Decimals,dec.place,"What is \(9.02 \times 1{,}000\)?",,,,,,"What it asks: Shift the digits to the left by the right number of places.
+Concept: Multiplying by 1,000 moves every digit 3 places left (bigger).
+Step 1: 1,000 has 3 zeros, so move the digits 3 places left.
+Step 2: 9.02 × 1,000 = 9020.
+Answer: 9020",Moving the decimal point the wrong way or by the wrong number of places.,Bigger number = point moves right. Smaller number = point moves left.,,,9.02*1000,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""9020""]}"

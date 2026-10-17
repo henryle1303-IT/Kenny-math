@@ -1,0 +1,165 @@
+﻿question_id,test_id,question_number,test_level,difficulty,topic,skill,question_text,option_a,option_b,option_c,option_d,correct_answer,explanation,common_mistake,learning_tip,bank_id,bank_version,verify_expr,validation_status,question_type,answer_data
+T03-Q01,3,1,Beginner,1,Operations & Problem Solving,wn.muldiv,Calculate \(104 \div 4\).,36,16,27,26,D,"What it asks: Share the number equally and find the size of each share.
+Concept: Division is the opposite of multiplication. Break the number into friendly chunks.
+Step 1: Think: how many groups of 4 fit into 104?
+Step 2: 4 × 20 = 80, so take it away: 104 − 80 = 24.
+Step 3: 4 × 6 = 24, so take it away: 24 − 24 = 0.
+Step 4: The parts add up: 20 + 6 = 26.
+Answer: 26",Losing a zero or skipping a place in the answer.,Check your answer: 26 × 4 should give back 104.,,,104/4,VERIFIED,MCQ,
+T03-Q02,3,2,Beginner,1,Place Value & Rounding,wn.place,"In the number 2,389, what is the value of the digit 8?",800,"8,000",8,80,D,"What it asks: Find what the digit 8 is worth because of the place it sits in.
+Concept: A digit’s value depends on its place: ones, tens, hundreds, thousands…
+Step 1: In 2,389, the digit 8 is in the tens place.
+Step 2: 8 × 10 = 80.
+Answer: 80",Saying the digit’s face value instead of its place value.,Write the place names under the digits to see where each digit sits.,,,8*10^1,VERIFIED,MCQ,
+T03-Q03,3,3,Beginner,1,Time,ts.convert,How many seconds are there in 17 minutes?,,,,,,"What it asks: Change minutes into seconds.
+Concept: 1 minute = 60 seconds.
+Step 1: 17 × 60 = 1,020 seconds.
+Answer: 1,020 seconds",Using 100 seconds in a minute.,Multiply by 60 when you go from minutes to seconds.,,,17*60,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""1020""],""unit"":""seconds""}"
+T03-Q04,3,4,Beginner,1,Transformations & Symmetry,au.transform,"A star is 6 squares from a mirror line. Its reflection is on the other side of the line, the same distance away. How many squares apart are the star and its reflection?",14 squares,8 squares,12 squares,6 squares,C,"What it asks: Find the distance between a shape and its reflection.
+Concept: A reflection is as far behind the mirror line as the original is in front of it.
+Step 1: Each is 6 squares from the line.
+Step 2: 6 + 6 = 12.
+Answer: 12 squares",Giving the distance to the mirror line only.,"Distance to the line, doubled.",,,12,VERIFIED,MCQ,
+T03-Q05,3,5,Beginner,1,Money,au.money,"Tom's shopping bill is $4.73. Tom pays with cash. In Australia, a cash total is rounded to the nearest 5 cents. How much does Tom pay?",$4.70,$4.73,$4.75,$4.80,C,"What it asks: Round a money total to the nearest 5 cents.
+Concept: Cash amounts in Australia are rounded to the nearest 5 cents: 1 and 2 cents round down, 3 and 4 cents round up (to the next 5 or 10).
+Step 1: The bill is $4.73; look at the last digit of the cents, 3.
+Step 2: It is closer to $4.75 than to $4.70.
+Answer: $4.75","Rounding to the nearest 10 cents, or not rounding at all.","Last digit 1, 2, 6 or 7 goes down; 3, 4, 8 or 9 goes up.",,,475/100,VERIFIED,MCQ,
+T03-Q06,3,6,Beginner,1,Place Value & Rounding,wn.round,Round 878 to the nearest ten.,,,,,,"What it asks: Find the ten that 878 is closest to.
+Concept: Rounding: look at the digit just to the right of the place you are rounding to. 5 or more rounds up; 4 or less rounds down.
+Step 1: 878 is between 870 and 880.
+Step 2: It is 8 above 870 and 2 below 880.
+Step 3: It is closer to 880.
+Answer: 880","Looking at the wrong digit, or changing digits that should be turned into zeros.","Underline the place you round to, circle the next digit on the right, and decide up or down.",,,round(878/10)*10,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""880""]}"
+T03-Q07,3,7,Beginner,1,Chance,au.chance,"A bag has 3 purple, 3 yellow marbles. One marble is taken out without looking. What is the chance of taking a purple marble? Give a fraction in simplest form.",\(1\),\(\frac{1}{2}\),\(\frac{4}{7}\),\(\frac{1}{3}\),B,"What it asks: Write a chance as a fraction.
+Concept: Chance = number of ways to get the result ÷ total number of equally likely outcomes.
+Step 1: Total marbles: 3 + 3 = 6.
+Step 2: purple marbles: 3.
+Step 3: Chance = \(\frac{3}{6}\) = \(\frac{1}{2}\).
+Answer: \(\frac{1}{2}\)",Comparing red to non-red marbles instead of using the total.,The bottom number is always the total number of marbles.,,,3/6,VERIFIED,MCQ,
+T03-Q08,3,8,Beginner,1,Data,au.data,"In a picture graph, each ★ stands for 5 students who walk to school. Class 5D has 6 ★ and Class 5C has 5 ★. How many students walk to school altogether?",,,,,,"What it asks: Read a picture graph that uses a key.
+Concept: The key says each ★ is worth 5, so multiply the number of stars by 5.
+Step 1: Class 5D: 6 × 5 = 30. Class 5C: 5 × 5 = 25.
+Step 2: 30 + 25 = 55.
+Answer: 55",Forgetting that each symbol stands for more than one student.,Always read the key first.,,,(6+5)*5,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""55""]}"
+T03-Q09,3,9,Beginner,1,Angles,ge.angles,A right angle is split into two angles. One of them is 58°. What is the size of the other angle?,32°,122°,58°,148°,A,"What it asks: Find an angle inside a right angle.
+Concept: A right angle is 90°.
+Step 1: 90 − 58 = 32.
+Answer: 32°",Using 180° (a straight line) instead of 90° (a right angle).,A right angle is a square corner and measures 90°.,,,90-58,VERIFIED,MCQ,
+T03-Q10,3,10,Beginner,1,Decimals,dec.place,What is the value of the digit 3 in 8.36?,3,0.003,0.3,0.03,C,"What it asks: Find what the digit 3 is worth in the tenths place.
+Concept: Each place to the right of the decimal point is ten times smaller than the one before.
+Step 1: In 8.36, the digit 3 is in the tenths place.
+Step 2: tenths means 3 ÷ 10 = 0.3.
+Answer: 0.3",Mixing up tenths (0.1) with tens (10) or reading the wrong place.,Say the number aloud: 3.25 is “three and twenty-five hundredths”.,,,3/10,VERIFIED,MCQ,
+T03-Q11,3,11,Beginner,2,Money,au.money,A skateboard helmet costs $40.00. It is on sale for 10% off. What is the sale price?,$30.00,$4.00,$36.00,$44.00,C,"What it asks: Find the price after a 10% discount.
+Concept: 10% is one tenth: divide by 10.
+Step 1: 10% of $40.00 = $4.00.
+Step 2: $40.00 − $4.00 = $36.00.
+Answer: $36.00",Giving the amount of the discount instead of the new price.,"Work out the discount first, then subtract it from the original price.",,,40-40*10/100,VERIFIED,MCQ,
+T03-Q12,3,12,Beginner,2,Time,ts.clock,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: 24-hour times from 13:00 are PM (subtract 12). 1 hour = 60 minutes.
+Step 1: Statement 1 is true: count on from the start time: 45 minutes.
+Step 2: Statement 2 is false: 14:39 is 2:39 PM.
+Answer: True, False",Treating an hour as 100 minutes.,"Think ""after noon, subtract 12"".",,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A movie from 12:57 PM to 1:42 PM lasts 45 min"",""truth"":true},{""text"":""14:39 is the same time as 2:39 AM"",""truth"":false}]}"
+T03-Q13,3,13,Beginner,2,Decimals,dec.place,"What is \(7.58 \times 1{,}000\)?",758,0.00758,75800,7580,D,"What it asks: Shift the digits to the left by the right number of places.
+Concept: Multiplying by 1,000 moves every digit 3 places left (bigger).
+Step 1: 1,000 has 3 zeros, so move the digits 3 places left.
+Step 2: 7.58 × 1,000 = 7580.
+Answer: 7580",Moving the decimal point the wrong way or by the wrong number of places.,Bigger number = point moves right. Smaller number = point moves left.,,,7.58*1000,VERIFIED,MCQ,
+T03-Q14,3,14,Beginner,2,Factors & Multiples,wn.factors,What is the least common multiple (LCM) of 6 and 9?,54,9,18,3,C,"What it asks: Find the smallest number that both numbers divide into.
+Concept: The LCM is the smallest number that is a multiple of both numbers.
+Step 1: Multiples of 6: 6, 12, 18, 24…
+Step 2: Multiples of 9: 9, 18, 27…
+Step 3: The first number in both lists is 18.
+Answer: 18","Multiplying the two numbers together, which is a common multiple but not always the least one.",Write multiples of the bigger number first; it is the quickest way to find a match.,,,"lcm(6,9)",VERIFIED,MCQ,
+T03-Q15,3,15,Beginner,2,Shapes & Objects,au.shapes,Choose ALL the shapes that have at least one right angle.,,,,,,"What it asks: Choose every correct answer.
+Concept: Know the properties of common 2D shapes.
+Step 1: trapezium: no, a trapezium has 0 right angle(s).
+Step 2: square: yes, a square has 4 right angle(s).
+Step 3: rectangle: yes, a rectangle has 4 right angle(s).
+Step 4: regular pentagon: no, a regular pentagon has 0 right angle(s).
+Step 5: regular hexagon: no, a regular hexagon has 0 right angle(s).
+Answer: square, rectangle",Forgetting that a square is also a rectangle and a rhombus.,Sketch each shape and check the property.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""trapezium"",""square"",""rectangle"",""regular pentagon"",""regular hexagon""],""correct"":[1,2]}"
+T03-Q16,3,16,Beginner,2,Location & Maps,au.maps,Which compass direction is opposite North?,,,,,,"What it asks: Answer with the correct word.
+Concept: South is opposite North.
+Step 1: South is opposite North.
+Answer: south",Mixing up two words with similar meanings.,Say the word in a sentence to check it.,,,,VERIFIED,SHORT_TEXT,"{""accepted"":[""south""]}"
+T03-Q17,3,17,Beginner,2,Fractions,fr.compare,Which of these fractions is the greatest?,\(\frac{3}{9}\),\(\frac{3}{5}\),\(\frac{3}{11}\),\(\frac{3}{6}\),B,"What it asks: Pick the fraction with the largest value.
+Concept: To compare fractions, give them the same denominator (or the same numerator) so the pieces are comparable.
+Step 1: The numerators are the same, so the fraction with the smaller denominator has bigger pieces.
+Step 2: In order from smallest to largest: 3/11 < 3/9 < 3/6 < 3/5.
+Step 3: The greatest is 3/5.
+Answer: \(\frac{3}{5}\)",Thinking the fraction with the bigger denominator is bigger (1/8 is smaller than 1/4).,"A bigger denominator means the whole is cut into more, smaller pieces.",,,"max(3/5,3/6,3/9,3/11)",VERIFIED,MCQ,
+T03-Q18,3,18,Beginner,2,"Perimeter, Area & Volume",ge.composite,A school playground is L-shaped. It is made of a 6 m by 9 m rectangle and a 6 m by 6 m rectangle that do not overlap. What is the area of the whole playground?,90 m²,96 m²,54 m²,180 m²,A,"What it asks: Split the shape into rectangles and add their areas.
+Concept: Composite shapes can be split into simple shapes; add the separate areas.
+Step 1: First rectangle: 6 × 9 = 54 m².
+Step 2: Second rectangle: 6 × 6 = 36 m².
+Step 3: Total: 54 + 36 = 90 m².
+Answer: 90 m²","Multiplying the overall length and width, which would include space that is not part of the room.",Draw a line to split the shape into rectangles you can measure.,,,6*9+6*6,VERIFIED,MCQ,
+T03-Q19,3,19,Beginner,2,Units of Measurement,me.convert,Convert: 5 km = {1} m and 3 kg = {2} g.,,,,,,"What it asks: Change between metric units.
+Concept: To change to a smaller unit, multiply by 10, 100 or 1000.
+Step 1: 1 km = 1,000 m, so 5 × 1,000 = 5,000.
+Step 2: 1 kg = 1,000 g, so 3 × 1,000 = 3,000.
+Answer: 1) 5000, 2) 3000",Dividing instead of multiplying.,Larger unit to smaller unit: multiply.,,,,VERIFIED,FILL_BLANK,"{""blanks"":[{""accepted"":[""5000""]},{""accepted"":[""3000""]}]}"
+T03-Q20,3,20,Beginner,2,Operations & Problem Solving,wn.muldiv,Tom has 116 beads and puts them into bags of 6. How many beads are left over after filling as many bags as possible?,2,1,3,4,A,"What it asks: Find how many beads do not fit into a full bag.
+Concept: The remainder is what is left over after making as many full groups as you can.
+Step 1: 6 × 19 = 114, which is the biggest multiple of 6 that is not more than 116.
+Step 2: 116 − 114 = 2.
+Step 3: The remainder is 2, and it is smaller than 6, as a remainder must be.
+Answer: 2","Giving the quotient (19) instead of the remainder, or a remainder bigger than the divisor.",A remainder is always smaller than the number you divide by.,,,"mod(116,6)",VERIFIED,MCQ,
+T03-Q21,3,21,Beginner,2,Shapes & Objects,au.shapes,How many sides does a hexagon have?,7,5,6,8,C,"What it asks: Know the number of sides of a polygon.
+Concept: The name hexagon tells you the number of sides: 6.
+Step 1: A hexagon has 6 sides.
+Answer: 6",Mixing up hexagon (6) and octagon (8).,"Penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10.",,,6,VERIFIED,MCQ,
+T03-Q22,3,22,Beginner,2,Data,wp.table,"A class survey recorded these numbers. Red: 39, Blue: 29, Green: 10, Yellow: 39. How many more votes did Yellow get than Blue?",,,,,,"What it asks: Compare the two numbers by subtracting.
+Concept: “How many more” is found by subtraction.
+Step 1: Yellow = 39 and Blue = 29.
+Step 2: 39 − 29 = 10.
+Answer: 10",Adding the two numbers.,“More than” and “fewer than” are comparison words that usually mean subtract.,,,39-29,VERIFIED,NUMERIC_INPUT,"{""accepted"":[""10""]}"
+T03-Q23,3,23,Beginner,2,Fractions,fr.forms,Find the missing number: \(\frac{4}{7} = \frac{\square}{28}\),25,16,8,20,B,"What it asks: Find the number that keeps the fraction the same size.
+Concept: Equivalent fractions are made by multiplying (or dividing) the numerator and denominator by the same number.
+Step 1: 7 × 4 = 28, so the denominator was multiplied by 4.
+Step 2: Do the same to the numerator: 4 × 4 = 16.
+Answer: 16",Adding the same number to the top and bottom instead of multiplying.,"Find the number that links the two known parts, then use it on the unknown part.",,,4*28/7,VERIFIED,MCQ,
+T03-Q24,3,24,Beginner,2,Units of Measurement,me.problems,A jug holds 1.25 L of juice. How many glasses of 250 mL can be filled completely from the jug?,5,4,50,15,A,"What it asks: Change litres to millilitres, then see how many glasses fit.
+Concept: 1 L = 1,000 mL. Use the same unit for the jug and the glass.
+Step 1: 1.25 L = 1,250 mL.
+Step 2: 1,250 ÷ 250 = 5.
+Answer: 5",Dividing litres by millilitres without converting.,"Convert first, divide second.",,,1.25*1000/250,VERIFIED,MCQ,
+T03-Q25,3,25,Beginner,2,Fractions,fr.compare,Put these fractions in order from smallest to largest.,,,,,,"What it asks: Put the items in order, smallest to largest.
+Concept: Change the fractions to the same denominator to compare them.
+Step 1: Compare them one pair at a time.
+Step 2: The correct order is \(\frac{2}{4}\), \(\frac{5}{8}\), \(\frac{6}{8}\).
+Answer: \(\frac{2}{4}\), \(\frac{5}{8}\), \(\frac{6}{8}\)",Comparing only the bottom numbers.,Use equivalent fractions with a common denominator.,,,,VERIFIED,ORDERING,"{""items"":[""\\(\\frac{2}{4}\\)"",""\\(\\frac{5}{8}\\)"",""\\(\\frac{6}{8}\\)""]}"
+T03-Q26,3,26,Beginner,3,Patterns & Algebra,pa.arith,"A number pattern starts 4, 10, 16, … and keeps adding 6. Choose ALL the numbers that will be in the pattern.",,,,,,"What it asks: Choose every correct answer.
+Concept: Every number in an adding pattern is the first number plus a multiple of the step.
+Step 1: 24: no, 24 is not 4 plus a multiple of 6.
+Step 2: 34: yes, 4 + 5 × 6 = 34.
+Step 3: 28: yes, 4 + 4 × 6 = 28.
+Step 4: 69: no, 69 is not 4 plus a multiple of 6.
+Step 5: 33: no, 33 is not 4 plus a multiple of 6.
+Answer: 34, 28",Choosing numbers that are near the pattern but not on it.,Check that (number − 4) divides by 6.,,,,VERIFIED,MULTI_SELECT,"{""options"":[""24"",""34"",""28"",""69"",""33""],""correct"":[1,2]}"
+T03-Q27,3,27,Beginner,3,Operations & Problem Solving,ms.planning,A recipe for 4 people uses 250 g of flour. Flour is sold in 1 kg bags. How many bags must be bought to make the recipe for 8 people?,5,500,1,2,C,"What it asks: Scale the recipe, change grams to kilograms, then decide how many bags.
+Concept: Scale up the amount, convert units, then round up because bags are sold whole.
+Step 1: 8 people is 2 times 4 people, so flour needed = 250 × 2 = 500 g.
+Step 2: 500 g = 0.5 kg.
+Step 3: Bags are whole, so round up: 1.
+Answer: 1","Not rounding up, or forgetting to convert grams to kilograms.","When you buy things in packs, always round up.",,,ceil(250*2/1000),VERIFIED,MCQ,
+T03-Q28,3,28,Beginner,3,Factors & Multiples,wn.factors,How many different factors does 72 have?,,,,,,"What it asks: Count every whole number that divides 72 exactly.
+Concept: Factors come in pairs that multiply to give the number.
+Step 1: Find the pairs: 1 × 72, 2 × 36, 3 × 24, 4 × 18, 6 × 12, 8 × 9.
+Step 2: List all the factors: 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72.
+Step 3: There are 12 factors.
+Answer: 12","Forgetting 1 and the number itself, or listing a factor twice (as in a square number).","Test 1, 2, 3, … in order and write down each pair; stop when the pairs meet.",,,nfactors(72),VERIFIED,NUMERIC_INPUT,"{""accepted"":[""12""]}"
+T03-Q29,3,29,Beginner,3,Patterns & Algebra,pa.functions,"Matchsticks are used to build a row of joined squares. Shape 1 uses 5 matchsticks, Shape 2 uses 9, and Shape 3 uses 13. How many matchsticks are needed for Shape 10?",41,45,50,40,A,"What it asks: Find the rule for the nth shape.
+Concept: Each new shape adds 4 matchsticks, and there is 1 extra stick at the start: nth shape = 4 × n + 1.
+Step 1: The number of sticks goes up by 4 each time.
+Step 2: Rule: 4 × n + 1.
+Step 3: For Shape 10: 4 × 10 + 1 = 41.
+Answer: 41",Multiplying the first shape’s number of sticks by 10.,Test the rule on the shapes you know before using it on a big one.,,,4*10+1,VERIFIED,MCQ,
+T03-Q30,3,30,Beginner,3,"Perimeter, Area & Volume",ge.area,Say whether each statement is true or false.,,,,,,"What it asks: Decide whether each statement is true or false.
+Concept: Area = length × width (in square units). Perimeter is the distance around. Volume = length × width × height (in cubic units).
+Step 1: Statement 1 is false: volume is edge × edge × edge = 216.
+Step 2: Statement 2 is true: 15 × 8 = 120.
+Step 3: Statement 3 is false: area is length × width = 120, not 15 + 8.
+Answer: False, True, False",Mixing up area and perimeter.,Area covers the inside; perimeter walks around the outside.,,,,VERIFIED,TRUE_FALSE,"{""statements"":[{""text"":""A cube with edges of 6 cm has a volume of 18 cm³"",""truth"":false},{""text"":""A rectangle 15 m long and 8 m wide has an area of 120 m²"",""truth"":true},{""text"":""A rectangle 15 m long and 8 m wide has an area of 23 m²"",""truth"":false}]}"
