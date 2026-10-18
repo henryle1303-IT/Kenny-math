@@ -46,6 +46,12 @@ describe('evalExpr', () => {
 });
 
 describe('parseOptionValue', () => {
+  it('does not interpret numbers inside narrative choices as numeric answers', () => {
+    expect(parseOptionValue('Đồng ý vì 87% là con số khá cao rồi')).toBeNull();
+    expect(parseOptionValue('Yêu cầu dùng đúng con số 87% kèm nguồn khảo sát')).toBeNull();
+    expect(parseOptionValue('Liệt kê thành tích của trường trong 20 năm')).toBeNull();
+    expect(parseOptionValue('Explain why 3/4 of the team agreed')).toBeNull();
+  });
   it('reads common answer formats', () => {
     expect(parseOptionValue('12,345')?.toString()).toBe('12345');
     expect(parseOptionValue('$12.50')?.toString()).toBe('25/2');

@@ -1,7 +1,7 @@
-import { beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { prisma } from '@/lib/db';
 import { ensureActiveBank, ensureAdmin } from './helpers';
-import { exportBankCsv, cloneBank, getBankOrThrow } from '@/lib/services/banks';
+import { activateBank, exportBankCsv, cloneBank, getBankOrThrow } from '@/lib/services/banks';
 import { analyzeImport, commitImport } from '@/lib/services/importer';
 import { parseCsvText } from '@/lib/csv/import';
 import { rowsToCsv } from '@/lib/csv/export';
@@ -25,6 +25,11 @@ beforeAll(async () => {
   csv = (await exportBankCsv(sharedId)).csv;
   await ensureAdmin(email, password);
   adminToken = (await login(email, password, 'admin-qa')).token;
+});
+
+afterAll(async () => {
+  // Replace-active tests must not leave their intentionally unverified bank active for other suites.
+  if (sharedId) await activateBank(sharedId);
 });
 
 describe('admin import/export regressions', () => {

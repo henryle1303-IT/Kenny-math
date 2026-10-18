@@ -50,6 +50,8 @@ export function parseOptionValue(text: string): Frac | null {
     if (ratio) return new Frac(Number(ratio[1]), Number(ratio[2]));
 
     const cleaned = s.replace(/(?<=\d),(?=\d{3}(?!\d))/g, '').replace(/^[^\d-.]*\$\s*/, '');
+    // A number mentioned inside prose is not the value of the whole answer.
+    if (!/^-?(?:\d|\.\d)/.test(cleaned)) return null;
     const mixed = /(-?\d+)\s+(\d+)\/(\d+)/.exec(cleaned);
     if (mixed) {
       const w = Number(mixed[1]);
