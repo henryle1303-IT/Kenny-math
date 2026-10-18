@@ -202,4 +202,5 @@ A ready-to-upload bank of 900 questions (30 tests x 30), built by `npm run bank:
 ## Project documents
 
 * [PLAN.md](PLAN.md) – architecture and design decisions
+* [PWA installation and deployment](docs/PWA.md) – TuanLeUp home-screen app, review workflow and device checks
 * [QA_REPORT.md](QA_REPORT.md) – what was actually tested, results, known issues
